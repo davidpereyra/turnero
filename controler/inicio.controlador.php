@@ -1,8 +1,9 @@
 <?php
 require_once "model/turno.php";
-//require_once "model/turnohistorial.php";
+require_once "model/turnohistorial.php";
 class InicioControlador{
     private $modelo;
+    public $thcreate;
     public function __CONSTRUCT(){
         $this->modelo=new Turno();
         //$this->modelo=new TurnoHistorial();
@@ -23,28 +24,18 @@ class InicioControlador{
 
     public function GenerarTurno(){
         $t=new Turno();
-        //$t->setIdSector(23);
         $t->setIdTurno($_POST['idTurno']);
         $t->setIdSector($_POST['idOperacion']);
-        //$t->setPrioridad($_POST['discapacidad']);
-       // echo "Sector" . ($_POST['idSector']);
-        $this->modelo->Insertar($t);
         
-        //header("location:?c=turnos");
-    }
-
-/* 
-    public function CrearTurnoHistorial(){
-        $thc=new TurnoHistorial();
-        $thc->idTurnoHistorial(23);
-        $thc->setIdTurno($_POST['idTurno']);
-        $thc->setIdEstadoTurno(1);
-        //$t->setPrioridad($_POST['discapacidad']);
-       // echo "Sector" . ($_POST['idSector']);
-        $this->modelo->Insertar($t);
+        $uid = $this->modelo->Insertar($t);
+        echo "<br>".($uid)." de tipo ".gettype($uid) . "en inicio controlador";
         
-        header("location:?c=turnos");
-    }*/
+        $thcreate=new TurnoHistorial();
+        
+        $thcreate->CrearTurnoHistorial($uid,1);//creado es (_,1)
+       
+       // header("location:../turnero");
+    } 
 
 
 }

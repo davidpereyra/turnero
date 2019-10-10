@@ -5,7 +5,7 @@
         private $pdo;
         private $idTurnoHistorial;
         private $idEstadoTurno;
-       // private $idTurno;
+        private $idTurno;
         private $fechaAlta;
         private $fechaBaja;
 
@@ -26,44 +26,45 @@
         public function getFechaBaja(){
             return $this->fechaBaja;
         }
-       /* public function getIdTurno(){
+        public function getIdTurno(){
             return $this->idTurno;
-        }*/
+        }
         //Setters
-        public function setIdTurnoHistorial(int $idTurHis){
+        public function setIdTurnoHistorial($idTurHis){
             $this->idTurnoHistorial=$idTurHis;
         }
-        public function setIdEstadoTurno(int $idEdoTur){
+        public function setIdEstadoTurno($idEdoTur){
             $this->idEstadoTurno=$idEdoTur;
         }
-        public function setFechaAlta(datetime $fechaA){
+        public function setFechaAlta($fechaA){
             $this->fechaAlta=$fechaA;
         }
-        public function setFechaBaja(datetime $fechaB){
+        public function setFechaBaja($fechaB){
             $this->fechaBaja=$fechaB;
         }
-       /* public function setIdTurno($idTur){
+        public function setIdTurno($idTur){
             $this->idTuno=$idTur;
-        }*/
+        }
 
 
-/* 
-        public function CrearTurnoHistorial(TurnoHistorial $th){
+
+        public function CrearTurnoHistorial($idTur,$idEdoTur){
             try{
-                $consulta="INSERT INTO turnohistorial(idSector) VALUES(?);";
-                $this->pdo->prepare($consulta)
-                        ->execute(array(
-                            
-                            $t->getIdSector(),
-                        ));
-            }catch(Exception $e){
+               // $consulta="INSERT INTO turnohistorial(idTurno, idEstadoTurno) VALUES (?,?);";
+                $consulta="INSERT INTO turnohistorial(idTurno, idEstadoTurno) VALUES (:idTur,:idEdoTur);";
+                $stmt = $this->pdo->prepare($consulta);
+                
+                echo "<br>".$idTur . " de CrearTurnoHistorial";
+                $stmt->execute(array(":idTur"=>intval($idTur), ":idEdoTur"=>$idEdoTur));
+            }
+            catch(Exception $e){
                 die($e->getMessage());
             }
         }
 
 
     }
-
+ /*
 function getDateForDatabase($date) {
     $timestamp = strtotime($date);
     $date_formated = date('Y-m-d H:i:s', $timestamp);
@@ -71,4 +72,5 @@ function getDateForDatabase($date) {
 }
 
 */
+
 ?>

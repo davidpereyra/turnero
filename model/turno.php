@@ -4,6 +4,7 @@
 
         private $pdo;
         private $idTurno;
+        private $nombreTurno;
         private $prioridad;
         private $comentario;
         private $idSector;
@@ -18,6 +19,9 @@
         public function getIdTurno(){
             return $this->idTurno;
         }
+        public function getNombreTurno(){
+            return $this->nombreTurno;
+        }
         public function getPrioridad() {
             return $this->prioridad;
         }
@@ -31,8 +35,11 @@
         public function setIdSector($idS){
             $this->idSector=$idS;
         }
+        public function setNombreTurno($nomT){
+            $this->idSector=$nomT;
+        }
         public function setIdTurno($idTur){
-            $this->idTuno=$idTur;
+            $this->nombreTurno=$idTur;
         }
         public function setPrioridad($pri){
             $this->prioridad=$pri;
@@ -40,7 +47,7 @@
         public function setComentario($com){
             $this->comentario=$com;
         }
-
+ 
         public function TurnoSinBaja(){
             try{
                 $consulta=$this->pdo->prepare("SELECT SUM(`idTurno`)AS TurnoSinBaja FROM TURNO");
@@ -66,22 +73,47 @@
             }
         }
 
+//-------------------------------------------------------------
 
+// NO USADA PERO PUEDE SERVIR PARA TRAER EL ULTIMO TURNO EN OTRO MOMENTO
+// ACTUALMENTE LO HACE DESDE INSERTAR(TURNO)
+        public function UltimoIdTurno(){
+            try{
+               
+
+                $consulta="SELECT MAX(IDTURNO) FROM TURNO;";
+                $stmt = $this->pdo->prepare($consulta);
+                $stmt->execute();
+                $resultado =  $stmt->fetch(PDO::FETCH_ASSOC);
+                return $resultado;//aca tiene que retornar un entero.
+
+
+
+            }catch(Exception $e){
+                die($e->getMessage());
+            }
+        }
+//-------------------------------------------------------------
         public function Insertar(Turno $t){
             try{
                 $consulta="INSERT INTO turno(idSector) VALUES(?);";
                 $this->pdo->prepare($consulta)
                         ->execute(array(
                             $t->getIdSector(),
-                        ));/*
-                $ultimoId = "SELECT idTurno FROM turno ORDER BY idTurno DESC LIMIT 1";
+                        ));
+
+                $ultimoId=$this->pdo->prepare("SELECT idTurno FROM turno ORDER BY idTurno DESC LIMIT 1;");
                 $ultimoId->execute();
 
-                $thcreate=new TurnoHistorial();
-                
-                $thcreate->setIdTurno($ultimoId);
-                $thcreate->setIdEstadoTurno(1);
-                                    */
+                if ($ultimoId) {
+                    $uid = intval($ultimoId->fetchColumn());
+                    echo gettype($uid) . " de insertar turno";
+                    echo $uid;// Borrar - era para saber por cual id iba insertando
+                   
+                }               
+
+                return ($uid);
+               
             }catch(Exception $e){
                 die($e->getMessage());
             }
