@@ -9,7 +9,7 @@
 <body>-->
 <?php 
 echo "<br>";
-echo "tuno/video.php";
+echo "turno/index.php";
 
 
 ?>
@@ -28,7 +28,7 @@ echo "tuno/video.php";
 </script>
 
 <p>
-<div class="container">
+<div class="container-fluid">
 <?php $t=$this->modelo->TurnoSinBaja()?>
 <?=$t->TurnoSinBaja ?> 
 </p>
@@ -36,12 +36,12 @@ echo "tuno/video.php";
 
 
     <div class="row">
-        <div class="col s1">I</div>
+        <div class="col-lg-1">I</div>
 
-        <div class="col s10">
+        <div class="col-lg-10">
             
             <div class="row">
-                <form name="form" action="?c=inicio&a=SeleccionarOp" method="post" class="col s12">
+                <form name="form" action="?c=inicio&a=SeleccionarOp" method="post" class="col-lg-12">
                     <label for="input_text">Ingrese DNI</label>
                     <div class="input-field">
                       <input name="dni" class="dni"  type="number" data-length="10" autofocus="autofocus"  min="1" max="999999999999" maxlength="10">
@@ -66,7 +66,7 @@ echo "tuno/video.php";
         
       
       </div>
-      <div class="col s1">D</div>
+      <div class="col-lg-1">D</div>
     </div>
           
 

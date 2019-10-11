@@ -12,7 +12,7 @@ class InicioControlador{
         //$bd = Database::Conectar();
         //require_once "view/turno/operacion_view.php";
         require_once "view/headturno.php";
-        require_once "view/turno/video.php";
+        require_once "view/turno/index.php";
         require_once "view/footerturno.php";
     }
     public function SeleccionarOp(){
@@ -34,7 +34,7 @@ class InicioControlador{
         
         $thcreate->CrearTurnoHistorial($uid,1);//creado es (_,1)
        
-       // header("location:../turnero");
+        header("location:../turnero");
     } 
 
 
