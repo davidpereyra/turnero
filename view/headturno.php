@@ -2,10 +2,12 @@
 <html lang="en">  
 <head>
 <meta charset='utf-8'>
+
     <meta name='viewport' content='width=device-width initial-scale=1'>
     <meta name='mobile-web-app-capable' content='yes'>
-    <link rel='stylesheet' href='assets/css/estilos.css'>
+    <link rel='stylesheet' href='assets/css/style.css'>
     <link rel='stylesheet' href='assets/css/bootstrap.min.css'>
+    
     </head>
 <body>
     

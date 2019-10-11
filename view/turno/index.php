@@ -56,9 +56,11 @@ echo "turno/index.php";
                       </label>
                     </div>
                     <input type="hidden" name="idSec" value=1>
-                    <button class="btn waves-effect waves-light" type="submit">Continuar
-                        <i class="material-icons right">send</i>
+                    <button class="btn btn-primary btn-lg btn-block" type="submit">Continuar
+                      
                     </button>
+
+                    
                    
                 </form>
             </div>

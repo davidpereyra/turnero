@@ -1,0 +1,17 @@
+.botonNro{
+   height: 100%; 
+   width: 85%;
+   font-size:40px !important;
+  
+}
+.botonText{
+    height: 100%; 
+    width: 85%;
+    font-size:26px !important;
+   
+ }
+.rowCalc{
+    margin-top: 5px;
+    margin-left: none;
+    min-height: 80px ;
+}
