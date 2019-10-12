@@ -1,6 +1,7 @@
 <?php
 require_once "model/turno.php";
 require_once "model/turnohistorial.php";
+require_once "model/cliente.php";
 class InicioControlador{
     private $modelo;
     public $thcreate;
@@ -26,14 +27,19 @@ class InicioControlador{
         $t=new Turno();
         $t->setIdTurno($_POST['idTurno']);
         $t->setIdSector($_POST['idOperacion']);
-        
-        $uid = $this->modelo->Insertar($t);
+        $uid = $this->modelo->InsertarTurno($t);
         echo "<br>".($uid)." de tipo ".gettype($uid) . "en inicio controlador";
-        
+        //turno historial
         $thcreate=new TurnoHistorial();
-        
         $thcreate->CrearTurnoHistorial($uid,1);//creado es (_,1)
+        //cliente
+        $cliente=new Cliente();
+        $dnicli = intval($_POST['dni']);
+        echo "<br>".($dnicli)." de dni ".gettype($dnicli) . "en inicio controlador";
+        $cliente->InsertarDniCliente($dnicli,$uid);
        
+                
+
         header("location:../turnero");
     } 
 

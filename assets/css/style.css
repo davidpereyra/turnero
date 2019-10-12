@@ -15,3 +15,14 @@
     margin-left: none;
     min-height: 80px ;
 }
+.dni{
+    background: none;
+    border:none !important;
+    width: 100%;
+    text-align: center;
+    height: 100px;
+    font-size: 100px;
+    color: #FFF;
+    text-shadow: 2px 0 0 #000;
+}
+.b{color: #FFF;}

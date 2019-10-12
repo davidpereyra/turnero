@@ -41,27 +41,48 @@
 
 
          //Setters
-        public function setDniCliente(int $dni){
+        public function setDniCliente($dni){
             $this->dniCliente=$dni;
         }
-        public function setIdTurno(int $idTur){
+        public function setIdTurno($idTur){
             $this->idTurno=$idTur;
         }
-        public function setNombreCliente(string $nombreCli){
+        public function setNombreCliente($nombreCli){
             $this->nombreCliente=$nombreCli;
         }
-        public function setApellidoCliente(string $apellidoCli){
+        public function setApellidoCliente($apellidoCli){
             $this->apellidoCliente=$apellidoCli;
         }
-        public function setMailCliente(string $mailCli){
+        public function setMailCliente($mailCli){
             $this->mailClie=$mailCli;
         }
-        public function setTelefono1Cliente(int $telefono1Cli){
+        public function setTelefono1Cliente($telefono1Cli){
             $this->telefono1Cli=$telefono1Cli;
         }
-        public function setTelefono2Cliente(int $telefono2Cli){
+        public function setTelefono2Cliente($telefono2Cli){
             $this->telefono2Cli=$telefono2Cli;
         }
+
+
+
+        //Metodos
+
+        public function InsertarDniCliente($dniCli,$idTur){
+            try{
+                $consulta="INSERT INTO cliente(dniCliente,idTurno) VALUES(:dniCli,:idTur);";
+                $stmt = $this->pdo->prepare($consulta);
+                $stmt->execute(array(":dniCli"=>intval($dniCli), ":idTur"=>$idTur));
+
+                $stmt->closeCursor();
+               
+            }catch(Exception $e){
+                die($e->getMessage());
+            }
+        }
+
+
+
+
 
     }
 

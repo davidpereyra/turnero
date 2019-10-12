@@ -56,6 +56,8 @@
                 
                 echo "<br>".$idTur . " de CrearTurnoHistorial";
                 $stmt->execute(array(":idTur"=>intval($idTur), ":idEdoTur"=>$idEdoTur));
+
+                $stmt->closeCursor();
             }
             catch(Exception $e){
                 die($e->getMessage());

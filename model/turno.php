@@ -94,13 +94,14 @@
             }
         }
 //-------------------------------------------------------------
-        public function Insertar(Turno $t){
+        public function InsertarTurno(Turno $t){
             try{
                 $consulta="INSERT INTO turno(idSector) VALUES(?);";
                 $this->pdo->prepare($consulta)
                         ->execute(array(
                             $t->getIdSector(),
                         ));
+              
 
                 $ultimoId=$this->pdo->prepare("SELECT idTurno FROM turno ORDER BY idTurno DESC LIMIT 1;");
                 $ultimoId->execute();
@@ -111,7 +112,7 @@
                     echo $uid;// Borrar - era para saber por cual id iba insertando
                    
                 }               
-
+                $ultimoId->closeCursor();
                 return ($uid);
                
             }catch(Exception $e){

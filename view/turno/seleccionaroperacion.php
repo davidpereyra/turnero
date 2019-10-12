@@ -2,7 +2,7 @@
     $sec = intval($_POST['idSec']); 
     echo "<br>"." sector: ".$sec;
     settype($sec,"integer");
-    $dni = htmlspecialchars($_POST['dni']); 
+    $dni = intval($_POST['dni']); 
     echo "<br>".$dni;
     $pri = (isset($_REQUEST['discapacidad'])); 
     echo "<br>".$pri;
@@ -13,38 +13,188 @@
     }
 ?>
 
+<div class="container-fluid">
+<!-- ---------------    FILA 1    -------------------------->
+  <div class="row">
+    <div class="col-lg-1"></div>
+    <div class="col-lg-3">
+      <p>
+        <form action="?c=inicio&a=GenerarTurno" name="seleccionSector" method="POST">
+          <input type="hidden" name="idTurno">
+          <input type="hidden" name="idSector" value=<?php echo $sec; ?>>
+          <input type="hidden" name="dni" value=<?php echo $dni; ?>>
+          <input type="hidden" name="discapacidad" value=<?php echo $pri;?>>
+
+          <button type="submit" name="idOperacion" value=1 type="button" class="btn btn-primary btn-lg btn-block">Block level button</button>
+
+         </form>
+       </p>
+    </div><!--col lg 3 -->
+    <div class="col-lg-1"></div>
+    <div class="col-lg-3">
+      <p>
+        <form action="?c=inicio&a=GenerarTurno" name="seleccionSector" method="POST">
+          <input type="hidden" name="idTurno">
+          <input type="hidden" name="idSector" value=<?php echo $sec; ?>>
+          <input type="hidden" name="dni" value=<?php echo $dni; ?>>
+          <input type="hidden" name="discapacidad" value=<?php echo $pri;?>>
+
+          <button type="submit" name="idOperacion" value=1 type="button" class="btn btn-primary btn-lg btn-block">Block level button</button>
+
+         </form>
+       </p>
+    </div><!--col lg 3 -->
+    <div class="col-lg-1"></div>
+    <div class="col-lg-3">
+      <p>
+        <form action="?c=inicio&a=GenerarTurno" name="seleccionSector" method="POST">
+          <input type="hidden" name="idTurno">
+          <input type="hidden" name="idSector" value=<?php echo $sec; ?>>
+          <input type="hidden" name="dni" value=<?php echo $dni; ?>>
+          <input type="hidden" name="discapacidad" value=<?php echo $pri;?>>
+
+          <button type="submit" name="idOperacion" value=1 type="button" class="btn btn-primary btn-lg btn-block">Block level button</button>
+
+         </form>
+       </p>
+    </div><!--col lg 3 -->
+  </div><!-- row -->
+<!-- ---------------    FIN FILA 1    -------------------------->
+
+<!-- ---------------    FILA 2    -------------------------->
+<div class="row">
+    <div class="col-lg-1"></div>
+    <div class="col-lg-3">
+      <p>
+        <form action="?c=inicio&a=GenerarTurno" name="seleccionSector" method="POST">
+          <input type="hidden" name="idTurno">
+          <input type="hidden" name="idSector" value=<?php echo $sec; ?>>
+          <input type="hidden" name="dni" value=<?php echo $dni; ?>>
+          <input type="hidden" name="discapacidad" value=<?php echo $pri;?>>
+
+          <button type="submit" name="idOperacion" value=1 type="button" class="btn btn-primary btn-lg btn-block">Block level button</button>
+
+         </form>
+       </p>
+    </div><!--col lg 3 -->
+    <div class="col-lg-1"></div>
+    <div class="col-lg-3">
+      <p>
+        <form action="?c=inicio&a=GenerarTurno" name="seleccionSector" method="POST">
+          <input type="hidden" name="idTurno">
+          <input type="hidden" name="idSector" value=<?php echo $sec; ?>>
+          <input type="hidden" name="dni" value=<?php echo $dni; ?>>
+          <input type="hidden" name="discapacidad" value=<?php echo $pri;?>>
+
+          <button type="submit" name="idOperacion" value=1 type="button" class="btn btn-primary btn-lg btn-block">Block level button</button>
+
+         </form>
+       </p>
+    </div><!--col lg 3 -->
+    <div class="col-lg-1"></div>
+    <div class="col-lg-3">
+      <p>
+        <form action="?c=inicio&a=GenerarTurno" name="seleccionSector" method="POST">
+          <input type="hidden" name="idTurno">
+          <input type="hidden" name="idSector" value=<?php echo $sec; ?>>
+          <input type="hidden" name="dni" value=<?php echo $dni; ?>>
+          <input type="hidden" name="discapacidad" value=<?php echo $pri;?>>
+
+          <button type="submit" name="idOperacion" value=1 type="button" class="btn btn-primary btn-lg btn-block">Block level button</button>
+
+         </form>
+       </p>
+    </div><!--col lg 3 -->
+  </div><!-- row -->
+<!-- ---------------    FIN FILA 2    -------------------------->
+
+<!-- ---------------    FILA 3    -------------------------->
+
+<div class="row">
+
+    <div class="col-lg-1"></div>
+        <div class="col-lg-11 text-center">
+        
+          <div class="accordion" id="accordionExample">
+            <div class="card">
+              <div class="card-header" id="headingOne">
+                <h2 class="mb-0">
+                  <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                    Collapsible Group Item #1
+                  </button>
+                </h2>
+              </div>
+
+              <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                <div class="card-body">
+                  Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-header" id="headingTwo">
+                <h2 class="mb-0">
+                  <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    Collapsible Group Item #2
+                  </button>
+                </h2>
+              </div>
+              <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                <div class="card-body">
+                  Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-header" id="headingThree">
+                <h2 class="mb-0">
+                  <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                    Collapsible Group Item #3
+                  </button>
+                </h2>
+              </div>
+              <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                <div class="card-body">
+                  Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                </div>
+              </div>
+            </div>
+          </div>
 
 
 
-<ul class="collapsible">
-    <table><!-- VENTAS -->
-        <li>
-        <div class="collapsible-header">
-            <i class="material-icons">filter_drama</i>
-                Sector de Ventas
-                <span class="new badge" data-badge-caption="Ventas"></span></div>
-                <div class="collapsible-body">
-                    <div class="row center">
+              
+    </div>
+</div>
+
+<!-- ---------------    FIN FILA 3    -------------------------->
+
+</div><!-- container fluid -->
+
+            
 
 
-                        <div class="col s4">
-                            <form action="?c=inicio&a=GenerarTurno" name="seleccionSector" method="POST">
+
+
+<!--
+  <a href="#collapseExample" class="btn btn-primary" data-toggle="collapse">
+    Link with href
+  </a>
+
+<div class="collapse" id="collapseExample">
+  <div class="well">
+    <p><form action="?c=inicio&a=GenerarTurno" name="seleccionSector" method="POST">
                                 <input type="hidden" name="idTurno">
-                                <input type="hidden" name="idSector" value=<?php $sec; ?>>
-                                <!--<input type="hidden" name="dni" value=<?php $dni; ?>>
-                                <input type="hidden" name="discapacidad" value=<?php $pri;?>>-->
+                                <input type="hidden" name="idSector" value=<?php echo $sec; ?>>
+                                <input type="hidden" name="dni" value=<?php echo $dni; ?>>
+                                <input type="hidden" name="discapacidad" value=<?php echo $pri;?>>- ->
 
                                 <button class="btn waves-effect waves-light" type="submit" name="idOperacion" value=1>NOMBRE OPERACION 1
-                                <i class="material-icons right">send</i>
+                                
                                 </button>
-                            </form>
-                        </div>
+                            </form></p>
+  </div>
+</div
+-->
 
 
-                    </div>
-                  
-                </div>
-        </div>                
-        </li>
-    </table>
-</ul>        
