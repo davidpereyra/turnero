@@ -26,19 +26,45 @@
             return $this->passUsuario;
         }
          //Setters
-        public function setIdUsuario(int $idUser){
+        public function setIdUsuario($idUser){
             $this->idUsuario=$idUser;
         }
-        public function setIdPerfil(int $idPer){
+        public function setIdPerfil($idPer){
             $this->idPerfil=$idPer;
         }
-        public function setNombreUsuario(string $nombreUser){
+        public function setNombreUsuario($nombreUser){
             $this->nombreUsuario=$nombreUser;
         }
-        public function setPassUsuario(string $passUser){
+        public function setPassUsuario($passUser){
             $this->passUsuario=$passUser;
         }
         
+        //Methods
+        public function ValidarLogin($user, $pass){
+            try{
+                $consulta="SELECT NOMBREUSUARIO,PASSUSUARIO FROM USUARIO where NOMBREUSUARIO='$user' AND PASSUSUARIO='$pass'";
+                $login = $this->pdo->prepare($consulta);
+                $login->execute();
+                $numero_registro=$login->rowCount();
+                
+                if($numero_registro!=0){
+                   
+                    session_start();//inicia sesion
+                    $_SESSION["usuario"]=$login;//almacena usuario de la sesion
+                    //header("location:?c=usuario&a=InicioDash");
+
+                    $valor = True;
+                }else{
+                    $valor = False;
+                }                                                               
+                return $valor;
+            }catch(Exception $e){
+                die($e->getMessage());
+            }
+        }
+
+
+
     }
 
 

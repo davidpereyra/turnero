@@ -25,6 +25,13 @@ echo "turno/index.php";
         var exp = document.form.dni.value;
         document.form.dni.value = exp.substring(0,exp.length-1);
       }
+      function validar() {
+        if ($('#dni').val().length == 0) {
+          alert('Por favor, ingrese su DNI');
+        return false;
+        }
+      }
+      
 </script>
 
 <p>
@@ -44,7 +51,7 @@ echo "turno/index.php";
                 <form name="form" action="?c=inicio&a=SeleccionarOp" method="post" class="col-lg-12">
                     <label for="input_text" class="dni">Ingrese DNI</label>
                     <div class="input-field textDni">
-                      <input name="dni" class="dni"  type="number" data-length="10" autofocus="autofocus"  min="1" max="999999999999" maxlength="10">
+                      <input id="dni"name="dni" class="dni"  type="number" data-length="10" autofocus="autofocus"  min="1" max="999999999999" maxlength="10" required>
                     </div>
                     <div class="row"><!--teclado-->
                       <?php include_once('teclado.php');?>
@@ -56,8 +63,8 @@ echo "turno/index.php";
                         <span>Discapacidad</span>
                       </label>
                     </div>
-                    <input type="hidden" name="idSec" value=1><br> 
-                    <button class="btn btn-primary btn-lg btn-block" type="submit">
+                    <!--<input type="hidden" name="idSec" value=1>--><br> 
+                    <button class="btn btn-primary btn-lg btn-block" type="submit" onclick="validar()">
                       Continuar
                     </button>
                 </form>
