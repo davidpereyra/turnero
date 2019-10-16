@@ -51,11 +51,15 @@
         public function CrearTurnoHistorial($idTur,$idEdoTur){
             try{
                // $consulta="INSERT INTO turnohistorial(idTurno, idEstadoTurno) VALUES (?,?);";
-                $consulta="INSERT INTO turnohistorial(idTurno, idEstadoTurno) VALUES (:idTur,:idEdoTur);";
+                $consulta="INSERT INTO turnohistorial(idTurno, idEstadoTurno,fechaAlta) VALUES (:idTur,:idEdoTur,:fechaAlta);";
                 $stmt = $this->pdo->prepare($consulta);
                 
-                echo "<br>".$idTur . " de CrearTurnoHistorial";
-                $stmt->execute(array(":idTur"=>intval($idTur), ":idEdoTur"=>$idEdoTur));
+
+                date_default_timezone_set('America/Argentina/Mendoza');
+                $fechaA = date('Y-m-d H:i:s');
+                //$fechaA = date_default_timezone_get();
+                
+                $stmt->execute(array(":idTur"=>intval($idTur), ":idEdoTur"=>($idEdoTur),":fechaAlta"=>($fechaA)));
 
                 $stmt->closeCursor();
             }

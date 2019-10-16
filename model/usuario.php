@@ -41,16 +41,19 @@
         
         //Methods
         public function ValidarLogin($user, $pass){
-            try{
+            try{ 
                 $consulta="SELECT NOMBREUSUARIO,PASSUSUARIO FROM USUARIO where NOMBREUSUARIO='$user' AND PASSUSUARIO='$pass'";
                 $login = $this->pdo->prepare($consulta);
-                $login->execute();
+                $login->execute();    
+                  
+            
 
                 $numero_registro=$login->rowCount();
 
                 if($numero_registro!=0){
                     session_start();//inicia sesion
                     $_SESSION["usuario"]=$user;//almacena usuario de la sesion
+                   
                     $valor = True;
                 }else{
                     $valor = False;

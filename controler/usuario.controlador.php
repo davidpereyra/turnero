@@ -17,6 +17,7 @@ require_once "model/usuario.php";
             $claseUser=new Usuario();
             $user = $_POST['nombreUsuario'];
             $pass = $_POST['passUsuario'];
+        
             $valor = $claseUser->ValidarLogin($user, $pass);
             
             if ($valor){
