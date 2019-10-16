@@ -26,7 +26,7 @@ class InicioControlador{
     public function GenerarTurno(){
         $t=new Turno();
         $t->setIdTurno($_POST['idTurno']);
-        $t->setIdSector($_POST['idOperacion']);
+        $t->setIdOperacion($_POST['idOperacion']);
         $uid = $this->modelo->InsertarTurno($t);
         echo "<br>".($uid)." de tipo ".gettype($uid) . "en inicio controlador";
         //turno historial
@@ -42,7 +42,5 @@ class InicioControlador{
 
         header("location:../turnero");
     } 
-
-
 }
 ?>

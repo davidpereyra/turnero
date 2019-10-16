@@ -45,14 +45,12 @@
                 $consulta="SELECT NOMBREUSUARIO,PASSUSUARIO FROM USUARIO where NOMBREUSUARIO='$user' AND PASSUSUARIO='$pass'";
                 $login = $this->pdo->prepare($consulta);
                 $login->execute();
-                $numero_registro=$login->rowCount();
-                
-                if($numero_registro!=0){
-                   
-                    session_start();//inicia sesion
-                    $_SESSION["usuario"]=$login;//almacena usuario de la sesion
-                    //header("location:?c=usuario&a=InicioDash");
 
+                $numero_registro=$login->rowCount();
+
+                if($numero_registro!=0){
+                    session_start();//inicia sesion
+                    $_SESSION["usuario"]=$user;//almacena usuario de la sesion
                     $valor = True;
                 }else{
                     $valor = False;

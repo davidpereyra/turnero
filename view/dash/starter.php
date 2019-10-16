@@ -1,339 +1,753 @@
-<!DOCTYPE html>
-<!--
-This is a starter template page. Use this page to start your new project from
-scratch. This page gets rid of all links and provides the needed markup only.
--->
-
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-
-  <title>AdminLTE 3 | Starter</title>
-
-  <!-- Font Awesome Icons -->
-  <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="dist/css/adminlte.min.css">
-  <!-- Google Font: Source Sans Pro -->
-  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-</head>
-<body class="hold-transition sidebar-mini">
-<?php
-  session_start();
-  if(isset($_SESSION["usuario"])){
-    header("location:?c=usuario&a=Login");	
-    
-  }
-
-?>
-
-<div class="wrapper">
-
-  <!-- Navbar -->
-  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-    <!-- Left navbar links -->
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
-      </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="index3.html" class="nav-link">Home</a>
-      </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link">Contact</a>
-      </li>
-    </ul>
-
-    <!-- SEARCH FORM -->
-    <form class="form-inline ml-3">
-      <div class="input-group input-group-sm">
-        <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-        <div class="input-group-append">
-          <button class="btn btn-navbar" type="submit">
-            <i class="fas fa-search"></i>
-          </button>
-        </div>
+<section id="container">
+    <!-- **********************************************************************************************************************************************************
+        TOP BAR CONTENT & NOTIFICATIONS
+        *********************************************************************************************************************************************************** -->
+    <!--header start-->
+    <header class="header black-bg">
+      <div class="sidebar-toggle-box">
+        <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
       </div>
-    </form>
-
-    <!-- Right navbar links -->
-    <ul class="navbar-nav ml-auto">
-      <!-- Messages Dropdown Menu -->
-      <li class="nav-item dropdown">
-        <a class="nav-link" data-toggle="dropdown" href="#">
-          <i class="far fa-comments"></i>
-          <span class="badge badge-danger navbar-badge">3</span>
-        </a>
-        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-          <a href="#" class="dropdown-item">
-            <!-- Message Start -->
-            <div class="media">
-              <img src="dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
-              <div class="media-body">
-                <h3 class="dropdown-item-title">
-                  Brad Diesel
-                  <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
-                </h3>
-                <p class="text-sm">Call me whenever you can...</p>
-                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-              </div>
-            </div>
-            <!-- Message End -->
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <!-- Message Start -->
-            <div class="media">
-              <img src="dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
-              <div class="media-body">
-                <h3 class="dropdown-item-title">
-                  John Pierce
-                  <span class="float-right text-sm text-muted"><i class="fas fa-star"></i></span>
-                </h3>
-                <p class="text-sm">I got your message bro</p>
-                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-              </div>
-            </div>
-            <!-- Message End -->
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <!-- Message Start -->
-            <div class="media">
-              <img src="dist/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
-              <div class="media-body">
-                <h3 class="dropdown-item-title">
-                  Nora Silvester
-                  <span class="float-right text-sm text-warning"><i class="fas fa-star"></i></span>
-                </h3>
-                <p class="text-sm">The subject goes here</p>
-                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-              </div>
-            </div>
-            <!-- Message End -->
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
-        </div>
-      </li>
-      <!-- Notifications Dropdown Menu -->
-      <li class="nav-item dropdown">
-        <a class="nav-link" data-toggle="dropdown" href="#">
-          <i class="far fa-bell"></i>
-          <span class="badge badge-warning navbar-badge">15</span>
-        </a>
-        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-          <span class="dropdown-header">15 Notifications</span>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-envelope mr-2"></i> 4 new messages
-            <span class="float-right text-muted text-sm">3 mins</span>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-users mr-2"></i> 8 friend requests
-            <span class="float-right text-muted text-sm">12 hours</span>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-file mr-2"></i> 3 new reports
-            <span class="float-right text-muted text-sm">2 days</span>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
-        </div>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#"><i
-            class="fas fa-th-large"></i></a>
-      </li>
-    </ul>
-  </nav>
-  <!-- /.navbar -->
-
-  <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-dark-primary elevation-4">
-    <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
-      <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
-           style="opacity: .8">
-      <span class="brand-text font-weight-light">AdminLTE 3</span>
-    </a>
-
-    <!-- Sidebar -->
-    <div class="sidebar">
-      <!-- Sidebar user panel (optional) -->
-      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        <div class="image">
-          <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
-        </div>
-        <div class="info">
-          <a href="#" class="d-block">Alexander Pierce</a>
-        </div>
-      </div>
-
-      <!-- Sidebar Menu -->
-      <nav class="mt-2">
-        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
-          <li class="nav-item has-treeview menu-open">
-            <a href="#" class="nav-link active">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>
-                Starter Pages
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="#" class="nav-link active">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Active Page</p>
+      <!--logo start-->
+      <a href="?c=usuario&a=InicioDash" class="logo"><b>COC<span>UCCI</span></b></a>
+      <!--logo end-->
+      <div class="nav notify-row" id="top_menu">
+        <!--  notification start -->
+        <ul class="nav top-menu">
+          <!-- settings start -->
+          <li class="dropdown">
+            <a data-toggle="dropdown" class="dropdown-toggle" href="index.html#">
+              <i class="fa fa-tasks"></i>
+              <span class="badge bg-theme">4</span>
+              </a>
+            <ul class="dropdown-menu extended tasks-bar">
+              <div class="notify-arrow notify-arrow-green"></div>
+              <li>
+                <p class="green">You have 4 pending tasks</p>
+              </li>
+              <li>
+                <a href="index.html#">
+                  <div class="task-info">
+                    <div class="desc">Dashio Admin Panel</div>
+                    <div class="percent">40%</div>
+                  </div>
+                  <div class="progress progress-striped">
+                    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                      <span class="sr-only">40% Complete (success)</span>
+                    </div>
+                  </div>
                 </a>
               </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Inactive Page</p>
+              <li>
+                <a href="index.html#">
+                  <div class="task-info">
+                    <div class="desc">Database Update</div>
+                    <div class="percent">60%</div>
+                  </div>
+                  <div class="progress progress-striped">
+                    <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
+                      <span class="sr-only">60% Complete (warning)</span>
+                    </div>
+                  </div>
                 </a>
+              </li>
+              <li>
+                <a href="index.html#">
+                  <div class="task-info">
+                    <div class="desc">Product Development</div>
+                    <div class="percent">80%</div>
+                  </div>
+                  <div class="progress progress-striped">
+                    <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
+                      <span class="sr-only">80% Complete</span>
+                    </div>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a href="index.html#">
+                  <div class="task-info">
+                    <div class="desc">Payments Sent</div>
+                    <div class="percent">70%</div>
+                  </div>
+                  <div class="progress progress-striped">
+                    <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 70%">
+                      <span class="sr-only">70% Complete (Important)</span>
+                    </div>
+                  </div>
+                </a>
+              </li>
+              <li class="external">
+                <a href="#">See All Tasks</a>
               </li>
             </ul>
           </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
-              <p>
-                Simple Link
-                <span class="right badge badge-danger">New</span>
-              </p>
-            </a>
+          <!-- settings end -->
+          <!-- inbox dropdown start-->
+          <li id="header_inbox_bar" class="dropdown">
+            <a data-toggle="dropdown" class="dropdown-toggle" href="index.html#">
+              <i class="fa fa-envelope-o"></i>
+              <span class="badge bg-theme">5</span>
+              </a>
+            <ul class="dropdown-menu extended inbox">
+              <div class="notify-arrow notify-arrow-green"></div>
+              <li>
+                <p class="green">You have 5 new messages</p>
+              </li>
+              <li>
+                <a href="index.html#">
+                  <span class="photo"><img alt="avatar" src="img/ui-zac.jpg"></span>
+                  <span class="subject">
+                  <span class="from">Zac Snider</span>
+                  <span class="time">Just now</span>
+                  </span>
+                  <span class="message">
+                  Hi mate, how is everything?
+                  </span>
+                  </a>
+              </li>
+              <li>
+                <a href="index.html#">
+                  <span class="photo"><img alt="avatar" src="img/ui-divya.jpg"></span>
+                  <span class="subject">
+                  <span class="from">Divya Manian</span>
+                  <span class="time">40 mins.</span>
+                  </span>
+                  <span class="message">
+                  Hi, I need your help with this.
+                  </span>
+                  </a>
+              </li>
+              <li>
+                <a href="index.html#">
+                  <span class="photo"><img alt="avatar" src="img/ui-danro.jpg"></span>
+                  <span class="subject">
+                  <span class="from">Dan Rogers</span>
+                  <span class="time">2 hrs.</span>
+                  </span>
+                  <span class="message">
+                  Love your new Dashboard.
+                  </span>
+                  </a>
+              </li>
+              <li>
+                <a href="index.html#">
+                  <span class="photo"><img alt="avatar" src="img/ui-sherman.jpg"></span>
+                  <span class="subject">
+                  <span class="from">Dj Sherman</span>
+                  <span class="time">4 hrs.</span>
+                  </span>
+                  <span class="message">
+                  Please, answer asap.
+                  </span>
+                  </a>
+              </li>
+              <li>
+                <a href="index.html#">See all messages</a>
+              </li>
+            </ul>
+          </li>
+          <!-- inbox dropdown end -->
+          <!-- notification dropdown start-->
+          <li id="header_notification_bar" class="dropdown">
+            <a data-toggle="dropdown" class="dropdown-toggle" href="index.html#">
+              <i class="fa fa-bell-o"></i>
+              <span class="badge bg-warning">7</span>
+              </a>
+            <ul class="dropdown-menu extended notification">
+              <div class="notify-arrow notify-arrow-yellow"></div>
+              <li>
+                <p class="yellow">You have 7 new notifications</p>
+              </li>
+              <li>
+                <a href="index.html#">
+                  <span class="label label-danger"><i class="fa fa-bolt"></i></span>
+                  Server Overloaded.
+                  <span class="small italic">4 mins.</span>
+                  </a>
+              </li>
+              <li>
+                <a href="index.html#">
+                  <span class="label label-warning"><i class="fa fa-bell"></i></span>
+                  Memory #2 Not Responding.
+                  <span class="small italic">30 mins.</span>
+                  </a>
+              </li>
+              <li>
+                <a href="index.html#">
+                  <span class="label label-danger"><i class="fa fa-bolt"></i></span>
+                  Disk Space Reached 85%.
+                  <span class="small italic">2 hrs.</span>
+                  </a>
+              </li>
+              <li>
+                <a href="index.html#">
+                  <span class="label label-success"><i class="fa fa-plus"></i></span>
+                  New User Registered.
+                  <span class="small italic">3 hrs.</span>
+                  </a>
+              </li>
+              <li>
+                <a href="index.html#">See all notifications</a>
+              </li>
+            </ul>
+          </li>
+          <!-- notification dropdown end -->
+        </ul>
+        <!--  notification end -->
+      </div>
+      <div class="top-menu">
+        <ul class="nav pull-right top-menu">
+          <li><a class="logout" href="?c=usuario&a=Logout">Salir</a></li>
+        </ul>
+      </div>
+    </header>
+    <!--header end-->
+    <!-- **********************************************************************************************************************************************************
+        MAIN SIDEBAR MENU
+        *********************************************************************************************************************************************************** -->
+    <!--sidebar start-->
+    <aside>
+      <div id="sidebar" class="nav-collapse ">
+        <!-- sidebar menu start-->
+        <ul class="sidebar-menu" id="nav-accordion">
+          <p class="centered"><a href="profile.html"><img src="img/ui-sam.jpg" class="img-circle" width="80"></a></p>
+          <h5 class="centered">
+          <?php 
+           echo $_SESSION["usuario"];
+           ?></h5>
+          <li class="mt">
+            <a class="active" href="?c=usuario&a=InicioDash">
+              <i class="fa fa-dashboard"></i>
+              <span>Dashboard</span>
+              </a>
+          </li>
+          <li class="sub-menu">
+            <a href="javascript:;">
+              <i class="fa fa-desktop"></i>
+              <span>UI Elements</span>
+              </a>
+            <ul class="sub">
+              <li><a href="general.html">General</a></li>
+              <li><a href="buttons.html">Buttons</a></li>
+              <li><a href="panels.html">Panels</a></li>
+              <li><a href="font_awesome.html">Font Awesome</a></li>
+            </ul>
+          </li>
+          <li class="sub-menu">
+            <a href="javascript:;">
+              <i class="fa fa-cogs"></i>
+              <span>Components</span>
+              </a>
+            <ul class="sub">
+              <li><a href="grids.html">Grids</a></li>
+              <li><a href="calendar.html">Calendar</a></li>
+              <li><a href="gallery.html">Gallery</a></li>
+              <li><a href="todo_list.html">Todo List</a></li>
+              <li><a href="dropzone.html">Dropzone File Upload</a></li>
+              <li><a href="inline_editor.html">Inline Editor</a></li>
+              <li><a href="file_upload.html">Multiple File Upload</a></li>
+            </ul>
+          </li>
+          <li class="sub-menu">
+            <a href="javascript:;">
+              <i class="fa fa-book"></i>
+              <span>Extra Pages</span>
+              </a>
+            <ul class="sub">
+              <li><a href="blank.html">Blank Page</a></li>
+              <li><a href="login.html">Login</a></li>
+              <li><a href="lock_screen.html">Lock Screen</a></li>
+              <li><a href="profile.html">Profile</a></li>
+              <li><a href="invoice.html">Invoice</a></li>
+              <li><a href="pricing_table.html">Pricing Table</a></li>
+              <li><a href="faq.html">FAQ</a></li>
+              <li><a href="404.html">404 Error</a></li>
+              <li><a href="500.html">500 Error</a></li>
+            </ul>
+          </li>
+          <li class="sub-menu">
+            <a href="javascript:;">
+              <i class="fa fa-tasks"></i>
+              <span>Forms</span>
+              </a>
+            <ul class="sub">
+              <li><a href="form_component.html">Form Components</a></li>
+              <li><a href="advanced_form_components.html">Advanced Components</a></li>
+              <li><a href="form_validation.html">Form Validation</a></li>
+              <li><a href="contactform.html">Contact Form</a></li>
+            </ul>
+          </li>
+          <li class="sub-menu">
+            <a href="javascript:;">
+              <i class="fa fa-th"></i>
+              <span>Data Tables</span>
+              </a>
+            <ul class="sub">
+              <li><a href="basic_table.html">Basic Table</a></li>
+              <li><a href="responsive_table.html">Responsive Table</a></li>
+              <li><a href="advanced_table.html">Advanced Table</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="inbox.html">
+              <i class="fa fa-envelope"></i>
+              <span>Mail </span>
+              <span class="label label-theme pull-right mail-info">2</span>
+              </a>
+          </li>
+          <li class="sub-menu">
+            <a href="javascript:;">
+              <i class=" fa fa-bar-chart-o"></i>
+              <span>Charts</span>
+              </a>
+            <ul class="sub">
+              <li><a href="morris.html">Morris</a></li>
+              <li><a href="chartjs.html">Chartjs</a></li>
+              <li><a href="flot_chart.html">Flot Charts</a></li>
+              <li><a href="xchart.html">xChart</a></li>
+            </ul>
+          </li>
+          <li class="sub-menu">
+            <a href="javascript:;">
+              <i class="fa fa-comments-o"></i>
+              <span>Chat Room</span>
+              </a>
+            <ul class="sub">
+              <li><a href="lobby.html">Lobby</a></li>
+              <li><a href="chat_room.html"> Chat Room</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="google_maps.html">
+              <i class="fa fa-map-marker"></i>
+              <span>Google Maps </span>
+              </a>
           </li>
         </ul>
-      </nav>
-      <!-- /.sidebar-menu -->
-    </div>
-    <!-- /.sidebar -->
-  </aside>
-
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <div class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Starter Page</h1>
-          </div><!-- /.col -->
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Starter Page</li>
-            </ol>
-          </div><!-- /.col -->
-        </div><!-- /.row -->
-      </div><!-- /.container-fluid -->
-    </div>
-    <!-- /.content-header -->
-
-    <!-- Main content -->
-    <div class="content">
-      <div class="container-fluid">
+        <!-- sidebar menu end-->
+      </div>
+    </aside>
+    <!--sidebar end-->
+    <!-- **********************************************************************************************************************************************************
+        MAIN CONTENT
+        *********************************************************************************************************************************************************** -->
+    <!--main content start-->
+    <section id="main-content">
+      <section class="wrapper">
         <div class="row">
-          <div class="col-lg-6">
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-
-                <p class="card-text">
-                  Some quick example text to build on the card title and make up the bulk of the card's
-                  content.
-                </p>
-
-                <a href="#" class="card-link">Card link</a>
-                <a href="#" class="card-link">Another link</a>
+          <div class="col-lg-9 main-chart">
+            <!--CUSTOM CHART START -->
+            <div class="border-head">
+              <h3>USER VISITS</h3>
+            </div>
+            <div class="custom-bar-chart">
+              <ul class="y-axis">
+                <li><span>10.000</span></li>
+                <li><span>8.000</span></li>
+                <li><span>6.000</span></li>
+                <li><span>4.000</span></li>
+                <li><span>2.000</span></li>
+                <li><span>0</span></li>
+              </ul>
+              <div class="bar">
+                <div class="title">JAN</div>
+                <div class="value tooltips" data-original-title="8.500" data-toggle="tooltip" data-placement="top">85%</div>
+              </div>
+              <div class="bar ">
+                <div class="title">FEB</div>
+                <div class="value tooltips" data-original-title="5.000" data-toggle="tooltip" data-placement="top">50%</div>
+              </div>
+              <div class="bar ">
+                <div class="title">MAR</div>
+                <div class="value tooltips" data-original-title="6.000" data-toggle="tooltip" data-placement="top">60%</div>
+              </div>
+              <div class="bar ">
+                <div class="title">APR</div>
+                <div class="value tooltips" data-original-title="4.500" data-toggle="tooltip" data-placement="top">45%</div>
+              </div>
+              <div class="bar">
+                <div class="title">MAY</div>
+                <div class="value tooltips" data-original-title="3.200" data-toggle="tooltip" data-placement="top">32%</div>
+              </div>
+              <div class="bar ">
+                <div class="title">JUN</div>
+                <div class="value tooltips" data-original-title="6.200" data-toggle="tooltip" data-placement="top">62%</div>
+              </div>
+              <div class="bar">
+                <div class="title">JUL</div>
+                <div class="value tooltips" data-original-title="7.500" data-toggle="tooltip" data-placement="top">75%</div>
               </div>
             </div>
-
-            <div class="card card-primary card-outline">
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-
-                <p class="card-text">
-                  Some quick example text to build on the card title and make up the bulk of the card's
-                  content.
-                </p>
-                <a href="#" class="card-link">Card link</a>
-                <a href="#" class="card-link">Another link</a>
+            <!--custom chart end-->
+            <div class="row mt">
+              <!-- SERVER STATUS PANELS -->
+              <div class="col-md-4 col-sm-4 mb">
+                <div class="grey-panel pn donut-chart">
+                  <div class="grey-header">
+                    <h5>SERVER LOAD</h5>
+                  </div>
+                  <canvas id="serverstatus01" height="120" width="120"></canvas>
+                  <script>
+                    var doughnutData = [{
+                        value: 70,
+                        color: "#FF6B6B"
+                      },
+                      {
+                        value: 30,
+                        color: "#fdfdfd"
+                      }
+                    ];
+                    var myDoughnut = new Chart(document.getElementById("serverstatus01").getContext("2d")).Doughnut(doughnutData);
+                  </script>
+                  <div class="row">
+                    <div class="col-sm-6 col-xs-6 goleft">
+                      <p>Usage<br/>Increase:</p>
+                    </div>
+                    <div class="col-sm-6 col-xs-6">
+                      <h2>21%</h2>
+                    </div>
+                  </div>
+                </div>
+                <!-- /grey-panel -->
               </div>
-            </div><!-- /.card -->
+              <!-- /col-md-4-->
+              <div class="col-md-4 col-sm-4 mb">
+                <div class="darkblue-panel pn">
+                  <div class="darkblue-header">
+                    <h5>DROPBOX STATICS</h5>
+                  </div>
+                  <canvas id="serverstatus02" height="120" width="120"></canvas>
+                  <script>
+                    var doughnutData = [{
+                        value: 60,
+                        color: "#1c9ca7"
+                      },
+                      {
+                        value: 40,
+                        color: "#f68275"
+                      }
+                    ];
+                    var myDoughnut = new Chart(document.getElementById("serverstatus02").getContext("2d")).Doughnut(doughnutData);
+                  </script>
+                  <p>April 17, 2014</p>
+                  <footer>
+                    <div class="pull-left">
+                      <h5><i class="fa fa-hdd-o"></i> 17 GB</h5>
+                    </div>
+                    <div class="pull-right">
+                      <h5>60% Used</h5>
+                    </div>
+                  </footer>
+                </div>
+                <!--  /darkblue panel -->
+              </div>
+              <!-- /col-md-4 -->
+              <div class="col-md-4 col-sm-4 mb">
+                <!-- REVENUE PANEL -->
+                <div class="green-panel pn">
+                  <div class="green-header">
+                    <h5>REVENUE</h5>
+                  </div>
+                  <div class="chart mt">
+                    <div class="sparkline" data-type="line" data-resize="true" data-height="75" data-width="90%" data-line-width="1" data-line-color="#fff" data-spot-color="#fff" data-fill-color="" data-highlight-line-color="#fff" data-spot-radius="4" data-data="[200,135,667,333,526,996,564,123,890,464,655]"></div>
+                  </div>
+                  <p class="mt"><b>$ 17,980</b><br/>Month Income</p>
+                </div>
+              </div>
+              <!-- /col-md-4 -->
+            </div>
+            <!-- /row -->
+            <div class="row">
+              <!-- WEATHER PANEL -->
+              <div class="col-md-4 mb">
+                <div class="weather pn">
+                  <i class="fa fa-cloud fa-4x"></i>
+                  <h2>11ยบ C</h2>
+                  <h4>BUDAPEST</h4>
+                </div>
+              </div>
+              <!-- /col-md-4-->
+              <!-- DIRECT MESSAGE PANEL -->
+              <div class="col-md-8 mb">
+                <div class="message-p pn">
+                  <div class="message-header">
+                    <h5>DIRECT MESSAGE</h5>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-3 centered hidden-sm hidden-xs">
+                      <img src="img/ui-danro.jpg" class="img-circle" width="65">
+                    </div>
+                    <div class="col-md-9">
+                      <p>
+                        <name>Dan Rogers</name>
+                        sent you a message.
+                      </p>
+                      <p class="small">3 hours ago</p>
+                      <p class="message">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
+                      <form class="form-inline" role="form">
+                        <div class="form-group">
+                          <input type="text" class="form-control" id="exampleInputText" placeholder="Reply Dan">
+                        </div>
+                        <button type="submit" class="btn btn-default">Send</button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+                <!-- /Message Panel-->
+              </div>
+              <!-- /col-md-8  -->
+            </div>
+            <div class="row">
+              <!-- TWITTER PANEL -->
+              <div class="col-md-4 mb">
+                <div class="twitter-panel pn">
+                  <i class="fa fa-twitter fa-4x"></i>
+                  <p>Dashio is here! Take a look and enjoy this new Bootstrap Dashboard theme.</p>
+                  <p class="user">@Alvrz_is</p>
+                </div>
+              </div>
+              <!-- /col-md-4 -->
+              <div class="col-md-4 mb">
+                <!-- WHITE PANEL - TOP USER -->
+                <div class="white-panel pn">
+                  <div class="white-header">
+                    <h5>TOP USER</h5>
+                  </div>
+                  <p><img src="img/ui-zac.jpg" class="img-circle" width="50"></p>
+                  <p><b>Zac Snider</b></p>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <p class="small mt">MEMBER SINCE</p>
+                      <p>2012</p>
+                    </div>
+                    <div class="col-md-6">
+                      <p class="small mt">TOTAL SPEND</p>
+                      <p>$ 47,60</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- /col-md-4 -->
+              <div class="col-md-4 mb">
+                <!-- INSTAGRAM PANEL -->
+                <div class="instagram-panel pn">
+                  <i class="fa fa-instagram fa-4x"></i>
+                  <p>@THISISYOU<br/> 5 min. ago
+                  </p>
+                  <p><i class="fa fa-comment"></i> 18 | <i class="fa fa-heart"></i> 49</p>
+                </div>
+              </div>
+              <!-- /col-md-4 -->
+            </div>
+            <!-- /row -->
+            <div class="row">
+              <div class="col-lg-4 col-md-4 col-sm-4 mb">
+                <div class="product-panel-2 pn">
+                  <div class="badge badge-hot">HOT</div>
+                  <img src="img/product.jpg" width="200" alt="">
+                  <h5 class="mt">Flat Pack Heritage</h5>
+                  <h6>TOTAL SALES: 1388</h6>
+                  <button class="btn btn-small btn-theme04">FULL REPORT</button>
+                </div>
+              </div>
+              <!-- /col-md-4 -->
+              <!--  PROFILE 02 PANEL -->
+              <div class="col-lg-4 col-md-4 col-sm-4 mb">
+                <div class="content-panel pn">
+                  <div id="profile-02">
+                    <div class="user">
+                      <img src="img/friends/fr-06.jpg" class="img-circle" width="80">
+                      <h4>DJ SHERMAN</h4>
+                    </div>
+                  </div>
+                  <div class="pr2-social centered">
+                    <a href="#"><i class="fa fa-twitter"></i></a>
+                    <a href="#"><i class="fa fa-facebook"></i></a>
+                    <a href="#"><i class="fa fa-dribbble"></i></a>
+                  </div>
+                </div>
+                <!-- /panel -->
+              </div>
+              <!--/ col-md-4 -->
+              <div class="col-md-4 col-sm-4 mb">
+                <div class="green-panel pn">
+                  <div class="green-header">
+                    <h5>DISK SPACE</h5>
+                  </div>
+                  <canvas id="serverstatus03" height="120" width="120"></canvas>
+                  <script>
+                    var doughnutData = [{
+                        value: 60,
+                        color: "#2b2b2b"
+                      },
+                      {
+                        value: 40,
+                        color: "#fffffd"
+                      }
+                    ];
+                    var myDoughnut = new Chart(document.getElementById("serverstatus03").getContext("2d")).Doughnut(doughnutData);
+                  </script>
+                  <h3>60% USED</h3>
+                </div>
+              </div>
+              <!-- /col-md-4 -->
+            </div>
+            <!-- /row -->
           </div>
-          <!-- /.col-md-6 -->
-          <div class="col-lg-6">
-            <div class="card">
-              <div class="card-header">
-                <h5 class="m-0">Featured</h5>
-              </div>
-              <div class="card-body">
-                <h6 class="card-title">Special title treatment</h6>
-
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
+          <!-- /col-lg-9 END SECTION MIDDLE -->
+          <!-- **********************************************************************************************************************************************************
+              RIGHT SIDEBAR CONTENT
+              *********************************************************************************************************************************************************** -->
+          <div class="col-lg-3 ds">
+            <!--COMPLETED ACTIONS DONUTS CHART-->
+            <div class="donut-main">
+              <h4>COMPLETED ACTIONS & PROGRESS</h4>
+              <canvas id="newchart" height="130" width="130"></canvas>
+              <script>
+                var doughnutData = [{
+                    value: 70,
+                    color: "#4ECDC4"
+                  },
+                  {
+                    value: 30,
+                    color: "#fdfdfd"
+                  }
+                ];
+                var myDoughnut = new Chart(document.getElementById("newchart").getContext("2d")).Doughnut(doughnutData);
+              </script>
+            </div>
+            <!--NEW EARNING STATS -->
+            <div class="panel terques-chart">
+              <div class="panel-body">
+                <div class="chart">
+                  <div class="centered">
+                    <span>TODAY EARNINGS</span>
+                    <strong>$ 890,00 | 15%</strong>
+                  </div>
+                  <br>
+                  <div class="sparkline" data-type="line" data-resize="true" data-height="75" data-width="90%" data-line-width="1" data-line-color="#fff" data-spot-color="#fff" data-fill-color="" data-highlight-line-color="#fff" data-spot-radius="4" data-data="[200,135,667,333,526,996,564,123,890,564,455]"></div>
+                </div>
               </div>
             </div>
-
-            <div class="card card-primary card-outline">
-              <div class="card-header">
-                <h5 class="m-0">Featured</h5>
+            <!--new earning end-->
+            <!-- RECENT ACTIVITIES SECTION -->
+            <h4 class="centered mt">RECENT ACTIVITY</h4>
+            <!-- First Activity -->
+            <div class="desc">
+              <div class="thumb">
+                <span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
               </div>
-              <div class="card-body">
-                <h6 class="card-title">Special title treatment</h6>
-
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
+              <div class="details">
+                <p>
+                  <muted>Just Now</muted>
+                  <br/>
+                  <a href="#">Paul Rudd</a> purchased an item.<br/>
+                </p>
               </div>
             </div>
+            <!-- Second Activity -->
+            <div class="desc">
+              <div class="thumb">
+                <span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
+              </div>
+              <div class="details">
+                <p>
+                  <muted>2 Minutes Ago</muted>
+                  <br/>
+                  <a href="#">James Brown</a> subscribed to your newsletter.<br/>
+                </p>
+              </div>
+            </div>
+            <!-- Third Activity -->
+            <div class="desc">
+              <div class="thumb">
+                <span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
+              </div>
+              <div class="details">
+                <p>
+                  <muted>3 Hours Ago</muted>
+                  <br/>
+                  <a href="#">Diana Kennedy</a> purchased a year subscription.<br/>
+                </p>
+              </div>
+            </div>
+            <!-- Fourth Activity -->
+            <div class="desc">
+              <div class="thumb">
+                <span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
+              </div>
+              <div class="details">
+                <p>
+                  <muted>7 Hours Ago</muted>
+                  <br/>
+                  <a href="#">Brando Page</a> purchased a year subscription.<br/>
+                </p>
+              </div>
+            </div>
+            <!-- USERS ONLINE SECTION -->
+            <h4 class="centered mt">TEAM MEMBERS ONLINE</h4>
+            <!-- First Member -->
+            <div class="desc">
+              <div class="thumb">
+                <img class="img-circle" src="img/ui-divya.jpg" width="35px" height="35px" align="">
+              </div>
+              <div class="details">
+                <p>
+                  <a href="#">DIVYA MANIAN</a><br/>
+                  <muted>Available</muted>
+                </p>
+              </div>
+            </div>
+            <!-- Second Member -->
+            <div class="desc">
+              <div class="thumb">
+                <img class="img-circle" src="img/ui-sherman.jpg" width="35px" height="35px" align="">
+              </div>
+              <div class="details">
+                <p>
+                  <a href="#">DJ SHERMAN</a><br/>
+                  <muted>I am Busy</muted>
+                </p>
+              </div>
+            </div>
+            <!-- Third Member -->
+            <div class="desc">
+              <div class="thumb">
+                <img class="img-circle" src="img/ui-danro.jpg" width="35px" height="35px" align="">
+              </div>
+              <div class="details">
+                <p>
+                  <a href="#">DAN ROGERS</a><br/>
+                  <muted>Available</muted>
+                </p>
+              </div>
+            </div>
+            <!-- Fourth Member -->
+            <div class="desc">
+              <div class="thumb">
+                <img class="img-circle" src="img/ui-zac.jpg" width="35px" height="35px" align="">
+              </div>
+              <div class="details">
+                <p>
+                  <a href="#">Zac Sniders</a><br/>
+                  <muted>Available</muted>
+                </p>
+              </div>
+            </div>
+            <!-- CALENDAR-->
+            <div id="calendar" class="mb">
+              <div class="panel green-panel no-margin">
+                <div class="panel-body">
+                  
+                  <div id="my-calendar"></div>
+                </div>
+              </div>
+            </div>
+            <!-- / calendar -->
           </div>
-          <!-- /.col-md-6 -->
+          <!-- /col-lg-3 -->
         </div>
-        <!-- /.row -->
-      </div><!-- /.container-fluid -->
-    </div>
-    <!-- /.content -->
-  </div>
-  <!-- /.content-wrapper -->
-
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-    <div class="p-3">
-      <h5>Title</h5>
-      <p>Sidebar content</p>
-    </div>
-  </aside>
-  <!-- /.control-sidebar -->
-
-  <!-- Main Footer -->
-  <footer class="main-footer">
-    <!-- To the right -->
-    <div class="float-right d-none d-sm-inline">
-      Anything you want
-    </div>
-    <!-- Default to the left -->
-    <strong>Copyright &copy; 2014-2019 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
-  </footer>
-</div>
-<!-- ./wrapper -->
-
-<!-- REQUIRED SCRIPTS -->
-
-<!-- jQuery -->
-<script src="plugins/jquery/jquery.min.js"></script>
-<!-- Bootstrap 4 -->
-<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- AdminLTE App -->
-<script src="dist/js/adminlte.min.js"></script>
-</body>
-</html>
+        <!-- /row -->
+      </section>
+    </section>
+    <!--main content end-->

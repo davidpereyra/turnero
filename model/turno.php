@@ -7,7 +7,7 @@
         private $nombreTurno;
         private $prioridad;
         private $comentario;
-        private $idSector;
+        private $idOperacion;
 
 
         public function __CONSTRUCT(){
@@ -28,15 +28,15 @@
         public function getComentario(){
             return $this->comentario;
         }
-        public function getIdSector(){
-            return $this->idSector;
+        public function getIdOperacion(){
+            return $this->idOperacion;
         }
         //Setters
-        public function setIdSector($idS){
-            $this->idSector=$idS;
+        public function setIdOperacion($idS){
+            $this->idOperacion=$idS;
         }
         public function setNombreTurno($nomT){
-            $this->idSector=$nomT;
+            $this->nombreTurno=$nomT;
         }
         public function setIdTurno($idTur){
             $this->nombreTurno=$idTur;
@@ -96,10 +96,10 @@
 //-------------------------------------------------------------
         public function InsertarTurno(Turno $t){
             try{
-                $consulta="INSERT INTO turno(idSector) VALUES(?);";
+                $consulta="INSERT INTO turno(idOperacion) VALUES(?);";
                 $this->pdo->prepare($consulta)
                         ->execute(array(
-                            $t->getIdSector(),
+                            $t->getIdOperacion(),
                         ));
               
 

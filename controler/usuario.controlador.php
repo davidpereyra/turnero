@@ -24,13 +24,19 @@ require_once "model/usuario.php";
             }else{
                 header("location:?c=usuario&a=Login");
             }
+            
         }
         public function InicioDash(){
-            //require_once "view/headturno.php";
+            require_once "view/dash/headerDash.php";
             require_once "view/dash/starter.php";         
-            //require_once "view/footerturno.php";
-        }
+            require_once "view/dash/footerDash.php";
 
+        }
+        public function Logout(){
+            session_start();
+            session_destroy();
+            header("location:?c=usuario&a=Login");
+        }
         
     }
 
