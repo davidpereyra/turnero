@@ -69,6 +69,25 @@
         }
 
 
+        public function ContarTurnosDelDia($idOp){
+            try{
+               
+                $consulta="SELECT (IDSECTOR) FROM OPERACION WHERE IDOPERACION=$idOp;";
+                $stmt = $this->pdo->prepare($consulta);
+                $stmt->execute();
+                $resultado =  $stmt->fetch(PDO::FETCH_ASSOC);
+                return intval($resultado);
+                $stmt->closeCursor();
+            }
+            catch(Exception $e){
+                die($e->getMessage());
+            }
+        }
+
+
+
+
+
     }
  /*
 function getDateForDatabase($date) {

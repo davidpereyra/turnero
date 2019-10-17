@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 11-10-2019 a las 13:44:28
+-- Tiempo de generación: 17-10-2019 a las 16:08:51
 -- Versión del servidor: 5.5.24-log
 -- Versión de PHP: 5.4.3
 
@@ -75,7 +75,7 @@ CREATE TABLE IF NOT EXISTS `operacion` (
   `nomenclaturaOperacion` varchar(2) NOT NULL,
   PRIMARY KEY (`idOperacion`),
   KEY `idSector` (`idSector`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
 
 --
 -- Volcado de datos para la tabla `operacion`
@@ -86,13 +86,16 @@ INSERT INTO `operacion` (`idOperacion`, `idSector`, `nombreOperacion`, `nomencla
 (2, 1, 'Vender', 'Ve'),
 (3, 1, 'Tasacion', 'Ta'),
 (4, 2, 'Contratos', 'Co'),
-(5, 2, 'Renovaciones', 'Re'),
-(6, 2, 'Resiciones', 'Re'),
+(5, 2, 'Renovaciones', 'Rn'),
+(6, 3, 'Resiciones', 'Rs'),
 (7, 2, 'Reclamos', 'Re'),
 (8, 2, 'Reintegro de Servicios', 'Re'),
 (9, 2, 'Presentar Documentacion', 'Do'),
 (10, 2, 'Ofrecer Alquiler', 'Of'),
-(11, 2, 'Buscar Alquiler', 'Bu');
+(11, 2, 'Buscar Alquiler', 'Bu'),
+(12, 3, 'Pagar Alquiler', 'Pa'),
+(13, 3, 'Cobrar Alquiler', 'Co'),
+(14, 4, 'RRHH', 'Rh');
 
 -- --------------------------------------------------------
 
@@ -108,21 +111,7 @@ CREATE TABLE IF NOT EXISTS `operacionperfil` (
   PRIMARY KEY (`idOpPerfil`,`idPerfil`,`idOperacion`),
   KEY `idPerfil` (`idPerfil`),
   KEY `idOperacion` (`idOperacion`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
-
---
--- Volcado de datos para la tabla `operacionperfil`
---
-
-INSERT INTO `operacionperfil` (`idOpPerfil`, `idPerfil`, `idOperacion`, `comentario`) VALUES
-(1, 1, 1, 'Venta->Comprar'),
-(2, 1, 2, 'Venta->Vender'),
-(3, 1, 3, 'Venta->Tasar'),
-(4, 2, 4, 'Alquiler->Contratos'),
-(5, 3, 5, 'Alquiler->Renovacion'),
-(6, 4, 6, 'Alquiler->Resicion'),
-(7, 5, 2, 'Alquiler->Reclamos'),
-(8, 6, 11, 'Alquiler->Buscar Alquiler Comercial General ');
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -180,13 +169,15 @@ INSERT INTO `sector` (`idSector`, `nombreSector`, `visible`, `nomenclaturaSector
 
 CREATE TABLE IF NOT EXISTS `turno` (
   `idTurno` int(20) NOT NULL AUTO_INCREMENT,
+  `idOperacion` int(5) NOT NULL,
   `idSector` int(5) NOT NULL,
   `nombreTurno` varchar(10) DEFAULT NULL,
   `prioridad` tinyint(1) DEFAULT NULL,
   `comentario` varchar(120) DEFAULT NULL,
   PRIMARY KEY (`idTurno`),
+  KEY `idOperacion` (`idOperacion`),
   KEY `idSector` (`idSector`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=58 ;
 
 -- --------------------------------------------------------
 
@@ -203,7 +194,7 @@ CREATE TABLE IF NOT EXISTS `turnohistorial` (
   PRIMARY KEY (`idTurnoHistorial`),
   KEY `idTurno` (`idTurno`),
   KEY `idEstadoTurno` (`idEstadoTurno`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=56 ;
 
 -- --------------------------------------------------------
 
@@ -216,17 +207,22 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   `idPerfil` int(5) NOT NULL,
   `nombreUsuario` varchar(80) NOT NULL,
   `passUsuario` varchar(80) NOT NULL,
+  `nombreReal` varchar(80) NOT NULL,
+  `apellidoReal` varchar(80) NOT NULL,
+  `dniUsuario` int(20) NOT NULL,
+  `correoUsuario` varchar(80) NOT NULL,
+  `telefonoUsuario` int(40) DEFAULT NULL,
   PRIMARY KEY (`idUsuario`),
   KEY `idPerfil` (`idPerfil`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
 -- Volcado de datos para la tabla `usuario`
 --
 
-INSERT INTO `usuario` (`idUsuario`, `idPerfil`, `nombreUsuario`, `passUsuario`) VALUES
-(1, 1, 'user', 'pass'),
-(4, 1, 'user2', 'pass');
+INSERT INTO `usuario` (`idUsuario`, `idPerfil`, `nombreUsuario`, `passUsuario`, `nombreReal`, `apellidoReal`, `dniUsuario`, `correoUsuario`, `telefonoUsuario`) VALUES
+(1, 1, 'user', 'pass', 'David', 'Pereyra', 34113017, 'dpereyra@cocucci.com.ar', 155),
+(2, 1, 'user2', 'pass', '', '', 0, '', NULL);
 
 --
 -- Restricciones para tablas volcadas
@@ -255,7 +251,8 @@ ALTER TABLE `operacionperfil`
 -- Filtros para la tabla `turno`
 --
 ALTER TABLE `turno`
-  ADD CONSTRAINT `turno_ibfk_1` FOREIGN KEY (`idSector`) REFERENCES `sector` (`idSector`);
+  ADD CONSTRAINT `idSector` FOREIGN KEY (`idSector`) REFERENCES `sector` (`idSector`),
+  ADD CONSTRAINT `idOperacion` FOREIGN KEY (`idOperacion`) REFERENCES `operacion` (`idOperacion`);
 
 --
 -- Filtros para la tabla `turnohistorial`

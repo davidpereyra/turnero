@@ -8,6 +8,7 @@
         private $prioridad;
         private $comentario;
         private $idOperacion;
+        private $idSector;
 
 
         public function __CONSTRUCT(){
@@ -31,9 +32,15 @@
         public function getIdOperacion(){
             return $this->idOperacion;
         }
+        public function getIdSector(){
+            return $this->idSector;
+        }
         //Setters
-        public function setIdOperacion($idS){
-            $this->idOperacion=$idS;
+        public function setIdOperacion($idOp){
+            $this->idOperacion=$idOp;
+        }
+        public function setIdSector($idS){
+            $this->idSector=$idS;
         }
         public function setNombreTurno($nomT){
             $this->nombreTurno=$nomT;
@@ -96,10 +103,25 @@
 //-------------------------------------------------------------
         public function InsertarTurno(Turno $t){
             try{
-                $consulta="INSERT INTO turno(idOperacion) VALUES(?);";
+
+
+                $sqlDeHoy = "SELECT COUNT(*) AS total FROM `turno` 
+                                INNER JOIN `turnohistorial` ON `turno`.`idTurno`=`turnohistorial`.`idTurno` 
+                                    WHERE `turno`.`idSector` = '4' 
+                                        AND  `turnohistorial`.`fechaAlta`>= CAST((NOW()) AS DATE) 
+                                            AND `turnohistorial`.`fechaAlta` < CAST((NOW() + INTERVAL 1 DAY) AS DATE);";
+                $turnosDeHoy=$this->pdo->prepare($sqlDeHoy);
+                $turnosDeHoy->execute();
+                $cant = $turnosDeHoy->fetch(PDO::FETCH_ASSOC);
+
+
+                $consulta="INSERT INTO turno(idOperacion,idSector,nombreTurno) VALUES(?,?,?);";
+                //$consulta="INSERT INTO turno(idOperacion,idSector) VALUES(?,?);";
                 $this->pdo->prepare($consulta)
                         ->execute(array(
                             $t->getIdOperacion(),
+                            $t->getIdSector(),
+                            $cant['total'],
                         ));
               
 

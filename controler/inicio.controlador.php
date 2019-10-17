@@ -2,6 +2,8 @@
 require_once "model/turno.php";
 require_once "model/turnohistorial.php";
 require_once "model/cliente.php";
+require_once "model/sector.php";
+
 class InicioControlador{
     private $modelo;
     public $thcreate;
@@ -24,9 +26,17 @@ class InicioControlador{
     }
 
     public function GenerarTurno(){
+        $idOperacion = $_POST['idOperacion']; 
+        $idSector = $_POST['idSector']; 
+
+        //$sec=new Sector();
+        //$nomSec = $sec->BuscarNomenclatura($nroSec);
+
         $t=new Turno();
         $t->setIdTurno($_POST['idTurno']);
-        $t->setIdOperacion($_POST['idOperacion']);
+        $t->setIdOperacion($idOperacion);
+        $t->setIdSector($idSector);
+        //$t->setNombreTurno($nomSec);
         $uid = $this->modelo->InsertarTurno($t);
         echo "<br>".($uid)." de tipo ".gettype($uid) . "en inicio controlador";
         //turno historial

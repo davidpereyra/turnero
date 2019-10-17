@@ -40,6 +40,25 @@
             $this->nomenclaturaOperacion=$nomenclaturaOp;
         }
 
+
+
+        public function BuscarNomenclatura($idSec){
+            try{
+                $consulta="SELECT (NOMENCLATURASECTOR) FROM SECTOR WHERE IDSECTOR=$idSec;";
+                $stmt = $this->pdo->prepare($consulta);
+                $stmt->execute();
+                $resultado =  $stmt->fetchColumn();
+                return $resultado;
+                $stmt->closeCursor();
+            }
+            catch(Exception $e){
+                die($e->getMessage());
+            }
+        }
+
+
+
+
     }
 
 

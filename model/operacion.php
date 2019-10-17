@@ -27,17 +27,32 @@
         }
 
          //Setters
-        public function setIdOperacion(int $idOpe){
+        public function setIdOperacion($idOpe){
             $this->idOperacion=$idOp;
         }
-        public function setIdSector(int $idSec){
+        public function setIdSector($idSec){
             $this->idSector=$idSec;
         }
-        public function setNombreOperacion(string $nombreOp){
+        public function setNombreOperacion($nombreOp){
             $this->nombreOperacion=$nombreOp;
         }
-        public function setNomenclaturaOperacion(string $nomenclaturaOp){
+        public function setNomenclaturaOperacion($nomenclaturaOp){
             $this->nomenclaturaOperacion=$nomenclaturaOp;
+        }
+
+        public function BuscarSector($idOp){
+            try{
+               
+                $consulta="SELECT (IDSECTOR) FROM OPERACION WHERE IDOPERACION=$idOp;";
+                $stmt = $this->pdo->prepare($consulta);
+                $stmt->execute();
+                $resultado =  $stmt->fetch(PDO::FETCH_ASSOC);
+                return intval($resultado);
+                $stmt->closeCursor();
+            }
+            catch(Exception $e){
+                die($e->getMessage());
+            }
         }
 
     }
