@@ -5,42 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta http-equiv='refresh' content="5">
-    <title>index 1</title>
+    <title>Llamador Simple</title>
 </head>
 <body>
-    <?php ?>
-
-    <table class="striped">
-        <thead>
-          <tr>
-              <th>ID Turno</th>
-              <th>Nombre Turno</th>
-              <th>ID Sector</th>
-              <th>Prioridad</th>
-              <th>Comentario</th>
-              <th>Acciones</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          <?php 
-            foreach($this->modelo->ListarTurnosCreados() as $listarTurnos):
-          ?>
-          <tr>
-            <td><?=$listarTurnos->idTurno?></td>
-            <td><?=$listarTurnos->nombreTurno?></td>
-            <td><?=$listarTurnos->idSector?></td>
-            
-            <td><?=$listarTurnos->prioridad?></td>
-            <td><?=$listarTurnos->comentario?></td>
-            <td>Editar | Eliminar</td>
-          </tr>
-          <?php 
-            endforeach;
-          ?>
-        </tbody>
-    </table>
-
+<div class="container-fluid">
+    <div class="row">  
+      <div class="col-lg-12  text-center">
+        <div class="llamador">
+          <p>A 1 - BOX 1</p>
+        </div><!-- llamador -->
+      </div><!-- col 12 -->
+    </div><!-- row -->
+</div><!-- container-fluid -->
+        
 
 
 

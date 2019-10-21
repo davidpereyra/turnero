@@ -1,5 +1,6 @@
 <?php
 require_once "model/usuario.php";
+require_once "model/turno.php";
     class UsuarioControlador{
         private $modelo;
         public function __CONSTRUCT(){
@@ -37,6 +38,15 @@ require_once "model/usuario.php";
             session_start();
             session_destroy();
             header("location:?c=usuario&a=Login");
+        }
+
+        public function Llamar(){
+            $nombreUsuario = $_POST['nombreUsuario'];             
+            $turno=new Turno();
+            $siguiente= $turno->LlamarTurno($nombreUsuario);
+            
+            }       
+            
         }
         
     }

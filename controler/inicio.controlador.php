@@ -36,9 +36,9 @@ class InicioControlador{
         $t->setIdTurno($_POST['idTurno']);
         $t->setIdOperacion($idOperacion);
         $t->setIdSector($idSector);
-        //$t->setNombreTurno($nomSec);
+        
         $uid = $this->modelo->InsertarTurno($t);
-        echo "<br>".($uid)." de tipo ".gettype($uid) . "en inicio controlador";
+        
         //turno historial
         $thcreate=new TurnoHistorial();
         $thcreate->CrearTurnoHistorial($uid,1);//creado es (_,1)
@@ -47,9 +47,7 @@ class InicioControlador{
         $dnicli = intval($_POST['dni']);
         echo "<br>".($dnicli)." de dni ".gettype($dnicli) . "en inicio controlador";
         $cliente->InsertarDniCliente($dnicli,$uid);
-       
-                
-
+        
         header("location:../turnero");
     } 
 }
