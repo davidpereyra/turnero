@@ -19,7 +19,11 @@ class InicioControlador{
         require_once "view/footerturno.php";
     }
     public function SeleccionarOp(){
-      
+      //cliente
+        
+        $dnicli = intval($_POST['dni']);
+        $cliente=new Cliente();
+        $dniValidado = $cliente->InsertarDniCliente($dnicli);
         require_once "view/headturno.php";
         require_once "view/turno/seleccionaroperacion.php";
         require_once "view/footerturno.php";
@@ -31,11 +35,6 @@ class InicioControlador{
         $dnicli = intval($_POST['dni']);
         //$sec=new Sector();
         //$nomSec = $sec->BuscarNomenclatura($nroSec);
-
-
-        //cliente
-        $cliente=new Cliente();
-        $cliente->InsertarDniCliente($dnicli);
 
         //Turno
         $t=new Turno();

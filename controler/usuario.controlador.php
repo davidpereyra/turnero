@@ -30,7 +30,9 @@ require_once "model/turno.php";
         }
         public function InicioDash(){
             require_once "view/dash/headerDash.php";
-            require_once "view/dash/starter.php";         
+            require_once "view/dash/head.php";
+            require_once "view/dash/sidebarMenu.php";
+            require_once "view/dash/contentInicial.php";         
             require_once "view/dash/footerDash.php";
 
         }

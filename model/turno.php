@@ -110,6 +110,7 @@
 //-------------------------------------------------------------
         public function InsertarTurno(Turno $t){
             try{
+                //numero de turnos por sector
                 $idSector = $t->getIdSector();
 
                 $sqlDeHoy = "SELECT COUNT(*) AS total FROM `turno` 
@@ -137,10 +138,7 @@
                 $ultimoId->execute();
 
                 if ($ultimoId) {
-                    $uid = intval($ultimoId->fetchColumn());
-                    echo gettype($uid) . " de insertar turno";
-                    echo $uid;// Borrar - era para saber por cual id iba insertando
-                   
+                    $uid = intval($ultimoId->fetchColumn());                   
                 }               
                 $ultimoId->closeCursor();
                 return ($uid);
@@ -155,7 +153,7 @@
         //-------------------------------------------------------------
         public function LlamarTurno($nombreUsuario){
             try{
-                $consulta=$this->pdo->prepare("SELECT * FROM `turno` 
+                $consulta=$this->pdo->prepare("SELECT `turno`.`idTurno` FROM `turno` 
                 INNER JOIN `turnohistorial` ON `turno`.`idTurno`=`turnohistorial`.`idTurno`
                     INNER JOIN `operacion` ON `operacion`.`idOperacion` = `turno`.`idOperacion`
                         INNER JOIN `operacionperfil` ON `operacion`.`idOperacion`=`operacionperfil`.`idOperacion`
@@ -165,7 +163,6 @@
                                         AND `turnohistorial`.`fechaAlta`  < CAST((NOW() + INTERVAL 1 DAY) AS DATE) LIMIT 1;");
                 
                 $consulta->execute();
-
                 return $consulta->fetch(PDO::FETCH_OBJ);
             }catch(Exception $e){
                 die($e->getMessage());

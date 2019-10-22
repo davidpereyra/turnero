@@ -69,12 +69,21 @@
 
         public function InsertarDniCliente($dniCli){
             try{
-                $consulta="INSERT INTO cliente(dniCliente) VALUES(:dniCli);";
-                $stmt = $this->pdo->prepare($consulta);
-//                $stmt->execute(array(":dniCli"=>intval($dniCli), ":idTur"=>$idTur));
-                $stmt->execute(array(":dniCli"=>intval($dniCli)));
 
-                $stmt->closeCursor();
+                $consultaExiste=$this->pdo->prepare("SELECT DNICLIENTE FROM CLIENTE WHERE DNICLIENTE = $dniCli;");            
+                $consultaExiste->execute();
+
+                if(!($consultaExiste->fetchColumn()) == $dniCli){  
+                   
+               
+                    $consulta="INSERT INTO cliente(dniCliente) VALUES(:dniCli);";
+                    $stmt = $this->pdo->prepare($consulta);
+                    //$stmt->execute(array(":dniCli"=>intval($dniCli), ":idTur"=>$idTur));
+                    $stmt->execute(array(":dniCli"=>intval($dniCli)));
+                    $stmt->closeCursor();
+                       
+                }
+                return intval($consultaExiste->fetchColumn());     
                
             }catch(Exception $e){
                 die($e->getMessage());
