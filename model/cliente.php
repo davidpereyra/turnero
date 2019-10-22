@@ -67,11 +67,12 @@
 
         //Metodos
 
-        public function InsertarDniCliente($dniCli,$idTur){
+        public function InsertarDniCliente($dniCli){
             try{
-                $consulta="INSERT INTO cliente(dniCliente,idTurno) VALUES(:dniCli,:idTur);";
+                $consulta="INSERT INTO cliente(dniCliente) VALUES(:dniCli);";
                 $stmt = $this->pdo->prepare($consulta);
-                $stmt->execute(array(":dniCli"=>intval($dniCli), ":idTur"=>$idTur));
+//                $stmt->execute(array(":dniCli"=>intval($dniCli), ":idTur"=>$idTur));
+                $stmt->execute(array(":dniCli"=>intval($dniCli)));
 
                 $stmt->closeCursor();
                

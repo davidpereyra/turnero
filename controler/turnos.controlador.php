@@ -10,7 +10,7 @@ require_once "model/turno.php";
         public function Inicio(){
             
             require_once "view/headturno.php";
-            require_once "view/llamador/index.php";
+            require_once "view/llamador/ejemplo de tabla.php";
             require_once "view/footerturno.php";
         }
 

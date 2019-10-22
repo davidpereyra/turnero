@@ -9,6 +9,7 @@
         private $comentario;
         private $idOperacion;
         private $idSector;
+        private $dniCliente;
 
 
         public function __CONSTRUCT(){
@@ -35,6 +36,9 @@
         public function getIdSector(){
             return $this->idSector;
         }
+        public function getDniCliente(){
+            return $this->dniCliente;
+        }
         //Setters
         public function setIdOperacion($idOp){
             $this->idOperacion=$idOp;
@@ -53,6 +57,9 @@
         }
         public function setComentario($com){
             $this->comentario=$com;
+        }
+        public function setDniCliente($dni){
+            $this->dniCliente=$dni;
         }
  
         public function TurnoSinBaja(){
@@ -115,13 +122,14 @@
                 $cant = $turnosDeHoy->fetch(PDO::FETCH_ASSOC);
 
 
-                $consulta="INSERT INTO turno(idOperacion,idSector,nombreTurno) VALUES(?,?,?);";
+                $consulta="INSERT INTO turno(idOperacion,idSector,nombreTurno,dniCliente) VALUES(?,?,?,?);";
                 //$consulta="INSERT INTO turno(idOperacion,idSector) VALUES(?,?);";
                 $this->pdo->prepare($consulta)
                         ->execute(array(
                             $t->getIdOperacion(),
                             $t->getIdSector(),
                             $cant['total'],
+                            $t->getDniCliente(),
                         ));
               
 

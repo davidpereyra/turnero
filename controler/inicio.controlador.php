@@ -28,25 +28,28 @@ class InicioControlador{
     public function GenerarTurno(){
         $idOperacion = $_POST['idOperacion']; 
         $idSector = $_POST['idSector']; 
-
+        $dnicli = intval($_POST['dni']);
         //$sec=new Sector();
         //$nomSec = $sec->BuscarNomenclatura($nroSec);
 
+
+        //cliente
+        $cliente=new Cliente();
+        $cliente->InsertarDniCliente($dnicli);
+
+        //Turno
         $t=new Turno();
         $t->setIdTurno($_POST['idTurno']);
         $t->setIdOperacion($idOperacion);
         $t->setIdSector($idSector);
+        $t->setDniCliente($dnicli);
         
         $uid = $this->modelo->InsertarTurno($t);
         
         //turno historial
         $thcreate=new TurnoHistorial();
         $thcreate->CrearTurnoHistorial($uid,1);//creado es (_,1)
-        //cliente
-        $cliente=new Cliente();
-        $dnicli = intval($_POST['dni']);
-        echo "<br>".($dnicli)." de dni ".gettype($dnicli) . "en inicio controlador";
-        $cliente->InsertarDniCliente($dnicli,$uid);
+        
         
         header("location:../turnero");
     } 

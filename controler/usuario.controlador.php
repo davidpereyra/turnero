@@ -44,8 +44,7 @@ require_once "model/turno.php";
             $nombreUsuario = $_POST['nombreUsuario'];             
             $turno=new Turno();
             $siguiente= $turno->LlamarTurno($nombreUsuario);
-            
-            }       
+              
             
         }
         
