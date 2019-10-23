@@ -18,8 +18,11 @@ require_once "model/turno.php";
             $claseUser=new Usuario();
             $user = $_POST['nombreUsuario'];
             $pass = $_POST['passUsuario'];
+            $sector = $_POST['selectSector'];
+            $puesto = $_POST['selectPuesto'];
+            
         
-            $valor = $claseUser->ValidarLogin($user, $pass);
+            $valor = $claseUser->ValidarLogin($user, $pass, $puesto);
             
             if ($valor){
                 header("location:?c=usuario&a=InicioDash");	

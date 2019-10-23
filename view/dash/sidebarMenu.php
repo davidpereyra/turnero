@@ -10,7 +10,10 @@
           <p class="centered"><a href="profile.html"><img src="assets/img/ui-sam.jpg" class="img-circle" width="80"></a></p>
           <h5 class="centered">
           <?php 
-           print "$_SESSION[usuario]";
+           //print "$_SESSION[usuario]";
+           echo "Usuario: ".$_SESSION['usuario'] . "<br>";
+           echo "Puesto Nº: ". $_SESSION['puesto'];
+
            ?>
            </h5>
          

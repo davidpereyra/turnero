@@ -40,9 +40,9 @@
         }
         
         //Methods
-        public function ValidarLogin($user, $pass){
+        public function ValidarLogin($user, $pass, $puesto){
             try{ 
-                $consulta="SELECT NOMBREUSUARIO,PASSUSUARIO FROM USUARIO where NOMBREUSUARIO='$user' AND PASSUSUARIO='$pass'";
+                $consulta="SELECT * FROM USUARIO where NOMBREUSUARIO='$user' AND PASSUSUARIO='$pass'";
                 $login = $this->pdo->prepare($consulta);
                 $login->execute();    
                   
@@ -52,7 +52,9 @@
 
                 if($numero_registro!=0){
                     session_start();//inicia sesion
-                    $_SESSION["usuario"]=$user;//almacena usuario de la sesion
+                    //almacena usuario de la sesion
+                    $_SESSION["usuario"]=$user;
+                    $_SESSION["puesto"]=intval($puesto);
                    
                     $valor = True;
                 }else{
