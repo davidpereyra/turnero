@@ -19,12 +19,21 @@
             <div class="row mt">
               <!-- SERVER STATUS PANELS -->
               <div class="col-md-4 col-sm-4 mb">
-                <div class="grey-panel pn donut-chart"></div>
+              
+                <div class="grey-panel pn donut-chart">
+                  
+                  
+                  El siguiente turno es EL VALOR QUE RETORNO DE LA FUNCION DEL CONTROLADOR - CAPTURO DE LA CLASE Y LA REENVIO DESDE EL CONTROLADOR
+                  <?php 
+                  
+                  //$t->idTurno;
+                  var_dump($siguiente);
+                  ?>
+                </div>
+                
                  <canvas id="serverstatus01" height="120" width="120"></canvas>
             </div><!-- /grey-panel -->
-                
-              
-
+          
 <!-- INICIO TABLA CENTRAL  -->
             <table class="table">
                 <thead>
@@ -71,48 +80,3 @@
 
 
          </div><!-- /row -->
-          
-<!-- **********************************************************************************************************************************************************
-        SIDEBAR DERECHO
-        *********************************************************************************************************************************************************** -->
-  
-
-          <div class="col-lg-3 ds">
-            <!--COMPLETED ACTIONS DONUTS CHART-->
-            <div class="donut-main">
-              <h4 class="centered mt">SIDEBAR DERECHO</h4>
-            </div>
-            
-
-            <div class="grey-header">
-              <h5>SERVER LOAD</h5>
-                <form name="form" action="?c=Usuario&a=Llamar" method="post" class="col-lg-12">
-                  <input type="hidden" name="nombreUsuario" value=<?php print "$_SESSION[usuario]";?>>
-                  <button class="btn btn-primary btn-lg btn-block" type="submit">
-                        LLAMAR SIGUIENTE
-                  </button>
-                </form>
-            </div>
-
-
-
-
-
-          
-           </div><!-- /col-lg-3 -->
-
-<!-- **********************************************************************************************************************************************************
-        FIN SIDEBAR DERECHO
-        *********************************************************************************************************************************************************** -->
-             
-        </div>
-        <!-- /row -->
-
-        
-      </section>
-    </section>
-    <!--main content end-->
-
-
-
-   

@@ -35,7 +35,8 @@ require_once "model/turno.php";
             require_once "view/dash/headerDash.php";
             require_once "view/dash/head.php";
             require_once "view/dash/sidebarMenu.php";
-            require_once "view/dash/contentInicial.php";         
+            require_once "view/dash/contentInicial.php"; 
+            require_once "view/dash/sidebarderecho1.php";                 
             require_once "view/dash/footerDash.php";
 
         }
@@ -49,10 +50,18 @@ require_once "model/turno.php";
             $nombreUsuario = $_POST['nombreUsuario'];             
             $turno=new Turno();
             $siguiente= $turno->LlamarTurno($nombreUsuario);
-              
             
+            if($siguiente){
+            require_once "view/dash/headerDash.php";
+            require_once "view/dash/head.php";
+            require_once "view/dash/sidebarMenu.php";
+            require_once "view/dash/contentInicial.php"; 
+            require_once "view/dash/sidebarderecho2.php";         
+            require_once "view/dash/footerDash.php";  
+            }
+            return "LLAMAR () EN USUARIO CONTROLADOR";
         }
-        
+
     }
 
 ?>

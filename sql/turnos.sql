@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 22-10-2019 a las 13:37:47
+-- Tiempo de generación: 24-10-2019 a las 15:05:01
 -- Versión del servidor: 5.5.24-log
 -- Versión de PHP: 5.4.3
 
@@ -41,8 +41,11 @@ CREATE TABLE IF NOT EXISTS `cliente` (
 --
 
 INSERT INTO `cliente` (`dniCliente`, `nombreCliente`, `apellidoCliente`, `mailCliente`, `telefono1Cliente`, `telefono2Cliente`) VALUES
+(1, '', '', NULL, NULL, NULL),
 (7, '', '', NULL, NULL, NULL),
-(11, '', '', NULL, NULL, NULL);
+(11, '', '', NULL, NULL, NULL),
+(12, '', '', NULL, NULL, NULL),
+(44, '', '', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -208,15 +211,23 @@ CREATE TABLE IF NOT EXISTS `turno` (
   KEY `idOperacion` (`idOperacion`),
   KEY `idSector` (`idSector`),
   KEY `dniCliente` (`dniCliente`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=104 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=125 ;
 
 --
 -- Volcado de datos para la tabla `turno`
 --
 
 INSERT INTO `turno` (`idTurno`, `idOperacion`, `idSector`, `dniCliente`, `nombreTurno`, `box`, `prioridad`, `comentario`) VALUES
-(102, 2, 1, 7, '0', NULL, NULL, NULL),
-(103, 11, 2, 11, '0', NULL, NULL, NULL);
+(102, 2, 1, 7, '0', 2, NULL, NULL),
+(103, 11, 2, 11, '0', NULL, NULL, NULL),
+(104, 2, 1, 11, '0', NULL, NULL, NULL),
+(109, 1, 1, 11, '1', NULL, NULL, NULL),
+(114, 1, 1, 11, '2', NULL, NULL, NULL),
+(120, 1, 1, 1, '3', NULL, NULL, NULL),
+(121, 14, 4, 1, '0', NULL, NULL, NULL),
+(122, 1, 1, 44, '0', NULL, NULL, NULL),
+(123, 11, 2, 1, '0', NULL, NULL, NULL),
+(124, 12, 3, 11, '0', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -233,14 +244,22 @@ CREATE TABLE IF NOT EXISTS `turnohistorial` (
   PRIMARY KEY (`idTurnoHistorial`),
   KEY `idTurno` (`idTurno`),
   KEY `idEstadoTurno` (`idEstadoTurno`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=101 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=109 ;
 
 --
 -- Volcado de datos para la tabla `turnohistorial`
 --
 
 INSERT INTO `turnohistorial` (`idTurnoHistorial`, `idTurno`, `idEstadoTurno`, `fechaAlta`, `fechaBaja`) VALUES
-(100, 103, 1, '2019-10-22 10:28:38', NULL);
+(100, 103, 1, '2019-10-22 10:28:38', NULL),
+(101, 104, 1, '2019-10-22 11:12:48', NULL),
+(102, 109, 1, '2019-10-22 14:10:53', NULL),
+(103, 114, 1, '2019-10-22 14:19:44', NULL),
+(104, 120, 1, '2019-10-22 14:54:50', NULL),
+(105, 121, 1, '2019-10-22 14:55:22', NULL),
+(106, 122, 1, '2019-10-24 12:00:50', NULL),
+(107, 123, 1, '2019-10-24 12:01:08', NULL),
+(108, 124, 1, '2019-10-24 12:01:37', NULL);
 
 -- --------------------------------------------------------
 
