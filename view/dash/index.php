@@ -44,49 +44,49 @@
                         <span class="input-group-text"><i class="fas fa-stop-circle"></i></span>
                             <select required name="selectPuesto" class="form-control">
                                 <option value="" placeholder="Seleccione Puesto" selected></option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                                <option value="7">7</option>
-                                <option value="8">8</option>
-                                <option value="9">9</option>
-                                <option value="10">10</option>
+                                <option value="1">Puesto 1</option>
+                                <option value="2">Puesto 2</option>
+                                <option value="3">Puesto 3</option>
+                                <option value="4">Puesto 4</option>
+                                <option value="5">Puesto 5</option>
+                                <option value="6">Puesto 6</option>
+                                <option value="7">Puesto 7</option>
+                                <option value="8">Puesto 8</option>
+                                <option value="9">Puesto 9</option>
+                                <option value="10">Puesto 10</option>
 
-                                <option value="11">11</option>
-                                <option value="12">12</option>
-                                <option value="13">13</option>
-                                <option value="14">14</option>
-                                <option value="15">15</option>
-                                <option value="16">16</option>
-                                <option value="17">17</option>
-                                <option value="18">18</option>
-                                <option value="19">19</option>
-                                <option value="20">20</option>
+                                <option value="11">Puesto 11</option>
+                                <option value="12">Puesto 12</option>
+                                <option value="13">Puesto 13</option>
+                                <option value="14">Puesto 14</option>
+                                <option value="15">Puesto 15</option>
+                                <option value="16">Puesto 16</option>
+                                <option value="17">Puesto 17</option>
+                                <option value="18">Puesto 18</option>
+                                <option value="19">Puesto 19</option>
+                                <option value="20">Puesto 20</option>
 
-                                <option value="21">21</option>
-                                <option value="22">22</option>
-                                <option value="23">23</option>
-                                <option value="24">24</option>
-                                <option value="25">25</option>
-                                <option value="26">26</option>
-                                <option value="27">27</option>
-                                <option value="28">28</option>
-                                <option value="29">29</option>
-                                <option value="30">30</option>
+                                <option value="21">Puesto 21</option>
+                                <option value="22">Puesto 22</option>
+                                <option value="23">Puesto 23</option>
+                                <option value="24">Puesto 24</option>
+                                <option value="25">Puesto 25</option>
+                                <option value="26">Puesto 26</option>
+                                <option value="27">Puesto 27</option>
+                                <option value="28">Puesto 28</option>
+                                <option value="29">Puesto 29</option>
+                                <option value="30">Puesto 30</option>
 
-                                <option value="31">31</option>
-                                <option value="32">32</option>
-                                <option value="33">33</option>
-                                <option value="34">34</option>
-                                <option value="35">35</option>
-                                <option value="36">36</option>
-                                <option value="37">37</option>
-                                <option value="38">38</option>
-                                <option value="39">39</option>
-                                <option value="40">40</option>
+                                <option value="31">Puesto 31</option>
+                                <option value="32">Puesto 32</option>
+                                <option value="33">Puesto 33</option>
+                                <option value="34">Puesto 34</option>
+                                <option value="35">Puesto 35</option>
+                                <option value="36">Puesto 36</option>
+                                <option value="37">Puesto 37</option>
+                                <option value="38">Puesto 38</option>
+                                <option value="39">Puesto 39</option>
+                                <option value="40">Puesto 40</option>
                             </select>
                     </div>
                     

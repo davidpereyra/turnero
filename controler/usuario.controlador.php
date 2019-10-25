@@ -1,6 +1,7 @@
 <?php
 require_once "model/usuario.php";
 require_once "model/turno.php";
+require_once "model/turnohistorial.php";
     class UsuarioControlador{
         private $modelo;
         public function __CONSTRUCT(){
@@ -38,7 +39,9 @@ require_once "model/turno.php";
             require_once "view/dash/contentInicial.php"; 
             require_once "view/dash/sidebarderecho1.php";                 
             require_once "view/dash/footerDash.php";
-
+            $t=new Turno();
+            $listadeturnos = $t->ListarTurnosCreados();//tengo que hacer que sea para este perfil
+            return $listadeturnos;
         }
         public function Logout(){
             session_start();
@@ -50,7 +53,15 @@ require_once "model/turno.php";
             $nombreUsuario = $_POST['nombreUsuario'];             
             $turno=new Turno();
             $siguiente= $turno->LlamarTurno($nombreUsuario);
-            
+            $idTur = $siguiente->idTurno;
+        
+            $nropuesto= $_POST['nroPuesto'];
+            $turno->InsertarBox($idTur,$nropuesto);
+            $turnohistorial=new TurnoHistorial();
+            $turnohistorial->ActualizarEstado($idTur,2);//2 es el estado LLAMADO
+
+
+
             if($siguiente){
             require_once "view/dash/headerDash.php";
             require_once "view/dash/head.php";
@@ -58,8 +69,15 @@ require_once "model/turno.php";
             require_once "view/dash/contentInicial.php"; 
             require_once "view/dash/sidebarderecho2.php";         
             require_once "view/dash/footerDash.php";  
+            }else{
+            require_once "view/dash/headerDash.php";
+            require_once "view/dash/head.php";
+            require_once "view/dash/sidebarMenu.php";
+            require_once "view/dash/contentInicial.php"; 
+            require_once "view/dash/sidebarderecho2.php";         
+            require_once "view/dash/footerDash.php";                  
             }
-            return "LLAMAR () EN USUARIO CONTROLADOR";
+           
         }
 
     }

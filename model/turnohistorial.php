@@ -86,7 +86,34 @@
 
 
 
+        public function ActualizarEstado($idTur,$idEdoTur){ 
+            
+                try{
 
+                    date_default_timezone_set('America/Argentina/Mendoza');
+                    $fechaA = date('Y-m-d H:i:s');
+                    $fechaB = date('Y-m-d H:i:s');
+                    //CAST((NOW()) AS DATE) 
+                    $update=$this->pdo->prepare("UPDATE `turnohistorial`
+                                                    SET `turnohistorial`.`fechaBaja`= CAST((NOW()) AS DATE) 
+                                                        WHERE `turnohistorial`.`idTurno`=$idTur;");
+                    $update->execute();
+
+                    $consulta="INSERT INTO turnohistorial(idTurno, idEstadoTurno,fechaAlta) VALUES (:idTur,:idEdoTur,:fechaAlta);";
+                    $stmt = $this->pdo->prepare($consulta);
+                    
+    
+                    
+                    //$fechaA = date_default_timezone_get();
+                    
+                    $stmt->execute(array(":idTur"=>intval($idTur), ":idEdoTur"=>($idEdoTur),":fechaAlta"=>($fechaA)));
+    
+                    $stmt->closeCursor();
+                }
+                catch(Exception $e){
+                    die($e->getMessage());
+                }
+            }
 
     }
  /*

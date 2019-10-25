@@ -54,7 +54,9 @@
                     session_start();//inicia sesion
                     //almacena usuario de la sesion
                     $_SESSION["usuario"]=$user;
-                    $_SESSION["puesto"]=intval($puesto);
+                    $_SESSION["puesto"]=$puesto;
+                    
+                    
                    
                     $valor = True;
                 }else{

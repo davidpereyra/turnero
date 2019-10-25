@@ -80,7 +80,7 @@
                 $consulta=$this->pdo->prepare("SELECT * FROM TURNO;");
                 
                 $consulta->execute();
-
+                
                 return $consulta->fetchAll(PDO::FETCH_OBJ);
             }catch(Exception $e){
                 die($e->getMenssage());
@@ -153,22 +153,45 @@
         //-------------------------------------------------------------
         public function LlamarTurno($nombreUsuario){
             try{
-                $consulta=$this->pdo->prepare("SELECT `turno`.`idTurno` AS idTurno FROM `turno` 
+                $consulta=$this->pdo->prepare("SELECT * FROM `turno` 
                 INNER JOIN `turnohistorial` ON `turno`.`idTurno`=`turnohistorial`.`idTurno`
                     INNER JOIN `operacion` ON `operacion`.`idOperacion` = `turno`.`idOperacion`
                         INNER JOIN `operacionperfil` ON `operacion`.`idOperacion`=`operacionperfil`.`idOperacion`
                             INNER JOIN `usuario` ON `usuario`.`nombreUsuario`= '$nombreUsuario'
-                                WHERE `operacionperfil`.`idPerfil`=`usuario`.`idPerfil`   AND `turnohistorial`.`idEstadoTurno`=1  AND `turnohistorial`.`fechaBaja` IS NULL
-                                    AND  `turnohistorial`.`fechaAlta`>= CAST((NOW()) AS DATE) 
-                                        AND `turnohistorial`.`fechaAlta`  < CAST((NOW() + INTERVAL 1 DAY) AS DATE) LIMIT 1;");
+                                INNER JOIN `cliente` ON `cliente`.`dniCliente`= `turno`.`dniCliente`
+                                    WHERE `operacionperfil`.`idPerfil`=`usuario`.`idPerfil`   AND `turnohistorial`.`idEstadoTurno`=1  AND `turnohistorial`.`fechaBaja` IS NULL
+                                        AND  `turnohistorial`.`fechaAlta`>= CAST((NOW()) AS DATE) 
+                                            AND `turnohistorial`.`fechaAlta`  < CAST((NOW() + INTERVAL 1 DAY) AS DATE) LIMIT 1;");
                 
                 $consulta->execute();
                 return $consulta->fetch(PDO::FETCH_OBJ);
+                
                 //return "hola";
             }catch(Exception $e){
                 die($e->getMessage());
             }
         }
+
+
+        public function InsertarBox($idTur, $nroBox){
+            try{
+                $consulta=$this->pdo->prepare("UPDATE `turno`
+                                                SET `turno`.`box` = $nroBox
+                                                 WHERE `turno`.`idTurno`= $idTur;");
+                
+                $consulta->execute();
+               
+            }catch(Exception $e){
+                die($e->getMessage());
+            }
+        }
+// --------------------------------------------------------------------------------------------
+
+
+
+
+
+
 
     }
 
