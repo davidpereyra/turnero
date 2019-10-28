@@ -20,11 +20,8 @@ require_once "model/turnohistorial.php";
             $user = $_POST['nombreUsuario'];
             $pass = $_POST['passUsuario'];
             $sector = $_POST['selectSector'];
-            $puesto = $_POST['selectPuesto'];
-            
-        
-            $valor = $claseUser->ValidarLogin($user, $pass, $puesto);
-            
+            $puesto = $_POST['selectPuesto'];               
+            $valor = $claseUser->ValidarLogin($user, $pass, $puesto);            
             if ($valor){
                 header("location:?c=usuario&a=InicioDash");	
             }else{
@@ -33,15 +30,16 @@ require_once "model/turnohistorial.php";
             
         }
         public function InicioDash(){
+           
+            $t=new Turno();
+            $listadeturnos = $t->ListarTurnosSector();//tengo que hacer que sea para este perfil
+            
             require_once "view/dash/headerDash.php";
             require_once "view/dash/head.php";
             require_once "view/dash/sidebarMenu.php";
-            require_once "view/dash/contentInicial.php"; 
+            require_once "view/dash/contentdash.php"; 
             require_once "view/dash/sidebarderecho1.php";                 
             require_once "view/dash/footerDash.php";
-            $t=new Turno();
-            $listadeturnos = $t->ListarTurnosCreados();//tengo que hacer que sea para este perfil
-            return $listadeturnos;
         }
         public function Logout(){
             session_start();
@@ -52,30 +50,62 @@ require_once "model/turnohistorial.php";
         public function Llamar(){
             $nombreUsuario = $_POST['nombreUsuario'];             
             $turno=new Turno();
-            $siguiente= $turno->LlamarTurno($nombreUsuario);
-            $idTur = $siguiente->idTurno;
-        
-            $nropuesto= $_POST['nroPuesto'];
-            $turno->InsertarBox($idTur,$nropuesto);
-            $turnohistorial=new TurnoHistorial();
-            $turnohistorial->ActualizarEstado($idTur,2);//2 es el estado LLAMADO
-
-
-
+            $siguiente= $turno->LlamarTurno($nombreUsuario);            
             if($siguiente){
-            require_once "view/dash/headerDash.php";
-            require_once "view/dash/head.php";
-            require_once "view/dash/sidebarMenu.php";
-            require_once "view/dash/contentInicial.php"; 
-            require_once "view/dash/sidebarderecho2.php";         
-            require_once "view/dash/footerDash.php";  
-            }else{
-            require_once "view/dash/headerDash.php";
-            require_once "view/dash/head.php";
-            require_once "view/dash/sidebarMenu.php";
-            require_once "view/dash/contentInicial.php"; 
-            require_once "view/dash/sidebarderecho2.php";         
-            require_once "view/dash/footerDash.php";                  
+                $idTur = $siguiente->idTurno;
+                $nropuesto= $_POST['nroPuesto'];
+                $turno->InsertarBox($idTur,$nropuesto);
+                $turnohistorial=new TurnoHistorial();
+                $turnohistorial->ActualizarEstado($idTur,2);//2 es el estado LLAMADO
+                require_once "view/dash/headerDash.php";
+                require_once "view/dash/head.php";
+                require_once "view/dash/sidebarMenu.php";
+                require_once "view/dash/contentdash2.php"; 
+                require_once "view/dash/sidebarderecho2.php";         
+                require_once "view/dash/footerDash.php";  
+            }else{           
+                header("location:?c=usuario&a=InicioDash");	                  
+            }
+           
+        }
+
+
+
+        public function ReLlamar(){
+            $nombreUsuario = $_POST['nombreUsuario'];             
+            $idTurno = $_POST['idTurno'];             
+            $turno=new Turno();
+            $siguiente= $turno->ReLlamarTurno( $idTurno);            
+            if($siguiente){              
+                require_once "view/dash/headerDash.php";
+                require_once "view/dash/head.php";
+                require_once "view/dash/sidebarMenu.php";
+                require_once "view/dash/contentdash2.php"; 
+                require_once "view/dash/sidebarderecho3.php";         
+                require_once "view/dash/footerDash.php";  
+            }else{           
+                header("location:?c=usuario&a=InicioDash");	                  
+            }
+           
+        }
+
+
+        public function Atender(){
+            $nombreUsuario = $_POST['nombreUsuario'];    
+            $idTurno = $_POST['idTurno'];           
+            $turno=new Turno();
+            $siguiente= $turno->TurnoActual($idTurno);            
+            if($siguiente){
+                $turnohistorial=new TurnoHistorial();
+                $turnohistorial->ActualizarEstado($idTurno,3);//3 es el estado ATENDIENDO
+                require_once "view/dash/headerDash.php";
+                require_once "view/dash/head.php";
+                require_once "view/dash/sidebarMenu.php";
+                require_once "view/dash/contentdash2.php"; 
+                require_once "view/dash/sidebarderecho3.php";         
+                require_once "view/dash/footerDash.php";  
+            }else{           
+                header("location:?c=usuario&a=InicioDash");	                  
             }
            
         }

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 24-10-2019 a las 15:05:01
+-- Tiempo de generación: 28-10-2019 a las 17:20:19
 -- Versión del servidor: 5.5.24-log
 -- Versión de PHP: 5.4.3
 
@@ -41,11 +41,22 @@ CREATE TABLE IF NOT EXISTS `cliente` (
 --
 
 INSERT INTO `cliente` (`dniCliente`, `nombreCliente`, `apellidoCliente`, `mailCliente`, `telefono1Cliente`, `telefono2Cliente`) VALUES
-(1, '', '', NULL, NULL, NULL),
+(1, 'nombrecliente1', 'apellidocliente1', 'mailcliente1', 0, 0),
+(3, '', '', NULL, NULL, NULL),
 (7, '', '', NULL, NULL, NULL),
 (11, '', '', NULL, NULL, NULL),
 (12, '', '', NULL, NULL, NULL),
-(44, '', '', NULL, NULL, NULL);
+(44, '', '', NULL, NULL, NULL),
+(111, 'nombre del 111', 'apellido del 111', 'Mail cliente 111', 0, 0),
+(123, '', '', NULL, NULL, NULL),
+(333, '', '', NULL, NULL, NULL),
+(666, '', '', NULL, NULL, NULL),
+(1111, '', '', NULL, NULL, NULL),
+(7458, '', '', NULL, NULL, NULL),
+(11111, '', '', NULL, NULL, NULL),
+(2345678, '', '', NULL, NULL, NULL),
+(13123123, '', '', NULL, NULL, NULL),
+(123123123, '', '', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -206,28 +217,42 @@ CREATE TABLE IF NOT EXISTS `turno` (
   `nombreTurno` varchar(10) DEFAULT NULL,
   `box` int(5) DEFAULT NULL,
   `prioridad` tinyint(1) DEFAULT NULL,
-  `comentario` varchar(120) DEFAULT NULL,
+  `comentarioTurno` varchar(120) DEFAULT NULL,
+  `rellamado` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`idTurno`),
   KEY `idOperacion` (`idOperacion`),
   KEY `idSector` (`idSector`),
   KEY `dniCliente` (`dniCliente`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=125 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=138 ;
 
 --
 -- Volcado de datos para la tabla `turno`
 --
 
-INSERT INTO `turno` (`idTurno`, `idOperacion`, `idSector`, `dniCliente`, `nombreTurno`, `box`, `prioridad`, `comentario`) VALUES
-(102, 2, 1, 7, '0', 2, NULL, NULL),
-(103, 11, 2, 11, '0', NULL, NULL, NULL),
-(104, 2, 1, 11, '0', NULL, NULL, NULL),
-(109, 1, 1, 11, '1', NULL, NULL, NULL),
-(114, 1, 1, 11, '2', NULL, NULL, NULL),
-(120, 1, 1, 1, '3', NULL, NULL, NULL),
-(121, 14, 4, 1, '0', NULL, NULL, NULL),
-(122, 1, 1, 44, '0', NULL, NULL, NULL),
-(123, 11, 2, 1, '0', NULL, NULL, NULL),
-(124, 12, 3, 11, '0', NULL, NULL, NULL);
+INSERT INTO `turno` (`idTurno`, `idOperacion`, `idSector`, `dniCliente`, `nombreTurno`, `box`, `prioridad`, `comentarioTurno`, `rellamado`) VALUES
+(102, 2, 1, 7, '0', NULL, NULL, NULL, NULL),
+(103, 11, 2, 11, '0', NULL, NULL, NULL, NULL),
+(104, 2, 1, 11, '0', NULL, NULL, NULL, NULL),
+(109, 1, 1, 11, '1', NULL, NULL, NULL, NULL),
+(114, 1, 1, 11, '2', NULL, NULL, NULL, NULL),
+(120, 1, 1, 1, '3', NULL, NULL, NULL, NULL),
+(121, 14, 4, 1, '0', NULL, NULL, NULL, NULL),
+(122, 1, 1, 44, '0', NULL, NULL, NULL, NULL),
+(123, 11, 2, 1, '0', NULL, NULL, NULL, 1),
+(124, 12, 3, 11, '0', NULL, NULL, NULL, NULL),
+(125, 4, 2, 111, '1', NULL, NULL, NULL, NULL),
+(126, 14, 4, 7458, '1', NULL, NULL, NULL, NULL),
+(127, 3, 1, 1111, '6', NULL, NULL, NULL, NULL),
+(128, 8, 2, 11111, '3', NULL, NULL, NULL, NULL),
+(129, 2, 1, 1, '0', 40, NULL, NULL, NULL),
+(130, 2, 1, 111, '0', 11, NULL, 'Comentario 130', NULL),
+(131, 1, 1, 123, '1', 11, NULL, NULL, NULL),
+(132, 3, 1, 3, '4', 11, NULL, NULL, NULL),
+(133, 3, 1, 666, '6', 11, NULL, NULL, NULL),
+(134, 1, 1, 333, '8', 11, NULL, NULL, 1),
+(135, 3, 1, 13123123, '11', 11, NULL, NULL, 1),
+(136, 1, 1, 2345678, '13', 11, NULL, NULL, 1),
+(137, 1, 1, 123123123, '15', NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -244,22 +269,46 @@ CREATE TABLE IF NOT EXISTS `turnohistorial` (
   PRIMARY KEY (`idTurnoHistorial`),
   KEY `idTurno` (`idTurno`),
   KEY `idEstadoTurno` (`idEstadoTurno`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=109 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=156 ;
 
 --
 -- Volcado de datos para la tabla `turnohistorial`
 --
 
 INSERT INTO `turnohistorial` (`idTurnoHistorial`, `idTurno`, `idEstadoTurno`, `fechaAlta`, `fechaBaja`) VALUES
-(100, 103, 1, '2019-10-22 10:28:38', NULL),
-(101, 104, 1, '2019-10-22 11:12:48', NULL),
-(102, 109, 1, '2019-10-22 14:10:53', NULL),
-(103, 114, 1, '2019-10-22 14:19:44', NULL),
-(104, 120, 1, '2019-10-22 14:54:50', NULL),
-(105, 121, 1, '2019-10-22 14:55:22', NULL),
-(106, 122, 1, '2019-10-24 12:00:50', NULL),
-(107, 123, 1, '2019-10-24 12:01:08', NULL),
-(108, 124, 1, '2019-10-24 12:01:37', NULL);
+(100, 103, 1, '2019-10-25 10:28:38', NULL),
+(101, 104, 1, '2019-10-25 11:12:48', NULL),
+(102, 109, 1, '2019-10-25 14:10:53', NULL),
+(103, 114, 1, '2019-10-25 14:19:44', NULL),
+(104, 120, 1, '2019-10-25 14:54:50', '2019-10-25 00:00:00'),
+(106, 122, 1, '2019-10-25 12:00:50', NULL),
+(107, 123, 1, '2019-10-25 12:01:08', NULL),
+(108, 124, 1, '2019-10-25 12:01:37', NULL),
+(109, 125, 1, '2019-10-25 12:12:21', NULL),
+(110, 120, 2, '2019-10-25 15:14:36', NULL),
+(111, 126, 1, '2019-10-25 16:34:48', '2019-10-25 00:00:00'),
+(112, 121, 2, '2019-10-25 16:36:49', NULL),
+(113, 126, 2, '2019-10-25 16:37:27', NULL),
+(114, 127, 1, '2019-10-25 16:39:40', NULL),
+(115, 128, 1, '2019-10-25 16:40:47', NULL),
+(116, 129, 1, '2019-10-27 00:06:23', '2019-10-28 00:00:00'),
+(117, 129, 2, '2019-10-27 00:06:33', NULL),
+(118, 130, 1, '2019-10-28 09:12:10', '2019-10-28 00:00:00'),
+(123, 131, 1, '2019-10-28 09:58:23', '2019-10-28 00:00:00'),
+(124, 130, 2, '2019-10-28 10:44:48', NULL),
+(125, 131, 2, '2019-10-28 11:29:43', NULL),
+(126, 132, 1, '2019-10-28 11:31:16', '2019-10-28 00:00:00'),
+(127, 132, 2, '2019-10-28 11:34:19', NULL),
+(128, 133, 1, '2019-10-28 11:54:54', '2019-10-28 00:00:00'),
+(129, 133, 2, '2019-10-28 12:07:58', NULL),
+(130, 134, 1, '2019-10-28 12:09:34', '2019-10-28 00:00:00'),
+(149, 134, 2, '2019-10-28 13:01:57', '2019-10-28 00:00:00'),
+(150, 134, 3, '2019-10-28 13:02:14', NULL),
+(151, 135, 1, '2019-10-28 13:03:10', '2019-10-28 00:00:00'),
+(152, 135, 2, '2019-10-28 13:03:41', NULL),
+(153, 136, 1, '2019-10-28 14:16:54', '2019-10-28 00:00:00'),
+(154, 136, 2, '2019-10-28 14:17:49', NULL),
+(155, 137, 1, '2019-10-28 14:19:05', NULL);
 
 -- --------------------------------------------------------
 
@@ -279,15 +328,23 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   `telefonoUsuario` int(40) DEFAULT NULL,
   PRIMARY KEY (`idUsuario`),
   KEY `idPerfil` (`idPerfil`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
 
 --
 -- Volcado de datos para la tabla `usuario`
 --
 
 INSERT INTO `usuario` (`idUsuario`, `idPerfil`, `nombreUsuario`, `passUsuario`, `nombreReal`, `apellidoReal`, `dniUsuario`, `correoUsuario`, `telefonoUsuario`) VALUES
-(1, 2, 'user', 'pass', 'David', 'Pereyra', 34113017, 'dpereyra@cocucci.com.ar', 155),
-(2, 1, 'user2', 'pass', '', '', 0, '', NULL);
+(1, 1, 'venta', 'pass', 'David', 'Pereyra', 34113017, 'dpereyra@cocucci.com.ar', 155),
+(2, 2, 'contrato', 'pass', '', '', 0, '', NULL),
+(3, 3, 'renovacion', 'pass', '', '', 0, '', NULL),
+(4, 4, 'resicion', 'pass', '', '', 0, '', NULL),
+(5, 5, 'reclamo', 'pass', '', '', 0, '', NULL),
+(6, 6, 'presentar', 'pass', '', '', 0, '', NULL),
+(7, 7, 'ofrecer', 'pass', '', '', 0, '', NULL),
+(8, 8, 'buscar', 'pass', '', '', 0, '', NULL),
+(9, 9, 'rrhh', 'pass', '', '', 0, '', NULL),
+(10, 10, 'caja', 'pass', '', '', 0, '', NULL);
 
 --
 -- Restricciones para tablas volcadas

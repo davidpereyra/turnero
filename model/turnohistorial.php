@@ -102,10 +102,6 @@
                     $consulta="INSERT INTO turnohistorial(idTurno, idEstadoTurno,fechaAlta) VALUES (:idTur,:idEdoTur,:fechaAlta);";
                     $stmt = $this->pdo->prepare($consulta);
                     
-    
-                    
-                    //$fechaA = date_default_timezone_get();
-                    
                     $stmt->execute(array(":idTur"=>intval($idTur), ":idEdoTur"=>($idEdoTur),":fechaAlta"=>($fechaA)));
     
                     $stmt->closeCursor();
