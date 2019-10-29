@@ -7,7 +7,7 @@
       <div id="sidebar" class="nav-collapse ">
         <!-- sidebar menu start-->
         <ul class="sidebar-menu" id="nav-accordion">
-          <p class="centered"><a href="profile.html"><img src="assets/img/ui-sam.jpg" class="img-circle" width="80"></a></p>
+          <p class="centered"><a href="profile.html"><img src="assets/img/c.jpg" class="img-circle" width="80"></a></p>
           <h5 class="centered">
           <?php 
            //print "$_SESSION[usuario]";
@@ -17,7 +17,7 @@
            ?>
            </h5>
          
-          
+          <!--
           
           <li class="sub-menu">
             <a href="javascript:;">
@@ -48,7 +48,7 @@
               <span>Datos</span>
               <span class="label label-theme pull-right mail-info"> de usuario</span>
               </a>
-          </li>
+          </li>-->
           
         </ul>
         <!-- sidebar menu end-->

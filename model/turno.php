@@ -161,7 +161,8 @@
                                 INNER JOIN `cliente` ON `cliente`.`dniCliente`= `turno`.`dniCliente`
                                     WHERE `operacionperfil`.`idPerfil`=`usuario`.`idPerfil`   AND `turnohistorial`.`idEstadoTurno`=1  AND `turnohistorial`.`fechaBaja` IS NULL
                                         AND  `turnohistorial`.`fechaAlta`>= CAST((NOW()) AS DATE) 
-                                            AND `turnohistorial`.`fechaAlta`  < CAST((NOW() + INTERVAL 1 DAY) AS DATE) LIMIT 1;");
+                                            AND `turnohistorial`.`fechaAlta`  < CAST((NOW() + INTERVAL 1 DAY) AS DATE) 
+                                            ORDER BY `turnohistorial`.`fechaAlta` ASC LIMIT 1;");
                 
                 $consulta->execute();
                 return $consulta->fetch(PDO::FETCH_OBJ);
@@ -249,21 +250,18 @@ public function DejarDeLlamar($idTur){
 
 // -----------------------------------------------------------------------------------------------------------------------------
 
-public function ListarTurnosSector(){
+public function ListarTurnosSector($nombreUsuario){
     try{
         $consulta=$this->pdo->prepare("SELECT * FROM `turno` 
         INNER JOIN `turnohistorial` ON `turno`.`idTurno`=`turnohistorial`.`idTurno`
-        INNER JOIN `operacion` ON `operacion`.`idOperacion` = `turno`.`idOperacion`
-        INNER JOIN `sector` ON `sector`.`idSector`=`turno`.`idSector`
-        INNER JOIN `operacionperfil` ON `operacion`.`idOperacion`=`operacionperfil`.`idOperacion`
-        INNER JOIN `usuario` ON `usuario`.`nombreUsuario`='venta'
-        WHERE `operacionperfil`.`idPerfil`=`usuario`.`idPerfil` 
-            AND `turnohistorial`.`idEstadoTurno`=1 
-                AND `turnohistorial`.`fechaBaja` IS NULL
-        AND  `turnohistorial`.`fechaAlta`>= CAST((NOW()) AS DATE) 
-        AND `turnohistorial`.`fechaAlta`  < CAST((NOW() + INTERVAL 1 DAY) AS DATE);
-        
-        ");
+            INNER JOIN `operacion` ON `operacion`.`idOperacion` = `turno`.`idOperacion`
+                INNER JOIN `operacionperfil` ON `operacion`.`idOperacion`=`operacionperfil`.`idOperacion`
+                    INNER JOIN `sector` ON `sector`.`idSector`=`turno`.`idSector`
+                        INNER JOIN `usuario` ON `usuario`.`nombreUsuario`='$nombreUsuario'
+                            WHERE `operacionperfil`.`idPerfil`=`usuario`.`idPerfil` AND `turnohistorial`.`idEstadoTurno`=1  AND `turnohistorial`.`fechaBaja` IS NULL
+                                AND  `turnohistorial`.`fechaAlta`>= CAST((NOW()) AS DATE) 
+                                    AND `turnohistorial`.`fechaAlta`  < CAST((NOW() + INTERVAL 1 DAY) AS DATE)
+                                        ORDER BY `turnohistorial`.`fechaAlta` ASC;");
         
         $consulta->execute();
         

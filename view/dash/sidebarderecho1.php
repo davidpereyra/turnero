@@ -16,6 +16,7 @@
                 <form name="form" action="?c=Usuario&a=Llamar" method="post" class="col-lg-12">
                 
                   <input type="hidden" name="nroPuesto" value=<?php echo $_SESSION['puesto'];?>>
+                  <input type="hidden" name="nombreUsuario" value="<?php echo $_SESSION['usuario'];?>">
                   <button class="btn btn-primary btn-lg btn-block btnFuncion" name="nombreUsuario" value="<?php echo $_SESSION['usuario'];?>" type="submit" >
                     LLAMAR SIGUIENTE
                   </button>

@@ -91,7 +91,15 @@
         }
 
 
+        public function ActualizarDatosCliente(){
+            try{
 
+               
+               
+            }catch(Exception $e){
+                die($e->getMessage());
+            }
+        }
 
 
     }
