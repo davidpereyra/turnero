@@ -30,19 +30,20 @@
                   </button>
                 </form>
 
-                 <br>
+                  <br>
 
                  <form name="form" action="?c=Usuario&a=Atender" method="post" class="col-lg-12">
                  <input type="hidden" name="idTurno" value=<?php print $siguiente->idTurno; ?>>
-                 <button class="btn btn-primary btn-lg btn-block btnFuncion" name="nombreUsuario" value="<?php echo $_SESSION['usuario'];?>" type="submit">
+                 <button class="btn btn-secondary btn-lg btn-block btnFuncion" name="nombreUsuario" value="<?php echo $_SESSION['usuario'];?>" type="submit" disabled>
                         ATENDIENDO
                   </button>
                 </form>
 
                  <br>
 
-                <form name="form" action="?c=Usuario&a=ReLlamar" method="post" class="col-lg-12">
-                <button class="btn btn-primary btn-lg btn-block btnFuncion" name="nombreUsuario" value="<?php echo $_SESSION['usuario'];?>" type="submit">
+                 <form name="form" action="?c=Usuario&a=Ausente" method="post" class="col-lg-12">
+                 <input type="hidden" name="idTurno" value=<?php print $siguiente->idTurno; ?>>
+                 <button class="btn btn-secondary btn-lg btn-block btnFuncion" name="nombreUsuario" value="<?php echo $_SESSION['usuario'];?>" type="submit" disabled> 
                         NO PRESENTE
                   </button>
                 </form>
@@ -50,14 +51,15 @@
 
                  <br>
 
-                <form name="form" action="?c=Usuario&a=Llamar" method="post" class="col-lg-12">
-                <button class="btn btn-primary btn-lg btn-block btnFuncion" name="nombreUsuario" value="<?php echo $_SESSION['usuario'];?>" type="submit" >
+                 <form name="form" action="?c=Usuario&a=Finaliza" method="post" class="col-lg-12">
+                 <input type="hidden" name="idTurno" value=<?php print $siguiente->idTurno; ?>>                 
+                 <button class="btn btn-primary btn-lg btn-block btnFuncion" name="nombreUsuario" value="<?php echo $_SESSION['usuario'];?>" type="submit" >
                         FINALIZAR TURNO
                   </button>
                 </form>
 
                                 
-
+                <br><br><br><br><br><br><br><br>
 
 
             </div>

@@ -1,0 +1,1 @@
+ver si cuando paso de estado atendiendo lo dejo en finalizado o solo seteo fecha baja

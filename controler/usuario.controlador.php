@@ -94,6 +94,7 @@ require_once "model/turnohistorial.php";
             $nombreUsuario = $_POST['nombreUsuario'];    
             $idTurno = $_POST['idTurno'];           
             $turno=new Turno();
+            $turno->DejarDeLlamar($idTurno);
             $siguiente= $turno->TurnoActual($idTurno);            
             if($siguiente){
                 $turnohistorial=new TurnoHistorial();
@@ -102,12 +103,40 @@ require_once "model/turnohistorial.php";
                 require_once "view/dash/head.php";
                 require_once "view/dash/sidebarMenu.php";
                 require_once "view/dash/contentdash2.php"; 
-                require_once "view/dash/sidebarderecho3.php";         
+                require_once "view/dash/sidebarderecho4.php";         
                 require_once "view/dash/footerDash.php";  
             }else{           
                 header("location:?c=usuario&a=InicioDash");	                  
             }
            
+        }
+
+
+        public function Ausente(){
+            $nombreUsuario = $_POST['nombreUsuario'];    
+            $idTurno = $_POST['idTurno'];           
+            $turno=new Turno();
+            $siguiente= $turno->TurnoActual($idTurno);            
+            if($siguiente){
+                $turnohistorial=new TurnoHistorial();
+                $turnohistorial->CierraEstado($idTurno,4);//3 es el estado AUSENTE
+          
+                header("location:?c=usuario&a=InicioDash");	                  
+            }
+           
+        }
+
+
+        public function Finaliza(){
+            $nombreUsuario = $_POST['nombreUsuario'];    
+            $idTurno = $_POST['idTurno'];           
+            $turno=new Turno();
+            $siguiente= $turno->TurnoActual($idTurno);            
+            if($siguiente){
+                $turnohistorial=new TurnoHistorial();
+                $turnohistorial->CierraEstado($idTurno,5);//5 es el estado ATENDIDO
+                header("location:?c=usuario&a=InicioDash");	        
+            }
         }
 
     }

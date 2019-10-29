@@ -92,10 +92,10 @@
 
                     date_default_timezone_set('America/Argentina/Mendoza');
                     $fechaA = date('Y-m-d H:i:s');
-                    $fechaB = date('Y-m-d H:i:s');
+                    //$fechaB = date('Y-m-d H:i:s');
                     //CAST((NOW()) AS DATE) 
                     $update=$this->pdo->prepare("UPDATE `turnohistorial`
-                                                    SET `turnohistorial`.`fechaBaja`= CAST((NOW()) AS DATE) 
+                                                    SET `turnohistorial`.`fechaBaja`= NOW()
                                                         WHERE `turnohistorial`.`idTurno`=$idTur;");
                     $update->execute();
 
@@ -105,6 +105,26 @@
                     $stmt->execute(array(":idTur"=>intval($idTur), ":idEdoTur"=>($idEdoTur),":fechaAlta"=>($fechaA)));
     
                     $stmt->closeCursor();
+                }
+                catch(Exception $e){
+                    die($e->getMessage());
+                }
+            }
+
+
+
+            public function CierraEstado($idTur,$idEdoTur){ 
+            
+                try{
+
+                    date_default_timezone_set('America/Argentina/Mendoza');
+                    $fechaA = date('Y-m-d H:i:s');
+                    //$fechaB = date('Y-m-d H:i:s');
+                    //CAST((NOW()) AS DATE) 
+                    $update=$this->pdo->prepare("UPDATE `turnohistorial`
+                                                    SET `turnohistorial`.`fechaBaja`= NOW()
+                                                        WHERE `turnohistorial`.`idTurno`=$idTur;");
+                    $update->execute();                   
                 }
                 catch(Exception $e){
                     die($e->getMessage());

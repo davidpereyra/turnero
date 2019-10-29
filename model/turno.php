@@ -231,6 +231,24 @@ public function ReLlamarTurno($idTur){
 
 
 // -----------------------------------------------------------------------------------------------------------------------------
+
+
+public function DejarDeLlamar($idTur){
+    try{        
+        $update=$this->pdo->prepare("UPDATE `turno`
+                                SET `turno`.`rellamado` = FALSE
+                                    WHERE `turno`.`idTurno`= $idTur;");
+        $update->execute();
+        //return $consulta->fetch(PDO::FETCH_OBJ);
+
+    }catch(Exception $e){
+        die($e->getMessage());
+    }
+}
+
+
+// -----------------------------------------------------------------------------------------------------------------------------
+
 public function ListarTurnosSector(){
     try{
         $consulta=$this->pdo->prepare("SELECT * FROM `turno` 

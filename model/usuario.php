@@ -44,10 +44,8 @@
             try{ 
                 $consulta="SELECT * FROM USUARIO where NOMBREUSUARIO='$user' AND PASSUSUARIO='$pass'";
                 $login = $this->pdo->prepare($consulta);
-                $login->execute();    
-                  
-            
-
+                $login->execute();   
+                
                 $numero_registro=$login->rowCount();
 
                 if($numero_registro!=0){
@@ -55,9 +53,6 @@
                     //almacena usuario de la sesion
                     $_SESSION["usuario"]=$user;
                     $_SESSION["puesto"]=$puesto;
-                    
-                    
-                   
                     $valor = True;
                 }else{
                     $valor = False;
