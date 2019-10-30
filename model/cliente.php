@@ -4,7 +4,7 @@
 
         private $pdo;
         private $dniCliente;
-        private $idTurno;
+        private $idCliente;
         private $nombreCliente;
         private $apellidoCliente;
         private $mailCliente;
@@ -20,8 +20,8 @@
         public function getDniCliente() {
             return $this->dniCliente;
         }
-        public function getIdTurno() {
-            return $this->idTurno;
+        public function getIdCliente() {
+            return $this->idCliente;
         }
         public function getNombreCliente() {
             return $this->nombreCliente;
@@ -44,8 +44,8 @@
         public function setDniCliente($dni){
             $this->dniCliente=$dni;
         }
-        public function setIdTurno($idTur){
-            $this->idTurno=$idTur;
+        public function setIdCliente($idCli){
+            $this->idCliente=$idCli;
         }
         public function setNombreCliente($nombreCli){
             $this->nombreCliente=$nombreCli;
@@ -66,6 +66,8 @@
 
 
         //Metodos
+        
+
 
         public function InsertarDniCliente($dniCli){
             try{
@@ -78,7 +80,7 @@
                
                     $consulta="INSERT INTO cliente(dniCliente) VALUES(:dniCli);";
                     $stmt = $this->pdo->prepare($consulta);
-                    //$stmt->execute(array(":dniCli"=>intval($dniCli), ":idTur"=>$idTur));
+                  
                     $stmt->execute(array(":dniCli"=>intval($dniCli)));
                     $stmt->closeCursor();
                        
@@ -91,15 +93,56 @@
         }
 
 
-        public function ActualizarDatosCliente(){
+        public function ActualizarDatos(Cliente $cli){
             try{
+                
+                $idCli = $cli->getIdCliente();
+                $nomCli = $cli->getNombreCliente();
+                $apeCli = $cli->getApellidoCliente();
+                $mailCli = $cli->getMailCliente();
+                $tel1Cli = $cli->getTelefono1Cliente();
+                $tel2Cli = $cli->getTelefono2Cliente();      
+                $dniCli = $cli->getDniCliente();                                            
+                                
+                $update=$this->pdo->prepare("UPDATE `cliente` SET 
+                                        `cliente`.`dniCliente` = $dniCli, 
+                                        `cliente`.`nombreCliente`='$nomCli',
+                                        `cliente`.`apellidoCliente`='$apeCli',
+                                        `cliente`.`mailCliente`='$mailCli',
+                                        `cliente`.`telefono1Cliente`='$tel1Cli',
+                                        `cliente`.`telefono2Cliente`='$tel2Cli'
+                                            WHERE `cliente`.`idcliente`= $idCli;");
 
-               
-               
+                $update->execute();
+                
+
+
             }catch(Exception $e){
                 die($e->getMessage());
             }
         }
+// -----------------------------------------------------------------------------------------------------------------------------
+public function ConsultarId($dniCli){
+    try{
+
+        $consulta=$this->pdo->prepare("SELECT `cliente`.`idCliente` 
+                                                FROM `cliente` 
+                                                    WHERE `cliente`.`dniCliente` = $dniCli;");            
+        $consulta->execute();
+
+        if ($consulta) {
+            $idCliente = intval($consulta->fetchColumn());                   
+            }               
+        $consulta->closeCursor();
+       
+        return $idCliente;    
+       
+    }catch(Exception $e){
+        die($e->getMessage());
+    }
+}
+
+// -----------------------------------------------------------------------------------------------------------------------------
 
 
     }

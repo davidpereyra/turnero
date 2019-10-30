@@ -146,22 +146,30 @@ require_once "model/cliente.php";
         public function ActualizarDatosCliente(){
            
             $cli = new Cliente();
+            $turno=new Turno();
+            
             $nomCli = $_POST['nombreCliente']; 
             $apeCli = $_POST['apellidoCliente'];
             $mailCli = $_POST['mailCliente'];
             $tel1Cli = $_POST['telefono1Cliente'];
             $tel2Cli = $_POST['telefono2Cliente'];
-            $dnicli = intval($_POST['dniCliente']);                       
+            $dniCli = intval($_POST['dniCliente']);                       
             $idTur = intval($_POST['idTurno']);                       
             
+            $idCli = $turno->ConsultarId($idTur);
+
+            
+            $cli->setIdCliente($idCli);
             $cli->setNombreCliente($nomCli);
             $cli->setApellidoCliente($apeCli);
             $cli->setMailCliente($mailCli);
             $cli->setTelefono1Cliente($tel1Cli);
             $cli->setTelefono2Cliente($tel2Cli);
-            $cli->setDniCliente($dnicli);
-
-            $turno=new Turno();
+            $cli->setDniCliente($dniCli);
+            
+            $c = $cli->ActualizarDatos($cli);
+            
+            
             $siguiente= $turno->TurnoActual($idTur);            
             if($siguiente){                           
                 require_once "view/dash/headerDash.php";

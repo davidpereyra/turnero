@@ -9,7 +9,7 @@
         private $comentario;
         private $idOperacion;
         private $idSector;
-        private $dniCliente;
+        private $idCliente;
 
 
         public function __CONSTRUCT(){
@@ -36,8 +36,8 @@
         public function getIdSector(){
             return $this->idSector;
         }
-        public function getDniCliente(){
-            return $this->dniCliente;
+        public function getIdCliente(){
+            return $this->idCliente;
         }
         //Setters
         public function setIdOperacion($idOp){
@@ -58,8 +58,8 @@
         public function setComentario($com){
             $this->comentario=$com;
         }
-        public function setDniCliente($dni){
-            $this->dniCliente=$dni;
+        public function setIdCliente($idCli){
+            $this->idCliente=$idCli;
         }
  
         public function TurnoSinBaja(){
@@ -123,14 +123,14 @@
                 $cant = $turnosDeHoy->fetch(PDO::FETCH_ASSOC);
 
 
-                $consulta="INSERT INTO turno(idOperacion,idSector,nombreTurno,dniCliente) VALUES(?,?,?,?);";
+                $consulta="INSERT INTO turno(idOperacion,idSector,nombreTurno,idCliente) VALUES(?,?,?,?);";
                 //$consulta="INSERT INTO turno(idOperacion,idSector) VALUES(?,?);";
                 $this->pdo->prepare($consulta)
                         ->execute(array(
                             $t->getIdOperacion(),
                             $t->getIdSector(),
                             $cant['total'],
-                            $t->getDniCliente(),
+                            $t->getIdCliente(),
                         ));
               
 
@@ -158,7 +158,7 @@
                     INNER JOIN `operacion` ON `operacion`.`idOperacion` = `turno`.`idOperacion`
                         INNER JOIN `operacionperfil` ON `operacion`.`idOperacion`=`operacionperfil`.`idOperacion`
                             INNER JOIN `usuario` ON `usuario`.`nombreUsuario`= '$nombreUsuario'
-                                INNER JOIN `cliente` ON `cliente`.`dniCliente`= `turno`.`dniCliente`
+                                INNER JOIN `cliente` ON `cliente`.`idCliente`= `turno`.`idCliente`
                                     WHERE `operacionperfil`.`idPerfil`=`usuario`.`idPerfil`   AND `turnohistorial`.`idEstadoTurno`=1  AND `turnohistorial`.`fechaBaja` IS NULL
                                         AND  `turnohistorial`.`fechaAlta`>= CAST((NOW()) AS DATE) 
                                             AND `turnohistorial`.`fechaAlta`  < CAST((NOW() + INTERVAL 1 DAY) AS DATE) 
@@ -191,7 +191,7 @@
 public function TurnoActual($idTur){
     try{
         $consulta=$this->pdo->prepare("SELECT * FROM `turno` 
-        INNER JOIN `cliente` ON `cliente`.`dniCliente`=`turno`.`dniCliente`        
+        INNER JOIN `cliente` ON `cliente`.`idCliente`=`turno`.`idCliente`        
         WHERE `turno`.`idTurno`=$idTur AND `turno`.`box` IS NOT NULL
         ;");
         
@@ -208,7 +208,7 @@ public function TurnoActual($idTur){
 public function ReLlamarTurno($idTur){
     try{
         $consulta=$this->pdo->prepare("SELECT * FROM `turno` 
-        INNER JOIN `cliente` ON `cliente`.`dniCliente`=`turno`.`dniCliente`        
+        INNER JOIN `cliente` ON `cliente`.`idCliente`=`turno`.`idCliente`        
         WHERE `turno`.`idTurno`=$idTur AND `turno`.`box` IS NOT NULL
         ;");
         
@@ -257,11 +257,12 @@ public function ListarTurnosSector($nombreUsuario){
             INNER JOIN `operacion` ON `operacion`.`idOperacion` = `turno`.`idOperacion`
                 INNER JOIN `operacionperfil` ON `operacion`.`idOperacion`=`operacionperfil`.`idOperacion`
                     INNER JOIN `sector` ON `sector`.`idSector`=`turno`.`idSector`
-                        INNER JOIN `usuario` ON `usuario`.`nombreUsuario`='$nombreUsuario'
-                            WHERE `operacionperfil`.`idPerfil`=`usuario`.`idPerfil` AND `turnohistorial`.`idEstadoTurno`=1  AND `turnohistorial`.`fechaBaja` IS NULL
-                                AND  `turnohistorial`.`fechaAlta`>= CAST((NOW()) AS DATE) 
-                                    AND `turnohistorial`.`fechaAlta`  < CAST((NOW() + INTERVAL 1 DAY) AS DATE)
-                                        ORDER BY `turnohistorial`.`fechaAlta` ASC;");
+                        INNER JOIN `cliente` ON `turno`.`idCliente`=`cliente`.`idCliente`
+                            INNER JOIN `usuario` ON `usuario`.`nombreUsuario`='$nombreUsuario'
+                                WHERE `operacionperfil`.`idPerfil`=`usuario`.`idPerfil` AND `turnohistorial`.`idEstadoTurno`=1  AND `turnohistorial`.`fechaBaja` IS NULL
+                                    AND  `turnohistorial`.`fechaAlta`>= CAST((NOW()) AS DATE) 
+                                        AND `turnohistorial`.`fechaAlta`  < CAST((NOW() + INTERVAL 1 DAY) AS DATE)
+                                            ORDER BY `turnohistorial`.`fechaAlta` ASC;");
         
         $consulta->execute();
         
@@ -271,8 +272,32 @@ public function ListarTurnosSector($nombreUsuario){
     }
 }
 
+// -----------------------------------------------------------------------------------------------------------------------------
+public function ConsultarId($idTur){
+    try{
 
+        $consulta=$this->pdo->prepare("SELECT `turno`.`idCliente` 
+                                                FROM `turno` 
+                                                    WHERE `turno`.`idTurno` = $idTur;");            
+        $consulta->execute();
+
+        if ($consulta) {
+            $idCliente = intval($consulta->fetchColumn());                   
+            }               
+        $consulta->closeCursor();
+       
+        return $idCliente;    
+       
+    }catch(Exception $e){
+        die($e->getMessage());
     }
+}
+
+// -----------------------------------------------------------------------------------------------------------------------------
+
+
+
+}
 
 
 ?>

@@ -30,18 +30,18 @@ class InicioControlador{
     }
 
     public function GenerarTurno(){
+        $cliente = new Cliente();
         $idOperacion = $_POST['idOperacion']; 
         $idSector = $_POST['idSector']; 
-        $dnicli = intval($_POST['dni']);
-        //$sec=new Sector();
-        //$nomSec = $sec->BuscarNomenclatura($nroSec);
-
+        $dniCli = intval($_POST['dni']);        
+        
+        $idCli = $cliente->ConsultarId($dniCli);
         //Turno
         $t=new Turno();
         $t->setIdTurno($_POST['idTurno']);
         $t->setIdOperacion($idOperacion);
         $t->setIdSector($idSector);
-        $t->setDniCliente($dnicli);
+        $t->setIdCliente($idCli);
         
         $uid = $this->modelo->InsertarTurno($t);
         
