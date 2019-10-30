@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 28-10-2019 a las 17:20:19
+-- Tiempo de generación: 30-10-2019 a las 16:12:58
 -- Versión del servidor: 5.5.24-log
 -- Versión de PHP: 5.4.3
 
@@ -27,36 +27,27 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE IF NOT EXISTS `cliente` (
-  `dniCliente` int(10) NOT NULL,
-  `nombreCliente` varchar(80) NOT NULL,
-  `apellidoCliente` varchar(80) NOT NULL,
+  `idCliente` int(5) NOT NULL AUTO_INCREMENT,
+  `dniCliente` int(10) DEFAULT NULL,
+  `nombreCliente` varchar(80) DEFAULT NULL,
+  `apellidoCliente` varchar(80) DEFAULT NULL,
   `mailCliente` varchar(120) DEFAULT NULL,
   `telefono1Cliente` int(40) DEFAULT NULL,
   `telefono2Cliente` int(40) DEFAULT NULL,
-  PRIMARY KEY (`dniCliente`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  PRIMARY KEY (`idCliente`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
 -- Volcado de datos para la tabla `cliente`
 --
 
-INSERT INTO `cliente` (`dniCliente`, `nombreCliente`, `apellidoCliente`, `mailCliente`, `telefono1Cliente`, `telefono2Cliente`) VALUES
-(1, 'nombrecliente1', 'apellidocliente1', 'mailcliente1', 0, 0),
-(3, '', '', NULL, NULL, NULL),
-(7, '', '', NULL, NULL, NULL),
-(11, '', '', NULL, NULL, NULL),
-(12, '', '', NULL, NULL, NULL),
-(44, '', '', NULL, NULL, NULL),
-(111, 'nombre del 111', 'apellido del 111', 'Mail cliente 111', 0, 0),
-(123, '', '', NULL, NULL, NULL),
-(333, '', '', NULL, NULL, NULL),
-(666, '', '', NULL, NULL, NULL),
-(1111, '', '', NULL, NULL, NULL),
-(7458, '', '', NULL, NULL, NULL),
-(11111, '', '', NULL, NULL, NULL),
-(2345678, '', '', NULL, NULL, NULL),
-(13123123, '', '', NULL, NULL, NULL),
-(123123123, '', '', NULL, NULL, NULL);
+INSERT INTO `cliente` (`idCliente`, `dniCliente`, `nombreCliente`, `apellidoCliente`, `mailCliente`, `telefono1Cliente`, `telefono2Cliente`) VALUES
+(1, 34113017, 'Alberto David Oscar', 'Pereyra', '', 0, 0),
+(2, 1, '', '', NULL, NULL, NULL),
+(3, 12, '', '', NULL, NULL, NULL),
+(4, 1, 'nombre1', 'ape1', 'mail1@algo', 2147483647, 4482540),
+(5, 34113017, 'Alberto David Oscar', 'Pereyra', '', 0, 0),
+(6, 34113017, 'Hernan', 'Noli', '', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -68,7 +59,7 @@ CREATE TABLE IF NOT EXISTS `estadoturno` (
   `idEstadoTurno` int(5) NOT NULL AUTO_INCREMENT,
   `nombreEstadoTurno` varchar(80) NOT NULL,
   PRIMARY KEY (`idEstadoTurno`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Volcado de datos para la tabla `estadoturno`
@@ -77,8 +68,9 @@ CREATE TABLE IF NOT EXISTS `estadoturno` (
 INSERT INTO `estadoturno` (`idEstadoTurno`, `nombreEstadoTurno`) VALUES
 (1, 'Creado'),
 (2, 'Llamado'),
-(3, 'Atendido'),
-(4, 'No Atendido');
+(3, 'Atendiendo'),
+(4, 'No Atendido'),
+(5, 'Atendido');
 
 -- --------------------------------------------------------
 
@@ -140,7 +132,7 @@ INSERT INTO `operacionperfil` (`idOpPerfil`, `idPerfil`, `idOperacion`, `comenta
 (2, 1, 2, 'Comercial -> Vender'),
 (3, 1, 3, 'Comercial -> Tasar'),
 (4, 2, 4, 'Adm -> Contratos'),
-(5, 2, 8, 'Adm -> Reintegro'),
+(5, 5, 8, 'Adm -> Reintegro'),
 (6, 3, 5, 'Adm -> Renovacion'),
 (7, 4, 6, 'Adm -> Resicion'),
 (8, 5, 7, 'Adm -> Reclamos'),
@@ -213,7 +205,7 @@ CREATE TABLE IF NOT EXISTS `turno` (
   `idTurno` int(20) NOT NULL AUTO_INCREMENT,
   `idOperacion` int(5) NOT NULL,
   `idSector` int(5) NOT NULL,
-  `dniCliente` int(10) NOT NULL,
+  `idCliente` int(5) NOT NULL,
   `nombreTurno` varchar(10) DEFAULT NULL,
   `box` int(5) DEFAULT NULL,
   `prioridad` tinyint(1) DEFAULT NULL,
@@ -222,37 +214,19 @@ CREATE TABLE IF NOT EXISTS `turno` (
   PRIMARY KEY (`idTurno`),
   KEY `idOperacion` (`idOperacion`),
   KEY `idSector` (`idSector`),
-  KEY `dniCliente` (`dniCliente`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=138 ;
+  KEY `idCliente` (`idCliente`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=172 ;
 
 --
 -- Volcado de datos para la tabla `turno`
 --
 
-INSERT INTO `turno` (`idTurno`, `idOperacion`, `idSector`, `dniCliente`, `nombreTurno`, `box`, `prioridad`, `comentarioTurno`, `rellamado`) VALUES
-(102, 2, 1, 7, '0', NULL, NULL, NULL, NULL),
-(103, 11, 2, 11, '0', NULL, NULL, NULL, NULL),
-(104, 2, 1, 11, '0', NULL, NULL, NULL, NULL),
-(109, 1, 1, 11, '1', NULL, NULL, NULL, NULL),
-(114, 1, 1, 11, '2', NULL, NULL, NULL, NULL),
-(120, 1, 1, 1, '3', NULL, NULL, NULL, NULL),
-(121, 14, 4, 1, '0', NULL, NULL, NULL, NULL),
-(122, 1, 1, 44, '0', NULL, NULL, NULL, NULL),
-(123, 11, 2, 1, '0', NULL, NULL, NULL, 1),
-(124, 12, 3, 11, '0', NULL, NULL, NULL, NULL),
-(125, 4, 2, 111, '1', NULL, NULL, NULL, NULL),
-(126, 14, 4, 7458, '1', NULL, NULL, NULL, NULL),
-(127, 3, 1, 1111, '6', NULL, NULL, NULL, NULL),
-(128, 8, 2, 11111, '3', NULL, NULL, NULL, NULL),
-(129, 2, 1, 1, '0', 40, NULL, NULL, NULL),
-(130, 2, 1, 111, '0', 11, NULL, 'Comentario 130', NULL),
-(131, 1, 1, 123, '1', 11, NULL, NULL, NULL),
-(132, 3, 1, 3, '4', 11, NULL, NULL, NULL),
-(133, 3, 1, 666, '6', 11, NULL, NULL, NULL),
-(134, 1, 1, 333, '8', 11, NULL, NULL, 1),
-(135, 3, 1, 13123123, '11', 11, NULL, NULL, 1),
-(136, 1, 1, 2345678, '13', 11, NULL, NULL, 1),
-(137, 1, 1, 123123123, '15', NULL, NULL, NULL, NULL);
+INSERT INTO `turno` (`idTurno`, `idOperacion`, `idSector`, `idCliente`, `nombreTurno`, `box`, `prioridad`, `comentarioTurno`, `rellamado`) VALUES
+(166, 1, 1, 2, '0', 3, NULL, NULL, 0),
+(167, 1, 1, 3, '3', 3, NULL, NULL, 0),
+(168, 2, 1, 4, '6', 3, NULL, NULL, 0),
+(170, 2, 1, 5, '9', 3, NULL, NULL, 0),
+(171, 3, 1, 6, '12', 3, NULL, NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -269,46 +243,28 @@ CREATE TABLE IF NOT EXISTS `turnohistorial` (
   PRIMARY KEY (`idTurnoHistorial`),
   KEY `idTurno` (`idTurno`),
   KEY `idEstadoTurno` (`idEstadoTurno`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=156 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=275 ;
 
 --
 -- Volcado de datos para la tabla `turnohistorial`
 --
 
 INSERT INTO `turnohistorial` (`idTurnoHistorial`, `idTurno`, `idEstadoTurno`, `fechaAlta`, `fechaBaja`) VALUES
-(100, 103, 1, '2019-10-25 10:28:38', NULL),
-(101, 104, 1, '2019-10-25 11:12:48', NULL),
-(102, 109, 1, '2019-10-25 14:10:53', NULL),
-(103, 114, 1, '2019-10-25 14:19:44', NULL),
-(104, 120, 1, '2019-10-25 14:54:50', '2019-10-25 00:00:00'),
-(106, 122, 1, '2019-10-25 12:00:50', NULL),
-(107, 123, 1, '2019-10-25 12:01:08', NULL),
-(108, 124, 1, '2019-10-25 12:01:37', NULL),
-(109, 125, 1, '2019-10-25 12:12:21', NULL),
-(110, 120, 2, '2019-10-25 15:14:36', NULL),
-(111, 126, 1, '2019-10-25 16:34:48', '2019-10-25 00:00:00'),
-(112, 121, 2, '2019-10-25 16:36:49', NULL),
-(113, 126, 2, '2019-10-25 16:37:27', NULL),
-(114, 127, 1, '2019-10-25 16:39:40', NULL),
-(115, 128, 1, '2019-10-25 16:40:47', NULL),
-(116, 129, 1, '2019-10-27 00:06:23', '2019-10-28 00:00:00'),
-(117, 129, 2, '2019-10-27 00:06:33', NULL),
-(118, 130, 1, '2019-10-28 09:12:10', '2019-10-28 00:00:00'),
-(123, 131, 1, '2019-10-28 09:58:23', '2019-10-28 00:00:00'),
-(124, 130, 2, '2019-10-28 10:44:48', NULL),
-(125, 131, 2, '2019-10-28 11:29:43', NULL),
-(126, 132, 1, '2019-10-28 11:31:16', '2019-10-28 00:00:00'),
-(127, 132, 2, '2019-10-28 11:34:19', NULL),
-(128, 133, 1, '2019-10-28 11:54:54', '2019-10-28 00:00:00'),
-(129, 133, 2, '2019-10-28 12:07:58', NULL),
-(130, 134, 1, '2019-10-28 12:09:34', '2019-10-28 00:00:00'),
-(149, 134, 2, '2019-10-28 13:01:57', '2019-10-28 00:00:00'),
-(150, 134, 3, '2019-10-28 13:02:14', NULL),
-(151, 135, 1, '2019-10-28 13:03:10', '2019-10-28 00:00:00'),
-(152, 135, 2, '2019-10-28 13:03:41', NULL),
-(153, 136, 1, '2019-10-28 14:16:54', '2019-10-28 00:00:00'),
-(154, 136, 2, '2019-10-28 14:17:49', NULL),
-(155, 137, 1, '2019-10-28 14:19:05', NULL);
+(260, 166, 1, '2019-10-30 11:41:24', '2019-10-30 11:59:30'),
+(261, 166, 2, '2019-10-30 11:58:00', '2019-10-30 11:59:30'),
+(262, 166, 3, '2019-10-30 11:59:30', NULL),
+(263, 167, 1, '2019-10-30 12:03:38', '2019-10-30 12:09:17'),
+(264, 167, 2, '2019-10-30 12:07:11', '2019-10-30 12:09:17'),
+(265, 167, 3, '2019-10-30 12:08:52', '2019-10-30 12:09:17'),
+(266, 168, 1, '2019-10-30 12:09:52', '2019-10-30 12:10:18'),
+(267, 168, 2, '2019-10-30 12:10:06', '2019-10-30 12:10:18'),
+(268, 168, 3, '2019-10-30 12:10:18', NULL),
+(269, 170, 1, '2019-10-30 13:00:35', '2019-10-30 13:01:04'),
+(270, 170, 2, '2019-10-30 13:00:53', '2019-10-30 13:01:04'),
+(271, 170, 3, '2019-10-30 13:01:04', NULL),
+(272, 171, 1, '2019-10-30 13:06:52', '2019-10-30 13:09:01'),
+(273, 171, 2, '2019-10-30 13:07:11', '2019-10-30 13:09:01'),
+(274, 171, 3, '2019-10-30 13:07:59', '2019-10-30 13:09:01');
 
 -- --------------------------------------------------------
 
@@ -367,7 +323,7 @@ ALTER TABLE `operacionperfil`
 -- Filtros para la tabla `turno`
 --
 ALTER TABLE `turno`
-  ADD CONSTRAINT `dniCliente` FOREIGN KEY (`dniCliente`) REFERENCES `cliente` (`dniCliente`),
+  ADD CONSTRAINT `idCliente` FOREIGN KEY (`idCliente`) REFERENCES `cliente` (`idCliente`),
   ADD CONSTRAINT `idOperacion` FOREIGN KEY (`idOperacion`) REFERENCES `operacion` (`idOperacion`),
   ADD CONSTRAINT `idSector` FOREIGN KEY (`idSector`) REFERENCES `sector` (`idSector`);
 
