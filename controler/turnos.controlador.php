@@ -13,6 +13,12 @@ require_once "model/turno.php";
             require_once "view/llamador/ejemplo de tabla.php";
             require_once "view/footerturno.php";
         }
+        public function Llamados(){
+            
+            require_once "view/headturno.php";
+            require_once "view/llamador/called.php";
+            require_once "view/footerturno.php";
+        }
 
         
     }

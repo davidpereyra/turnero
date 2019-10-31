@@ -273,6 +273,7 @@ public function ListarTurnosSector($nombreUsuario){
 }
 
 // -----------------------------------------------------------------------------------------------------------------------------
+
 public function ConsultarId($idTur){
     try{
 
@@ -295,6 +296,28 @@ public function ConsultarId($idTur){
 
 // -----------------------------------------------------------------------------------------------------------------------------
 
+
+public function ListarTurnosLlamados(){
+    try{//`turno`.`idTurno`,`sector`.`nombreSector`,`sector`.`nomenclaturaSector`,`operacion`.`nombreOperacion`,`operacion`.`nomenclaturaOperacion`, `turno`.`nombreTurno`, `turno`.`box`
+        $consulta=$this->pdo->prepare("SELECT *
+        FROM `turnohistorial` 
+            INNER JOIN `turno` ON `turnohistorial`.`idTurno`=`turno`.`idTurno`
+                INNER JOIN `operacion` ON `turno`.`idOperacion`= `operacion`.`idOperacion` 
+                    INNER JOIN `sector` ON `turno`.`idSector`=`sector`.`idSector`
+                        WHERE `turnohistorial`.`idEstadoTurno`=2 
+                            AND `fechaAlta`>= CAST((NOW()) AS DATE) 
+                                AND `fechaAlta`  < CAST((NOW() + INTERVAL 1 DAY) AS DATE)
+                                    ORDER BY `turno`.`idTurno` DESC LIMIT 5;");
+        
+        $consulta->execute();
+        
+        return $consulta->fetchAll(PDO::FETCH_OBJ);
+    }catch(Exception $e){
+        die($e->getMenssage());
+    }
+}
+
+// -----------------------------------------------------------------------------------------------------------------------------
 
 
 }

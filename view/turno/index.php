@@ -7,12 +7,6 @@
     <title>Document</title>
 </head>
 <body>-->
-<?php 
-echo "<br>";
-echo "turno/index.php";
-
-
-?>
 
 <script>
       function insert(num){
@@ -36,17 +30,15 @@ echo "turno/index.php";
 
 <p>
 <div class="container-fluid">
-<?php $t=$this->modelo->TurnoSinBaja()?>
-<?=$t->TurnoSinBaja ?> 
 </p>
 
 
 
     <div class="row">
-        <div class="col-lg-1">I</div>
+        <div class="col-lg-1"><!--Izquierdo--></div>
 
-        <div class="col-lg-10">
-            
+        <div class="col-lg-10 recuadroTecla">
+        <img src="assets/img/isologo_cocucci.png"  width="" height="80px">
             <div class="row">
                 <form name="form" action="?c=inicio&a=SeleccionarOp" method="post" class="col-lg-12">
                     <label for="input_text" class="dni">Ingrese DNI</label>
@@ -56,24 +48,26 @@ echo "turno/index.php";
                     <div class="row"><!--teclado-->
                       <?php include_once('teclado.php');?>
                     </div>
-                    <!--discapacidad-->
+                    <!--discapacidad-- >
                     <div class="row">
                       <label>
                         <input type="checkbox" name="discapacidad" value="prioridad" />
                         <span>Discapacidad</span>
                       </label>
                     </div>
-                    <!--<input type="hidden" name="idSec" value=1>--><br> 
+                    <!- -<input type="hidden" name="idSec" value=1>--><br> 
                     <button class="btn btn-primary btn-lg btn-block" type="submit" onclick="validar()">
-                      Continuar
+                      CONTINUAR
                     </button>
+                    <br>
                 </form>
+                
              </div>
 
         
       
       </div>
-      <div class="col-lg-1">D</div>
+      <div class="col-lg-1"><!--Derecho--></div>
     </div>
           
 

@@ -42,7 +42,7 @@
                     <div class="input-group-prepend">
                         <!--<label for="inputState">Sector &nbsp &nbsp </label>-->
                         <span class="input-group-text"><i class="fas fa-stop-circle"></i></span>
-                            <select required name="selectPuesto" class="form-control">
+                            <select required name="selectPuesto" class="form-control" placeholder="Seleccione Puesto">
                                 <option value="" placeholder="Seleccione Puesto" selected></option>
                                 <option value="1">Puesto 1</option>
                                 <option value="2">Puesto 2</option>

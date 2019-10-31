@@ -72,7 +72,8 @@
         public function InsertarDniCliente($dniCli){
             try{
 
-                $consultaExiste=$this->pdo->prepare("SELECT DNICLIENTE FROM CLIENTE WHERE DNICLIENTE = $dniCli;");            
+                $consulta=("SELECT DNICLIENTE FROM CLIENTE WHERE DNICLIENTE = $dniCli;");            
+                $consultaExiste=$this->pdo->prepare($consulta);
                 $consultaExiste->execute();
 
                 if(!($consultaExiste->fetchColumn()) == $dniCli){  

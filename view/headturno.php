@@ -15,17 +15,29 @@
 
     </head>
 <body>
+<header>
+  
+  <div class="navbar"> <!--clases navbar-dark bg-dark shadow-sm-->
+    <div class="container d-flex justify-content-between">
     
+      <!--<a href="#" class="navbar-brand d-flex align-items-center">
+        
+        <strong>Cocucci</strong>
+      </a>-->
+     
+    </div>
+  </div>
+</header>
 <style>
 body{
-    background:url("assets/img/img-back.png");
+    background:url("assets/img/img.jpg");
     
 }
 
 </style>
 
 <div class="container">
-    headturno.php
+    
     <!--
 
       <ul class="collapsible">

@@ -32,7 +32,7 @@
             <td><?=$listarTurnos->idSector?></td>
             
             <td><?=$listarTurnos->prioridad?></td>
-            <td><?=$listarTurnos->comentario?></td>
+            <td><?=$listarTurnos->comentarioTurno?></td>
             <td>Editar | Eliminar</td>
           </tr>
           <?php 
