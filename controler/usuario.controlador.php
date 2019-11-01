@@ -154,9 +154,9 @@ require_once "model/cliente.php";
             $tel1Cli = $_POST['telefono1Cliente'];
             $tel2Cli = $_POST['telefono2Cliente'];
             $dniCli = intval($_POST['dniCliente']);                       
-            $idTur = intval($_POST['idTurno']);                       
+            $idTurno = intval($_POST['idTurno']);                       
             
-            $idCli = $turno->ConsultarId($idTur);
+            $idCli = $turno->ConsultarId($idTurno);
 
             
             $cli->setIdCliente($idCli);
@@ -170,7 +170,7 @@ require_once "model/cliente.php";
             $c = $cli->ActualizarDatos($cli);
             
             
-            $siguiente= $turno->TurnoActual($idTur);            
+            $siguiente= $turno->TurnoActual($idTurno);            
             if($siguiente){                           
                 require_once "view/dash/headerDash.php";
                 require_once "view/dash/head.php";

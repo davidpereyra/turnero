@@ -21,7 +21,7 @@
                 <thead>
                   <tr>
                     <th>#</th>
-                    <th>Numero Turno</th>
+                    <th>Turno</th>
                     <th>DNI Cliente</th>
                     <th>Nombre Cliente</th>
                     <th>Apellido Cliente</th>
@@ -30,7 +30,7 @@
                 <tbody>
                   <tr>
                     <td><?php print $siguiente->idTurno; ?></td>
-                    <td><?php print $siguiente->nombreTurno; ?></td>
+                    <td><?php print $siguiente->nomenclaturaSector . $siguiente->nomenclaturaOperacion . $siguiente->nombreTurno; ?></td>
                     <td><?php print $siguiente->dniCliente; ?></td>
                     <td><?php print $siguiente->nombreCliente; ?></td>
                     <td><?php print $siguiente->apellidoCliente; ?></td>

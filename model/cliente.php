@@ -54,13 +54,13 @@
             $this->apellidoCliente=$apellidoCli;
         }
         public function setMailCliente($mailCli){
-            $this->mailClie=$mailCli;
+            $this->mailCliente=$mailCli;
         }
         public function setTelefono1Cliente($telefono1Cli){
-            $this->telefono1Cli=$telefono1Cli;
+            $this->telefono1Cliente=$telefono1Cli;
         }
         public function setTelefono2Cliente($telefono2Cli){
-            $this->telefono2Cli=$telefono2Cli;
+            $this->telefono2Cliente=$telefono2Cli;
         }
 
 

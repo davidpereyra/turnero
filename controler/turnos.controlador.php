@@ -20,6 +20,11 @@ require_once "model/turno.php";
             require_once "view/footerturno.php";
         }
 
+        public function Test(){
+                
+            
+        }
+
         
     }
 
