@@ -30,7 +30,7 @@
                 <tbody>
                   <tr>
                     <td><?php print $siguiente->idTurno; ?></td>
-                    <td><?php print $siguiente->nombreTurno; ?></td>
+                    <td><?=$siguiente->nomenclaturaSector . $siguiente->nomenclaturaOperacion ." ". $siguiente->nombreTurno ?></td>
                     <td><?php print $siguiente->dniCliente; ?></td>
                     <td><?php print $siguiente->nombreCliente; ?></td>
                     <td><?php print $siguiente->apellidoCliente; ?></td>

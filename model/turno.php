@@ -175,7 +175,7 @@
             }
         }
 
-
+// -----------------------------------------------------------------------------------------------------------------------------
         public function InsertarBox($idTur, $nroBox){
             try{
                 $consulta=$this->pdo->prepare("UPDATE `turno`
@@ -325,7 +325,33 @@ public function ListarTurnosLlamados(){
 
 // -----------------------------------------------------------------------------------------------------------------------------
 
+public function MostrarUltimoLlamado(){
+    try{
+        $consulta=$this->pdo->prepare("SELECT * FROM `turno` 
+        INNER JOIN `turnohistorial` ON `turno`.`idTurno`=`turnohistorial`.`idTurno`
+        INNER JOIN `operacion` ON `operacion`.`idOperacion` = `turno`.`idOperacion`
+        INNER JOIN `operacionperfil` ON `operacion`.`idOperacion`=`operacionperfil`.`idOperacion`
+        INNER JOIN `sector` ON `turno`.`idSector` = `sector`.`idSector`
+        INNER JOIN `usuario` ON `usuario`.`nombreUsuario`= 'venta'
+        INNER JOIN `cliente` ON `cliente`.`idCliente`= `turno`.`idCliente`
+            WHERE `operacionperfil`.`idPerfil`=`usuario`.`idPerfil`   
+            AND `turno`.`rellamado` IS NULL OR `turno`.`rellamado` = TRUE
+            AND `turnohistorial`.`idEstadoTurno`=2 
+            AND `turnohistorial`.`fechaBaja` IS NULL
+            AND  `turnohistorial`.`fechaAlta`>= CAST((NOW()) AS DATE) 
+            AND `turnohistorial`.`fechaAlta`  < CAST((NOW() + INTERVAL 1 DAY) AS DATE) 
+            ORDER BY `turnohistorial`.`fechaAlta` DESC LIMIT 1;");
+        
+        $consulta->execute();
+        //$consulta->closeCursor();
+        //return        $consulta->fetchColumn();   
+        return $consulta->fetch(PDO::FETCH_OBJ);
+    }catch(Exception $e){
+        die($e->getMenssage());
+    }
+}
 
+// -----------------------------------------------------------------------------------------------------------------------------
 
 public function buscarRellamado(){
     try{//`turno`.`idTurno`,`sector`.`nombreSector`,`sector`.`nomenclaturaSector`,`operacion`.`nombreOperacion`,`operacion`.`nomenclaturaOperacion`, `turno`.`nombreTurno`, `turno`.`box`

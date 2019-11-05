@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta http-equiv='refresh' content="8">
+    <meta http-equiv='refresh' content="10">
     <title>index 1</title>
 </head>
 <body>
@@ -14,16 +14,20 @@
     <!-- LLAMADO -->
     <?php  $turnoLlamado = $this->modelo->MostrarUltimoLlamado();
         if($turnoLlamado){ 
-          header("location:../turnero?c=turnos&a=Llamar"); 
-        }
+          ob_start();
+          header("refresh: 9; url = ?c=turnos&a=Llamados");          
+          
+        
+        ob_end_flush(); 
+         
+        } 
+    
     ?>
-    <!-- FIN LLAMADO -->
 
 
+<div class="col align-self-center">
 
 
-
-    <!-- LISTA DE TURNOS RECIENTEMENTE LLAMADOS -->
     <table class="table">
       <thead class="thead-light">
      
@@ -34,23 +38,22 @@
         </tr>
       </thead>
       <tbody>
-        <?php 
-                foreach($this->modelo->ListarTurnosLlamados() as $listarTurnos):
-        ?>
+        
         <tr>
           
-          <th scope="row"><h1><?= $listarTurnos->nomenclaturaSector . $listarTurnos->nomenclaturaOperacion ." ". $listarTurnos->nombreTurno; ?></h1></td>
-          <td><h1><?=$listarTurnos->box;?></h1></td>          
+          <th scope="row"><h1><?php if($turnoLlamado){ echo $turnoLlamado->nomenclaturaSector . $turnoLlamado->nomenclaturaOperacion  ." ". $turnoLlamado->nombreTurno . "<br>";}?></h1></td>
+          <td><h1><?php if($turnoLlamado){ echo $turnoLlamado->box ."<br>" ;} ?></h1></td>          
         </tr>
-        <?php 
-          endforeach;
-        ?>
+        
       </tbody>
     </table>
-<!-- FIN LISTA DE TURNOS RECIENTEMENTE LLAMADOS -->
+<!-- FIN LLAMADO -->
+
+<?php
+  $this->modelo->DejarDeLlamar($turnoLlamado->idTurno);
+?>
 
 
-
-
+</div>
 </body>
 </html>
