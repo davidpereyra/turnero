@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 30-10-2019 a las 16:12:58
+-- Tiempo de generación: 06-11-2019 a las 12:44:58
 -- Versión del servidor: 5.5.24-log
 -- Versión de PHP: 5.4.3
 
@@ -32,22 +32,19 @@ CREATE TABLE IF NOT EXISTS `cliente` (
   `nombreCliente` varchar(80) DEFAULT NULL,
   `apellidoCliente` varchar(80) DEFAULT NULL,
   `mailCliente` varchar(120) DEFAULT NULL,
-  `telefono1Cliente` int(40) DEFAULT NULL,
-  `telefono2Cliente` int(40) DEFAULT NULL,
+  `telefono1Cliente` varchar(40) DEFAULT NULL,
+  `telefono2Cliente` varchar(40) DEFAULT NULL,
   PRIMARY KEY (`idCliente`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
 -- Volcado de datos para la tabla `cliente`
 --
 
 INSERT INTO `cliente` (`idCliente`, `dniCliente`, `nombreCliente`, `apellidoCliente`, `mailCliente`, `telefono1Cliente`, `telefono2Cliente`) VALUES
-(1, 34113017, 'Alberto David Oscar', 'Pereyra', '', 0, 0),
-(2, 1, '', '', NULL, NULL, NULL),
-(3, 12, '', '', NULL, NULL, NULL),
-(4, 1, 'nombre1', 'ape1', 'mail1@algo', 2147483647, 4482540),
-(5, 34113017, 'Alberto David Oscar', 'Pereyra', '', 0, 0),
-(6, 34113017, 'Hernan', 'Noli', '', 0, 0);
+(1, 34113017, 'Alberto David Oscar', 'Pereyra', 'webdeveloperdavid@gmail.com', '+54 9 2616205958', '261 4482540'),
+(2, 3413017, NULL, NULL, NULL, NULL, NULL),
+(3, 35662699, 'Mariana', 'Delongaro', 'marianadelongaro@gmail.com', '', '');
 
 -- --------------------------------------------------------
 
@@ -59,7 +56,7 @@ CREATE TABLE IF NOT EXISTS `estadoturno` (
   `idEstadoTurno` int(5) NOT NULL AUTO_INCREMENT,
   `nombreEstadoTurno` varchar(80) NOT NULL,
   PRIMARY KEY (`idEstadoTurno`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Volcado de datos para la tabla `estadoturno`
@@ -68,9 +65,8 @@ CREATE TABLE IF NOT EXISTS `estadoturno` (
 INSERT INTO `estadoturno` (`idEstadoTurno`, `nombreEstadoTurno`) VALUES
 (1, 'Creado'),
 (2, 'Llamado'),
-(3, 'Atendiendo'),
-(4, 'No Atendido'),
-(5, 'Atendido');
+(3, 'Atendido'),
+(4, 'No Atendido');
 
 -- --------------------------------------------------------
 
@@ -92,20 +88,20 @@ CREATE TABLE IF NOT EXISTS `operacion` (
 --
 
 INSERT INTO `operacion` (`idOperacion`, `idSector`, `nombreOperacion`, `nomenclaturaOperacion`) VALUES
-(1, 1, 'Comprar', 'Co'),
-(2, 1, 'Vender', 'Ve'),
-(3, 1, 'Tasacion', 'Ta'),
-(4, 2, 'Contratos', 'Co'),
-(5, 2, 'Renovaciones', 'Rn'),
-(6, 3, 'Resiciones', 'Rs'),
-(7, 2, 'Reclamos', 'Re'),
-(8, 2, 'Reintegro de Servicios', 'Re'),
-(9, 2, 'Presentar Documentacion', 'Do'),
-(10, 2, 'Ofrecer Alquiler', 'Of'),
-(11, 2, 'Buscar Alquiler', 'Bu'),
-(12, 3, 'Pagar Alquiler', 'Pa'),
-(13, 3, 'Cobrar Alquiler', 'Co'),
-(14, 4, 'RRHH', 'Rh');
+(1, 1, 'Comprar', 'A-'),
+(2, 1, 'Vender', 'B-'),
+(3, 1, 'Tasacion', 'C-'),
+(4, 2, 'Contratos', 'D-'),
+(5, 2, 'Renovaciones', 'E-'),
+(6, 3, 'Resiciones', 'F-'),
+(7, 2, 'Reclamos', 'G-'),
+(8, 2, 'Reintegro de Servicios', 'H-'),
+(9, 2, 'Presentar Documentacion', 'I-'),
+(10, 2, 'Ofrecer Alquiler', 'J-'),
+(11, 2, 'Buscar Alquiler', 'K-'),
+(12, 3, 'Pagar Alquiler', 'L-'),
+(13, 3, 'Cobrar Alquiler', 'M-'),
+(14, 4, 'RRHH', 'N-');
 
 -- --------------------------------------------------------
 
@@ -215,18 +211,7 @@ CREATE TABLE IF NOT EXISTS `turno` (
   KEY `idOperacion` (`idOperacion`),
   KEY `idSector` (`idSector`),
   KEY `idCliente` (`idCliente`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=172 ;
-
---
--- Volcado de datos para la tabla `turno`
---
-
-INSERT INTO `turno` (`idTurno`, `idOperacion`, `idSector`, `idCliente`, `nombreTurno`, `box`, `prioridad`, `comentarioTurno`, `rellamado`) VALUES
-(166, 1, 1, 2, '0', 3, NULL, NULL, 0),
-(167, 1, 1, 3, '3', 3, NULL, NULL, 0),
-(168, 2, 1, 4, '6', 3, NULL, NULL, 0),
-(170, 2, 1, 5, '9', 3, NULL, NULL, 0),
-(171, 3, 1, 6, '12', 3, NULL, NULL, 0);
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=229 ;
 
 -- --------------------------------------------------------
 
@@ -243,28 +228,7 @@ CREATE TABLE IF NOT EXISTS `turnohistorial` (
   PRIMARY KEY (`idTurnoHistorial`),
   KEY `idTurno` (`idTurno`),
   KEY `idEstadoTurno` (`idEstadoTurno`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=275 ;
-
---
--- Volcado de datos para la tabla `turnohistorial`
---
-
-INSERT INTO `turnohistorial` (`idTurnoHistorial`, `idTurno`, `idEstadoTurno`, `fechaAlta`, `fechaBaja`) VALUES
-(260, 166, 1, '2019-10-30 11:41:24', '2019-10-30 11:59:30'),
-(261, 166, 2, '2019-10-30 11:58:00', '2019-10-30 11:59:30'),
-(262, 166, 3, '2019-10-30 11:59:30', NULL),
-(263, 167, 1, '2019-10-30 12:03:38', '2019-10-30 12:09:17'),
-(264, 167, 2, '2019-10-30 12:07:11', '2019-10-30 12:09:17'),
-(265, 167, 3, '2019-10-30 12:08:52', '2019-10-30 12:09:17'),
-(266, 168, 1, '2019-10-30 12:09:52', '2019-10-30 12:10:18'),
-(267, 168, 2, '2019-10-30 12:10:06', '2019-10-30 12:10:18'),
-(268, 168, 3, '2019-10-30 12:10:18', NULL),
-(269, 170, 1, '2019-10-30 13:00:35', '2019-10-30 13:01:04'),
-(270, 170, 2, '2019-10-30 13:00:53', '2019-10-30 13:01:04'),
-(271, 170, 3, '2019-10-30 13:01:04', NULL),
-(272, 171, 1, '2019-10-30 13:06:52', '2019-10-30 13:09:01'),
-(273, 171, 2, '2019-10-30 13:07:11', '2019-10-30 13:09:01'),
-(274, 171, 3, '2019-10-30 13:07:59', '2019-10-30 13:09:01');
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=400 ;
 
 -- --------------------------------------------------------
 

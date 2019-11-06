@@ -1,16 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta http-equiv='refresh' content="10">
     <title>index 1</title>
+    
 </head>
 <body>
-
-
-
+<audio  autoplay="true">
+    
+    <source src="assets\audio\audio2.ogg">
+    
+	</audio>
     <!-- LLAMADO -->
     <?php  $turnoLlamado = $this->modelo->MostrarUltimoLlamado();
         if($turnoLlamado){ 

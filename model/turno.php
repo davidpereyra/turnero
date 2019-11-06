@@ -332,10 +332,11 @@ public function MostrarUltimoLlamado(){
         INNER JOIN `operacion` ON `operacion`.`idOperacion` = `turno`.`idOperacion`
         INNER JOIN `operacionperfil` ON `operacion`.`idOperacion`=`operacionperfil`.`idOperacion`
         INNER JOIN `sector` ON `turno`.`idSector` = `sector`.`idSector`
-        INNER JOIN `usuario` ON `usuario`.`nombreUsuario`= 'venta'
+        INNER JOIN `usuario` ON `usuario`.`nombreUsuario` IS NOT NULL
         INNER JOIN `cliente` ON `cliente`.`idCliente`= `turno`.`idCliente`
             WHERE `operacionperfil`.`idPerfil`=`usuario`.`idPerfil`   
-            AND `turno`.`rellamado` IS NULL OR `turno`.`rellamado` = TRUE
+            AND (`turno`.`rellamado` IS NULL OR `turno`.`rellamado` IS TRUE)
+            AND `turno`.`box` IS NOT NULL
             AND `turnohistorial`.`idEstadoTurno`=2 
             AND `turnohistorial`.`fechaBaja` IS NULL
             AND  `turnohistorial`.`fechaAlta`>= CAST((NOW()) AS DATE) 
