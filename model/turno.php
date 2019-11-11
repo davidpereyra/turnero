@@ -124,7 +124,7 @@
 
 
                 $consulta="INSERT INTO turno(idOperacion,idSector,nombreTurno,idCliente) VALUES(?,?,?,?);";
-                //$consulta="INSERT INTO turno(idOperacion,idSector) VALUES(?,?);";
+                //$consulta="INSERT INTO turno(idOperacion,idSector,nombreTurno) VALUES(?,?,?);";
                 $this->pdo->prepare($consulta)
                         ->execute(array(
                             $t->getIdOperacion(),

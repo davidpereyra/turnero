@@ -2,8 +2,8 @@
 
 class Database{
     const servidor="localhost";
-    const usuariobd = "admin";
-    const pass = "Adm1n_Tur";
+    const usuariobd = "root";
+    const pass = "";
     const nombrebd = "turnos";
 	
     //define('DB_CHARSET', 'utf8');

@@ -41,8 +41,9 @@ class InicioControlador{
         $t->setIdTurno($_POST['idTurno']);
         $t->setIdOperacion($idOperacion);
         $t->setIdSector($idSector);
-        $t->setIdCliente($idCli);
-        
+        if($dniCli){
+            $t->setIdCliente($idCli);
+        }
         $uid = $this->modelo->InsertarTurno($t);
         
         //turno historial
