@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta http-equiv='refresh' content="8">
-    <title>index 1</title>
+    <meta http-equiv='refresh' content="4">
+    <title>Llamados</title>
 </head>
 <body>
 
@@ -22,14 +22,14 @@
 
 
 
-
+<div class="llamadorTabla">
     <!-- LISTA DE TURNOS RECIENTEMENTE LLAMADOS -->
-    <table class="table">
-      <thead class="thead-light">
+    <table class="table text-center ">
+      <thead class="table-primary bg-danger table-dark">
      
         <tr>
 
-          <th scope="col"><h1>TURNO</h1></th>
+          <th scope="col"><h1 >TURNO</h1></th>
           <th scope="col"><h1>BOX</h1></th>
         </tr>
       </thead>
@@ -48,9 +48,6 @@
       </tbody>
     </table>
 <!-- FIN LISTA DE TURNOS RECIENTEMENTE LLAMADOS -->
-
-
-
-
-</body>
-</html>
+</div>
+<!-- </body>
+</html> -->

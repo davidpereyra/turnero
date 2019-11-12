@@ -1,9 +1,9 @@
 <?php 
 
 class Database{
-    const servidor="localhost";
+    const servidor="127.0.0.1";
     const usuariobd = "root";
-    const pass = "";
+    const pass = "root";
     const nombrebd = "turnos";
 	
     //define('DB_CHARSET', 'utf8');

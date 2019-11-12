@@ -55,4 +55,18 @@
     </div>     
     <div class="col-1 text-right"></div>       
 </div>
+<div class="row rowCalc">
+
+
+    <div class="col-1"></div>
+        <div class="col-9 text-center">
+            <button class="btn btn-primary btn-lg btn-block" type="submit" onclick="validar()">
+                      CONTINUAR
+            </button>
+        </div>
+    </div>
+
+
+
+
 </div>            

@@ -13,7 +13,7 @@
 ?>
 
 <div class="container-fluid recuadroTecla">
-<img src="assets/img/isologo_cocucci.png"  width="" height="80px">
+
 <!-- ---------------    FILA 1    -------------------------->
   <div class="row">
     <div class="col-lg-1"></div>
@@ -280,3 +280,5 @@
 -->
 
 
+
+</div>  <!-- Cierre <div class="py-5 bg-light">-->

@@ -16,14 +16,14 @@ require_once "model/turno.php";
 
         public function Llamados(){    
                     
-            require_once "view/headturno.php";           
+            require_once "view/headturno2.php";           
             require_once "view/llamador/called.php";
             require_once "view/footerturno.php";
         }
 
         public function Llamar(){     
                    
-            require_once "view/headturno.php";           
+            require_once "view/headturno2.php";           
             require_once "view/llamador/call.php";
             require_once "view/footerturno.php";
             

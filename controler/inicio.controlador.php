@@ -11,13 +11,16 @@ class InicioControlador{
         $this->modelo=new Turno();
         //$this->modelo=new TurnoHistorial();
     }
-    public function Inicio(){
-        //$bd = Database::Conectar();
-        //require_once "view/turno/operacion_view.php";
+    public function Inicio(){       
+        require_once "view/menu.html";
+    }
+
+    public function selectTurno(){
         require_once "view/headturno.php";
         require_once "view/turno/index.php";
         require_once "view/footerturno.php";
     }
+
     public function SeleccionarOp(){
       //cliente
         
@@ -51,7 +54,7 @@ class InicioControlador{
         $thcreate->CrearTurnoHistorial($uid,1);//creado es (_,1)
         
         
-        header("location:../turnero");
+        header("location:../turnero/?c=inicio&a=selectTurno");
     } 
 }
 ?>

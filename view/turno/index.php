@@ -1,13 +1,3 @@
-<!--<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>-->
-
 <script>
       function insert(num){
         document.form.dni.value = document.form.dni.value + num
@@ -28,9 +18,18 @@
       
 </script>
 
-<p>
+
+
+
 <div class="container-fluid">
-</p>
+<div class="row ">
+<div class=" col-12 text-center ">
+      <h2>Bienvenido a nuestro sistema de turnos:</h2>
+      <h3>Por favor INGRESE SU DNI:</h3>
+
+      </div>
+
+</div>      
 
 
 
@@ -38,15 +37,14 @@
         <div class="col-lg-1"><!--Izquierdo--></div>
 
         <div class="col-lg-10 recuadroTecla">
-        <img src="assets/img/isologo_cocucci.png"  width="" height="80px">
             <div class="row">
                 <form name="form" action="?c=inicio&a=SeleccionarOp" method="post" class="col-lg-12">
-                    <label for="input_text" class="dni">Ingrese DNI</label>
-                    <div class="input-field textDni">
+                    <br>
+                    <div class="input-field ">
                       <input id="dni"name="dni" class="dni"  type="number" data-length="10" autofocus="autofocus"  min="1" max="999999999999" maxlength="10" required>
                     </div>
                     <div class="row"><!--teclado-->
-                      <?php include_once('teclado.php');?>
+                     <?php include_once('teclado.php');?>
                     </div>
                     <!--discapacidad-- >
                     <div class="row">
@@ -55,12 +53,13 @@
                         <span>Discapacidad</span>
                       </label>
                     </div>
-                    <!- -<input type="hidden" name="idSec" value=1>--><br> 
-                    <button class="btn btn-primary btn-lg btn-block" type="submit" onclick="validar()">
-                      CONTINUAR
-                    </button>
+                    <!- -<input type="hidden" name="idSec" value=1>--><br>
+                    
                     <br>
+                    
                 </form>
+
+                
                 
              </div>
 
@@ -72,12 +71,9 @@
           
 
     
-<!--<a href="?c=inicio&a=SeleccionarOp" > seguir </a>-->
 
 
-</div>
 
-<!--
+  </div>
 
-</body>
-</html>-->
+</div>  <!-- Cierre <div class="py-5 bg-light">-->

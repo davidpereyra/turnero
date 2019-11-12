@@ -313,7 +313,7 @@ public function ListarTurnosLlamados(){
                         WHERE `turnohistorial`.`idEstadoTurno`=2 
                             AND `fechaAlta`>= CAST((NOW()) AS DATE) 
                                 AND `fechaAlta`  < CAST((NOW() + INTERVAL 1 DAY) AS DATE)
-                                    ORDER BY `turno`.`idTurno` DESC LIMIT 5;");
+                                    ORDER BY `turno`.`idTurno` DESC LIMIT 4;");
         
         $consulta->execute();
         

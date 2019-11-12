@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta http-equiv='refresh' content="10">
-    <title>index 1</title>
+    <meta http-equiv='refresh' content="8">
+    <title>Llamar Siguiente</title>
     
 </head>
 <body>
@@ -19,7 +19,7 @@
     <?php  $turnoLlamado = $this->modelo->MostrarUltimoLlamado();
         if($turnoLlamado){ 
           ob_start();
-          header("refresh: 9; url = ?c=turnos&a=Llamados");          
+          header("refresh: 5; url =?c=turnos&a=Llamados");          
           
         
         ob_end_flush(); 
@@ -28,16 +28,16 @@
     
     ?>
 
-
+<div class="llamadorTabla">
 <div class="col align-self-center">
 
 
-    <table class="table">
-      <thead class="thead-light">
+    <table class="table text-center">
+      <thead class="table-primary bg-danger table-dark">
      
         <tr>
 
-          <th scope="col"><h1>TURNO</h1></th>
+          <th scope="col "><h1>TURNO</h1></th>
           <th scope="col"><h1>BOX</h1></th>
         </tr>
       </thead>
@@ -57,7 +57,7 @@
   $this->modelo->DejarDeLlamar($turnoLlamado->idTurno);
 ?>
 
-
 </div>
-</body>
-</html>
+</div>
+<!-- </body>
+</html> -->
