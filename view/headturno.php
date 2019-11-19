@@ -31,6 +31,5 @@
   </div>
 </header>
 
-<div class="py-5 bg-light">
 <div class="container">
     

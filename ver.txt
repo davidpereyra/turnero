@@ -1,2 +1,0 @@
-ver si cuando paso de estado atendiendo lo dejo en finalizado o solo seteo fecha baja
-continuar con actualizar datos cliente desde dash

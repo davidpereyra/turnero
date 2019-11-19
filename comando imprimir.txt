@@ -1,0 +1,1 @@
+print /D:"\\%COMPUTERNAME%\tm-t20ii" testfile

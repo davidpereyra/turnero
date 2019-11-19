@@ -47,14 +47,25 @@ class InicioControlador{
         if($dniCli){
             $t->setIdCliente($idCli);
         }
-        $uid = $this->modelo->InsertarTurno($t);
+        $uid = $this->modelo->InsertarTurno($t); //$uid es el idTurno
         
         //turno historial
         $thcreate=new TurnoHistorial();
         $thcreate->CrearTurnoHistorial($uid,1);//creado es (_,1)
-        
+
+        //Busca turno recien creado para imprimir en ticket
+
+        $imprimir = $t->TurnoRecienCreado($uid);
+
+        require_once "view/imprimir.php";
         
         header("location:../turnero/?c=inicio&a=selectTurno");
-    } 
+        
+    }
+
+
+
+
+    
 }
 ?>

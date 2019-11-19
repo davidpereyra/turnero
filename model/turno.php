@@ -190,7 +190,7 @@
         }
 // -----------------------------------------------------------------------------------------------------------------------------
 
-public function TurnoActual($idTur){
+public function TurnoActual($idTur){ //usado por usuario.controlador
     try{
         $consulta=$this->pdo->prepare("SELECT * FROM `turno` 
         INNER JOIN `cliente` ON `cliente`.`idCliente`=`turno`.`idCliente`     
@@ -208,6 +208,26 @@ public function TurnoActual($idTur){
     }
 }
 // -----------------------------------------------------------------------------------------------------------------------------
+
+public function TurnoRecienCreado($idTur){ //usado por Inicio.controlador
+    try{
+        $consulta=$this->pdo->prepare("SELECT * FROM `turno` 
+        INNER JOIN `turnohistorial` ON `turno`.`idTurno`=`turnohistorial`.`idTurno`
+        INNER JOIN `sector` ON `sector`.`idSector`=`turno`.`idSector`
+        INNER JOIN `operacion` ON `operacion`.`idOperacion` = `turno`.`idOperacion`
+        INNER JOIN `estadoturno` ON `turnohistorial`.`idEstadoTurno` = `estadoturno`.`idEstadoTurno`
+        WHERE `turno`.`idTurno` = $idTur;");
+        
+        $consulta->execute();    
+
+        return $consulta->fetch(PDO::FETCH_OBJ);
+    
+    }catch(Exception $e){
+        die($e->getMessage());
+    }
+}
+// -----------------------------------------------------------------------------------------------------------------------------
+
 
 public function ReLlamarTurno($idTur){
     try{
