@@ -16,8 +16,8 @@
 
 <!-- ---------------    FILA 1    -------------------------->
   <div class="row">
-    <div class="col-lg-1"></div>
-    <div class="col-lg-3">
+   
+    <div class="col-lg-4">
       <p>
         <form action="?c=inicio&a=GenerarTurno" name="seleccionSector" method="POST">
           <input type="hidden" name="idTurno">
@@ -30,8 +30,8 @@
          </form>
        </p>
     </div><!--col lg 3 -->
-    <div class="col-lg-1"></div>
-    <div class="col-lg-3">
+    
+    <div class="col-lg-4">
       <p>
         <form action="?c=inicio&a=GenerarTurno" name="seleccionSector" method="POST">
           <input type="hidden" name="idTurno">
@@ -44,8 +44,8 @@
          </form>
        </p>
     </div><!--col lg 3 -->
-    <div class="col-lg-1"></div>
-    <div class="col-lg-3">
+    
+    <div class="col-lg-4">
       <p>
         <form action="?c=inicio&a=GenerarTurno" name="seleccionSector" method="POST">
           <input type="hidden" name="idTurno">
@@ -63,8 +63,7 @@
 
 <!-- ---------------    FILA 2    -------------------------->
 <div class="row">
-    <div class="col-lg-1"></div>
-    <div class="col-lg-3">
+    <div class="col-lg-4">
       <p>
         <form action="?c=inicio&a=GenerarTurno" name="seleccionSector" method="POST">
           <input type="hidden" name="idTurno">
@@ -77,8 +76,7 @@
          </form>
        </p>
     </div><!--col lg 3 -->
-    <div class="col-lg-1"></div>
-    <div class="col-lg-3">
+    <div class="col-lg-4">
       <p>
         <form action="?c=inicio&a=GenerarTurno" name="seleccionSector" method="POST">
           <input type="hidden" name="idTurno">
@@ -91,8 +89,7 @@
          </form>
        </p>
     </div><!--col lg 3 -->
-    <div class="col-lg-1"></div>
-    <div class="col-lg-3">
+    <div class="col-lg-4">
       <p>
         <form action="?c=inicio&a=GenerarTurno" name="seleccionSector" method="POST">
           <input type="hidden" name="idTurno">
@@ -111,8 +108,7 @@
 <!-- ---------------    FILA 3    -------------------------->
 
                    <div class="row">
-                    <div class="col-lg-1"></div>
-                    <div class="col-lg-3">
+                   <div class="col-lg-4">
                       <p>
                         <form action="?c=inicio&a=GenerarTurno" name="seleccionSector" method="POST">
                           <input type="hidden" name="idTurno">
@@ -125,8 +121,7 @@
                         </form>
                       </p>
                     </div><!--col lg 3 -->
-                    <div class="col-lg-1"></div>
-                    <div class="col-lg-3">
+                    <div class="col-lg-4">
                       <p>
                         <form action="?c=inicio&a=GenerarTurno" name="seleccionSector" method="POST">
                           <input type="hidden" name="idTurno">
@@ -139,8 +134,7 @@
                         </form>
                       </p>
                     </div><!--col lg 3 -->
-                    <div class="col-lg-1"></div>
-                    <div class="col-lg-3">
+                    <div class="col-lg-4">
                       <p>
                         <form action="?c=inicio&a=GenerarTurno" name="seleccionSector" method="POST">
                           <input type="hidden" name="idTurno">
@@ -158,8 +152,7 @@
 
                    <!-- INICIO FILA 4-->
                   <div class="row">
-                    <div class="col-lg-1"></div>
-                    <div class="col-lg-3">
+                  <div class="col-lg-4">
                       <p>
                         <form action="?c=inicio&a=GenerarTurno" name="seleccionSector" method="POST">
                           <input type="hidden" name="idTurno">
@@ -172,8 +165,7 @@
                         </form>
                       </p>
                     </div><!--col lg 3 -->
-                    <div class="col-lg-1"></div>
-                    <div class="col-lg-3">
+                    <div class="col-lg-4">
                       <p>
                         <form action="?c=inicio&a=GenerarTurno" name="seleccionSector" method="POST">
                           <input type="hidden" name="idTurno">
@@ -186,8 +178,7 @@
                         </form>
                       </p>
                     </div><!--col lg 3 -->
-                    <div class="col-lg-1"></div>
-                    <div class="col-lg-3">
+                    <div class="col-lg-4">
                       <p>
                         <form action="?c=inicio&a=GenerarTurno" name="seleccionSector" method="POST">
                           <input type="hidden" name="idTurno">
@@ -205,8 +196,7 @@
 
                   <!-- INICIO FILA 5-->
                   <div class="row">
-                    <div class="col-lg-1"></div>
-                    <div class="col-lg-3">
+                  <div class="col-lg-4">
                       <p>
                         <form action="?c=inicio&a=GenerarTurno" name="seleccionSector" method="POST">
                           <input type="hidden" name="idTurno">
@@ -219,8 +209,7 @@
                         </form>
                       </p>
                     </div><!--col lg 3 -->
-                    <div class="col-lg-1"></div>
-                    <div class="col-lg-3">
+                    <div class="col-lg-4">
                       <p>
                         <form action="?c=inicio&a=GenerarTurno" name="seleccionSector" method="POST">
                           <input type="hidden" name="idTurno">
@@ -233,16 +222,15 @@
                         </form>
                       </p>
                     </div><!--col lg 3 -->
-                    <div class="col-lg-1"></div>
-                    <div class="col-lg-3">
+                    <div class="col-lg-4">
                       <p>
-                        <form action="?c=inicio&a=GenerarTurno" name="seleccionSector" method="POST">
+                        <form action="?c=inicio&a=selectTurno" name="seleccionSector" method="POST">
                           <input type="hidden" name="idTurno">
                           <input type="hidden" name="idSector" value=0>
                           <input type="hidden" name="dni" value=<?php echo $dni; ?>>
                           <input type="hidden" name="discapacidad" value=<?php echo $pri;?>>
 
-                          <button type="submit" name="idOperacion" value=0 type="button" class="btn btn-primary btn-lg btn-block botonOp">NADA</button>
+                          <button type="submit" name="idOperacion" value=0 type="button" class="btn btn-primary btn-lg btn-block botonOp btn_back">VOLVER</button>
 
                         </form>
                       </p>

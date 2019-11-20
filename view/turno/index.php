@@ -25,7 +25,7 @@
 <div class="row ">
 <div class=" col-12 text-center ">
       <h2>Bienvenido a nuestro sistema de turnos:</h2>
-      <h3>Por favor INGRESE SU DNI:</h3>
+      <h3>Por favor <span class="ingreseDni">INGRESE SU DNI:</span></h3>
 
       </div>
 

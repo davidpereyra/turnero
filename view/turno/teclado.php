@@ -45,13 +45,13 @@
 <div class="row rowCalc">
     <div class="col-1 text-right"></div>
     <div class="col-3 text-right">
-        <button type="button" class="botonText btn btn-primary btn-lg" value="Borrar uno" onclick="back()">Borrar uno</button>
+        <button type="button" class="botonText btn btn-primary btn-lg" value="Borrar uno" onclick="back()">BORRAR UNO</button>
     </div>
     <div class="col-3 text-center">
         <input class="botonNro btn btn-primary btn-lg" type="button" value="0" onclick="insert(0)">
     </div>
     <div class="col-3 text-left">
-        <button type="button" class="botonText btn btn-primary btn-lg " value="Borrar todo" onclick="clean()">Borrar todo</button>
+        <button type="button" class="botonText btn btn-primary btn-lg " value="Borrar todo" onclick="clean()">BORRAR TODO</button>
     </div>     
     <div class="col-1 text-right"></div>       
 </div>

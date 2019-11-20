@@ -6,6 +6,15 @@
   }
 
 /* inicio */
+
+.row {
+    margin-left: 8px !important;
+}
+
+.ingreseDni{
+    color: #CF142B;
+}
+
 .botonNro{
     height: 100%; 
     width: 85%;
@@ -59,7 +68,9 @@
       background-color: rgba(82, 66, 66, 0.3);
       
   }
- 
+ .btn_back{
+    background-color: #CF142B !important;
+ }
  
 /*LLAMADOR*/
 
