@@ -34,9 +34,9 @@
 
 
     <div class="row">
-        <div class="col-lg-1"><!--Izquierdo--></div>
+        
 
-        <div class="col-lg-10 recuadroTecla">
+        <div class="col-lg-12 recuadroTecla">
             <div class="row">
                 <form name="form" action="?c=inicio&a=SeleccionarOp" method="post" class="col-lg-12">
                     <br>
@@ -55,8 +55,7 @@
                     </div>
                     <!- -<input type="hidden" name="idSec" value=1>--><br>
                     
-                    <br>
-                    
+                   
                 </form>
 
                 
@@ -66,7 +65,7 @@
         
       
       </div>
-      <div class="col-lg-1"><!--Derecho--></div>
+      
     </div>
           
 

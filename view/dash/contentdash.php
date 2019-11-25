@@ -1,12 +1,49 @@
-<script>
+
+<!doctype html>
+<html lang="en">
+  <head>
+<!-- Reload -->
+  <script>
   (function(){
     setInterval(
       function(){
         document.location.reload()
       },
-    10000)
+    40000)
   })()
 </script>
+
+</head>
+
+
+<!-- Push notification -->
+<script src="assets/push.js/bin/push.min.js"></script>
+
+<?php 
+/*   $tmp_noti = "
+      <script>
+        Push.create('Hola Nalga!', {
+        body: 'que onda?',
+        icon: '/icon.png',
+        timeout: 9000,
+        onClick: function () {
+        window.focus();
+        this.close();
+      }
+      });
+      </script>";                
+
+ echo $tmp_noti;
+*/?>
+
+
+
+
+
+
+
+
+<body>
     <!-- **********************************************************************************************************************************************************
         MAIN CONTENT
         *********************************************************************************************************************************************************** -->
@@ -60,3 +97,6 @@
 
 
       <!-- OJO QUE TERMINA EN EL SIGUIENTE ARCHIVO (sidebarderecho) Y FINALIZAN LOS DIVS -->   
+
+      </body>
+</html>

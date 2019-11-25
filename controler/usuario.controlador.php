@@ -32,15 +32,17 @@ require_once "model/cliente.php";
         }
 
 
-        public function InicioDash(){            
+        public function InicioDash(){     
+
             $t=new Turno();
             require_once "view/dash/headerDash.php";
             require_once "view/dash/head.php";
             require_once "view/dash/sidebarMenu.php";
             $listadeturnos = $t->ListarTurnosSector($_SESSION["usuario"]);
             require_once "view/dash/contentdash.php"; 
-            require_once "view/dash/sidebarderecho1.php";                 
+            require_once "view/dash/sidebarderecho1.php";              
             require_once "view/dash/footerDash.php";
+            
         }
 
 

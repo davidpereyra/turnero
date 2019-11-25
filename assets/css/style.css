@@ -43,7 +43,8 @@
      text-transform: uppercase;
      color: #F8F9FA;
      text-shadow: 2px 2px 2px #000;
-     font-family: "campodni";
+     font-family: 'Anton', sans-serif;
+     /*font-family: "campodni";*/
      letter-spacing: 10px;
 
  }
@@ -57,7 +58,7 @@
     width: 100%;
  }
  .b{color: #FFF;}
- /* seleccion op */
+ /* seleccion operacion */
  .botonOp{
      height: 80px;  
   }
@@ -68,10 +69,27 @@
       background-color: rgba(82, 66, 66, 0.3);
       
   }
+  @media (min-width: 992px){
+.col-lg-12 {
+    -ms-flex: 0 0 100%;
+    flex: 0 0 100%;
+    max-width: 100%;
+    max-height: 550px;
+}}
+  /*
  .btn_back{
-    background-color: #CF142B !important;
+    /*background-color: #CF142B !important;
+    color: #CF142B !important;
+    border-color:#CF142B !important;
  }
  
+ .btn_alq{
+    background-color: #1565c0 !important;
+ }
+ .btn_caja{
+    background-color: #0d47a1  !important;
+ }*/
+
 /*LLAMADOR*/
 
 .llamador{
