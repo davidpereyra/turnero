@@ -19,7 +19,7 @@
     height: 100%; 
     width: 85%;
     font-size:40px !important;
-   
+    cursor:none !important;
  }
  .botonText{
      height: 100%; 
@@ -28,6 +28,7 @@
     
   }
  .rowCalc{
+     cursor:none !important;
      margin-top: 5px;
      margin-left: none;
      min-height: 80px ;
@@ -61,13 +62,14 @@
  /* seleccion operacion */
  .botonOp{
      height: 80px;  
+     cursor:none !important;
   }
 
   .recuadroTecla{
       border: #000 2px solid;
       box-shadow: 2px 2px 2px #000;
       background-color: rgba(82, 66, 66, 0.3);
-      
+      cursor:none !important;
   }
   @media (min-width: 992px){
 .col-lg-12 {
