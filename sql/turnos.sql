@@ -1,20 +1,22 @@
 -- phpMyAdmin SQL Dump
--- version 3.5.1
--- http://www.phpmyadmin.net
+-- version 4.9.1
+-- https://www.phpmyadmin.net/
 --
--- Servidor: localhost
--- Tiempo de generación: 06-11-2019 a las 12:44:58
--- Versión del servidor: 5.5.24-log
--- Versión de PHP: 5.4.3
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 03-12-2019 a las 16:51:50
+-- Versión del servidor: 10.4.8-MariaDB
+-- Versión de PHP: 7.1.33
 
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Base de datos: `turnos`
@@ -26,16 +28,15 @@ SET time_zone = "+00:00";
 -- Estructura de tabla para la tabla `cliente`
 --
 
-CREATE TABLE IF NOT EXISTS `cliente` (
-  `idCliente` int(5) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `cliente` (
+  `idCliente` int(5) NOT NULL,
   `dniCliente` int(10) DEFAULT NULL,
   `nombreCliente` varchar(80) DEFAULT NULL,
   `apellidoCliente` varchar(80) DEFAULT NULL,
   `mailCliente` varchar(120) DEFAULT NULL,
   `telefono1Cliente` varchar(40) DEFAULT NULL,
-  `telefono2Cliente` varchar(40) DEFAULT NULL,
-  PRIMARY KEY (`idCliente`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+  `telefono2Cliente` varchar(40) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `cliente`
@@ -44,7 +45,18 @@ CREATE TABLE IF NOT EXISTS `cliente` (
 INSERT INTO `cliente` (`idCliente`, `dniCliente`, `nombreCliente`, `apellidoCliente`, `mailCliente`, `telefono1Cliente`, `telefono2Cliente`) VALUES
 (1, 34113017, 'Alberto David Oscar', 'Pereyra', 'webdeveloperdavid@gmail.com', '+54 9 2616205958', '261 4482540'),
 (2, 3413017, NULL, NULL, NULL, NULL, NULL),
-(3, 35662699, 'Mariana', 'Delongaro', 'marianadelongaro@gmail.com', '', '');
+(3, 35662699, 'Mariana', 'Delongaro', 'marianadelongaro@gmail.com', '', ''),
+(4, 38752938, NULL, NULL, NULL, NULL, NULL),
+(5, 352, NULL, NULL, NULL, NULL, NULL),
+(6, 258, NULL, NULL, NULL, NULL, NULL),
+(7, 24, NULL, NULL, NULL, NULL, NULL),
+(8, 7, NULL, NULL, NULL, NULL, NULL),
+(9, 88, NULL, NULL, NULL, NULL, NULL),
+(10, 36712432, NULL, NULL, NULL, NULL, NULL),
+(11, 31645068, NULL, NULL, NULL, NULL, NULL),
+(12, 20335925, 'Cristian', 'Cocucci', '', '', ''),
+(13, 32486407, NULL, NULL, NULL, NULL, NULL),
+(14, 32571722, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -52,11 +64,10 @@ INSERT INTO `cliente` (`idCliente`, `dniCliente`, `nombreCliente`, `apellidoClie
 -- Estructura de tabla para la tabla `estadoturno`
 --
 
-CREATE TABLE IF NOT EXISTS `estadoturno` (
-  `idEstadoTurno` int(5) NOT NULL AUTO_INCREMENT,
-  `nombreEstadoTurno` varchar(80) NOT NULL,
-  PRIMARY KEY (`idEstadoTurno`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+CREATE TABLE `estadoturno` (
+  `idEstadoTurno` int(5) NOT NULL,
+  `nombreEstadoTurno` varchar(80) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `estadoturno`
@@ -74,14 +85,12 @@ INSERT INTO `estadoturno` (`idEstadoTurno`, `nombreEstadoTurno`) VALUES
 -- Estructura de tabla para la tabla `operacion`
 --
 
-CREATE TABLE IF NOT EXISTS `operacion` (
-  `idOperacion` int(5) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `operacion` (
+  `idOperacion` int(5) NOT NULL,
   `idSector` int(5) NOT NULL,
   `nombreOperacion` varchar(80) NOT NULL,
-  `nomenclaturaOperacion` varchar(2) NOT NULL,
-  PRIMARY KEY (`idOperacion`),
-  KEY `idSector` (`idSector`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
+  `nomenclaturaOperacion` varchar(2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `operacion`
@@ -109,15 +118,12 @@ INSERT INTO `operacion` (`idOperacion`, `idSector`, `nombreOperacion`, `nomencla
 -- Estructura de tabla para la tabla `operacionperfil`
 --
 
-CREATE TABLE IF NOT EXISTS `operacionperfil` (
-  `idOpPerfil` int(5) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `operacionperfil` (
+  `idOpPerfil` int(5) NOT NULL,
   `idPerfil` int(5) NOT NULL,
   `idOperacion` int(5) NOT NULL,
-  `comentario` varchar(180) DEFAULT NULL,
-  PRIMARY KEY (`idOpPerfil`,`idPerfil`,`idOperacion`),
-  KEY `idPerfil` (`idPerfil`),
-  KEY `idOperacion` (`idOperacion`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
+  `comentario` varchar(180) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `operacionperfil`
@@ -145,11 +151,10 @@ INSERT INTO `operacionperfil` (`idOpPerfil`, `idPerfil`, `idOperacion`, `comenta
 -- Estructura de tabla para la tabla `perfil`
 --
 
-CREATE TABLE IF NOT EXISTS `perfil` (
-  `idPerfil` int(5) NOT NULL AUTO_INCREMENT,
-  `nombrePerfil` varchar(50) NOT NULL,
-  PRIMARY KEY (`idPerfil`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+CREATE TABLE `perfil` (
+  `idPerfil` int(5) NOT NULL,
+  `nombrePerfil` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `perfil`
@@ -173,13 +178,12 @@ INSERT INTO `perfil` (`idPerfil`, `nombrePerfil`) VALUES
 -- Estructura de tabla para la tabla `sector`
 --
 
-CREATE TABLE IF NOT EXISTS `sector` (
-  `idSector` int(5) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `sector` (
+  `idSector` int(5) NOT NULL,
   `nombreSector` varchar(80) NOT NULL,
   `visible` tinyint(1) NOT NULL,
-  `nomenclaturaSector` varchar(2) DEFAULT NULL,
-  PRIMARY KEY (`idSector`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+  `nomenclaturaSector` varchar(2) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `sector`
@@ -197,8 +201,8 @@ INSERT INTO `sector` (`idSector`, `nombreSector`, `visible`, `nomenclaturaSector
 -- Estructura de tabla para la tabla `turno`
 --
 
-CREATE TABLE IF NOT EXISTS `turno` (
-  `idTurno` int(20) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `turno` (
+  `idTurno` int(20) NOT NULL,
   `idOperacion` int(5) NOT NULL,
   `idSector` int(5) NOT NULL,
   `idCliente` int(5) NOT NULL,
@@ -206,12 +210,8 @@ CREATE TABLE IF NOT EXISTS `turno` (
   `box` int(5) DEFAULT NULL,
   `prioridad` tinyint(1) DEFAULT NULL,
   `comentarioTurno` varchar(120) DEFAULT NULL,
-  `rellamado` tinyint(1) DEFAULT NULL,
-  PRIMARY KEY (`idTurno`),
-  KEY `idOperacion` (`idOperacion`),
-  KEY `idSector` (`idSector`),
-  KEY `idCliente` (`idCliente`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=229 ;
+  `rellamado` tinyint(1) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -219,16 +219,13 @@ CREATE TABLE IF NOT EXISTS `turno` (
 -- Estructura de tabla para la tabla `turnohistorial`
 --
 
-CREATE TABLE IF NOT EXISTS `turnohistorial` (
-  `idTurnoHistorial` int(5) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `turnohistorial` (
+  `idTurnoHistorial` int(5) NOT NULL,
   `idTurno` int(20) NOT NULL,
   `idEstadoTurno` int(5) NOT NULL,
   `fechaAlta` datetime DEFAULT NULL,
-  `fechaBaja` datetime DEFAULT NULL,
-  PRIMARY KEY (`idTurnoHistorial`),
-  KEY `idTurno` (`idTurno`),
-  KEY `idEstadoTurno` (`idEstadoTurno`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=400 ;
+  `fechaBaja` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -236,8 +233,8 @@ CREATE TABLE IF NOT EXISTS `turnohistorial` (
 -- Estructura de tabla para la tabla `usuario`
 --
 
-CREATE TABLE IF NOT EXISTS `usuario` (
-  `idUsuario` int(5) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `usuario` (
+  `idUsuario` int(5) NOT NULL,
   `idPerfil` int(5) NOT NULL,
   `nombreUsuario` varchar(80) NOT NULL,
   `passUsuario` varchar(80) NOT NULL,
@@ -245,10 +242,8 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   `apellidoReal` varchar(80) NOT NULL,
   `dniUsuario` int(20) NOT NULL,
   `correoUsuario` varchar(80) NOT NULL,
-  `telefonoUsuario` int(40) DEFAULT NULL,
-  PRIMARY KEY (`idUsuario`),
-  KEY `idPerfil` (`idPerfil`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+  `telefonoUsuario` int(40) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `usuario`
@@ -265,6 +260,131 @@ INSERT INTO `usuario` (`idUsuario`, `idPerfil`, `nombreUsuario`, `passUsuario`, 
 (8, 8, 'buscar', 'pass', '', '', 0, '', NULL),
 (9, 9, 'rrhh', 'pass', '', '', 0, '', NULL),
 (10, 10, 'caja', 'pass', '', '', 0, '', NULL);
+
+--
+-- Índices para tablas volcadas
+--
+
+--
+-- Indices de la tabla `cliente`
+--
+ALTER TABLE `cliente`
+  ADD PRIMARY KEY (`idCliente`);
+
+--
+-- Indices de la tabla `estadoturno`
+--
+ALTER TABLE `estadoturno`
+  ADD PRIMARY KEY (`idEstadoTurno`);
+
+--
+-- Indices de la tabla `operacion`
+--
+ALTER TABLE `operacion`
+  ADD PRIMARY KEY (`idOperacion`),
+  ADD KEY `idSector` (`idSector`);
+
+--
+-- Indices de la tabla `operacionperfil`
+--
+ALTER TABLE `operacionperfil`
+  ADD PRIMARY KEY (`idOpPerfil`,`idPerfil`,`idOperacion`),
+  ADD KEY `idPerfil` (`idPerfil`),
+  ADD KEY `idOperacion` (`idOperacion`);
+
+--
+-- Indices de la tabla `perfil`
+--
+ALTER TABLE `perfil`
+  ADD PRIMARY KEY (`idPerfil`);
+
+--
+-- Indices de la tabla `sector`
+--
+ALTER TABLE `sector`
+  ADD PRIMARY KEY (`idSector`);
+
+--
+-- Indices de la tabla `turno`
+--
+ALTER TABLE `turno`
+  ADD PRIMARY KEY (`idTurno`),
+  ADD KEY `idOperacion` (`idOperacion`),
+  ADD KEY `idSector` (`idSector`),
+  ADD KEY `idCliente` (`idCliente`);
+
+--
+-- Indices de la tabla `turnohistorial`
+--
+ALTER TABLE `turnohistorial`
+  ADD PRIMARY KEY (`idTurnoHistorial`),
+  ADD KEY `idTurno` (`idTurno`),
+  ADD KEY `idEstadoTurno` (`idEstadoTurno`);
+
+--
+-- Indices de la tabla `usuario`
+--
+ALTER TABLE `usuario`
+  ADD PRIMARY KEY (`idUsuario`),
+  ADD KEY `idPerfil` (`idPerfil`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `cliente`
+--
+ALTER TABLE `cliente`
+  MODIFY `idCliente` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- AUTO_INCREMENT de la tabla `estadoturno`
+--
+ALTER TABLE `estadoturno`
+  MODIFY `idEstadoTurno` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT de la tabla `operacion`
+--
+ALTER TABLE `operacion`
+  MODIFY `idOperacion` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- AUTO_INCREMENT de la tabla `operacionperfil`
+--
+ALTER TABLE `operacionperfil`
+  MODIFY `idOpPerfil` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- AUTO_INCREMENT de la tabla `perfil`
+--
+ALTER TABLE `perfil`
+  MODIFY `idPerfil` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT de la tabla `sector`
+--
+ALTER TABLE `sector`
+  MODIFY `idSector` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT de la tabla `turno`
+--
+ALTER TABLE `turno`
+  MODIFY `idTurno` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=253;
+
+--
+-- AUTO_INCREMENT de la tabla `turnohistorial`
+--
+ALTER TABLE `turnohistorial`
+  MODIFY `idTurnoHistorial` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=437;
+
+--
+-- AUTO_INCREMENT de la tabla `usuario`
+--
+ALTER TABLE `usuario`
+  MODIFY `idUsuario` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- Restricciones para tablas volcadas
@@ -303,6 +423,7 @@ ALTER TABLE `turnohistorial`
 --
 ALTER TABLE `usuario`
   ADD CONSTRAINT `usuario_ibfk_1` FOREIGN KEY (`idPerfil`) REFERENCES `perfil` (`idPerfil`);
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
