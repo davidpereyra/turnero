@@ -57,7 +57,7 @@ class InicioControlador{
 
         $imprimir = $t->TurnoRecienCreado($uid);
 
-        require_once "view/imprimir.php";
+        //include "view/imprimir.php";
         
         header("location:../turnero/?c=inicio&a=selectTurno");
         

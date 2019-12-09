@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 03-12-2019 a las 16:51:50
+-- Tiempo de generación: 09-12-2019 a las 18:33:54
 -- Versión del servidor: 10.4.8-MariaDB
 -- Versión de PHP: 7.1.33
 
@@ -30,7 +30,8 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `cliente` (
   `idCliente` int(5) NOT NULL,
-  `dniCliente` int(10) DEFAULT NULL,
+  `dniCliente` int(8) DEFAULT NULL,
+  `cuitCliente` varchar(18) DEFAULT NULL,
   `nombreCliente` varchar(80) DEFAULT NULL,
   `apellidoCliente` varchar(80) DEFAULT NULL,
   `mailCliente` varchar(120) DEFAULT NULL,
@@ -42,21 +43,53 @@ CREATE TABLE `cliente` (
 -- Volcado de datos para la tabla `cliente`
 --
 
-INSERT INTO `cliente` (`idCliente`, `dniCliente`, `nombreCliente`, `apellidoCliente`, `mailCliente`, `telefono1Cliente`, `telefono2Cliente`) VALUES
-(1, 34113017, 'Alberto David Oscar', 'Pereyra', 'webdeveloperdavid@gmail.com', '+54 9 2616205958', '261 4482540'),
-(2, 3413017, NULL, NULL, NULL, NULL, NULL),
-(3, 35662699, 'Mariana', 'Delongaro', 'marianadelongaro@gmail.com', '', ''),
-(4, 38752938, NULL, NULL, NULL, NULL, NULL),
-(5, 352, NULL, NULL, NULL, NULL, NULL),
-(6, 258, NULL, NULL, NULL, NULL, NULL),
-(7, 24, NULL, NULL, NULL, NULL, NULL),
-(8, 7, NULL, NULL, NULL, NULL, NULL),
-(9, 88, NULL, NULL, NULL, NULL, NULL),
-(10, 36712432, NULL, NULL, NULL, NULL, NULL),
-(11, 31645068, NULL, NULL, NULL, NULL, NULL),
-(12, 20335925, 'Cristian', 'Cocucci', '', '', ''),
-(13, 32486407, NULL, NULL, NULL, NULL, NULL),
-(14, 32571722, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `cliente` (`idCliente`, `dniCliente`, `cuitCliente`, `nombreCliente`, `apellidoCliente`, `mailCliente`, `telefono1Cliente`, `telefono2Cliente`) VALUES
+(1, 34113017, NULL, 'Alberto David', 'Pereyra', 'webdeveloperdavid@gmail.com', '+54 9 2616205958', '261 4482540'),
+(2, 20335925, NULL, 'Cristian', 'Cocucci', '', '', ''),
+(3, 18446951, NULL, 'Pablo', 'Cocucci', '', '', ''),
+(5, 0, '', 'Alejandro', 'Barroso', 'abarroso@cocucci.com.ar', '', ''),
+(6, 26792840, '27-26792840-7', 'Andrea', 'Estalles', 'aestalles@cocucci.com.ar', '', ''),
+(7, 37267443, '', 'Antonella', 'Herrera', 'aherrera@cocucci.com.ar', '', ''),
+(8, 32486407, '', 'Andrea', 'Landa', 'alanda@cocucci.com.ar', '', ''),
+(9, 27238766, '20-27238766-5', 'Aldo', 'Noli', 'aldo@cocucci.com.ar', '', ''),
+(10, 28757254, '27-28757254-4', 'Andrea', 'Ortega', 'aortega@cocucci.com.ar', '', ''),
+(11, 25782695, '', 'Adrian', 'Ramirez', 'aramirez@cocucci.com.ar', '', ''),
+(13, 31645068, '', 'Andrea', 'Algañaraz', 'avalls@cocucci.com.ar', '', ''),
+(15, 21863615, '', 'Carlos', 'Cocucci', 'carlos@cocucci.com.ar', '', ''),
+(17, 20335925, '20-20335925-0', 'Cristian', 'Cocucci', 'cristian@cocucci.com.ar', '', ''),
+(18, 22059658, '27-22059658-9', 'Cristina', 'Velasco', 'cvelasco@cocucci.com.ar', '', ''),
+(19, 23574866, '', 'Diego', 'Aguinaga', 'daguinaga@cocucci.com.ar', '', ''),
+(20, 38756298, '', 'Daniel', 'Herrera', 'dherrera@cocucci.com.ar', '', ''),
+(21, 34113017, '20-34113017-5', 'David', 'Pereyra', 'dpereyra@cocucci.com.ar', '', ''),
+(22, 0, '', 'Emiliano', 'Di Cesare', 'edicesare@cocucci.com.ar', '', ''),
+(23, 34627802, '27-34627802-7', 'Erica', 'Fernandez', 'efernandez@cocucci.com.ar', '', ''),
+(24, 14978161, '20-14978161-8', 'Eduardo', 'Vazquez', 'evazquez@cocucci.com.ar', '', ''),
+(25, 36766970, '', 'Franco', 'Gresta', 'fgresta@cocucci.com.ar', '', ''),
+(26, 32571722, '27-32571722-5', 'Fernanda', 'Monchon', 'fmanchon@cocucci.com.ar', '', ''),
+(27, 33445977, '20-33445977-3', 'Hernan', 'Noli', 'hernan@cocucci.com.ar', '', ''),
+(28, 22903614, '', 'Hector', 'Vietti', 'hvietti@cocucci.com.ar', '', ''),
+(29, 34917882, '', 'Ignacio', 'Cocucci', 'ignacio@cocucci.com.ar', '', ''),
+(30, 31645390, '', 'Matias', 'Cocucci', 'matias@cocucci.com.ar', '', ''),
+(31, 26495529, '', 'Maximiliano', 'Firmapaz', 'mfirmapaz@cocucci.com.ar', '', ''),
+(32, 5126770, '27-05126770-8', 'Mirta', 'Fernandez', 'mirta@cocucci.com.ar', '', ''),
+(33, 22621348, '27-22621348-7', 'Mirta', 'Cocucci', 'mirta.andrea@cocucci.com.ar', '', ''),
+(34, 22009422, '27-22009422-2', 'Marisa', 'Manuele', 'mmanuele@cocucci.com.ar', '', ''),
+(35, 18446951, '20-18446951-1', 'Pablo', 'Cocucci', 'pablo@cocucci.com.ar', '', ''),
+(36, 26960411, '', 'Paola', 'Cocucci', 'paola@cocucci.com.ar', '', ''),
+(37, 37271405, '', 'Pablo', 'Dominguez', 'pdominguez@cocucci.com.ar', '', ''),
+(38, 22625482, '20-22625482-0', 'Pablo', 'Furlan', 'pfurlan@cocucci.com.ar', '', ''),
+(39, 0, '', 'Ricardo', 'Fiorenza', 'rfiorenza@cocucci.com.ar', '', ''),
+(40, 12609027, '', 'Rodolfo', 'Romero', 'rodolfo@cocucci.com.ar', '', ''),
+(41, 12931468, '20-12931468-1', 'Ruben', 'Ortega', 'rortega@cocucci.com.ar', '', ''),
+(42, 33376908, '20-33376908-6', 'Sebastian', 'Dominguez', 'sdominguez@cocucci.com.ar', '', ''),
+(43, 32751472, '', 'Silvana', 'Pacheco', 'silvana@cocucci.com.ar', '', ''),
+(44, 0, '', 'Silvina', 'Manuele', 'smanuele@cocucci.com.ar', '', ''),
+(45, 24486589, '', 'Soledad', 'Caballero', 'soledad@cocucci.com.ar', '', ''),
+(46, 16632827, '23-16632827-4', 'Stella', 'Rodriguez', 'srodriguez@cocucci.com.ar', '', ''),
+(47, 36277640, '', 'Victor', 'Biazzo', 'vbiazzo@cocucci.com.ar', '', ''),
+(48, 20949196, '20-20949196-7', 'Victor', 'Bocci', 'vbocci@cocucci.com.ar', '', ''),
+(49, 13812986, '', 'Viviana', 'Garcia', 'vgarcia@cocucci.com.ar', '', ''),
+(50, 0, '', '', '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -253,13 +286,37 @@ INSERT INTO `usuario` (`idUsuario`, `idPerfil`, `nombreUsuario`, `passUsuario`, 
 (1, 1, 'venta', 'pass', 'David', 'Pereyra', 34113017, 'dpereyra@cocucci.com.ar', 155),
 (2, 2, 'contrato', 'pass', '', '', 0, '', NULL),
 (3, 3, 'renovacion', 'pass', '', '', 0, '', NULL),
-(4, 4, 'resicion', 'pass', '', '', 0, '', NULL),
-(5, 5, 'reclamo', 'pass', '', '', 0, '', NULL),
+(4, 4, 'rescicion', 'pass', '', '', 0, '', NULL),
+(5, 5, 'reclamos', 'pass', '', '', 0, '', NULL),
 (6, 6, 'presentar', 'pass', '', '', 0, '', NULL),
 (7, 7, 'ofrecer', 'pass', '', '', 0, '', NULL),
 (8, 8, 'buscar', 'pass', '', '', 0, '', NULL),
 (9, 9, 'rrhh', 'pass', '', '', 0, '', NULL),
-(10, 10, 'caja', 'pass', '', '', 0, '', NULL);
+(10, 10, 'caja', 'pass', '', '', 0, '', NULL),
+(16, 1, 'soledad', 'soledad', 'Soledad', 'Caballero', 24486589, 'soledad@cocucci.com.ar', NULL),
+(17, 1, 'paola', 'paola', 'Paola', 'Cocucci', 26960411, 'paola@cocucci.com.ar', NULL),
+(18, 1, 'ignacio', 'ignacio', 'Ignacio', 'Cocucci', 34917882, 'ignacio@cocucci.com.ar', NULL),
+(19, 1, 'matias', 'matias', 'Matias', 'Cocucci', 31645390, 'matias@cocucci.com.ar', NULL),
+(20, 1, 'abarroso', 'abarroso', 'Alejandro', 'Barroso', 0, 'abarroso@cocucci.com.ar', NULL),
+(21, 1, 'cesar', 'cesar', 'Cesar', 'Reccabarrem', 0, '', NULL),
+(22, 1, 'edicesare', 'edicesare', 'Emiliano', 'Di Cesare', 0, 'edicesare@cocucci.com.ar', NULL),
+(23, 2, 'aestalles', 'aestalles', 'Andrea', 'Estalles', 26792840, 'aestalles@cocucci.com.ar', NULL),
+(24, 2, 'srodriguez', 'srodriguez', 'Stella', 'Rodriguez', 0, '', NULL),
+(25, 10, 'dherrera', 'dherrera', 'Daniel ', 'Herrera', 0, '', NULL),
+(26, 10, 'efernandez', 'efernandez', 'Erica ', 'Fernandez', 0, '', NULL),
+(27, 10, 'evazquez', 'evazquez', 'Eduardo ', 'Vazquez', 0, '', NULL),
+(28, 10, 'pfurlan', 'pfurlan', 'Pablo', 'Furlan', 0, '', NULL),
+(29, 10, 'sdominguez', 'sdominguez', 'Sebastian', 'Dominguez', 0, '', NULL),
+(30, 3, 'vbocci', 'vbocci', 'Victor', 'Bocci', 0, '', NULL),
+(31, 3, 'mirta.andrea', 'mirta.andrea', 'Mirta', 'Cocucci', 0, '', NULL),
+(32, 4, 'pdominguez', 'pdominguez', 'Pablo', 'Dominguez', 0, '', NULL),
+(33, 4, 'aramirez', 'aramirez', 'Adrian', 'Ramirez', 0, '', NULL),
+(34, 5, 'rfiorenza', 'rfiorenza', 'Ricardo', 'Fiorenza', 0, '', NULL),
+(35, 5, 'fgresta', 'fgresta', 'Franco ', 'Gresta', 0, '', NULL),
+(36, 6, 'fmanchon', 'fmanchon', 'Fernanda', 'Manchon', 0, '', NULL),
+(37, 7, 'cvelasco', 'cvelasco', 'Cristina', 'Velazco', 0, '', NULL),
+(38, 8, 'aherrera', 'aherrera', 'Antonella', 'Herrera', 0, '', NULL),
+(39, 9, 'rortega', 'rortega', 'Ruben ', 'Ortega', 0, '', NULL);
 
 --
 -- Índices para tablas volcadas
@@ -336,7 +393,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `cliente`
 --
 ALTER TABLE `cliente`
-  MODIFY `idCliente` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `idCliente` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65566;
 
 --
 -- AUTO_INCREMENT de la tabla `estadoturno`
@@ -372,19 +429,19 @@ ALTER TABLE `sector`
 -- AUTO_INCREMENT de la tabla `turno`
 --
 ALTER TABLE `turno`
-  MODIFY `idTurno` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=253;
+  MODIFY `idTurno` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=385;
 
 --
 -- AUTO_INCREMENT de la tabla `turnohistorial`
 --
 ALTER TABLE `turnohistorial`
-  MODIFY `idTurnoHistorial` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=437;
+  MODIFY `idTurnoHistorial` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=676;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `idUsuario` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `idUsuario` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- Restricciones para tablas volcadas

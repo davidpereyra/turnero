@@ -17,10 +17,10 @@
 <body>
 <header>
   
-  <div class="navbar bg-dark shadow-sm"> <!--clases navbar-dark bg-dark shadow-sm-->
-    <div class="container d-flex justify-content-between ">
+  <div class=" navbar bg-dark shadow-sm"> <!--clases navbar-dark bg-dark shadow-sm-->
+    <div class=" d-flex justify-content-between "><!-- falta clase container para centrar --> 
    
-      <img src="assets/img/isologo_cocucci.png"  width="" height="80px">
+      <img src="assets/img/isologo_cocucci.png"  width="" height="80px" class="positionlogollamador">
    
       <!--<a href="#" class="navbar-brand d-flex align-items-center">
         
@@ -32,5 +32,5 @@
 </header>
 
 <div class="py-5 bg-light">
-<div class="container">
+<!--<div class="container">   Para que quede centrado-->
     

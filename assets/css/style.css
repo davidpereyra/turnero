@@ -94,6 +94,9 @@
 
 /*LLAMADOR*/
 
+.positionlogollamador{
+    margin-left: 20px !important;
+}
 .llamador{
     height: 100%;
     background-color: #00a9b4;

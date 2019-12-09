@@ -60,6 +60,7 @@ require_once "model/cliente.php";
                 $idTur = $siguiente->idTurno;
                 $nropuesto= $_POST['nroPuesto'];
                 $turno->InsertarBox($idTur,$nropuesto);
+                $turno->RellamarTrue($idTur);
                 $turnohistorial=new TurnoHistorial();
                 $turnohistorial->ActualizarEstado($idTur,2);//2 es el estado LLAMADO
                 require_once "view/dash/headerDash.php";

@@ -12,7 +12,7 @@
 <body>
 <audio  autoplay="true">
     
-    <source src="assets\audio\audio2.ogg">
+    <source src="assets\audio\audio1.ogg">
     
 	</audio>
     <!-- LLAMADO -->
@@ -28,6 +28,7 @@
     
     ?>
 
+<div class="col-lg-6">
 <div class="llamadorTabla">
 <div class="col align-self-center">
 
@@ -37,7 +38,7 @@
      
         <tr>
 
-          <th scope="col "><h1>TURNO</h1></th>
+          <th scope="col"><h1>TURNO</h1></th>
           <th scope="col"><h1>BOX</h1></th>
         </tr>
       </thead>
@@ -60,4 +61,4 @@
 </div>
 </div>
 <!-- </body>
-</html> -->
+</html> --></div>

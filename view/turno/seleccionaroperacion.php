@@ -178,7 +178,7 @@
                           <input type="hidden" name="dni" value=<?php echo $dni; ?>>
                           <input type="hidden" name="discapacidad" value=<?php echo $pri;?>>
 
-                          <button type="submit" name="idOperacion" value=6 type="button" class="btn btn-primary btn-lg btn-block botonOp">RESICIONES</button>
+                          <button type="submit" name="idOperacion" value=6 type="button" class="btn btn-primary btn-lg btn-block botonOp">RESCICIONES</button>
 
                         </form>
                       </p>
@@ -222,7 +222,7 @@
                           <input type="hidden" name="dni" value=<?php echo $dni; ?>>
                           <input type="hidden" name="discapacidad" value=<?php echo $pri;?>>
 
-                          <button type="submit" name="idOperacion" value=14 type="button" class="btn btn-primary btn-lg btn-block botonOp">RRHH</button>
+                          <button type="submit" name="idOperacion" value=14 type="button" class="btn btn-primary btn-lg btn-block botonOp">PROVEEDORES - RRHH</button>
 
                         </form>
                       </p>

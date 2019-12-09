@@ -14,11 +14,13 @@
     <!-- LLAMADO -->
     <?php  $turnoLlamado = $this->modelo->MostrarUltimoLlamado();
         if($turnoLlamado){ 
-          header("location:../turnero?c=turnos&a=Llamar"); 
+          header("location:../turnero/?c=turnos&a=Llamar"); 
         }
     ?>
     <!-- FIN LLAMADO -->
 
+
+<div class="col-lg-6">
 
 
 
@@ -29,7 +31,7 @@
      
         <tr>
 
-          <th scope="col"><h1 >TURNO</h1></th>
+          <th scope="col"><h1>TURNO</h1></th>
           <th scope="col"><h1>BOX</h1></th>
         </tr>
       </thead>
@@ -51,3 +53,6 @@
 </div>
 <!-- </body>
 </html> -->
+
+
+</div><!-- falta un div para cerrar <div class="container">   Para que quede centrado-->

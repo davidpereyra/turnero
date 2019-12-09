@@ -167,7 +167,8 @@
                                 AND `turnohistorial`.`fechaAlta`  < CAST((NOW() + INTERVAL 1 DAY) AS DATE) 
                                 ORDER BY `turnohistorial`.`fechaAlta` ASC LIMIT 1;");
                 
-                $consulta->execute();
+                $consulta->execute();                
+
                 return $consulta->fetch(PDO::FETCH_OBJ);
                 
             }catch(Exception $e){
@@ -255,7 +256,22 @@ public function ReLlamarTurno($idTur){
         die($e->getMessage());
     }
 }
+// -----------------------------------------------------------------------------------------------------------------------------
 
+
+public function RellamarTrue($idTur){
+    try{
+       
+        $update=$this->pdo->prepare("UPDATE `turno`
+                                SET `turno`.`rellamado` = TRUE
+                                    WHERE `turno`.`idTurno`= $idTur;");
+
+        $update->execute();
+
+    }catch(Exception $e){
+        die($e->getMessage());
+    }
+}
 
 // -----------------------------------------------------------------------------------------------------------------------------
 
@@ -333,7 +349,7 @@ public function ListarTurnosLlamados(){
                         WHERE `turnohistorial`.`idEstadoTurno`=2 
                             AND `fechaAlta`>= CAST((NOW()) AS DATE) 
                                 AND `fechaAlta`  < CAST((NOW() + INTERVAL 1 DAY) AS DATE)
-                                    ORDER BY `turno`.`idTurno` DESC LIMIT 4;");
+                                    ORDER BY `turnohistorial`.`fechaAlta` DESC LIMIT 5;");
         
         $consulta->execute();
         
@@ -355,13 +371,13 @@ public function MostrarUltimoLlamado(){
         INNER JOIN `usuario` ON `usuario`.`nombreUsuario` IS NOT NULL
         INNER JOIN `cliente` ON `cliente`.`idCliente`= `turno`.`idCliente`
             WHERE `operacionperfil`.`idPerfil`=`usuario`.`idPerfil`   
-            AND (`turno`.`rellamado` IS NULL OR `turno`.`rellamado` IS TRUE)
+            AND (`turno`.`rellamado` IS TRUE)
             AND `turno`.`box` IS NOT NULL
             AND `turnohistorial`.`idEstadoTurno`=2 
             AND `turnohistorial`.`fechaBaja` IS NULL
             AND  `turnohistorial`.`fechaAlta`>= CAST((NOW()) AS DATE) 
             AND `turnohistorial`.`fechaAlta`  < CAST((NOW() + INTERVAL 1 DAY) AS DATE) 
-            ORDER BY `turnohistorial`.`fechaAlta` DESC LIMIT 1;");
+            ORDER BY `turno`.`idTurno` DESC LIMIT 1;");
         
         $consulta->execute();
         //$consulta->closeCursor();
