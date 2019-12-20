@@ -55,9 +55,12 @@
                   <label class="col-sm-2 col-sm-2 control-label">Identidad</label>
                   <div class="col-sm-10">                    
                     <input type="hidden" class="form-control" name="idTurno" value="<?php print $siguiente->idTurno; ?>"> <br>
+                    <input type="text" class="form-control" name="razonSocialCliente" placeholder="Razon Social de Cliente si es empresa" value="<?php print $siguiente->razonSocialCliente; ?>"> <br>
+                    <input type="text" class="form-control" name="cuitCliente" placeholder="CUIT del Cliente" value="<?php print $siguiente->cuitCliente; ?>"> <br>
                     <input type="text" class="form-control" name="nombreCliente" placeholder="Nombre/s" value="<?php print $siguiente->nombreCliente; ?>"> <br>
                     <input type="text" class="form-control" name="apellidoCliente" placeholder="Apellido/s" value="<?php print $siguiente->apellidoCliente; ?>"> <br>
-                    <input type="text" class="form-control" name="dniCliente" placeholder="DNI" value="<?php print $siguiente->dniCliente; ?>">
+                    <input type="text" class="form-control" name="dniCliente" placeholder="DNI" value="<?php print $siguiente->dniCliente; ?>"><br>
+                    <input type="text" class="form-control" name="cuilCliente" placeholder="CUIT del Cliente sin guiones (-)" value="<?php print $siguiente->cuilCliente; ?>"> <br>
                   </div>
                 </div>
 
@@ -72,7 +75,18 @@
                   <div class="col-sm-10">
                     <input type="Telefono2" class="form-control" name="telefono2Cliente" placeholder="Telefono 2" value="<?php print $siguiente->telefono2Cliente; ?>">   <br>           
                   </div>
+
+                  <div class="col-sm-10">
+                    <label for="exampleFormControlTextarea1">Comentarios adicionales</label>
+                    <textarea class="form-control" name="comentarioCliente" rows="3"><?php print $siguiente->comentarioCliente; ?></textarea>
+                  </div>
+
                 </div>
+
+
+                
+
+
 
                 <div class="form-group">                  
                   <div class="col-sm-10">

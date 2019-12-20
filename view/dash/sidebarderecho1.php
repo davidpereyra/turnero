@@ -11,10 +11,30 @@
             </div>
             
 
-            <div class="grey-header">
-              
+            <div class="grey-header">                        
+
                 <form name="form" action="?c=Usuario&a=Llamar" method="post" class="col-lg-12">
-                
+
+                    <div class="input-group-prepend">
+                        <!--<label for="inputState">Sector &nbsp &nbsp </label>-->
+                       
+                            <select required name="operacionNombre" class="form-control">
+                                
+                                <?php 
+                                  foreach($listadeoperaciones as $listarOp):
+                                ?>
+                                
+                                <option value="<?=$listarOp->nombreOperacion?>" selected><?=$listarOp->nombreOperacion?></option>
+                                
+                                <?php 
+                                  endforeach;
+                                ?> 
+
+                            </select>
+                    </div>
+                    <br>
+
+
                   <input type="hidden" name="nroPuesto" value=<?php echo $_SESSION['puesto'];?>>
                   <input type="hidden" name="nombreUsuario" value="<?php echo $_SESSION['usuario'];?>">
                   <button class="btn btn-primary btn-lg btn-block btnFuncion" name="nombreUsuario" value="<?php echo $_SESSION['usuario'];?>" type="submit" >

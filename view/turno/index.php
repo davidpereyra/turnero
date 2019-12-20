@@ -41,7 +41,7 @@
                 <form name="form" action="?c=inicio&a=SeleccionarOp" method="post" class="col-lg-12">
                     <br>
                     <div class="input-field ">
-                      <input id="dni"name="dni" class="dni"  type="number" data-length="10" autofocus="autofocus"  min="1" max="999999999999" maxlength="10" required>
+                      <input id="dni"name="dni" class="dni"  type="number" data-length="10"  min="5000000" max="999999999999" maxlength="10" required>
                     </div>
                     <div class="row"><!--teclado-->
                      <?php include_once('teclado.php');?>

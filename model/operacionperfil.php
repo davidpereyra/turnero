@@ -7,6 +7,7 @@
         private $idPerfil;    
         private $idOperacion;
         private $comentario;    
+        private $operacionPrioridad; 
 
         public function __CONSTRUCT(){
             $this->pdo = Database::Conectar();
@@ -25,6 +26,9 @@
         public function getComentario() {
             return $this->comentario;
         }
+        public function getOperacionPrioridad() {
+            return $this->operacionPrioridad;
+        }
 
          //Setters
         public function setIdOpPerfil(int $idOpPer){
@@ -39,6 +43,34 @@
         public function setComentario(string $ctario){
             $this->comentario=$ctario;
         }
+        public function setOperacionPrioridad(string $opPri){
+            $this->operacionPrioridad=$opPri;
+        }
+
+
+//Metodos
+public function ConsultarPrioridad($nombreUsuario,$nombrePri){
+    try{
+        $consulta=$this->pdo->prepare("SELECT `operacionperfil`.`operacionPrioridad` FROM `operacion` 
+        INNER JOIN `operacionperfil` ON `operacion`.`idOperacion` = `operacionperfil`.`idOperacion`
+        INNER JOIN `usuario` ON `operacionperfil`.`idPerfil` = `usuario`.`idPerfil`
+        WHERE `usuario`.`nombreUsuario` = '$nombreUsuario'
+        AND `operacion`.`nombreOperacion` = '$nombrePri'");
+        
+        $consulta->execute();                
+
+        return $consulta->fetch(PDO::FETCH_OBJ);
+        
+    }catch(Exception $e){
+        die($e->getMessage());
+    }
+}
+
+//-----------------------------------------------------------------------------------------------------------------------
+
+
+
+
 
     }
 

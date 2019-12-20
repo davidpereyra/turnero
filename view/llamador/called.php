@@ -31,20 +31,31 @@
      
         <tr>
 
-          <th scope="col"><h1>TURNO</h1></th>
-          <th scope="col"><h1>BOX</h1></th>
+          <th scope="col"><p class="letraTabla">TURNO</p></th>
+          <th scope="col"><p class="letraTabla">BOX</p></th>
         </tr>
       </thead>
       <tbody>
         <?php 
-                foreach($this->modelo->ListarTurnosLlamados() as $listarTurnos):
-        ?>
+          $lastCall = true;
+          foreach($this->modelo->ListarTurnosLlamados() as $listarTurnos):
+            if($lastCall == true){ 
+              ?>
+              <tr class="table-secondary">
+                
+            <?php
+               $lastCall=false;
+              }else{
+                
+            ?>
+        
         <tr>
-          
-          <th scope="row"><h1><?= $listarTurnos->nomenclaturaSector . $listarTurnos->nomenclaturaOperacion ." ". $listarTurnos->nombreTurno; ?></h1></td>
-          <td><h1><?=$listarTurnos->box;?></h1></td>          
+          <?php } ?>
+          <th scope="row"><p class="letraTabla"><?= $listarTurnos->nomenclaturaSector . $listarTurnos->nomenclaturaOperacion ." ". $listarTurnos->nombreTurno; ?></p></td>
+          <th><p class="letraTabla"><?=$listarTurnos->box;?></p></td>          
         </tr>
         <?php 
+          
           endforeach;
         ?>
       </tbody>

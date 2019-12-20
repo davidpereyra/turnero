@@ -1,6 +1,14 @@
+Agregar en la gestion de usuario Transferir turno que liste por personas o por sector
+si es por persona debo verificar que sean las personas que estan logueadas 
+si tenemos mucho tiempo de inactividad que se deslogueen 
+la primera idea es agregar un bolean en tabla usuario para saber cuales son todos los logueados
+
+
+
+
 Alta de usuario
 Modificar perfil para cambiar las actividades
-Transferir turnos
+
 Turnos con prioridad
 Actualizacion de turnos en cola para varios permisos online
 

@@ -55,6 +55,30 @@
             }
         }
 
+//// METODOS
+
+
+        public function ListarOperacionesPerfil($nombreUsuario){
+            try{
+                $consulta=$this->pdo->prepare("SELECT * FROM `operacion`
+                INNER JOIN `operacionperfil` ON `operacionperfil`.`idOperacion`=`operacion`.`idOperacion`
+                INNER JOIN `usuario` ON `operacionperfil`.`idPerfil` = `usuario`.`idPerfil`
+                WHERE `usuario`.`nombreUsuario` = '$nombreUsuario' 
+                ORDER BY `operacionperfil`.`operacionPrioridad` DESC");
+                
+                $consulta->execute();
+                
+                return $consulta->fetchAll(PDO::FETCH_OBJ);
+            }catch(Exception $e){
+                die($e->getMenssage());
+            }
+        }
+
+
+
+
+
+
     }
 
 

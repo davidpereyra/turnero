@@ -65,10 +65,11 @@
               <table class="table">
                 <thead>
                   <tr>
-                    <th>#</th>
                     <th>Operación</th>
                     <th>Turno</th>
                     <th>DNI Cliente</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
                     <th>Comentario</th>
                   </tr>
                 </thead>
@@ -77,10 +78,11 @@
                   foreach($listadeturnos as $listarTurnos):
                 ?>
                   <tr>
-                    <td><?=$listarTurnos->idTurno?></td>
                     <td><?=$listarTurnos->nombreOperacion?></td>
                     <td><?=$listarTurnos->nomenclaturaSector . $listarTurnos->nomenclaturaOperacion ." ". $listarTurnos->nombreTurno ?></td>
-                    <td><?=$listarTurnos->dniCliente?></td>
+                    <td><?=$listarTurnos->dniCliente?></td>                    
+                    <td><?=$listarTurnos->nombreCliente?></td>
+                    <td><?=$listarTurnos->apellidoCliente?></td>
                     <td><?=$listarTurnos->comentarioTurno?></td>
                   </tr>  
                   <?php 

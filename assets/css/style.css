@@ -47,8 +47,13 @@
      font-family: 'Anton', sans-serif;
      /*font-family: "campodni";*/
      letter-spacing: 10px;
+     outline: none;
+     overflow: hidden;
+     
 
  }
+
+
  .textDni{
     height: 70px;
     font-size: 65px;
@@ -110,15 +115,23 @@
 }
 
 .llamadorTabla{
-
-    
+   min-height: 800px;
+   
 }
 
 .llamadorTabla h1{
     font-size: 65px !important;
     
 }
+.letraTabla{
+    font-size: 80px !important; 
+}
 
+.positionfooter{
+    position: relative;
+    float: ;
+    
+}
 /*SIDEBAR DERECHO DASHBOARD*/
 
 .btnFuncion{
@@ -3444,6 +3457,7 @@ ul.chat-available-user li a:hover {
     background: #CF142B;
     color: #fff;
     padding: 15px 0;
+    margin-top: 30% !important;
 }
 
 .site-footer p {

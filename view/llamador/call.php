@@ -38,16 +38,16 @@
      
         <tr>
 
-          <th scope="col"><h1>TURNO</h1></th>
-          <th scope="col"><h1>BOX</h1></th>
+          <th scope="col"><p class="letraTabla">TURNO</p></th>
+          <th scope="col"><p class="letraTabla">BOX</p></th>
         </tr>
       </thead>
-      <tbody>
+      <tbody >
         
-        <tr>
+        <tr class="table-secondary">
           
-          <th scope="row"><h1><?php if($turnoLlamado){ echo $turnoLlamado->nomenclaturaSector . $turnoLlamado->nomenclaturaOperacion  ." ". $turnoLlamado->nombreTurno . "<br>";}?></h1></td>
-          <td><h1><?php if($turnoLlamado){ echo $turnoLlamado->box ."<br>" ;} ?></h1></td>          
+          <th scope="row"><p class="letraTabla"><?php if($turnoLlamado){ echo $turnoLlamado->nomenclaturaSector . $turnoLlamado->nomenclaturaOperacion  ." ". $turnoLlamado->nombreTurno . "<br>";}?></p></td>
+          <th><p class="letraTabla"><?php if($turnoLlamado){ echo $turnoLlamado->box ."<br>" ;} ?></p></td>          
         </tr>
         
       </tbody>

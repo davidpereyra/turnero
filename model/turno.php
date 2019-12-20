@@ -151,9 +151,36 @@
 
 
 //-----------------------------------------------------------------------------------------------------------------------
-        public function LlamarTurno($nombreUsuario){
+        public function LlamarTurnoOperacion($nombreUsuario,$opPri){
             try{
                 $consulta=$this->pdo->prepare("SELECT * FROM `turno` 
+                INNER JOIN `turnohistorial` ON `turno`.`idTurno`=`turnohistorial`.`idTurno`
+                INNER JOIN `operacion` ON `operacion`.`idOperacion` = `turno`.`idOperacion`
+                INNER JOIN `operacionperfil` ON `operacion`.`idOperacion`=`operacionperfil`.`idOperacion`
+                INNER JOIN `sector` ON `turno`.`idSector` = `sector`.`idSector`
+                INNER JOIN `usuario` ON `usuario`.`nombreUsuario`= '$nombreUsuario'
+                INNER JOIN `cliente` ON `cliente`.`idCliente`= `turno`.`idCliente`
+                    WHERE `operacionperfil`.`idPerfil`=`usuario`.`idPerfil` 
+                    AND `operacionperfil`.`operacionPrioridad`= $opPri
+                    AND `turnohistorial`.`idEstadoTurno`=1  
+                    AND `turnohistorial`.`fechaBaja` IS NULL
+                    AND  `turnohistorial`.`fechaAlta`>= CAST((NOW()) AS DATE) 
+                    AND `turnohistorial`.`fechaAlta`  < CAST((NOW() + INTERVAL 1 DAY) AS DATE) 
+                    ORDER BY `turnohistorial`.`fechaAlta` ASC LIMIT 1;  ");
+                
+                $consulta->execute();                
+
+                return $consulta->fetch(PDO::FETCH_OBJ);
+                
+            }catch(Exception $e){
+                die($e->getMessage());
+            }
+        }
+
+//-----------------------------------------------------------------------------------------------------------------------
+public function LlamarTurnoPorOrden($nombreUsuario){
+    try{
+        $consulta=$this->pdo->prepare("SELECT * FROM `turno` 
                             INNER JOIN `turnohistorial` ON `turno`.`idTurno`=`turnohistorial`.`idTurno`
                             INNER JOIN `operacion` ON `operacion`.`idOperacion` = `turno`.`idOperacion`
                             INNER JOIN `operacionperfil` ON `operacion`.`idOperacion`=`operacionperfil`.`idOperacion`
@@ -166,15 +193,15 @@
                                 AND  `turnohistorial`.`fechaAlta`>= CAST((NOW()) AS DATE) 
                                 AND `turnohistorial`.`fechaAlta`  < CAST((NOW() + INTERVAL 1 DAY) AS DATE) 
                                 ORDER BY `turnohistorial`.`fechaAlta` ASC LIMIT 1;");
-                
-                $consulta->execute();                
+        
+        $consulta->execute();                
 
-                return $consulta->fetch(PDO::FETCH_OBJ);
-                
-            }catch(Exception $e){
-                die($e->getMessage());
-            }
-        }
+        return $consulta->fetch(PDO::FETCH_OBJ);
+        
+    }catch(Exception $e){
+        die($e->getMessage());
+    }
+}
 
 // -----------------------------------------------------------------------------------------------------------------------------
         public function InsertarBox($idTur, $nroBox){
@@ -349,7 +376,7 @@ public function ListarTurnosLlamados(){
                         WHERE `turnohistorial`.`idEstadoTurno`=2 
                             AND `fechaAlta`>= CAST((NOW()) AS DATE) 
                                 AND `fechaAlta`  < CAST((NOW() + INTERVAL 1 DAY) AS DATE)
-                                    ORDER BY `turnohistorial`.`fechaAlta` DESC LIMIT 5;");
+                                    ORDER BY `turnohistorial`.`fechaAlta` DESC LIMIT 4;");
         
         $consulta->execute();
         

@@ -31,6 +31,6 @@
   </div>
 </header>
 
-<div class="py-5 bg-light">
+<div class="py-5 bg-light llamadorTabla">
 <!--<div class="container">   Para que quede centrado-->
     

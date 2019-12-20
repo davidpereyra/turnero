@@ -18,7 +18,7 @@ require_once "model/turno.php";
                     
             require_once "view/headturno2.php";           
             require_once "view/llamador/called.php";
-            require_once "view/footerturno.php";
+            require_once "view/footerturno2.php";
         }
 
         public function Llamar(){     

@@ -49,6 +49,12 @@
                 $numero_registro=$login->rowCount();
 
                 if($numero_registro!=0){
+
+                   /*$set_online=$this->pdo->prepare("UPDATE `usuario` 
+                                                    SET `usuario`.`online` = TRUE 
+                                                        WHERE `usuario`.`nombreUsuario` = '$user'");
+
+                    $set_online->execute();*/
                     session_start();//inicia sesion
                     //almacena usuario de la sesion
                     $_SESSION["usuario"]=$user;
@@ -63,7 +69,20 @@
             }
         }
 
+/* --------------------------------------------------------------------------------------- */
 
+public function OnlineOff($user){
+    try{ 
+        $set_ofline=$this->pdo->prepare("UPDATE `usuario` 
+                                                    SET `usuario`.`online` = 'FALSE' 
+                                                        WHERE `usuario`.`nombreUsuario` = '$user'");
+
+        $set_ofline->execute();
+       
+    }catch(Exception $e){
+        die($e->getMessage());
+    }
+}
 
     }
 

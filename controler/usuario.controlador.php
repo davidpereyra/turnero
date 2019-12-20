@@ -3,6 +3,13 @@ require_once "model/usuario.php";
 require_once "model/turno.php";
 require_once "model/turnohistorial.php";
 require_once "model/cliente.php";
+require_once "model/operacion.php";
+require_once "model/operacionperfil.php";
+
+
+
+
+
     class UsuarioControlador{
         private $modelo;
         public function __CONSTRUCT(){
@@ -20,7 +27,7 @@ require_once "model/cliente.php";
             $claseUser=new Usuario();
             $user = $_POST['nombreUsuario'];
             $pass = $_POST['passUsuario'];
-            $sector = $_POST['selectSector'];
+            //$sector = $_POST['selectSector'];
             $puesto = $_POST['selectPuesto'];               
             $valor = $claseUser->ValidarLogin($user, $pass, $puesto);            
             if ($valor){
@@ -33,13 +40,14 @@ require_once "model/cliente.php";
 
 
         public function InicioDash(){     
-
+            $op=new Operacion();
             $t=new Turno();
             require_once "view/dash/headerDash.php";
             require_once "view/dash/head.php";
             require_once "view/dash/sidebarMenu.php";
             $listadeturnos = $t->ListarTurnosSector($_SESSION["usuario"]);
             require_once "view/dash/contentdash.php"; 
+            $listadeoperaciones = $op->ListarOperacionesPerfil($_SESSION["usuario"]);
             require_once "view/dash/sidebarderecho1.php";              
             require_once "view/dash/footerDash.php";
             
@@ -47,15 +55,31 @@ require_once "model/cliente.php";
 
 
         public function Logout(){
+            $claseUser=new Usuario();
+            $user = $_POST['nombreUsuario'];
+            $claseUser->OnlineOff($user); 
+            
             session_start();
             session_destroy();
             header("location:?c=usuario&a=Login");
         }
 
         public function Llamar(){
-            $nombreUsuario = $_POST['nombreUsuario'];             
+            $nombreUsuario = $_POST['nombreUsuario']; 
+            $opNombre = $_POST['operacionNombre'];
+            $op = new OperacionPerfil();
+            $opPri = $op -> ConsultarPrioridad($nombreUsuario,$opNombre); 
+
             $turno=new Turno();
-            $siguiente= $turno->LlamarTurno($nombreUsuario);            
+
+            if($opNombre == "Por orden"){
+                $siguiente= $turno->LlamarTurnoPorOrden($nombreUsuario);
+               
+            }else{
+                 $siguiente= $turno->LlamarTurnoOperacion($nombreUsuario,intval($opPri));
+            }            
+
+
             if($siguiente){
                 $idTur = $siguiente->idTurno;
                 $nropuesto= $_POST['nroPuesto'];
@@ -132,6 +156,13 @@ require_once "model/cliente.php";
            
         }
 
+        public function Transferir(){
+            /*
+            
+            */
+           
+        }
+
 
         public function Finaliza(){
             $nombreUsuario = $_POST['nombreUsuario'];    
@@ -150,26 +181,34 @@ require_once "model/cliente.php";
            
             $cli = new Cliente();
             $turno=new Turno();
-            
+
+            $idTurno = intval($_POST['idTurno']);
+            $dniCli = intval($_POST['dniCliente']);  
+            $rsCli = $_POST['razonSocialCliente']; 
+            $cuitCli = $_POST['cuitCliente'];        
             $nomCli = $_POST['nombreCliente']; 
             $apeCli = $_POST['apellidoCliente'];
+            $cuilCli = $_POST['cuilCliente'];  
             $mailCli = $_POST['mailCliente'];
             $tel1Cli = $_POST['telefono1Cliente'];
             $tel2Cli = $_POST['telefono2Cliente'];
-            $dniCli = intval($_POST['dniCliente']);                       
-            $idTurno = intval($_POST['idTurno']);                       
+            $comentCli = $_POST['comentarioCliente'];
             
             $idCli = $turno->ConsultarId($idTurno);
+           
 
-            
             $cli->setIdCliente($idCli);
+            $cli->setDniCliente($dniCli);
+            $cli->setRazonSocialCliente($rsCli);
+            $cli->setCuitCliente($cuitCli);
             $cli->setNombreCliente($nomCli);
             $cli->setApellidoCliente($apeCli);
+            $cli->setCuitCliente($cuilCli);
             $cli->setMailCliente($mailCli);
             $cli->setTelefono1Cliente($tel1Cli);
             $cli->setTelefono2Cliente($tel2Cli);
-            $cli->setDniCliente($dniCli);
-            
+            $cli->setComentarioCliente($comentCli);
+
             $c = $cli->ActualizarDatos($cli);
             
             
