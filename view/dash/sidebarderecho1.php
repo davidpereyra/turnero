@@ -21,10 +21,11 @@
                             <select required name="operacionNombre" class="form-control">
                                 
                                 <?php 
+                                
                                   foreach($listadeoperaciones as $listarOp):
                                 ?>
                                 
-                                <option value="<?=$listarOp->nombreOperacion?>" selected><?=$listarOp->nombreOperacion?></option>
+                                <option value="<?= $listarOp->nombreOperacion?>" selected><?=$listarOp->nombreOperacion?></option>
                                 
                                 <?php 
                                   endforeach;

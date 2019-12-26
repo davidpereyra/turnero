@@ -153,6 +153,7 @@
 //-----------------------------------------------------------------------------------------------------------------------
         public function LlamarTurnoOperacion($nombreUsuario,$opPri){
             try{
+                
                 $consulta=$this->pdo->prepare("SELECT * FROM `turno` 
                 INNER JOIN `turnohistorial` ON `turno`.`idTurno`=`turnohistorial`.`idTurno`
                 INNER JOIN `operacion` ON `operacion`.`idOperacion` = `turno`.`idOperacion`
@@ -168,8 +169,7 @@
                     AND `turnohistorial`.`fechaAlta`  < CAST((NOW() + INTERVAL 1 DAY) AS DATE) 
                     ORDER BY `turnohistorial`.`fechaAlta` ASC LIMIT 1;  ");
                 
-                $consulta->execute();                
-
+                $consulta->execute();                              
                 return $consulta->fetch(PDO::FETCH_OBJ);
                 
             }catch(Exception $e){

@@ -59,8 +59,8 @@ public function ConsultarPrioridad($nombreUsuario,$nombrePri){
         
         $consulta->execute();                
 
-        return $consulta->fetch(PDO::FETCH_OBJ);
-        
+       return $consulta->fetch(PDO::FETCH_OBJ);
+       
     }catch(Exception $e){
         die($e->getMessage());
     }

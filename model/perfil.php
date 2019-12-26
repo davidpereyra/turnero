@@ -26,7 +26,23 @@
             $this->nombrePerfil=$nomPer;
         }
 
-    }
+//Metodos
+        public function ConsultarPerfilUsuario($nombreUsuario){
+            try{
+                $consulta=$this->pdo->prepare("SELECT * FROM `perfil`
+                INNER JOIN `usuario` ON `perfil`.`idPerfil` = `usuario`.`idPerfil`
+                WHERE `usuario`.`nombreUsuario` = '$nombreUsuario'");
+                
+                $consulta->execute();                
 
+            return $consulta->fetch(PDO::FETCH_OBJ);
+            
+            }catch(Exception $e){
+                die($e->getMessage());
+            }
+        }
+}
+
+//-----------------------------------------------------------------------------------------------------------------------
 
 ?>

@@ -20,7 +20,7 @@
               <table class="table">
                 <thead>
                   <tr>
-                    <th>#</th>
+                    <th>Operación</th>
                     <th>Numero Turno</th>
                     <th>DNI Cliente</th>
                     <th>Nombre Cliente</th>
@@ -29,7 +29,8 @@
                 </thead>
                 <tbody>
                   <tr>
-                    <td><?php print $siguiente->idTurno; ?></td>
+                  
+                    <td><?php print $siguiente->nombreOperacion; ?></td>
                     <td><?=$siguiente->nomenclaturaSector . $siguiente->nomenclaturaOperacion ." ". $siguiente->nombreTurno ?></td>
                     <td><?php print $siguiente->dniCliente; ?></td>
                     <td><?php print $siguiente->nombreCliente; ?></td>

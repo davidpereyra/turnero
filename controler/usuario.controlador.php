@@ -5,7 +5,7 @@ require_once "model/turnohistorial.php";
 require_once "model/cliente.php";
 require_once "model/operacion.php";
 require_once "model/operacionperfil.php";
-
+require_once "model/perfil.php";
 
 
 
@@ -41,15 +41,23 @@ require_once "model/operacionperfil.php";
 
         public function InicioDash(){     
             $op=new Operacion();
-            $t=new Turno();
+            $t=new Turno();            
+            $perfil = new Perfil();
+            
+
+           
             require_once "view/dash/headerDash.php";
             require_once "view/dash/head.php";
             require_once "view/dash/sidebarMenu.php";
             $listadeturnos = $t->ListarTurnosSector($_SESSION["usuario"]);
             require_once "view/dash/contentdash.php"; 
             $listadeoperaciones = $op->ListarOperacionesPerfil($_SESSION["usuario"]);
-            require_once "view/dash/sidebarderecho1.php";              
-            require_once "view/dash/footerDash.php";
+            $nombrePerfil = $perfil -> ConsultarPerfilUsuario($_SESSION["usuario"]);
+            if($nombrePerfil->nombrePerfil != "RecepcionPerfil"){
+                                     
+                require_once "view/dash/sidebarderecho1.php";              
+                require_once "view/dash/footerDash.php";
+            }
             
         }
 
@@ -67,36 +75,38 @@ require_once "model/operacionperfil.php";
         public function Llamar(){
             $nombreUsuario = $_POST['nombreUsuario']; 
             $opNombre = $_POST['operacionNombre'];
-            $op = new OperacionPerfil();
-            $opPri = $op -> ConsultarPrioridad($nombreUsuario,$opNombre); 
-
-            $turno=new Turno();
-
-            if($opNombre == "Por orden"){
-                $siguiente= $turno->LlamarTurnoPorOrden($nombreUsuario);
-               
-            }else{
-                 $siguiente= $turno->LlamarTurnoOperacion($nombreUsuario,intval($opPri));
-            }            
-
-
-            if($siguiente){
-                $idTur = $siguiente->idTurno;
-                $nropuesto= $_POST['nroPuesto'];
-                $turno->InsertarBox($idTur,$nropuesto);
-                $turno->RellamarTrue($idTur);
-                $turnohistorial=new TurnoHistorial();
-                $turnohistorial->ActualizarEstado($idTur,2);//2 es el estado LLAMADO
-                require_once "view/dash/headerDash.php";
-                require_once "view/dash/head.php";
-                require_once "view/dash/sidebarMenu.php";
-                require_once "view/dash/contentdash2.php"; 
-                require_once "view/dash/sidebarderecho2.php";         
-                require_once "view/dash/footerDash.php";  
-            }else{           
-                header("location:?c=usuario&a=InicioDash");	                  
-            }
            
+            $turno=new Turno();
+           
+
+                if($opNombre == "Por orden"){
+                    $siguiente= $turno->LlamarTurnoPorOrden($nombreUsuario);
+                
+                }else{
+                    $op = new OperacionPerfil();
+                    $opPri = $op -> ConsultarPrioridad($nombreUsuario,$opNombre); 
+                    $opPrioridad = $opPri -> operacionPrioridad;             
+                    $siguiente= $turno->LlamarTurnoOperacion($nombreUsuario, intval($opPrioridad));
+                } 
+                    
+                if($siguiente){
+                    $idTur = $siguiente->idTurno;
+                    $nropuesto= $_POST['nroPuesto'];
+                    $turno->InsertarBox($idTur,$nropuesto);
+                    $turno->RellamarTrue($idTur);
+                    $turnohistorial=new TurnoHistorial();
+                    $turnohistorial->ActualizarEstado($idTur,2);//2 es el estado LLAMADO
+                    require_once "view/dash/headerDash.php";
+                    require_once "view/dash/head.php";
+                    require_once "view/dash/sidebarMenu.php";
+                    require_once "view/dash/contentdash2.php"; 
+                    require_once "view/dash/sidebarderecho2.php";         
+                    require_once "view/dash/footerDash.php";  
+                }else{           
+                    //header("location:?c=usuario&a=InicioDash");	
+                    echo $siguiente;                  
+                }
+            
         }
 
 
