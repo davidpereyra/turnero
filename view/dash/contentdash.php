@@ -12,34 +12,9 @@
     40000)
   })()
 </script>
-
-</head>
-
-
 <!-- Push notification -->
 <script src="assets/push.js/bin/push.min.js"></script>
-
-<?php 
-/*   $tmp_noti = "
-      <script>
-        Push.create('Hola Nalga!', {
-        body: 'que onda?',
-        icon: '/icon.png',
-        timeout: 9000,
-        onClick: function () {
-        window.focus();
-        this.close();
-      }
-      });
-      </script>";                
-
- echo $tmp_noti;
-*/?>
-
-
-
-
-
+</head>
 
 
 
@@ -65,27 +40,43 @@
               <table class="table">
                 <thead>
                   <tr>
+                   
                     <th>Operación</th>
                     <th>Turno</th>
+                    <th>Comentario Turno</th>
                     <th>DNI Cliente</th>
                     <th>Nombre</th>
                     <th>Apellido</th>
-                    <th>Comentario</th>
+                    <th>Comentario Cliente</th>
                   </tr>
                 </thead>
                 <tbody>
                 <?php 
+                $count_turno = 0;
                   foreach($listadeturnos as $listarTurnos):
+                     
                 ?>
                   <tr>
-                    <td><?=$listarTurnos->nombreOperacion?></td>
+                    <td>
+                      <?php 
+                      $count_turno++;
+                        if($listarTurnos->priDiscapacidad == 1){
+                          echo $listarTurnos->nombreOperacion . " (Derivado)";
+                        }else{
+                          echo $listarTurnos->nombreOperacion;
+                      }?>
+                    </td>
+
+         
                     <td><?=$listarTurnos->nomenclaturaSector . $listarTurnos->nomenclaturaOperacion ." ". $listarTurnos->nombreTurno ?></td>
+                    <td><?=$listarTurnos->comentarioTurno?></td>
                     <td><?=$listarTurnos->dniCliente?></td>                    
                     <td><?=$listarTurnos->nombreCliente?></td>
                     <td><?=$listarTurnos->apellidoCliente?></td>
-                    <td><?=$listarTurnos->comentarioTurno?></td>
+                    <td><?=$listarTurnos->comentarioCliente?></td>
                   </tr>  
-                  <?php 
+         
+                  <?php  
                    endforeach;
                   ?>                 
                 </tbody>
@@ -99,6 +90,27 @@
 
 
       <!-- OJO QUE TERMINA EN EL SIGUIENTE ARCHIVO (sidebarderecho) Y FINALIZAN LOS DIVS -->   
+
+        
+        <!-- Push notification -->
+        <?php 
+        if($count_turno >0){
+          $tmp_noti = "
+              <script>
+                Push.create('Tienes turnos para atender!', {
+                body: 'Cantidad de turnos en espera: $count_turno ',
+                icon: 'assets/img/c.jpg',
+                timeout: 19000,
+                onClick: function () {
+                window.focus();
+                this.close();
+              }
+              });
+              </script>";                
+
+        echo $tmp_noti;
+      }
+        ?>
 
       </body>
 </html>

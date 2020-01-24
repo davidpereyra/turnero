@@ -71,20 +71,65 @@
 
 /* --------------------------------------------------------------------------------------- */
 
-public function OnlineOff($user){
-    try{ 
-        $set_ofline=$this->pdo->prepare("UPDATE `usuario` 
-                                                    SET `usuario`.`online` = 'FALSE' 
-                                                        WHERE `usuario`.`nombreUsuario` = '$user'");
+        public function UsuariosOnline(){
+            try{ 
+                $userOnline=$this->pdo->prepare("SELECT * FROM `usuario` WHERE `usuario`.`online` = 1");
 
-        $set_ofline->execute();
-       
+                $userOnline->execute();
+                return $userOnline->fetchAll(PDO::FETCH_OBJ);
+            }catch(Exception $e){
+                die($e->getMessage());
+            }
+        }
+
+
+/* --------------------------------------------------------------------------------------- */
+
+        public function OnlineOff($user){
+            try{ 
+                $set_ofline=$this->pdo->prepare("UPDATE `usuario` 
+                                                            SET `usuario`.`online` = 0 
+                                                                WHERE `usuario`.`nombreUsuario` = '$user'");
+
+                $set_ofline->execute();
+            
+            }catch(Exception $e){
+                die($e->getMessage());
+            }
+        }
+
+
+/* --------------------------------------------------------------------------------------- */
+
+        public function OnlineOn($user){
+            try{ 
+                $set_ofline=$this->pdo->prepare("UPDATE `usuario` 
+                                                            SET `usuario`.`online` = 1 
+                                                                WHERE `usuario`.`nombreUsuario` = '$user'");
+
+                $set_ofline->execute();
+            
+            }catch(Exception $e){
+                die($e->getMessage());
+            }
+        }
+/* --------------------------------------------------------------------------------------- */
+
+public function getUsuarioPorNombre($user_name){
+    try{ 
+        $get_user=$this->pdo->prepare("SELECT * FROM `usuario` WHERE `usuario`.`nombreUsuario` = '$user_name';");
+
+        $get_user->execute();
+
+        return $get_user->fetch(PDO::FETCH_OBJ);
+    
     }catch(Exception $e){
         die($e->getMessage());
     }
 }
+/* --------------------------------------------------------------------------------------- */
 
-    }
+}
 
 
 ?>

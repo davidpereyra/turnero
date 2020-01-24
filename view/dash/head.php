@@ -21,14 +21,16 @@
       
         <ul class="nav pull-right top-menu">
           <li>
-         <!-- <form name="logout" action="?c=usuario&a=Logout" method="post">
+         <form name="logout" action="?c=usuario&a=Logout" method="post">
             <input type="hidden" name="nombreUsuario" value="<?php echo $_SESSION['usuario'];?>">
-            <button class="logout btn btn-primary btn-lg btn-block btnFuncion" name="nombreUsuario" value="<?php echo $_SESSION['usuario'];?>" type="submit" >
+            <!-- btn btn-primary btn-lg btn-block btnFuncion--> 
+            <button class="btn btn-success" name="nombreUsuario" value="<?php echo $_SESSION['usuario'];?>" type="submit" >
             Salir
-            </button>-->
-              
-         <a class="logout" href="?c=usuario&a=Logout">Salir</a> 
-          
+            </button>
+          </form>  
+              <!--
+         <a class="logout" type="button" href="?c=usuario&a=Logout">Salir</a> 
+          -->
           </li>
         </ul>
       </div>

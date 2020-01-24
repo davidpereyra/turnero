@@ -55,9 +55,9 @@ class InicioControlador{
 
         //Busca turno recien creado para imprimir en ticket
 
-        $imprimir = $t->TurnoRecienCreado($uid);
+        $imprimir = $t->TurnoPorId($uid);
 
-        //include "view/imprimir.php";
+        include "view/imprimir.php";
         
         header("location:../turnero/?c=inicio&a=selectTurno");
         

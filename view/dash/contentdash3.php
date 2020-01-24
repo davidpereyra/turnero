@@ -20,20 +20,26 @@
               <table class="table">
                 <thead>
                   <tr>
-                    <th>#</th>
+                    <th>ID</th>
+                    <th>Operación</th>
                     <th>Turno</th>
+                    <th>Comentario Cliente</th>
                     <th>DNI Cliente</th>
-                    <th>Nombre Cliente</th>
-                    <th>Apellido Cliente</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Comentario Cliente</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
                     <td><?php print $siguiente->idTurno; ?></td>
-                    <td><?php print $siguiente->nomenclaturaSector . $siguiente->nomenclaturaOperacion . $siguiente->nombreTurno; ?></td>
+                    <td><?php print $siguiente->nombreOperacion; ?></td>
+                    <td><?=$siguiente->nomenclaturaSector . $siguiente->nomenclaturaOperacion ." ". $siguiente->nombreTurno ?></td>
+                    <td><?php print $siguiente->comentarioTurno; ?></td>
                     <td><?php print $siguiente->dniCliente; ?></td>
                     <td><?php print $siguiente->nombreCliente; ?></td>
                     <td><?php print $siguiente->apellidoCliente; ?></td>
+                    <td><?php print $siguiente->comentarioCliente; ?></td>
                   </tr>                 
                 </tbody>
               </table>
@@ -56,11 +62,11 @@
                   <div class="col-sm-10">                    
                     <input type="hidden" class="form-control" name="idTurno" value="<?php print $siguiente->idTurno; ?>"> <br>
                     <input type="text" class="form-control" name="razonSocialCliente" placeholder="Razon Social de Cliente si es empresa" value="<?php print $siguiente->razonSocialCliente; ?>"> <br>
-                    <input type="text" class="form-control" name="cuitCliente" placeholder="CUIT del Cliente" value="<?php print $siguiente->cuitCliente; ?>"> <br>
+                    <input type="number" data-length="15"  min="1000000" max="99999999999999" maxlength="15" class="form-control" name="cuitCliente" placeholder="CUIT del Cliente" value="<?php print $siguiente->cuitCliente; ?>"> <br>
                     <input type="text" class="form-control" name="nombreCliente" placeholder="Nombre/s" value="<?php print $siguiente->nombreCliente; ?>"> <br>
                     <input type="text" class="form-control" name="apellidoCliente" placeholder="Apellido/s" value="<?php print $siguiente->apellidoCliente; ?>"> <br>
-                    <input type="text" class="form-control" name="dniCliente" placeholder="DNI" value="<?php print $siguiente->dniCliente; ?>"><br>
-                    <input type="text" class="form-control" name="cuilCliente" placeholder="CUIT del Cliente sin guiones (-)" value="<?php print $siguiente->cuilCliente; ?>"> <br>
+                    <input type="number" data-length="15"  min="1000000" max="99999999999999" maxlength="10" class="form-control" name="dniCliente" placeholder="DNI" value="<?php print $siguiente->dniCliente; ?>"><br>
+                    <input type="number" data-length="15"  min="1000000" max="99999999999999" maxlength="15" class="form-control" name="cuilCliente" placeholder="CUIT del Cliente sin guiones (-)" value="<?php print $siguiente->cuilCliente; ?>"> <br>
                   </div>
                 </div>
 
@@ -70,10 +76,10 @@
                     <input type="email" class="form-control" name="mailCliente" placeholder="Enter email" value="<?php print $siguiente->mailCliente; ?>">   <br>                 
                   </div>
                   <div class="col-sm-10">
-                    <input type="Telefono1" class="form-control" name="telefono1Cliente" placeholder="Telefono 1" value="<?php print $siguiente->telefono1Cliente; ?>">  <br>                                 
+                    <input type="number" data-length="20"  min="1000000" max="99999999999999" maxlength="20" class="form-control" name="telefono1Cliente" placeholder="Telefono 1" value="<?php print $siguiente->telefono1Cliente; ?>">  <br>                                 
                   </div>
                   <div class="col-sm-10">
-                    <input type="Telefono2" class="form-control" name="telefono2Cliente" placeholder="Telefono 2" value="<?php print $siguiente->telefono2Cliente; ?>">   <br>           
+                    <input type="number" data-length="20"  min="1000000" max="99999999999999" maxlength="20"  class="form-control" name="telefono2Cliente" placeholder="Telefono 2" value="<?php print $siguiente->telefono2Cliente; ?>">   <br>           
                   </div>
 
                   <div class="col-sm-10">

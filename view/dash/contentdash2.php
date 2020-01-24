@@ -21,10 +21,12 @@
                 <thead>
                   <tr>
                     <th>Operación</th>
-                    <th>Numero Turno</th>
-                    <th>DNI Cliente</th>
-                    <th>Nombre Cliente</th>
-                    <th>Apellido Cliente</th>
+                    <th>Turno</th>
+                    <th>Comentario Turno</th>
+                    <th>DNI</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Comentario Cliente</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -32,9 +34,11 @@
                   
                     <td><?php print $siguiente->nombreOperacion; ?></td>
                     <td><?=$siguiente->nomenclaturaSector . $siguiente->nomenclaturaOperacion ." ". $siguiente->nombreTurno ?></td>
+                    <td><?php print $siguiente->comentarioTurno; ?></td>
                     <td><?php print $siguiente->dniCliente; ?></td>
                     <td><?php print $siguiente->nombreCliente; ?></td>
                     <td><?php print $siguiente->apellidoCliente; ?></td>
+                    <td><?php print $siguiente->comentarioCliente; ?></td>
                   </tr>                 
                 </tbody>
               </table>

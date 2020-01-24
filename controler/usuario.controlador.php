@@ -31,6 +31,7 @@ require_once "model/perfil.php";
             $puesto = $_POST['selectPuesto'];               
             $valor = $claseUser->ValidarLogin($user, $pass, $puesto);            
             if ($valor){
+                $claseUser->OnlineOn($user); 
                 header("location:?c=usuario&a=InicioDash");	                
             }else{
                 header("location:?c=usuario&a=Login");
@@ -82,10 +83,12 @@ require_once "model/perfil.php";
                 if($opNombre == "Por orden"){
                     $siguiente= $turno->LlamarTurnoPorOrden($nombreUsuario);
                 
+                }else if ($opNombre == "Derivado"){
+                    $siguiente= $turno->LlamarTurnoConPrioridad($nombreUsuario);
                 }else{
                     $op = new OperacionPerfil();
                     $opPri = $op -> ConsultarPrioridad($nombreUsuario,$opNombre); 
-                    $opPrioridad = $opPri -> operacionPrioridad;             
+                    $opPrioridad = $opPri->operacionPrioridad;             
                     $siguiente= $turno->LlamarTurnoOperacion($nombreUsuario, intval($opPrioridad));
                 } 
                     
@@ -94,8 +97,13 @@ require_once "model/perfil.php";
                     $nropuesto= $_POST['nroPuesto'];
                     $turno->InsertarBox($idTur,$nropuesto);
                     $turno->RellamarTrue($idTur);
+
+                    $claseUser=new Usuario();
+                    $usuarioLlamador = $claseUser->getUsuarioPorNombre($nombreUsuario);
+                    $idUser = $usuarioLlamador->idUsuario;
+
                     $turnohistorial=new TurnoHistorial();
-                    $turnohistorial->ActualizarEstado($idTur,2);//2 es el estado LLAMADO
+                    $turnohistorial->ActualizarEstadoAsociadoUsuario($idTur,2,$idUser);//2 es el estado LLAMADO
                     require_once "view/dash/headerDash.php";
                     require_once "view/dash/head.php";
                     require_once "view/dash/sidebarMenu.php";
@@ -103,8 +111,8 @@ require_once "model/perfil.php";
                     require_once "view/dash/sidebarderecho2.php";         
                     require_once "view/dash/footerDash.php";  
                 }else{           
-                    //header("location:?c=usuario&a=InicioDash");	
-                    echo $siguiente;                  
+                    header("location:?c=usuario&a=InicioDash");	
+                               
                 }
             
         }
@@ -137,8 +145,13 @@ require_once "model/perfil.php";
             $turno->DejarDeLlamar($idTurno);
             $siguiente= $turno->TurnoActual($idTurno);            
             if($siguiente){
+
+                $claseUser=new Usuario();
+                $usuarioLlamador = $claseUser->getUsuarioPorNombre($nombreUsuario);
+                $idUser = $usuarioLlamador->idUsuario;
+
                 $turnohistorial=new TurnoHistorial();
-                $turnohistorial->ActualizarEstado($idTurno,3);//3 es el estado ATENDIENDO
+                $turnohistorial->ActualizarEstadoAsociadoUsuario($idTurno,3,$idUser);//3 es el estado ATENDIDO
                 require_once "view/dash/headerDash.php";
                 require_once "view/dash/head.php";
                 require_once "view/dash/sidebarMenu.php";
@@ -159,21 +172,16 @@ require_once "model/perfil.php";
             $siguiente= $turno->TurnoActual($idTurno);            
             if($siguiente){
                 $turnohistorial=new TurnoHistorial();
-                $turnohistorial->CierraEstado($idTurno,4);//3 es el estado AUSENTE
-          
+                $claseUser=new Usuario();
+                $usuarioLlamador = $claseUser->getUsuarioPorNombre($nombreUsuario);
+                $idUser = $usuarioLlamador->idUsuario;
+                $turnohistorial->ActualizarEstadoAsociadoUsuario($idTurno,4,$idUser);//4 es el estado AUSENTE
+                $turnohistorial->CierraEstado($idTurno);
+
                 header("location:?c=usuario&a=InicioDash");	                  
             }
            
         }
-
-        public function Transferir(){
-            /*
-            
-            */
-           
-        }
-
-
         public function Finaliza(){
             $nombreUsuario = $_POST['nombreUsuario'];    
             $idTurno = $_POST['idTurno'];           
@@ -181,10 +189,92 @@ require_once "model/perfil.php";
             $siguiente= $turno->TurnoActual($idTurno);            
             if($siguiente){
                 $turnohistorial=new TurnoHistorial();
-                $turnohistorial->CierraEstado($idTurno,5);//5 es el estado ATENDIDO
+                $turnohistorial->CierraEstado($idTurno);
                 header("location:?c=usuario&a=InicioDash");	        
             }
         }
+
+        public function DerivarActual(){
+            $nombreUsuario = $_POST['nombreUsuario'];    
+            $idTurno = $_POST['idTurno'];           
+            $turno=new Turno();
+            $actual= $turno->TurnoActual($idTurno);            
+            if($actual){
+                $turnohistorial=new TurnoHistorial();
+                $turnohistorial->CierraEstado($idTurno); //cierra el estado ATENDIENDO
+                $turnohistorial->ActualizarEstado($idTurno,5);//5 es el estado DERIVADO
+                $claseUser=new Usuario();
+                $claseOperacion=new Operacion();
+                $usersOnline = $claseUser -> UsuariosOnline();
+                $opUserOnline = $claseOperacion ->ListarOperacionesPerfilesActivos();
+                
+                require_once "view/dash/headerDash.php";
+                require_once "view/dash/head.php";
+                require_once "view/dash/sidebarMenu.php";
+                require_once "view/dash/contentdash4.php"; 
+                require_once "view/dash/sidebarderecho_vacio.php";         
+                require_once "view/dash/footerDash.php";        
+            }
+           
+        }
+
+        public function DerivarPorOperacion(){   
+            $cliente=new Cliente();
+            $turnohistorial=new TurnoHistorial();
+
+            $nombreUsuario = $_POST['nombreUsuario'];
+            $comentarioTurno = $_POST['comentarioTurno'];           
+            $idOperacion = $_POST['selectOperacion']; 
+            $dniCliente = $_POST['dniCliente'];
+            $idTurnoActual = $_POST['idTurnoActual'];
+            $idTurno = $_POST['idTurno'];
+            //$turnohistorial->CierraEstado($idTurnoActual);
+
+            $claseUser=new Usuario();
+            $usuarioLlamador = $claseUser->getUsuarioPorNombre($nombreUsuario);
+            $idUser = $usuarioLlamador->idUsuario;
+            $turnohistorial->ActualizarEstadoAsociadoUsuarioCierre($idTurnoActual,5,$idUser);//5 es el estado DERIVADO
+
+
+
+            $idCli = $cliente->ConsultarId($dniCliente);          
+            $operacion = new Operacion();
+            $Sector = $operacion ->BuscarSector(intval($idOperacion));
+            $idSector = $Sector->idSector;
+            $prioridad = 1;
+
+
+            
+
+
+
+            //Turno
+            $t=new Turno();
+            $t->setIdTurno($idTurno);
+            $t->setIdOperacion($idOperacion);            
+            $t->setIdSector($idSector);
+            $t->setIdCliente($idCli);
+            $t->setComentario($comentarioTurno);
+            $t->setPrioridad($prioridad);
+            $t->setIdTurnoAnterior($idTurnoActual);
+            $turnoDerivado = $t->InsertarTurnoDerivado($t,$nombreUsuario); //$uid es el idTurno
+            
+            //turno historial
+            $uid = $turnoDerivado->idTurno;
+            
+            $turnohistorial->CrearTurnoHistorial($uid,1);//creado es (_,1)
+    
+            //Busca turno recien creado para imprimir en ticket
+    
+            $imprimir = $t->TurnoPorId($uid);
+            require_once "view/dash/headerDash.php";
+            require_once "view/dash/head.php";
+            require_once "view/dash/sidebarMenu.php";
+            require_once "view/dash/contentdash5.php"; 
+            require_once "view/dash/sidebarderecho_vacio.php";         
+            require_once "view/dash/footerDash.php";   
+        }
+        
 
 
         public function ActualizarDatosCliente(){

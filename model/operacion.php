@@ -43,12 +43,11 @@
         public function BuscarSector($idOp){
             try{
                
-                $consulta="SELECT (IDSECTOR) FROM OPERACION WHERE IDOPERACION=$idOp;";
-                $stmt = $this->pdo->prepare($consulta);
-                $stmt->execute();
-                $resultado =  $stmt->fetch(PDO::FETCH_ASSOC);
-                return intval($resultado);
-                $stmt->closeCursor();
+                $consulta=$this->pdo->prepare("SELECT `operacion`.`idSector` FROM `operacion` WHERE `operacion`.`idOperacion` = $idOp;");
+                $consulta->execute();
+                
+                return $consulta->fetch(PDO::FETCH_OBJ);
+               
             }
             catch(Exception $e){
                 die($e->getMessage());
@@ -73,10 +72,29 @@
                 die($e->getMenssage());
             }
         }
+//---------------------------------------------------------------------------------------------------------------//
+
+
+        public function ListarOperacionesPerfilesActivos(){
+            try{
+                $consulta=$this->pdo->prepare("SELECT * FROM `operacion`
+                INNER JOIN `operacionperfil` ON `operacion`.`idOperacion`=`operacionperfil`.`idOperacion`
+                INNER JOIN `perfil` ON `operacionperfil`.`idPerfil` = `perfil`.`idPerfil`
+                INNER JOIN `usuario` ON `perfil`.`idPerfil`=`usuario`.`idPerfil`
+                WHERE `usuario`.`online`=1 AND `operacion`.`nombreOperacion` != 'Por orden' GROUP BY `operacion`.`nombreOperacion` ASC");
+                
+                $consulta->execute();
+                
+                return $consulta->fetchAll(PDO::FETCH_OBJ);
+            }catch(Exception $e){
+                die($e->getMenssage());
+            }
+        }
+//---------------------------------------------------------------------------------------------------------------//
 
 
 
-
+//---------------------------------------------------------------------------------------------------------------//
 
 
     }

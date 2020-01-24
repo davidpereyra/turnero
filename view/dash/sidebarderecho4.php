@@ -56,9 +56,14 @@
                  <button class="btn btn-primary btn-lg btn-block btnFuncion" name="nombreUsuario" value="<?php echo $_SESSION['usuario'];?>" type="submit" >
                         FINALIZAR TURNO
                   </button>
+                </form> 
+                <br>
+                <form name="form" action="?c=Usuario&a=DerivarActual" method="post" class="col-lg-12">
+                <input type="hidden" name="idTurno" value=<?php print $siguiente->idTurno; ?>>  
+                <button class="btn btn-primary btn-lg btn-block btnFuncion" name="nombreUsuario" value="<?php echo $_SESSION['usuario'];?>" type="submit">
+                        DERIVAR TURNO
+                  </button>
                 </form>
-
-                                
                 <br><br><br><br><br><br><br><br>
 
 

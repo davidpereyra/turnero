@@ -46,7 +46,7 @@
             $this->idTuno=$idTur;
         }
 
-
+/* -------------------------------------------------------------------------------------------   */
 
         public function CrearTurnoHistorial($idTur,$idEdoTur){
             try{
@@ -68,7 +68,7 @@
             }
         }
 
-
+/* -------------------------------------------------------------------------------------------   */
         public function ContarTurnosDelDia($idOp){
             try{
                
@@ -84,7 +84,7 @@
             }
         }
 
-
+/* -------------------------------------------------------------------------------------------   */
 
         public function ActualizarEstado($idTur,$idEdoTur){ 
             
@@ -110,10 +110,58 @@
                     die($e->getMessage());
                 }
             }
+/* -------------------------------------------------------------------------------------------   */
 
+//cierra historial antarior y crea uno nuevo
+public function ActualizarEstadoAsociadoUsuario($idTur,$idEdoTur,$idUser){ 
+            
+    try{
 
+        date_default_timezone_set('America/Argentina/Mendoza');
+        $fechaA = date('Y-m-d H:i:s');
+        //$fechaB = date('Y-m-d H:i:s');
+        //CAST((NOW()) AS DATE) 
+        $update=$this->pdo->prepare("UPDATE `turnohistorial`
+                                        SET `turnohistorial`.`fechaBaja`= NOW(), `turnohistorial`.`idUsuario` = $idUser
+                                            WHERE `turnohistorial`.`idTurno`=$idTur;");
+        $update->execute();
 
-            public function CierraEstado($idTur,$idEdoTur){ 
+        $consulta="INSERT INTO turnohistorial(idTurno, idEstadoTurno,fechaAlta,idUsuario) VALUES (:idTur,:idEdoTur,:fechaAlta,:idUsuario);";
+        $stmt = $this->pdo->prepare($consulta);
+        
+        $stmt->execute(array(":idTur"=>intval($idTur), ":idEdoTur"=>($idEdoTur),":fechaAlta"=>($fechaA),":idUsuario"=>($idUser)));
+
+        $stmt->closeCursor();
+    }
+    catch(Exception $e){
+        die($e->getMessage());
+    }
+}
+
+/* -------------------------------------------------------------------------------------------   */
+
+//cierra historial antarior sin crear uno nuevo
+public function ActualizarEstadoAsociadoUsuarioCierre($idTur,$idEdoTur,$idUser){ 
+            
+    try{
+
+        date_default_timezone_set('America/Argentina/Mendoza');
+        $fechaA = date('Y-m-d H:i:s');
+        //$fechaB = date('Y-m-d H:i:s');
+        //CAST((NOW()) AS DATE) 
+        $update=$this->pdo->prepare("UPDATE `turnohistorial`
+                                        SET `turnohistorial`.`fechaBaja`= NOW(), `turnohistorial`.`idUsuario` = $idUser
+                                            WHERE `turnohistorial`.`idTurno`=$idTur;");
+        $update->execute();
+
+    }
+    catch(Exception $e){
+        die($e->getMessage());
+    }
+}
+
+/* -------------------------------------------------------------------------------------------   */
+            public function CierraEstado($idTur){ 
             
                 try{
 
@@ -131,14 +179,14 @@
                 }
             }
 
-    }
- /*
-function getDateForDatabase($date) {
-    $timestamp = strtotime($date);
-    $date_formated = date('Y-m-d H:i:s', $timestamp);
-    return $date_formated;
-}
+    
 
-*/
+/* -------------------------------------------------------------------------------------------   */
+
+
+
+
+
+}
 
 ?>

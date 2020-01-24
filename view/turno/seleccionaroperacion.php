@@ -19,112 +19,11 @@
 <div class="container-fluid recuadroTecla">
 
 <!-- ---------------    FILA 1    -------------------------->
-  <div class="row">
-   
-    <div class="col-lg-4">
-      <p>
-        <form action="?c=inicio&a=GenerarTurno" name="seleccionSector" method="POST">
-          <input type="hidden" name="idTurno">
-          <input type="hidden" name="idSector" value=1>
-          <input type="hidden" name="dni" value=<?php echo $dni; ?>>
-          <input type="hidden" name="discapacidad" value=<?php echo $pri;?>>
-
-          <button type="submit" name="idOperacion" value=1 type="button" class="btn btn-primary btn-lg btn-block botonOp">COMPRAR</button>
-
-         </form>
-       </p>
-    </div><!--col lg 4 -->
-    
-    <div class="col-lg-4">
-      <p>
-        <form action="?c=inicio&a=GenerarTurno" name="seleccionSector" method="POST">
-          <input type="hidden" name="idTurno">
-          <input type="hidden" name="idSector" value=1>
-          <input type="hidden" name="dni" value=<?php echo $dni; ?>>
-          <input type="hidden" name="discapacidad" value=<?php echo $pri;?>>
-
-          <button type="submit" name="idOperacion" value=2 type="button" class="btn btn-primary btn-lg btn-block botonOp">VENDER</button>
-
-         </form>
-       </p>
-    </div><!--col lg 4 -->
-    
-    <div class="col-lg-4">
-      <p>
-        <form action="?c=inicio&a=GenerarTurno" name="seleccionSector" method="POST">
-          <input type="hidden" name="idTurno">
-          <input type="hidden" name="idSector" value=1>
-          <input type="hidden" name="dni" value=<?php echo $dni; ?>>
-          <input type="hidden" name="discapacidad" value=<?php echo $pri;?>>
-
-          <button type="submit" name="idOperacion" value=3 type="button" class="btn btn-primary btn-lg btn-block botonOp">TASAR</button>
-
-         </form>
-       </p>
-    </div><!--col lg 4 -->
-  </div><!-- row -->
-<!-- ---------------    FIN FILA 1    -------------------------->
-
-<!-- ---------------    FILA 2    -------------------------->
-<div class="row">
-    <div class="col-lg-4">
-      <p>
-        <form action="?c=inicio&a=GenerarTurno" name="seleccionSector" method="POST">
-          <input type="hidden" name="idTurno">
-          <input type="hidden" name="idSector" value=2>          
-          <input type="hidden" name="dni" value=<?php echo $dni; ?>>
-          <input type="hidden" name="discapacidad" value=<?php echo $pri;?>>
-          <button type="submit" name="idOperacion" value=11 type="button" class="btn btn-primary btn-lg btn-block botonOp btn_alq">BUSCAR ALQUILER</button>
-          
-
-         </form>
-       </p>
-    </div><!--col lg 4 -->
-    <div class="col-lg-4">
-      <p>
-        <form action="?c=inicio&a=GenerarTurno" name="seleccionSector" method="POST">
-          <input type="hidden" name="idTurno">
-          <input type="hidden" name="idSector" value=2>          
-          <input type="hidden" name="dni" value=<?php echo $dni; ?>>
-          <input type="hidden" name="discapacidad" value=<?php echo $pri;?>>
-
-          <button type="submit" name="idOperacion" value=10 type="button" class="btn btn-primary btn-lg btn-block botonOp btn_alq">OFRECER ALQUILER</button>
-
-         </form>
-       </p>
-    </div><!--col lg 4 -->
-    <div class="col-lg-4">
-      <p>
-        <form action="?c=inicio&a=GenerarTurno" name="seleccionSector" method="POST">
-          <input type="hidden" name="idTurno">
-          <input type="hidden" name="idSector" value=2>
-          <input type="hidden" name="dni" value=<?php echo $dni; ?>>
-          <input type="hidden" name="discapacidad" value=<?php echo $pri;?>>
-
-          <button type="submit" name="idOperacion" value=5 type="button" class="btn btn-primary btn-lg btn-block botonOp btn_alq">RENOVAR ALQUILER</button>
-
-         </form>
-       </p>
-    </div><!--col lg 4 -->
-  </div><!-- row -->
-<!-- ---------------    FIN FILA 2    -------------------------->
-
+  
 <!-- ---------------    FILA 3    -------------------------->
 
                    <div class="row">
-                   <div class="col-lg-4">
-                      <p>
-                        <form action="?c=inicio&a=GenerarTurno" name="seleccionSector" method="POST">
-                          <input type="hidden" name="idTurno">
-                          <input type="hidden" name="idSector" value=2>
-                          <input type="hidden" name="dni" value=<?php echo $dni; ?>>
-                          <input type="hidden" name="discapacidad" value=<?php echo $pri;?>>
-
-                          <button type="submit" name="idOperacion" value=9 type="button" class="btn btn-primary btn-lg btn-block botonOp btn_alq">PRESENTAR DOCUMENTACIÓN</button>
-
-                        </form>
-                      </p>
-                    </div><!--col lg 4 -->
+                   
                    <div class="col-lg-4">
                       <p>
                         <form action="?c=inicio&a=GenerarTurno" name="seleccionSector" method="POST">
@@ -151,82 +50,7 @@
                         </form>
                       </p>
                     </div><!--col lg 4 -->
-
-                  </div><!-- row -->
-                  <!-- FIN FILA 3-->
-
-                   <!-- INICIO FILA 4-->
-                  <div class="row">
-                  <div class="col-lg-4">
-                      <p>
-                        <form action="?c=inicio&a=GenerarTurno" name="seleccionSector" method="POST">
-                          <input type="hidden" name="idTurno">
-                          <input type="hidden" name="idSector" value=2>          
-                          <input type="hidden" name="dni" value=<?php echo $dni; ?>>
-                          <input type="hidden" name="discapacidad" value=<?php echo $pri;?>>
-                          <button type="submit" name="idOperacion" value=4 type="button" class="btn btn-primary btn-lg btn-block botonOp">CONTRATOS</button>  
-                          
-
-                        </form>
-                      </p>
-                    </div><!--col lg 4 -->
-                    <div class="col-lg-4">
-                      <p>
-                        <form action="?c=inicio&a=GenerarTurno" name="seleccionSector" method="POST">
-                          <input type="hidden" name="idTurno">
-                          <input type="hidden" name="idSector" value=3>          
-                          <input type="hidden" name="dni" value=<?php echo $dni; ?>>
-                          <input type="hidden" name="discapacidad" value=<?php echo $pri;?>>
-
-                          <button type="submit" name="idOperacion" value=6 type="button" class="btn btn-primary btn-lg btn-block botonOp">RESCICIONES</button>
-
-                        </form>
-                      </p>
-                    </div><!--col lg 4 -->
-                    <div class="col-lg-4">
-                      <p>
-                      <form action="?c=inicio&a=GenerarTurno" name="seleccionSector" method="POST">
-                          <input type="hidden" name="idTurno">
-                          <input type="hidden" name="idSector" value=2>
-                          <input type="hidden" name="dni" value=<?php echo $dni; ?>>
-                          <input type="hidden" name="discapacidad" value=<?php echo $pri;?>>
-                          <button type="submit" name="idOperacion" value=7 type="button" class="btn btn-primary btn-lg btn-block botonOp">RECLAMOS</button>
-                          
-
-                        </form>                       
-                      </p>
-                    </div><!--col lg 4 -->
-                  </div><!-- row -->
-                  <!-- FIN FILA 4-->
-
-                  <!-- INICIO FILA 5-->
-                  <div class="row">
-                  <div class="col-lg-4">
-                      <p>
-                        <form action="?c=inicio&a=GenerarTurno" name="seleccionSector" method="POST">
-                          <input type="hidden" name="idTurno">
-                          <input type="hidden" name="idSector" value=2>          
-                          <input type="hidden" name="dni" value=<?php echo $dni; ?>>
-                          <input type="hidden" name="discapacidad" value=<?php echo $pri;?>>
-                          <button type="submit" name="idOperacion" value=8 type="button" class="btn btn-primary btn-lg btn-block botonOp">REINTEGRO DE SERVICIOS</button>  
-                          
-
-                        </form>
-                      </p>
-                    </div><!--col lg 4 -->
-                    <div class="col-lg-4">
-                      <p>
-                        <form action="?c=inicio&a=GenerarTurno" name="seleccionSector" method="POST">
-                          <input type="hidden" name="idTurno">
-                          <input type="hidden" name="idSector" value=4>          
-                          <input type="hidden" name="dni" value=<?php echo $dni; ?>>
-                          <input type="hidden" name="discapacidad" value=<?php echo $pri;?>>
-
-                          <button type="submit" name="idOperacion" value=14 type="button" class="btn btn-primary btn-lg btn-block botonOp">PROVEEDORES - RRHH</button>
-
-                        </form>
-                      </p>
-                    </div><!--col lg 4 -->
+                    
                     <div class="col-lg-4">
                       <p>
                         <form action="?c=inicio&a=selectTurno" name="seleccionSector" method="POST">
@@ -241,7 +65,17 @@
                       </p>
                     </div><!--col lg 4 -->
                   </div><!-- row -->
-                  <!-- FIN FILA 5-->
+
+
+<!-- PARA DIV CARDS                 
+<div class="row"> <div class="col-lg-4">
+<div class="card bg-dark text-white">
+  <a href="#">
+  <img src="assets/img/test1.jpg" class="card-img img-fluid" alt="...">
+  </a>
+</div>
+</div></div>-->
+
 
 
 </div><!-- container fluid -->
