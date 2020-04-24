@@ -43,7 +43,8 @@
         public function BuscarSector($idOp){
             try{
                
-                $consulta=$this->pdo->prepare("SELECT `operacion`.`idSector` FROM `operacion` WHERE `operacion`.`idOperacion` = $idOp;");
+                $consulta=$this->pdo->prepare("SELECT * FROM `operacion` 
+                                                WHERE `operacion`.`idOperacion` = $idOp;");
                 $consulta->execute();
                 
                 return $consulta->fetch(PDO::FETCH_OBJ);
@@ -57,13 +58,17 @@
 //// METODOS
 
 
-        public function ListarOperacionesPerfil($nombreUsuario){
+        public function ListarOperacionesPerfil($idUsuario){
             try{
                 $consulta=$this->pdo->prepare("SELECT * FROM `operacion`
                 INNER JOIN `operacionperfil` ON `operacionperfil`.`idOperacion`=`operacion`.`idOperacion`
-                INNER JOIN `usuario` ON `operacionperfil`.`idPerfil` = `usuario`.`idPerfil`
-                WHERE `usuario`.`nombreUsuario` = '$nombreUsuario' 
-                ORDER BY `operacionperfil`.`operacionPrioridad` DESC");
+                INNER JOIN `perfil` ON `operacionperfil`.`idPerfil` = `perfil`.`idPerfil`
+                INNER JOIN `usuarioperfil` ON `operacionperfil`.`idPerfil` = `usuarioperfil`.`idPerfil`
+                INNER JOIN `usuario` ON `usuarioperfil`.`idUsuario` = `usuario`.`idUsuario`
+                WHERE `usuario`.`idUsuario` = '$idUsuario'
+                AND  `operacion`.`accionDash` = 1
+                ORDER BY `operacionperfil`.`operacionPrioridad` DESC
+                ");
                 
                 $consulta->execute();
                 
@@ -73,15 +78,16 @@
             }
         }
 //---------------------------------------------------------------------------------------------------------------//
-
-
-        public function ListarOperacionesPerfilesActivos(){
+        public function ListarOperacionesPerfilesActivos(){ //lista las operaciones de los perfiles activos
             try{
                 $consulta=$this->pdo->prepare("SELECT * FROM `operacion`
                 INNER JOIN `operacionperfil` ON `operacion`.`idOperacion`=`operacionperfil`.`idOperacion`
                 INNER JOIN `perfil` ON `operacionperfil`.`idPerfil` = `perfil`.`idPerfil`
-                INNER JOIN `usuario` ON `perfil`.`idPerfil`=`usuario`.`idPerfil`
-                WHERE `usuario`.`online`=1 AND `operacion`.`nombreOperacion` != 'Por orden' GROUP BY `operacion`.`nombreOperacion` ASC");
+                INNER JOIN `usuarioperfil` ON `operacionperfil`.`idPerfil` = `usuarioperfil`.`idPerfil`
+                INNER JOIN `usuario` ON `usuarioperfil`.`idUsuario` = `usuario`.`idUsuario`
+                WHERE `usuario`.`online`=1 AND `operacion`.`nombreOperacion` != 'Por orden' 
+                AND `operacion`.`nombreOperacion` != 'Derivado'
+                GROUP BY `operacion`.`nombreOperacion` ASC");
                 
                 $consulta->execute();
                 
@@ -91,7 +97,58 @@
             }
         }
 //---------------------------------------------------------------------------------------------------------------//
+        public function ListarOperacionesPorSector($idSector){ //lista las operacion que se pueden ver en el totem
+            try{
+                $consulta=$this->pdo->prepare("SELECT * FROM `operacion` 
+                                                WHERE `operacion`.`idSector` = $idSector  
+                                                AND `operacion`.`accionToten` IS TRUE
+                                                ");
+                
+                $consulta->execute();
+                
+                return $consulta->fetchAll(PDO::FETCH_OBJ);
+            }catch(Exception $e){
+                die($e->getMenssage());
+            }
+        }
 
+
+//---------------------------------------------------------------------------------------------------------------//
+        public function ListarPermisosActivo($idSector){ //Lista permisos de SECTOR - no usado revision 2020.04.20
+            try{
+                $consulta=$this->pdo->prepare("SELECT * FROM `operacion` 
+                                                WHERE `operacion`.`idSector` = $idSector  
+                                                AND `operacion`.`accionToten` IS TRUE");
+                
+                $consulta->execute();
+                
+                return $consulta->fetchAll(PDO::FETCH_OBJ);
+            }catch(Exception $e){
+                die($e->getMenssage());
+            }
+        }
+
+//---------------------------------------------------------------------------------------------------------------//
+            public function ListarPermisosGestionUsuario($idUsuario){ //Lista permisos de SECTOR - no usado revision 2020.04.20
+                try{
+                    $consulta=$this->pdo->prepare("SELECT * FROM `operacion`
+                    INNER JOIN `operacionperfil` ON `operacion`.`idOperacion` = `operacionperfil`.`idOperacion`
+                    INNER JOIN `perfil` ON `operacionperfil`.`idPerfil` = `perfil`.`idPerfil`
+                    INNER JOIN `usuarioperfil` ON `perfil`.`idPerfil` = `usuarioperfil`.`idPerfil`
+                    INNER JOIN `usuario` ON `usuarioperfil`.`idUsuario` = `usuario`.`idUsuario`
+                    WHERE `usuario`.`idUsuario` = $idUsuario
+                    AND `operacion`.`menuDash` IS TRUE
+                    ORDER BY `operacion`.`idOperacion` ASC
+                                            ");
+                    
+                    $consulta->execute();
+                    
+                    return $consulta->fetchAll(PDO::FETCH_OBJ);
+
+                }catch(Exception $e){
+                    die($e->getMenssage());
+                }
+            }
 
 
 //---------------------------------------------------------------------------------------------------------------//

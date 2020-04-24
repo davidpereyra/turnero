@@ -96,27 +96,12 @@
         
 
 
-        public function InsertarDniCliente($dniCli){
+        public function InsertarDniClienteNuevo($dniCli){
             try{
 
-                $consulta=("SELECT DNICLIENTE FROM CLIENTE WHERE DNICLIENTE = $dniCli;");            
-                $consultaExiste=$this->pdo->prepare($consulta);
-                $consultaExiste->execute();
-            
-                
+                $consulta=$this->pdo->prepare("INSERT INTO `cliente` (`dniCliente`) VALUES ($dniCli);");
 
-
-                if(!($consultaExiste->fetchColumn()) == $dniCli){  
-                   
-               
-                    $consulta="INSERT INTO cliente(dniCliente) VALUES(:dniCli);";
-                    $stmt = $this->pdo->prepare($consulta);
-                  
-                    $stmt->execute(array(":dniCli"=>intval($dniCli)));
-                    $stmt->closeCursor();
-                       
-                }
-                return intval($consultaExiste->fetchColumn());     
+                $consulta->execute();
                
             }catch(Exception $e){
                 die($e->getMessage());
@@ -124,7 +109,7 @@
         }
 
 
-        public function ActualizarDatos(Cliente $cli){
+        public function ActualizarCliente(Cliente $cli){
             try{
                 
                 $idCli = $cli->getIdCliente();
@@ -161,20 +146,15 @@
             }
         }
 // -----------------------------------------------------------------------------------------------------------------------------
-public function ConsultarId($dniCli){
+public function ConsultarCliente($dniCli){
     try{
 
-        $consulta=$this->pdo->prepare("SELECT `cliente`.`idCliente` 
-                                                FROM `cliente` 
-                                                    WHERE `cliente`.`dniCliente` = $dniCli;");            
-        $consulta->execute();
-
-        if ($consulta) {
-            $idCliente = intval($consulta->fetchColumn());                   
-            }               
-        $consulta->closeCursor();
+        $consulta=$this->pdo->prepare("SELECT * FROM `cliente` 
+                                    WHERE `cliente`.`dniCliente` = $dniCli LIMIT 1;");            
        
-        return $idCliente;    
+        $consulta->execute();                
+
+        return $consulta->fetch(PDO::FETCH_OBJ);
        
     }catch(Exception $e){
         die($e->getMessage());

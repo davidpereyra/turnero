@@ -41,7 +41,7 @@
         }
 
 
-
+/* ----------------------------------------------------------------------------------------------------------------------*/
         public function BuscarNomenclatura($idSec){
             try{
                 $consulta="SELECT (NOMENCLATURASECTOR) FROM SECTOR WHERE IDSECTOR=$idSec;";
@@ -55,8 +55,19 @@
                 die($e->getMessage());
             }
         }
+/* ----------------------------------------------------------------------------------------------------------------------*/
+        public function GetSectores(){
+            try{
+                $consulta=$this->pdo->prepare("SELECT * FROM `sector` WHERE `sector`.`visible` = TRUE;");                            
+                $consulta->execute();     
+                return $consulta->fetchAll(PDO::FETCH_OBJ);
 
-
+            }
+            catch(Exception $e){
+                die($e->getMessage());
+            }
+        }
+/* ----------------------------------------------------------------------------------------------------------------------*/
 
 
     }

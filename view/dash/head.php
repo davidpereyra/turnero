@@ -1,3 +1,5 @@
+
+  
 <section id="container">
     <!-- **********************************************************************************************************************************************************
         TOP BAR CONTENT & NOTIFICATIONS
@@ -24,7 +26,7 @@
          <form name="logout" action="?c=usuario&a=Logout" method="post">
             <input type="hidden" name="nombreUsuario" value="<?php echo $_SESSION['usuario'];?>">
             <!-- btn btn-primary btn-lg btn-block btnFuncion--> 
-            <button class="btn btn-success" name="nombreUsuario" value="<?php echo $_SESSION['usuario'];?>" type="submit" >
+            <button class="btn btn-success mt-2" name="nombreUsuario" value="<?php echo $_SESSION['usuario'];?>" type="submit" >
             Salir
             </button>
           </form>  

@@ -8,6 +8,7 @@
         private $idTurno;
         private $fechaAlta;
         private $fechaBaja;
+        private $idUsuario;
 
         public function __CONSTRUCT(){
             $this->pdo = Database::Conectar();
@@ -29,6 +30,9 @@
         public function getIdTurno(){
             return $this->idTurno;
         }
+        public function getIdUsuario(){
+            return $this->idUsuario;
+        }
         //Setters
         public function setIdTurnoHistorial($idTurHis){
             $this->idTurnoHistorial=$idTurHis;
@@ -45,19 +49,22 @@
         public function setIdTurno($idTur){
             $this->idTuno=$idTur;
         }
+        public function setIdUsuario($idUsr){
+            $this->idUsuario=$idUsr;
+        }
 
 /* -------------------------------------------------------------------------------------------   */
 
         public function CrearTurnoHistorial($idTur,$idEdoTur){
             try{
-               // $consulta="INSERT INTO turnohistorial(idTurno, idEstadoTurno) VALUES (?,?);";
-                $consulta="INSERT INTO turnohistorial(idTurno, idEstadoTurno,fechaAlta) VALUES (:idTur,:idEdoTur,:fechaAlta);";
-                $stmt = $this->pdo->prepare($consulta);
-                
-
                 date_default_timezone_set('America/Argentina/Mendoza');
                 $fechaA = date('Y-m-d H:i:s');
                 //$fechaA = date_default_timezone_get();
+
+
+               // $consulta="INSERT INTO turnohistorial(idTurno, idEstadoTurno) VALUES (?,?);";
+                $consulta="INSERT INTO turnohistorial(idTurno, idEstadoTurno,fechaAlta) VALUES (:idTur,:idEdoTur,:fechaAlta);";
+                $stmt = $this->pdo->prepare($consulta);
                 
                 $stmt->execute(array(":idTur"=>intval($idTur), ":idEdoTur"=>($idEdoTur),":fechaAlta"=>($fechaA)));
 
@@ -68,6 +75,30 @@
             }
         }
 
+/* -------------------------------------------------------------------------------------------   */
+
+public function CrearTurnoHistorialUsuario($idTur,$idEdoTur,$idUsuario){
+    try{
+        date_default_timezone_set('America/Argentina/Mendoza');
+        $fechaA = date('Y-m-d H:i:s');
+        //$fechaA = date_default_timezone_get();
+
+
+       // $consulta="INSERT INTO turnohistorial(idTurno, idEstadoTurno) VALUES (?,?);";
+        $consulta="INSERT INTO turnohistorial(idTurno, idEstadoTurno,fechaAlta,idUsuario) VALUES (?,?,?,?);";
+
+        $this->pdo->PREPARE($consulta)
+                ->EXECUTE(array(
+                    intval($idTur),
+                    $idEdoTur,
+                    $fechaA,
+                    $idUsuario,
+                ));
+    }
+    catch(Exception $e){
+        die($e->getMessage());
+    }
+}
 /* -------------------------------------------------------------------------------------------   */
         public function ContarTurnosDelDia($idOp){
             try{
@@ -96,7 +127,8 @@
                     //CAST((NOW()) AS DATE) 
                     $update=$this->pdo->prepare("UPDATE `turnohistorial`
                                                     SET `turnohistorial`.`fechaBaja`= NOW()
-                                                        WHERE `turnohistorial`.`idTurno`=$idTur;");
+                                                        WHERE `turnohistorial`.`idTurno`=$idTur
+                                                        AND `turnohistorial`.`fechaBaja` IS NULL;");
                     $update->execute();
 
                     $consulta="INSERT INTO turnohistorial(idTurno, idEstadoTurno,fechaAlta) VALUES (:idTur,:idEdoTur,:fechaAlta);";
@@ -170,8 +202,9 @@ public function ActualizarEstadoAsociadoUsuarioCierre($idTur,$idEdoTur,$idUser){
                     //$fechaB = date('Y-m-d H:i:s');
                     //CAST((NOW()) AS DATE) 
                     $update=$this->pdo->prepare("UPDATE `turnohistorial`
-                                                    SET `turnohistorial`.`fechaBaja`= NOW()
-                                                        WHERE `turnohistorial`.`idTurno`=$idTur;");
+                        SET `turnohistorial`.`fechaBaja`= NOW()
+                        WHERE `turnohistorial`.`idTurno`=$idTur
+                        AND `turnohistorial`.`fechaBaja` IS NULL;");
                     $update->execute();                   
                 }
                 catch(Exception $e){
