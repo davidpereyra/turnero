@@ -118,8 +118,12 @@
                   <div class="form-group">
                     <!--<label class="col-lg-2 control-label">Rol de usuario</label> -->
                     <div class="col-lg-10">
-                      <input type="text" placeholder="Nombre de mi puesto de trabajo" name="rolUser" class="form-control" value="<?php echo $usuario->rolUsuario;?>">
-                    </div><!-- /col-lg-6 -->
+                      <select required name="rol" class="form-control">                                
+                        <?php foreach($listaDePerfiles as $listarP):?>                                
+                          <option value="<?= $listarP->idPerfil?>" selected><?=$listarP->nombrePerfil?></option>                                
+                        <?php endforeach; ?> 
+                      </select>
+                    </div><!-- /col-lg-10 -->
                   </div><!-- /form-group -->
 
                   <div class="form-group">                    

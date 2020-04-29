@@ -180,56 +180,56 @@
 
 
 //-------------------------------------------------------------
-public function InsertarTurnoDerivado(Turno $t, $nombreUsuario){
-    try{
-        //numero de turnos por sector
-        $idSector = $t->getIdSector();
-        $idOperacion = $t->getIdOperacion();
+        public function InsertarTurnoDerivado(Turno $t, $nombreUsuario){
+            try{
+                //numero de turnos por sector
+                $idSector = $t->getIdSector();
+                $idOperacion = $t->getIdOperacion();
 
-        $sqlDeHoy = "SELECT COUNT(*) AS total FROM `turno` 
-                        INNER JOIN `turnohistorial` ON `turno`.`idTurno`=`turnohistorial`.`idTurno` 
-                            WHERE `turno`.`idSector` = $idSector
-                            AND `turnohistorial`.`idEstadoTurno` = 1
-                            AND `turno`.`idOperacion` = $idOperacion
-                                AND  `turnohistorial`.`fechaAlta`>= CAST((NOW()) AS DATE) 
-                                    AND `turnohistorial`.`fechaAlta` < CAST((NOW() + INTERVAL 1 DAY) AS DATE);";
-        $turnosDeHoy=$this->pdo->prepare($sqlDeHoy);
-        $turnosDeHoy->execute();
-        $cant = $turnosDeHoy->fetch(PDO::FETCH_ASSOC);
+                $sqlDeHoy = "SELECT COUNT(*) AS total FROM `turno` 
+                                INNER JOIN `turnohistorial` ON `turno`.`idTurno`=`turnohistorial`.`idTurno` 
+                                    WHERE `turno`.`idSector` = $idSector
+                                    AND `turnohistorial`.`idEstadoTurno` = 1
+                                    AND `turno`.`idOperacion` = $idOperacion
+                                        AND  `turnohistorial`.`fechaAlta`>= CAST((NOW()) AS DATE) 
+                                            AND `turnohistorial`.`fechaAlta` < CAST((NOW() + INTERVAL 1 DAY) AS DATE);";
+                $turnosDeHoy=$this->pdo->prepare($sqlDeHoy);
+                $turnosDeHoy->execute();
+                $cant = $turnosDeHoy->fetch(PDO::FETCH_ASSOC);
 
 
-        $consulta="INSERT INTO turno(idOperacion,idSector,nombreTurno,idCliente,comentarioTurno,priDiscapacidad,idTurnoAnterior) 
-                    VALUES(?,?,?,?,?,?,?);";
-        
-        $this->pdo->prepare($consulta)
-                ->execute(array(
-                    $t->getIdOperacion(),
-                    //$t->getIdSector(),
-                    $idSector,
-                    $cant['total'],
-                    $t->getIdCliente(),
-                    $t->getComentario(),
-                    $t->getPrioridad(),
-                    $t->getIdTurnoAnterior(),
-                ));
-      
+                $consulta="INSERT INTO turno(idOperacion,idSector,nombreTurno,idCliente,comentarioTurno,priDiscapacidad,idTurnoAnterior) 
+                            VALUES(?,?,?,?,?,?,?);";
+                
+                $this->pdo->prepare($consulta)
+                        ->execute(array(
+                            $t->getIdOperacion(),
+                            //$t->getIdSector(),
+                            $idSector,
+                            $cant['total'],
+                            $t->getIdCliente(),
+                            $t->getComentario(),
+                            $t->getPrioridad(),
+                            $t->getIdTurnoAnterior(),
+                        ));
+            
 
-        $ultimoId=$this->pdo->prepare("SELECT * FROM `turno`
-        INNER JOIN `operacion` ON `turno`.`idOperacion` = `operacion`.`idOperacion`
-        INNER JOIN `sector` ON `turno`.`idSector` = `sector`.`idSector`
-        INNER JOIN `operacionperfil` ON `operacionperfil`.`idOperacion` = `operacion`.`idOperacion`
-        INNER JOIN `usuarioperfil` ON `operacionperfil`.`idPerfil` = `usuarioperfil`.`idPerfil`
-        INNER JOIN `usuario` ON `usuarioperfil`.`idUsuario` = `usuario`.`idUsuario`
-        ORDER BY idTurno DESC LIMIT 1");
-        $ultimoId->execute();
+                $ultimoId=$this->pdo->prepare("SELECT * FROM `turno`
+                INNER JOIN `operacion` ON `turno`.`idOperacion` = `operacion`.`idOperacion`
+                INNER JOIN `sector` ON `turno`.`idSector` = `sector`.`idSector`
+                INNER JOIN `operacionperfil` ON `operacionperfil`.`idOperacion` = `operacion`.`idOperacion`
+                INNER JOIN `usuarioperfil` ON `operacionperfil`.`idPerfil` = `usuarioperfil`.`idPerfil`
+                INNER JOIN `usuario` ON `usuarioperfil`.`idUsuario` = `usuario`.`idUsuario`
+                ORDER BY idTurno DESC LIMIT 1");
+                $ultimoId->execute();
 
-        
-        return $ultimoId->fetch(PDO::FETCH_OBJ);
-       
-    }catch(Exception $e){
-        die($e->getMessage());
-    }
-}
+                
+                return $ultimoId->fetch(PDO::FETCH_OBJ);
+            
+            }catch(Exception $e){
+                die($e->getMessage());
+            }
+        }
 
 //-----------------------------------------------------------------------------------------------------------------------
         public function LlamarTurnoOperacion($nombreUsuario,$opPri){

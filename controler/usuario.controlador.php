@@ -564,13 +564,51 @@ require_once "model/parametros.php";
 
         public function AltaUsuario(){ 
             require_once "view/dash/headerDash.php";
-            require_once "view/dash/head.php";            
-            $usuario = new Usuario();
-            $usuario = $usuario->getUsuarioPorNombre($_SESSION['usuario']); 
-            $fechaNacimiento = $usuario->fechaNacimiento;
-            //formato fecha para Mostrar
-            $dateNacimiento = date("d-m-Y", strtotime($fechaNacimiento)); 
+            require_once "view/dash/head.php";  
+            $nombreReal = $_POST['nombreUser'];
+            $apellidoReal = $_POST['apellidoUser'];
+            $dniUsuario = $_POST['dniUser'];
+            $rolUsuario = $_POST['rolUser'];
+            $informacionAdicional = $_POST['infoAdicional'];
+            $correoUsuario= $_POST['emailUser'];
+            $telefonoInterno = $_POST['telInterno'];
+            $telefonoPersonal = $_POST['telPersonal'];
+            $telefonoEmergencia = $_POST['telContacto'];
+            $nombreContacto = $_POST['nombreContacto'];
+            $direccionEmergencia= $_POST['dirEmergencia'];
+            $fechaNacimiento = $_POST['fechaNacimiento'];                       
+            //formato fecha para BD
+            $dateNacimiento = date("Y-m-d", strtotime($fechaNacimiento));
+
+            $claseUser = new Usuario();
+            $usuario = $claseUser->getUsuarioPorNombre($_SESSION['usuario']);                        
             
+            $claseUser->setIdUsuario($usuario->idUsuario);
+            $claseUser->setNombreReal($nombreReal);
+            $claseUser->setApellidoReal($apellidoReal);
+            $claseUser->setDniUsuario($dniUsuario);
+            $claseUser->setCorreoUsuario($correoUsuario);
+            $claseUser->setRolUsuario($rolUsuario);                     
+            $claseUser->setTelefonoInterno($telefonoInterno);
+            $claseUser->setTelefonoPersonal($telefonoPersonal);
+            $claseUser->setTelefonoEmergencia($telefonoEmergencia);
+            $claseUser->setNombreContacto($nombreContacto);
+            $claseUser->setDireccionEmergencia($direccionEmergencia);
+            $claseUser->setInformacionAdicional($informacionAdicional);
+            $claseUser->setFechaNacimiento($dateNacimiento);
+            
+ //$claseUser->setImgUsuario($imgUser);  para hacer todo de una hay que agregar el recibir imagen        
+ $claseUser->InsertarNuevoUsuario($claseUser);            
+ $usuario = $claseUser->getUsuarioPorNombre($_SESSION['usuario']);
+ $fechaNacimiento = $usuario->fechaNacimiento;
+ //formato fecha para Mostrar
+ $dateNacimiento = date("d-m-Y", strtotime($fechaNacimiento));
+ $param1 = new Parametros();
+ $edad =$param1->CalcularEdad($dateNacimiento);
+
+           
+            $perfil = new Perfil();
+            $listaDePerfiles = $perfil->ConsultarPerfiles();
             $param1 = new Parametros();
             $edad =$param1->CalcularEdad($dateNacimiento);
             require_once "view/dash/sidebarMenu.php";       

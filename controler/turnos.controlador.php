@@ -7,7 +7,7 @@ require_once "model/turno.php";
     
         }
 
-        public function Inicio(){
+        public function Inicio(){//no se usa
             
             require_once "view/headturno.php";
             require_once "view/llamador/ejemplo de tabla.php";

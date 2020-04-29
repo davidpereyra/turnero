@@ -17,8 +17,7 @@ class InicioControlador{
         require_once "view/menu.html";
     }
 
-    public function selectTurno(){
-        //require_once "view/headturno.php";
+    public function selectTurno(){        
         require_once "view/turno/index.php";
         require_once "view/footerturno.php";
     }

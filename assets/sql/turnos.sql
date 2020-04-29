@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 10-04-2020 a las 08:47:48
+-- Tiempo de generación: 27-04-2020 a las 16:50:50
 -- Versión del servidor: 10.4.8-MariaDB
 -- Versión de PHP: 7.1.33
 
@@ -47,7 +47,7 @@ CREATE TABLE `cliente` (
 --
 
 INSERT INTO `cliente` (`idCliente`, `dniCliente`, `razonSocialCliente`, `cuitCliente`, `cuilCliente`, `nombreCliente`, `apellidoCliente`, `mailCliente`, `telefono1Cliente`, `telefono2Cliente`, `comentarioCliente`) VALUES
-(1, 34113017, '', '203411130175', '203411130175', 'David', 'Pereyra', 'webdeveloperdavid@gmail.com', '', '', 'C nada'),
+(1, 34113017, '', '203411130175', '203411130175', 'David', 'Pereyra', 'webdeveloperdavid@gmail.com', '', '', 'sddf'),
 (2, 20335925, NULL, '', NULL, 'Cristian', 'Cocucci', '', '', '', NULL),
 (3, 18446951, NULL, '', NULL, 'Pablo', 'Cocucci', '', '', '', NULL),
 (5, 31645261, NULL, '', NULL, 'Alejandro', 'Barroso', 'abarroso@cocucci.com.ar', '', '', NULL),
@@ -12622,7 +12622,7 @@ INSERT INTO `cliente` (`idCliente`, `dniCliente`, `razonSocialCliente`, `cuitCli
 (65585, 23622463, '', '', NULL, 'Felipe Guillermo', 'Gaviola', '', '', '', 'P 4357'),
 (65586, 31645777, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (65587, 221147774, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(65588, 5184788, '', '', NULL, 'Wenselada', 'Olguin ', '', '', '', 'Mama de David'),
+(65588, 5184788, '', '', NULL, 'Wenselada', 'Olguin ', '', '', '', 'test de  David'),
 (65589, 12345654, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (65590, 13591207, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (65591, 18531495, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
@@ -14018,32 +14018,64 @@ CREATE TABLE `operacion` (
   `idSector` int(5) NOT NULL,
   `nombreOperacion` varchar(80) NOT NULL,
   `nomenclaturaOperacion` varchar(2) NOT NULL,
-  `visible` tinyint(1) DEFAULT NULL
+  `accionToten` tinyint(1) DEFAULT NULL,
+  `accionDash` tinyint(1) DEFAULT NULL,
+  `menuDash` tinyint(1) DEFAULT NULL,
+  `nombreAccion` varchar(50) DEFAULT NULL,
+  `idSubOperacion` int(5) DEFAULT NULL,
+  `iconoMenu` varchar(50) DEFAULT NULL,
+  `urlAccion` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `operacion`
 --
 
-INSERT INTO `operacion` (`idOperacion`, `idSector`, `nombreOperacion`, `nomenclaturaOperacion`, `visible`) VALUES
-(1, 1, 'Comprar', 'A-', 1),
-(2, 1, 'Vender', 'B-', 1),
-(3, 1, 'Tasación', 'C-', 1),
-(4, 6, 'Contratos', 'D-', 1),
-(5, 6, 'Renovaciones', 'E-', 1),
-(6, 6, 'Rescisiones', 'F-', 1),
-(7, 6, 'Reclamos', 'G-', 1),
-(8, 6, 'Reintegro de Servicios', 'H-', 0),
-(9, 2, 'Presentar Documentacion', 'I-', 1),
-(10, 2, 'Ofrecer Alquiler', 'J-', 1),
-(11, 2, 'Buscar Alquiler', 'K-', 1),
-(12, 3, 'Pagar Alquiler', 'L-', 1),
-(13, 3, 'Cobrar Alquiler', 'M-', 1),
-(14, 4, 'RRHH', 'N-', 1),
-(15, 5, 'Por orden', '', 0),
-(16, 5, 'Derivado', 'O-', 0),
-(17, 5, 'Atencion Personalizada', 'P-', 1),
-(18, 5, 'Discapacidad', '', 0);
+INSERT INTO `operacion` (`idOperacion`, `idSector`, `nombreOperacion`, `nomenclaturaOperacion`, `accionToten`, `accionDash`, `menuDash`, `nombreAccion`, `idSubOperacion`, `iconoMenu`, `urlAccion`) VALUES
+(1, 1, 'Comprar', 'A-', 1, 1, NULL, 'inicioDash', NULL, NULL, NULL),
+(2, 1, 'Vender', 'B-', 1, 1, NULL, 'inicioDash', NULL, NULL, NULL),
+(3, 1, 'Tasación', 'C-', 1, 1, NULL, 'inicioDash', NULL, NULL, NULL),
+(4, 6, 'Contratos', 'D-', 1, 1, NULL, 'inicioDash', NULL, NULL, NULL),
+(5, 6, 'Renovaciones', 'E-', 1, 1, NULL, 'inicioDash', NULL, NULL, NULL),
+(6, 6, 'Rescisiones', 'F-', 1, 1, NULL, 'inicioDash', NULL, NULL, NULL),
+(7, 6, 'Reclamos', 'G-', 1, 1, NULL, 'inicioDash', NULL, NULL, NULL),
+(8, 6, 'Reintegro de Servicios', 'H-', 0, 1, NULL, 'inicioDash', NULL, NULL, NULL),
+(9, 2, 'Presentar Documentacion', 'I-', 1, 1, NULL, 'inicioDash', NULL, NULL, NULL),
+(10, 2, 'Ofrecer Alquiler', 'J-', 1, 1, NULL, 'inicioDash', NULL, NULL, NULL),
+(11, 2, 'Buscar Alquiler', 'K-', 1, 1, NULL, 'inicioDash', NULL, NULL, NULL),
+(12, 3, 'Pagar Alquiler', 'L-', 1, 1, NULL, 'inicioDash', NULL, NULL, NULL),
+(13, 3, 'Cobrar Alquiler', 'M-', 1, 1, NULL, 'inicioDash', NULL, NULL, NULL),
+(14, 4, 'RRHH', 'N-', 1, 1, NULL, 'inicioDash', NULL, NULL, NULL),
+(15, 5, 'Por orden', '', 0, 1, NULL, 'inicioDash', NULL, NULL, NULL),
+(16, 5, 'Derivado', 'O-', 0, 1, NULL, 'inicioDash', NULL, NULL, NULL),
+(17, 5, 'Atencion Personalizada', 'P-', 1, 1, NULL, 'inicioDash', NULL, NULL, NULL),
+(18, 5, 'Discapacidad', '', 0, 1, NULL, 'inicioDash', NULL, NULL, NULL),
+(20, 8, 'Gestión de Turnos', '', NULL, NULL, 1, 'inicioDash', 20, 'fa-calendar', NULL),
+(21, 8, 'Gestión de Clientes', '', NULL, NULL, 1, 'inicioDash', 21, 'fa-male', NULL),
+(22, 8, 'Gestion de Usuarios', '', NULL, NULL, 1, 'inicioDash', 22, 'fa-users', NULL),
+(23, 8, 'Gestión de Sectores ', '', NULL, NULL, 1, 'inicioDash', 23, 'fa-sitemap', NULL),
+(24, 8, 'Gestión de Perfiles/Roles', '', NULL, NULL, 1, 'inicioDash', 24, 'fa-thumbs-up', NULL),
+(25, 8, 'Gestión de Operaciones', '', NULL, NULL, 1, 'inicioDash', 25, 'fa-folder-open', NULL),
+(28, 8, 'Alta de Usuario', '', NULL, NULL, 1, 'inicioDash', 22, 'fa-arrow-up', '?c=usuario&a=AltaUsuario'),
+(30, 8, 'Baja Usuario', '', NULL, NULL, 1, 'inicioDash', 22, 'fa-arrow-down', '#'),
+(31, 8, 'Modificar Usuario', '', NULL, NULL, 1, 'inicioDash', 22, 'fa-edit', '#'),
+(32, 8, 'Alta Sector', '', NULL, NULL, 1, 'inicioDash', 23, 'fa-arrow-up', '#'),
+(33, 8, 'Baja Sector', '', NULL, NULL, 1, 'inicioDash', 23, 'fa-arrow-down', '#'),
+(34, 8, 'Modificar Sector', '', NULL, NULL, 1, 'inicioDash', 23, 'fa-edit', '#'),
+(35, 8, 'Alta Cliente', '', NULL, NULL, 1, 'inicioDash', 21, 'fa-arrow-up', '#'),
+(36, 8, 'Baja Cliente', '', NULL, NULL, 1, 'inicioDash', 21, 'fa-arrow-down', '#'),
+(37, 8, 'Modificar Cliente', '', NULL, NULL, 1, 'inicioDash', 21, 'fa-edit', '#'),
+(38, 8, 'Alta Perfil', '', NULL, NULL, 1, 'inicioDash', 24, 'fa-arrow-up', '#'),
+(39, 8, 'Baja Perfil', '', NULL, NULL, 1, 'inicioDash', 24, 'fa-arrow-down', '#'),
+(40, 8, 'Modificar Perfil', '', NULL, NULL, 1, 'inicioDash', 24, 'fa-edit', '#'),
+(41, 8, 'Alta Turno', '', NULL, NULL, 1, 'inicioDash', 20, 'fa-arrow-up', '#'),
+(42, 8, 'Baja Turno', '', NULL, NULL, 1, 'inicioDash', 20, 'fa-arrow-down', '#'),
+(43, 8, 'Modificar Turno', '', NULL, NULL, 1, 'inicioDash', 20, 'fa-edit', '#'),
+(44, 8, 'Alta Operacion', '', NULL, NULL, 1, 'inicioDash', 25, 'fa-arrow-up', '#'),
+(45, 8, 'Baja Operacion', '', NULL, NULL, 1, 'inicioDash', 25, 'fa-arrow-down', '#'),
+(46, 8, 'Modificar Operacion', '', NULL, NULL, 1, 'inicioDash', 25, 'fa-edit', '#'),
+(52, 8, '', '', NULL, NULL, NULL, 'inicioDash', NULL, NULL, NULL),
+(53, 8, '', '', NULL, NULL, NULL, 'inicioDash', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -14212,7 +14244,43 @@ INSERT INTO `operacionperfil` (`idOpPerfil`, `idPerfil`, `idOperacion`, `comenta
 (187, 16, 18, 'AdministracionAlquilerPerfil -> Discapacidad', 2),
 (188, 17, 18, 'AdminComercialPerfil -> Discapacidad', 2),
 (189, 18, 18, 'RecepcionPerfil -> Discapacidad', NULL),
-(190, 19, 18, 'AdministracionAlquilerCajaPerfil -> Discapacidad', 2);
+(190, 19, 18, 'AdministracionAlquilerCajaPerfil -> Discapacidad', 2),
+(196, 20, 20, NULL, NULL),
+(197, 20, 21, NULL, NULL),
+(198, 20, 22, NULL, NULL),
+(199, 20, 23, NULL, NULL),
+(200, 20, 24, NULL, NULL),
+(201, 20, 25, NULL, NULL),
+(202, 20, 28, NULL, NULL),
+(203, 20, 30, NULL, NULL),
+(204, 20, 31, NULL, NULL),
+(205, 20, 32, NULL, NULL),
+(206, 20, 33, NULL, NULL),
+(207, 20, 34, NULL, NULL),
+(208, 20, 35, NULL, NULL),
+(209, 20, 36, NULL, NULL),
+(210, 20, 37, NULL, NULL),
+(211, 20, 38, NULL, NULL),
+(212, 20, 39, NULL, NULL),
+(213, 20, 40, NULL, NULL),
+(214, 20, 41, NULL, NULL),
+(215, 20, 42, NULL, NULL),
+(216, 20, 43, NULL, NULL),
+(217, 20, 44, NULL, NULL),
+(218, 20, 45, NULL, NULL),
+(219, 20, 46, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `password_reset`
+--
+
+CREATE TABLE `password_reset` (
+  `email` varchar(120) DEFAULT NULL,
+  `token` varchar(120) DEFAULT NULL,
+  `created_ad` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -14231,17 +14299,17 @@ CREATE TABLE `perfil` (
 --
 
 INSERT INTO `perfil` (`idPerfil`, `nombrePerfil`, `comentarioPerfil`) VALUES
-(1, 'VentaPerfil', 'Genérico'),
-(2, 'ContratosPerfil', 'Genérico'),
-(3, 'RenovacionPerfil', 'Genérico'),
-(4, 'RescicionPerfil', 'Genérico'),
-(5, 'ReclamosPerfil', 'Genérico'),
-(6, 'PresentarDocumentacionPerfil', 'Genérico'),
-(7, 'OfrecerAlquilerPerfil', 'Genérico'),
-(8, 'BuscarAlquilerPerfil', 'Genérico'),
-(9, 'RRHHPerfil', 'Genérico'),
-(10, 'CajaPerfil', 'Genérico'),
-(11, 'AdministradorPerfil', 'Genérico'),
+(1, 'Comercial Venta', 'Genérico'),
+(2, 'Contratos', 'Genérico'),
+(3, 'Renovacion', 'Genérico'),
+(4, 'Rescicion', 'Genérico'),
+(5, 'Reclamos', 'Genérico'),
+(6, 'Documentacion Alquileres', 'Genérico'),
+(7, 'Ofrecer Alquiler', 'Genérico'),
+(8, 'Buscar Alquiler', 'Genérico'),
+(9, 'RRHH', 'Genérico'),
+(10, 'Caja', 'Genérico'),
+(11, 'Administrador', 'Genérico'),
 (12, 'AlquilerComercialPerfil', 'Ofrecer alquiler - Buscar alquiler - Presentar documentacion'),
 (13, 'ComercialInquilinosPerfil', 'Presentar documentacion - Buscar Alquiler'),
 (14, 'ComercialInquilinosVentasPerfil', 'Buscar alquiler - Ventas'),
@@ -14249,7 +14317,8 @@ INSERT INTO `perfil` (`idPerfil`, `nombrePerfil`, `comentarioPerfil`) VALUES
 (16, 'AdministracionAlquilerPerfil', 'Todo Administracion como usuario comun'),
 (17, 'AdminComercialPerfil', 'Todo Comercial como administrador'),
 (18, 'RecepcionPerfil', 'Genérico'),
-(19, 'AdministracionAlquilerCajaPerfil', 'Todo Administración y caja como usuario común');
+(19, 'AdministracionAlquilerCajaPerfil', 'Todo Administración y caja como usuario común'),
+(20, 'Administrador Sistema', 'Administrador de sistemas');
 
 -- --------------------------------------------------------
 
@@ -14275,7 +14344,8 @@ INSERT INTO `sector` (`idSector`, `nombreSector`, `visible`, `nomenclaturaSector
 (4, 'Otros', 0, 'T'),
 (5, 'Personalizado', 0, 'P'),
 (6, 'Administración', 1, 'B'),
-(7, 'Atención Personalizada', 1, NULL);
+(7, 'Atención Personalizada', 1, NULL),
+(8, 'Sistemas', 0, 'S');
 
 -- --------------------------------------------------------
 
@@ -18011,7 +18081,31 @@ INSERT INTO `turno` (`idTurno`, `idOperacion`, `idSector`, `idCliente`, `nombreT
 (4255, 17, 5, 65588, '1', 3, 0, '', 0, 4254),
 (4256, 17, 5, 65588, '2', 1, 0, NULL, 0, NULL),
 (4257, 13, 3, 65588, '3', 1, 0, '', 0, 4256),
-(4258, 17, 5, 65588, '3', NULL, 0, NULL, NULL, NULL);
+(4258, 17, 5, 65588, '3', NULL, 0, NULL, NULL, NULL),
+(4259, 17, 5, 1, '0', NULL, 0, NULL, NULL, NULL),
+(4260, 12, 3, 65588, '0', 2, 1, NULL, 0, NULL),
+(4261, 12, 3, 65588, '1', 2, 0, NULL, 0, NULL),
+(4262, 13, 3, 1, '0', 2, 1, NULL, 0, NULL),
+(4263, 12, 3, 1, '2', NULL, 0, '', NULL, 4262),
+(4264, 12, 3, 1, '2', NULL, 0, '', NULL, 4262),
+(4265, 12, 3, 1, '2', NULL, 0, '', NULL, 4262),
+(4266, 12, 3, 1, '2', 2, 0, '', 0, 4262),
+(4267, 13, 3, 1, '1', 2, 0, '', 0, 4266),
+(4268, 17, 5, 1, '0', NULL, 0, '', NULL, 4267),
+(4269, 12, 3, 65588, '0', 2, 0, NULL, 0, NULL),
+(4270, 17, 5, 65588, '0', 2, 0, '', 0, 4269),
+(4271, 17, 5, 65588, '1', 2, 0, '', 0, 4270),
+(4272, 17, 5, 65588, '2', 26, 0, '', 0, 4271),
+(4273, 17, 5, 65588, '3', 2, 0, '', 0, 4272),
+(4274, 12, 3, 65588, '0', 2, 1, NULL, 0, NULL),
+(4275, 12, 3, 65588, '1', 2, 0, NULL, 0, NULL),
+(4276, 13, 3, 65588, '0', 2, 0, NULL, 0, NULL),
+(4277, 17, 5, 65588, '0', 2, 0, NULL, 0, NULL),
+(4278, 17, 5, 1, '0', 1, 0, NULL, 0, NULL),
+(4279, 13, 3, 65588, '0', 2, 0, NULL, 0, NULL),
+(4280, 1, 1, 65588, '0', 8, 0, NULL, 0, NULL),
+(4281, 13, 3, 65588, '1', 2, 0, NULL, 0, NULL),
+(4282, 12, 3, 65588, '0', 1, 0, NULL, 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -29186,7 +29280,71 @@ INSERT INTO `turnohistorial` (`idTurnoHistorial`, `idTurno`, `idEstadoTurno`, `f
 (12143, 4257, 2, '2020-04-08 10:58:19', '2020-04-08 10:58:22', 10),
 (12144, 4257, 3, '2020-04-08 10:58:22', '2020-04-08 10:58:25', 10),
 (12145, 4257, 5, '2020-04-08 10:58:25', NULL, NULL),
-(12146, 4258, 1, '2020-04-08 11:29:07', NULL, 48);
+(12146, 4258, 1, '2020-04-08 11:29:07', NULL, 48),
+(12147, 4259, 1, '2020-04-11 08:53:51', NULL, 10),
+(12148, 4260, 1, '2020-04-14 10:28:52', '2020-04-14 10:31:56', 10),
+(12149, 4260, 2, '2020-04-14 10:31:54', '2020-04-14 10:31:56', 10),
+(12150, 4260, 3, '2020-04-14 10:31:56', '2020-04-14 10:32:01', 10),
+(12151, 4261, 1, '2020-04-14 12:06:53', '2020-04-14 12:30:39', 10),
+(12152, 4261, 2, '2020-04-14 12:29:44', '2020-04-14 12:30:39', 10),
+(12153, 4261, 3, '2020-04-14 12:30:39', '2020-04-14 12:30:54', 10),
+(12154, 4262, 1, '2020-04-14 12:32:52', '2020-04-14 12:42:52', 10),
+(12155, 4262, 2, '2020-04-14 12:33:10', '2020-04-14 12:42:52', 10),
+(12156, 4262, 3, '2020-04-14 12:33:11', '2020-04-14 12:42:52', 10),
+(12157, 4262, 5, '2020-04-14 12:33:12', '2020-04-14 12:42:52', 10),
+(12158, 4266, 1, '2020-04-14 12:42:52', '2020-04-14 12:43:08', 10),
+(12159, 4266, 2, '2020-04-14 12:43:00', '2020-04-14 12:43:08', 10),
+(12160, 4266, 3, '2020-04-14 12:43:02', '2020-04-14 12:43:08', 10),
+(12161, 4266, 5, '2020-04-14 12:43:04', '2020-04-14 12:43:08', 10),
+(12162, 4267, 1, '2020-04-14 12:43:08', '2020-04-14 12:43:20', 10),
+(12163, 4267, 2, '2020-04-14 12:43:12', '2020-04-14 12:43:20', 10),
+(12164, 4267, 3, '2020-04-14 12:43:14', '2020-04-14 12:43:20', 10),
+(12165, 4267, 5, '2020-04-14 12:43:17', '2020-04-14 12:43:20', 10),
+(12166, 4268, 1, '2020-04-14 12:43:20', NULL, 10),
+(12167, 4269, 1, '2020-04-15 09:15:59', '2020-04-15 09:16:06', 10),
+(12168, 4269, 2, '2020-04-15 09:16:01', '2020-04-15 09:16:06', 10),
+(12169, 4269, 3, '2020-04-15 09:16:03', '2020-04-15 09:16:06', 10),
+(12170, 4269, 5, '2020-04-15 09:16:04', '2020-04-15 09:16:06', 10),
+(12171, 4270, 1, '2020-04-15 09:16:06', '2020-04-15 09:16:31', 10),
+(12172, 4270, 2, '2020-04-15 09:16:18', '2020-04-15 09:16:31', 10),
+(12173, 4270, 3, '2020-04-15 09:16:27', '2020-04-15 09:16:31', 10),
+(12174, 4270, 5, '2020-04-15 09:16:30', '2020-04-15 09:16:31', 10),
+(12175, 4271, 1, '2020-04-15 09:16:31', '2020-04-15 10:13:28', 10),
+(12176, 4271, 2, '2020-04-15 10:13:18', '2020-04-15 10:13:28', 10),
+(12177, 4271, 3, '2020-04-15 10:13:21', '2020-04-15 10:13:28', 10),
+(12178, 4271, 5, '2020-04-15 10:13:23', '2020-04-15 10:13:28', 10),
+(12179, 4272, 1, '2020-04-15 10:13:28', '2020-04-15 10:13:54', 26),
+(12180, 4272, 2, '2020-04-15 10:13:45', '2020-04-15 10:13:54', 26),
+(12181, 4272, 3, '2020-04-15 10:13:49', '2020-04-15 10:13:54', 26),
+(12182, 4272, 5, '2020-04-15 10:13:50', '2020-04-15 10:13:54', 26),
+(12183, 4273, 1, '2020-04-15 10:13:54', '2020-04-15 10:14:07', 10),
+(12184, 4273, 2, '2020-04-15 10:14:06', '2020-04-15 10:14:07', 10),
+(12185, 4273, 3, '2020-04-15 10:14:07', '2020-04-15 10:14:08', 10),
+(12186, 4274, 1, '2020-04-17 09:59:17', '2020-04-17 09:59:26', 10),
+(12187, 4274, 2, '2020-04-17 09:59:24', '2020-04-17 09:59:26', 10),
+(12188, 4274, 3, '2020-04-17 09:59:26', '2020-04-17 09:59:29', 10),
+(12189, 4275, 1, '2020-04-17 11:05:29', '2020-04-17 19:44:39', 10),
+(12190, 4276, 1, '2020-04-17 19:35:16', '2020-04-17 19:44:48', 10),
+(12191, 4275, 2, '2020-04-17 19:44:37', '2020-04-17 19:44:39', 10),
+(12192, 4275, 3, '2020-04-17 19:44:39', '2020-04-17 19:44:41', 10),
+(12193, 4276, 2, '2020-04-17 19:44:47', '2020-04-17 19:44:48', 10),
+(12194, 4276, 3, '2020-04-17 19:44:48', '2020-04-17 19:44:49', 10),
+(12195, 4277, 1, '2020-04-20 10:13:46', '2020-04-20 10:14:00', 10),
+(12196, 4277, 2, '2020-04-20 10:13:59', '2020-04-20 10:14:00', 10),
+(12197, 4277, 3, '2020-04-20 10:14:00', '2020-04-20 10:14:01', 10),
+(12198, 4278, 1, '2020-04-21 11:00:22', '2020-04-21 11:01:52', 10),
+(12199, 4278, 2, '2020-04-21 11:01:50', '2020-04-21 11:01:52', 10),
+(12200, 4278, 3, '2020-04-21 11:01:52', '2020-04-21 11:02:00', 10),
+(12201, 4279, 1, '2020-04-21 13:12:31', '2020-04-21 13:42:01', 10),
+(12202, 4279, 2, '2020-04-21 13:12:34', '2020-04-21 13:42:01', 10),
+(12203, 4279, 3, '2020-04-21 13:42:01', '2020-04-21 13:42:04', 10),
+(12204, 4280, 1, '2020-04-21 13:42:35', '2020-04-21 13:44:11', 1),
+(12205, 4281, 1, '2020-04-21 13:42:41', '2020-04-21 13:44:17', 10),
+(12206, 4280, 2, '2020-04-21 13:44:11', NULL, 1),
+(12207, 4281, 2, '2020-04-21 13:44:17', NULL, 10),
+(12208, 4282, 1, '2020-04-24 11:50:14', '2020-04-24 11:50:23', 10),
+(12209, 4282, 2, '2020-04-24 11:50:22', '2020-04-24 11:50:23', 10),
+(12210, 4282, 3, '2020-04-24 11:50:23', '2020-04-24 11:50:38', 10);
 
 -- --------------------------------------------------------
 
@@ -29196,7 +29354,6 @@ INSERT INTO `turnohistorial` (`idTurnoHistorial`, `idTurno`, `idEstadoTurno`, `f
 
 CREATE TABLE `usuario` (
   `idUsuario` int(5) NOT NULL,
-  `idPerfil` int(5) NOT NULL,
   `nombreUsuario` varchar(80) NOT NULL,
   `passUsuario` varchar(80) NOT NULL,
   `nombreReal` varchar(80) NOT NULL,
@@ -29220,51 +29377,75 @@ CREATE TABLE `usuario` (
 -- Volcado de datos para la tabla `usuario`
 --
 
-INSERT INTO `usuario` (`idUsuario`, `idPerfil`, `nombreUsuario`, `passUsuario`, `nombreReal`, `apellidoReal`, `dniUsuario`, `correoUsuario`, `rolUsuario`, `online`, `nroPuesto`, `telefonoInterno`, `telefonoPersonal`, `telefonoEmergencia`, `nombreContacto`, `direccionEmergencia`, `informacionAdicional`, `fechaNacimiento`, `imgUsuario`) VALUES
-(0, 11, 'usuario temporal', 'caja', 'pass', '', 0, '', NULL, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(1, 1, 'venta', 'pass', 'venta perfil123123', 'apellido', 34113017, 'dpereyra@cocucci.com.ar', 'Ventas', 1, 1, 0, 0, 0, '', '', '', '1969-08-06 00:00:00', 'img_user_default.png'),
-(2, 2, 'contrato', 'pass', 'Contrato', 'apellido', 0, '', '', 1, 1, 0, 0, 0, '', '', '', '1970-01-01 00:00:00', 'music.png'),
-(3, 3, 'renovacion', 'pass', 'renovacion', 'apellido', 0, '', NULL, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'img_user_default.png'),
-(4, 4, 'rescicion', 'pass', 'rescicion', 'apellido', 0, '', NULL, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'img_user_default.png'),
-(5, 5, 'reclamos', 'pass', 'reclamos', 'apellido', 0, '', NULL, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'img_user_default.png'),
-(6, 6, 'presentar', 'pass', 'presentar', 'apellido', 0, '', NULL, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'img_user_default.png'),
-(7, 7, 'ofrecer', 'pass', 'ofrecer', 'apellido', 0, '', NULL, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'img_user_default.png'),
-(8, 8, 'buscar', 'pass', 'buscar', 'apellido', 0, '', NULL, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'img_user_default.png'),
-(9, 9, 'rrhh', 'pass', 'rrhh', 'apellido', 0, '', NULL, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'img_user_default.png'),
-(10, 10, 'caja', 'pass', 'David', 'Pereyra', 34113017, 'dpereyra@cocucci.com.ar', 'Cajero', 1, 1, 155, 0, 0, '', '', 'about me', '1990-12-01 00:00:00', 'IMG_20200114_170407828.jpg'),
-(16, 1, 'sole', 'sole', 'Soledad', 'Caballero', 24486589, 'soledad@cocucci.com.ar', NULL, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'img_user_default.png'),
-(17, 1, 'paola', 'paola', 'Paola', 'Cocucci', 26960411, 'paola@cocucci.com.ar', NULL, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'img_user_default.png'),
-(18, 1, 'ignacio', 'ignacio', 'Ignacio', 'Cocucci', 34917882, 'ignacio@cocucci.com.ar', NULL, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'img_user_default.png'),
-(19, 1, 'matias', 'matias', 'Matias', 'Cocucci', 31645390, 'matias@cocucci.com.ar', NULL, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(20, 1, 'abarroso', 'abarroso', 'Alejandro', 'Barroso', 31645261, 'abarroso@cocucci.com.ar', NULL, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(21, 1, 'cesar', 'cesar', 'Cesar', 'Reccabarrem', 0, '', NULL, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(22, 1, 'edicesare', 'edicesare', 'Emiliano', 'Di Cesare', 0, 'edicesare@cocucci.com.ar', NULL, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(23, 2, 'aestalles', 'aestalles', 'Andrea', 'Estalles', 26792840, 'aestalles@cocucci.com.ar', NULL, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(24, 2, 'srodriguez', '16635857', 'Stella', 'Rodriguez', 0, '', NULL, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(25, 10, 'dherrera', 'dherrera', 'Daniel ', 'Herrera', 38756298, 'dherrera@cocucci.com.ar', NULL, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(26, 10, 'efernandez', 'efernandez', 'Erica ', 'Fernandez', 34627802, 'efernandez@cocucci.com.ar', NULL, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'img_user_default.png'),
-(27, 10, 'evazquez', 'evazquez', 'Eduardo ', 'Vazquez', 0, '', NULL, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(28, 10, 'pfurlan', 'pfurlan', 'Pablo', 'Furlan', 22625482, 'pfurlan@cocucci.com.ar', NULL, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(29, 10, 'smdominguez', 'Masedo1988s', 'Sebastian', 'Dominguez', 33306908, 'sdominguez@cocucci.com.ar', NULL, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(30, 3, 'victor', 'arturo', 'Victor', 'Bocci', 20949196, 'vbocci@cocucci.com.ar', '153', 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(31, 3, 'macocucci', '20892833', 'Mirta', 'Cocucci', 22621348, 'mirta.andrea@cocucci.com.ar', NULL, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(32, 4, 'pdominguez', '37271405', 'Pablo', 'Dominguez', 37271405, 'pdominguez@cocucci.com.ar', NULL, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(33, 4, 'aramirez', '0123', 'Adrian', 'Ramirez', 25782695, 'aramirez@cocucci.com.ar', NULL, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(34, 5, 'rfiorenza', '13425290', 'Ricardo', 'Fiorenza', 13425290, 'rfiorenza@cocucci.com.ar', NULL, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(35, 5, 'fgresta', '36766970', 'Franco ', 'Gresta', 36766970, 'fgresta@cocucci.com.ar', NULL, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(36, 13, 'fernanda', 'fer', 'Fernanda', 'Manchon', 32571722, 'fmanchon@cocucci.com.ar', NULL, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(37, 7, 'cristina', 'cris', 'Cristina', 'Velazco', 22059658, 'cvelasco@cocucci.com.ar', NULL, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(38, 8, 'antonella', 'anto', 'Antonella', 'Herrera', 37267443, 'aherrera@cocucci.com.ar', NULL, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(39, 9, 'rortega', 'rao', 'Ruben ', 'Ortega', 12931468, 'rortega@cocucci.com.ar', NULL, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(40, 11, 'admin', 'admin1234', 'Administrador', '', 0, '', NULL, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(41, 1, 'marisa', '123', 'Marisa', 'Manuele', 22009422, 'mmanuele@cocucci.com.ar', '105', 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(42, 15, 'Maxi', 'Maxi', 'Maximiliano', 'Firmapaz', 26495529, 'mfirmapaz@cocucci.com.ar', '116', 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(43, 18, 'aortega', '1981', 'Andrea', 'Ortega', 28757254, 'aortega@cocucci.com.ar', '101', 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(44, 11, 'dpereyra', '34113017', 'David', 'Pereyra', 34113017, 'dpereyra@cocucci.com.ar', '155', 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(45, 18, 'recepcion', 'recepcion', 'recepcion', 'recepcion', 0, '', '101', 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(46, 10, 'silvana', '123456', 'Silvana', 'Pacheco', 0, '', NULL, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(47, 3, 'Lsantini', 'Lorenzo33', 'Luisina', 'Santini', 38909859, 'lsantini@cocucci.com.ar', NULL, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(48, 3, 'lvanin', '31273831', 'Luis ', 'Vanin', 31273831, 'lvanin@cocucci.com.ar', NULL, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `usuario` (`idUsuario`, `nombreUsuario`, `passUsuario`, `nombreReal`, `apellidoReal`, `dniUsuario`, `correoUsuario`, `rolUsuario`, `online`, `nroPuesto`, `telefonoInterno`, `telefonoPersonal`, `telefonoEmergencia`, `nombreContacto`, `direccionEmergencia`, `informacionAdicional`, `fechaNacimiento`, `imgUsuario`) VALUES
+(0, 'user_tmp', 'caja', 'usuario temporal', '', 0, '', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'img_user_default.png'),
+(1, 'venta', 'pass', 'venta perfil123123', 'apellido', 34113017, 'dpereyra@cocucci.com.ar', 'Ventas', 0, NULL, 0, 0, 0, '', '', '', '1969-08-06 00:00:00', 'img_user_default.png'),
+(2, 'contrato', 'pass', 'Contrato', 'apellido', 0, '', '', 0, NULL, 0, 0, 0, '', '', '', '1970-01-01 00:00:00', 'img_user_default.png'),
+(3, 'renovacion', 'pass', 'renovacion', 'apellido', 0, '', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'img_user_default.png'),
+(4, 'rescicion', 'pass', 'rescicion', 'apellido', 0, '', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'img_user_default.png'),
+(5, 'reclamos', 'pass', 'reclamos', 'apellido', 0, '', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'img_user_default.png'),
+(6, 'presentar', 'pass', 'presentar', 'apellido', 0, '', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'img_user_default.png'),
+(7, 'ofrecer', 'pass', 'ofrecer', 'apellido', 0, '', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'img_user_default.png'),
+(8, 'buscar', 'pass', 'buscar', 'apellido', 0, '', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'img_user_default.png'),
+(9, 'rrhh', 'pass', 'rrhh', 'apellido', 0, '', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'img_user_default.png'),
+(10, 'caja', 'pass', 'Caja', 'prueba', 34113017, 'dpereyra@cocucci.com.ar', 'Cajero', 0, NULL, 155, 2147483647, 0, 'Mariana Delongaro', '', 'about me', '1990-12-01 00:00:00', 'IMG_20200114_165224625.jpg'),
+(16, 'sole', 'sole', 'Soledad', 'Caballero', 24486589, 'soledad@cocucci.com.ar', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'img_user_default.png'),
+(17, 'paola', 'paola', 'Paola', 'Cocucci', 26960411, 'paola@cocucci.com.ar', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'img_user_default.png'),
+(18, 'ignacio', 'ignacio', 'Ignacio', 'Cocucci', 34917882, 'ignacio@cocucci.com.ar', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'img_user_default.png'),
+(19, 'matias', 'matias', 'Matias', 'Cocucci', 31645390, 'matias@cocucci.com.ar', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'img_user_default.png'),
+(20, 'abarroso', 'abarroso', 'Alejandro', 'Barroso', 31645261, 'abarroso@cocucci.com.ar', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'img_user_default.png'),
+(21, 'cesar', 'cesar', 'Cesar', 'Reccabarrem', 0, '', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'img_user_default.png'),
+(22, 'edicesare', 'edicesare', 'Emiliano', 'Di Cesare', 0, 'edicesare@cocucci.com.ar', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'img_user_default.png'),
+(23, 'aestalles', 'aestalles', 'Andrea', 'Estalles', 26792840, 'aestalles@cocucci.com.ar', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'img_user_default.png'),
+(24, 'srodriguez', '16635857', 'Stella', 'Rodriguez', 0, '', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'img_user_default.png'),
+(25, 'dherrera', 'dherrera', 'Daniel ', 'Herrera', 38756298, 'dherrera@cocucci.com.ar', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'img_user_default.png'),
+(26, 'efernandez', 'efernandez', 'Erica ', 'Fernandez', 34627802, 'efernandez@cocucci.com.ar', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'img_user_default.png'),
+(27, 'evazquez', 'evazquez', 'Eduardo ', 'Vazquez', 0, '', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'img_user_default.png'),
+(28, 'pfurlan', 'pfurlan', 'Pablo', 'Furlan', 22625482, 'pfurlan@cocucci.com.ar', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'img_user_default.png'),
+(29, 'smdominguez', 'Masedo1988s', 'Sebastian', 'Dominguez', 33306908, 'sdominguez@cocucci.com.ar', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'img_user_default.png'),
+(30, 'victor', 'arturo', 'Victor', 'Bocci', 20949196, 'vbocci@cocucci.com.ar', '153', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'img_user_default.png'),
+(31, 'macocucci', '20892833', 'Mirta', 'Cocucci', 22621348, 'mirta.andrea@cocucci.com.ar', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'img_user_default.png'),
+(32, 'pdominguez', '37271405', 'Pablo', 'Dominguez', 37271405, 'pdominguez@cocucci.com.ar', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'img_user_default.png'),
+(33, 'aramirez', '0123', 'Adrian', 'Ramirez', 25782695, 'aramirez@cocucci.com.ar', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'img_user_default.png'),
+(34, 'rfiorenza', '13425290', 'Ricardo', 'Fiorenza', 13425290, 'rfiorenza@cocucci.com.ar', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'img_user_default.png'),
+(35, 'fgresta', '36766970', 'Franco ', 'Gresta', 36766970, 'fgresta@cocucci.com.ar', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'img_user_default.png'),
+(36, 'fernanda', 'fer', 'Fernanda', 'Manchon', 32571722, 'fmanchon@cocucci.com.ar', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'img_user_default.png'),
+(37, 'cristina', 'cris', 'Cristina', 'Velazco', 22059658, 'cvelasco@cocucci.com.ar', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'img_user_default.png'),
+(38, 'antonella', 'anto', 'Antonella', 'Herrera', 37267443, 'aherrera@cocucci.com.ar', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'img_user_default.png'),
+(39, 'rortega', 'rao', 'Ruben ', 'Ortega', 12931468, 'rortega@cocucci.com.ar', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'img_user_default.png'),
+(40, 'admin', 'admin1234', 'Administrador', '', 0, '', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'img_user_default.png'),
+(41, 'marisa', '123', 'Marisa', 'Manuele', 22009422, 'mmanuele@cocucci.com.ar', '105', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'img_user_default.png'),
+(42, 'Maxi', 'Maxi', 'Maximiliano', 'Firmapaz', 26495529, 'mfirmapaz@cocucci.com.ar', '116', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'img_user_default.png'),
+(43, 'aortega', '1981', 'Andrea', 'Ortega', 28757254, 'aortega@cocucci.com.ar', '101', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'img_user_default.png'),
+(44, 'dpereyra', '34113017', 'David', 'Pereyra', 34113017, 'dpereyra@cocucci.com.ar', '155', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'img_user_default.png'),
+(45, 'recepcion', 'recepcion', 'recepcion', 'generico', 0, '', '101', 0, NULL, 0, 0, 0, '', '', '', '1964-08-11 00:00:00', 'IMG_20190308_000924994.jpg'),
+(46, 'silvana', '123456', 'Silvana', 'Pacheco', 0, '', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'img_user_default.png'),
+(47, 'Lsantini', 'Lorenzo33', 'Luisina', 'Santini', 38909859, 'lsantini@cocucci.com.ar', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'img_user_default.png'),
+(48, 'lvanin', '31273831', 'Luis ', 'Vanin', 31273831, 'lvanin@cocucci.com.ar', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'img_user_default.png');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `usuarioperfil`
+--
+
+CREATE TABLE `usuarioperfil` (
+  `idUsuarioPerfil` int(5) NOT NULL,
+  `idUsuario` int(5) DEFAULT NULL,
+  `idPerfil` int(5) DEFAULT NULL,
+  `comentarioUsuarioPerfil` varchar(200) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `usuarioperfil`
+--
+
+INSERT INTO `usuarioperfil` (`idUsuarioPerfil`, `idUsuario`, `idPerfil`, `comentarioUsuarioPerfil`) VALUES
+(1, 10, 10, 'Caja'),
+(2, 26, 10, 'Caja'),
+(3, 40, 20, 'administrador de sistemas'),
+(4, 1, 1, 'Venta'),
+(5, 45, 18, 'Recepcion');
 
 --
 -- Índices para tablas volcadas
@@ -29331,7 +29512,14 @@ ALTER TABLE `turnohistorial`
 -- Indices de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  ADD PRIMARY KEY (`idUsuario`),
+  ADD PRIMARY KEY (`idUsuario`);
+
+--
+-- Indices de la tabla `usuarioperfil`
+--
+ALTER TABLE `usuarioperfil`
+  ADD PRIMARY KEY (`idUsuarioPerfil`),
+  ADD KEY `idUsuario` (`idUsuario`),
   ADD KEY `idPerfil` (`idPerfil`);
 
 --
@@ -29354,43 +29542,49 @@ ALTER TABLE `estadoturno`
 -- AUTO_INCREMENT de la tabla `operacion`
 --
 ALTER TABLE `operacion`
-  MODIFY `idOperacion` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `idOperacion` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 
 --
 -- AUTO_INCREMENT de la tabla `operacionperfil`
 --
 ALTER TABLE `operacionperfil`
-  MODIFY `idOpPerfil` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=191;
+  MODIFY `idOpPerfil` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=220;
 
 --
 -- AUTO_INCREMENT de la tabla `perfil`
 --
 ALTER TABLE `perfil`
-  MODIFY `idPerfil` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `idPerfil` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT de la tabla `sector`
 --
 ALTER TABLE `sector`
-  MODIFY `idSector` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `idSector` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `turno`
 --
 ALTER TABLE `turno`
-  MODIFY `idTurno` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4259;
+  MODIFY `idTurno` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4283;
 
 --
 -- AUTO_INCREMENT de la tabla `turnohistorial`
 --
 ALTER TABLE `turnohistorial`
-  MODIFY `idTurnoHistorial` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12147;
+  MODIFY `idTurnoHistorial` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12211;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
   MODIFY `idUsuario` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
+
+--
+-- AUTO_INCREMENT de la tabla `usuarioperfil`
+--
+ALTER TABLE `usuarioperfil`
+  MODIFY `idUsuarioPerfil` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Restricciones para tablas volcadas
@@ -29426,10 +29620,11 @@ ALTER TABLE `turnohistorial`
   ADD CONSTRAINT `turnohistorial_ibfk_3` FOREIGN KEY (`idUsuario`) REFERENCES `usuario` (`idUsuario`);
 
 --
--- Filtros para la tabla `usuario`
+-- Filtros para la tabla `usuarioperfil`
 --
-ALTER TABLE `usuario`
-  ADD CONSTRAINT `usuario_ibfk_1` FOREIGN KEY (`idPerfil`) REFERENCES `perfil` (`idPerfil`);
+ALTER TABLE `usuarioperfil`
+  ADD CONSTRAINT `usuarioperfil_ibfk_1` FOREIGN KEY (`idUsuario`) REFERENCES `usuario` (`idUsuario`),
+  ADD CONSTRAINT `usuarioperfil_ibfk_2` FOREIGN KEY (`idPerfil`) REFERENCES `perfil` (`idPerfil`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

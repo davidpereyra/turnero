@@ -139,7 +139,7 @@
         public function setImgUsuario($imgUser){
             $this->imgUsuario=$imgUser;
         }
-        
+/*--------------------------------------------------------------------------------------------------------------------------------------------------*/
         
         //Methods
         public function ValidarLogin($user, $pass, $puesto){
@@ -183,7 +183,7 @@
             }
         }
 
-/* --------------------------------------------------------------------------------------- */
+/*--------------------------------------------------------------------------------------------------------------------------------------------------*/
 
         public function VerificaPuesto($puesto){
             try{ 
@@ -198,7 +198,7 @@
         }
 
 
-/* --------------------------------------------------------------------------------------- */
+/*--------------------------------------------------------------------------------------------------------------------------------------------------*/
 
         public function UsuariosOnline(){
             try{ 
@@ -213,7 +213,7 @@
         }
 
 
-/* --------------------------------------------------------------------------------------- */
+/*--------------------------------------------------------------------------------------------------------------------------------------------------*/
 
         public function OnlineOff($user){
             try{ 
@@ -229,7 +229,7 @@
         }
 
 
-/* --------------------------------------------------------------------------------------- */
+/*--------------------------------------------------------------------------------------------------------------------------------------------------*/
 
         public function OnlineOn($user,$puesto){
             try{ 
@@ -243,7 +243,7 @@
                 die($e->getMessage());
             }
         }
-/* --------------------------------------------------------------------------------------- */
+/*--------------------------------------------------------------------------------------------------------------------------------------------------*/
 
 public function getUsuarioPorNombre($user_name){
     try{ 
@@ -258,7 +258,7 @@ public function getUsuarioPorNombre($user_name){
         die($e->getMessage());
     }
 }
-//---------------------------------------------------------------------------------------------------------------//
+/*--------------------------------------------------------------------------------------------------------------------------------------------------*/
         public function ListarUsuariosActivos(){
             try{
                 $consulta=$this->pdo->prepare("SELECT * FROM `usuario` 
@@ -274,9 +274,9 @@ public function getUsuarioPorNombre($user_name){
         }
 
 
-//---------------------------------------------------------------------------------------------------------------//
+/*--------------------------------------------------------------------------------------------------------------------------------------------------*/
     
-//---------------------------------------------------------------------------------------------------------------//
+/*--------------------------------------------------------------------------------------------------------------------------------------------------*/
         public function ListarUsuariosPaginados($iniciar,$operarios_por_pagina){
             try{
                 $consulta=$this->pdo->prepare("SELECT * FROM `usuario` 
@@ -294,47 +294,47 @@ public function getUsuarioPorNombre($user_name){
         }
 
 
-//---------------------------------------------------------------------------------------------------------------//
-    public function ActualizarUsuario(Usuario $user){
-        try{
-            $idUser = $user->getIdUsuario();
-            $nombreReal = $user->getNombreReal();
-            $apellidoReal = $user->getApellidoReal();
-            $dniUsuario = $user->getDniUsuario();
-            $correoUsuario = $user->getCorreoUsuario();                                            
-            $rolUsuario = $user->getRolUsuario();
-            $infoAdicional = $user->getInformacionAdicional();
-            $telefonoInterno = $user->getTelefonoInterno();
-            $telefonoPersonal = $user->getTelefonoPersonal();                                            
-            $telefonoEmergencia = $user->getTelefonoEmergencia();
-            $nombreContacto = $user->getNombreContacto();
-            $direccionEmergencia = $user->getDireccionEmergencia();      
-            $fechaNacimiento = $user->getFechaNacimiento();
-            //$imgUsuario = $user->getImgUsuario();
-                            
-            $update=$this->pdo->prepare("UPDATE `usuario` SET
-                                            `usuario`.`nombreReal` = '$nombreReal',
-                                            `usuario`.`apellidoReal` = '$apellidoReal',
-                                            `usuario`.`dniUsuario` = '$dniUsuario',
-                                            `usuario`.`correoUsuario` = '$correoUsuario',
-                                            `usuario`.`rolUsuario` = '$rolUsuario',
-                                            `usuario`.`telefonoInterno` = '$telefonoInterno',
-                                            `usuario`.`telefonoPersonal` = '$telefonoPersonal',
-                                            `usuario`.`telefonoEmergencia` = '$telefonoEmergencia',
-                                            `usuario`.`nombreContacto` = '$nombreContacto',
-                                            `usuario`.`direccionEmergencia` = '$direccionEmergencia',
-                                            `usuario`.`informacionAdicional` = '$infoAdicional',
-                                            `usuario`.`fechaNacimiento` = '$fechaNacimiento'                                            
-                                        WHERE `usuario`.`idUsuario` = $idUser;");
+/*--------------------------------------------------------------------------------------------------------------------------------------------------*/
+        public function ActualizarUsuario(Usuario $user){
+            try{
+                $idUser = $user->getIdUsuario();
+                $nombreReal = $user->getNombreReal();
+                $apellidoReal = $user->getApellidoReal();
+                $dniUsuario = $user->getDniUsuario();
+                $correoUsuario = $user->getCorreoUsuario();                                            
+                $rolUsuario = $user->getRolUsuario();
+                $infoAdicional = $user->getInformacionAdicional();
+                $telefonoInterno = $user->getTelefonoInterno();
+                $telefonoPersonal = $user->getTelefonoPersonal();                                            
+                $telefonoEmergencia = $user->getTelefonoEmergencia();
+                $nombreContacto = $user->getNombreContacto();
+                $direccionEmergencia = $user->getDireccionEmergencia();      
+                $fechaNacimiento = $user->getFechaNacimiento();
+                //$imgUsuario = $user->getImgUsuario();
+                                
+                $update=$this->pdo->prepare("UPDATE `usuario` SET
+                                                `usuario`.`nombreReal` = '$nombreReal',
+                                                `usuario`.`apellidoReal` = '$apellidoReal',
+                                                `usuario`.`dniUsuario` = '$dniUsuario',
+                                                `usuario`.`correoUsuario` = '$correoUsuario',
+                                                `usuario`.`rolUsuario` = '$rolUsuario',
+                                                `usuario`.`telefonoInterno` = '$telefonoInterno',
+                                                `usuario`.`telefonoPersonal` = '$telefonoPersonal',
+                                                `usuario`.`telefonoEmergencia` = '$telefonoEmergencia',
+                                                `usuario`.`nombreContacto` = '$nombreContacto',
+                                                `usuario`.`direccionEmergencia` = '$direccionEmergencia',
+                                                `usuario`.`informacionAdicional` = '$infoAdicional',
+                                                `usuario`.`fechaNacimiento` = '$fechaNacimiento'                                            
+                                            WHERE `usuario`.`idUsuario` = $idUser;");
 
-            $update->execute();            
+                $update->execute();            
 
-        }catch(Exception $e){
-            die($e->getMessage());
+            }catch(Exception $e){
+                die($e->getMessage());
+            }
         }
-    }
-    
-//---------------------------------------------------------------------------------------------------------------//
+        
+/*--------------------------------------------------------------------------------------------------------------------------------------------------*/
         public function ActualizarImagenUsuario(Usuario $user){
             try{
                 $idUser = $user->getIdUsuario();
@@ -351,7 +351,31 @@ public function getUsuarioPorNombre($user_name){
             }
         }
 
-//------------------------------------------------------------------------------------------------
+/*--------------------------------------------------------------------------------------------------------------------------------------------------*/
+        public function InsertarNuevoUsuario(Usuario $user){
+            try{
+                $consulta="INSERT INTO turno(idOperacion,idSector,nombreTurno,idCliente,comentarioTurno,priDiscapacidad,idTurnoAnterior) 
+                            VALUES(?,?,?,?,?,?,?);";
+                
+                $this->pdo->prepare($consulta)
+                        ->execute(array(
+                            $t->getIdOperacion(),
+                            //$t->getIdSector(),
+                            $idSector,
+                            $cant['total'],
+                            $t->getIdCliente(),
+                            $t->getComentario(),
+                            $t->getPrioridad(),
+                            $t->getIdTurnoAnterior(),
+                        ));
+                        
+                return $consulta->fetch(PDO::FETCH_OBJ);
+            
+            }catch(Exception $e){
+                die($e->getMessage());
+            }
+        }
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 }
 
 

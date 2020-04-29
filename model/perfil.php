@@ -31,7 +31,7 @@
             try{
                 $consulta=$this->pdo->prepare("SELECT * FROM `perfil`
                 INNER JOIN `usuarioperfil` ON `perfil`.`idPerfil` = `usuarioperfil`.`idPerfil`
-                WHERE `usuarioperfil`.`idUsuario` = '$idUsuario'");
+                WHERE `usuarioperfil`.`idUsuario` = $idUsuario;");
                 
                 $consulta->execute();                
 
@@ -41,8 +41,34 @@
                 die($e->getMessage());
             }
         }
-}
+
 
 //-----------------------------------------------------------------------------------------------------------------------
+
+        public function ConsultarPerfiles(){
+            try{
+                $consulta=$this->pdo->prepare("SELECT * FROM `perfil`;");
+                
+                $consulta->execute();                
+
+                return $consulta->fetchAll(PDO::FETCH_OBJ);
+            
+            }catch(Exception $e){
+                die($e->getMessage());
+            }
+        }
+     
+//-----------------------------------------------------------------------------------------------------------------------
+
+//-----------------------------------------------------------------------------------------------------------------------
+
+
+
+//-----------------------------------------------------------------------------------------------------------------------
+
+
+//-----------------------------------------------------------------------------------------------------------------------
+
+}
 
 ?>
