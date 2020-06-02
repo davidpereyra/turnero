@@ -24,15 +24,9 @@
         
         <tr>
             
-<<<<<<< HEAD
             <td><h2><img src="assets/img/icono_flecha_izq.png" width="100 px">  1 - 12</h2></td>
             <td><h2><img src="assets/img/icono_flecha_abajo.png" width="100 px">  13 - 18</h2></td>
             <td><h2>19 - 30  <img src="assets/img/icono_flecha_der.png" width="100 px"></h2></td>       
-=======
-            <td><h2><img src="assets/img/icono_flecha_izq.png" width="100 px">  1 - 11</h2></td>
-            <td><h2><img src="assets/img/icono_flecha_abajo.png" width="100 px">  12 - 15</h2></td>
-            <td><h2>16 - 30  <img src="assets/img/icono_flecha_der.png" width="100 px"></h2></td>       
->>>>>>> c5708a2f394470ddb33debc503ada18ff893169f
         </tr>
        
       </tbody>

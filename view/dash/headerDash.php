@@ -15,16 +15,12 @@
 
   <!-- Bootstrap core CSS -->
   <link href="assets/css/bootstrap.min.css" rel="stylesheet">
-<<<<<<< HEAD
   <!-- Bootstrap datatable CSS -->
   <link rel="stylesheet" type="text/css" href="assets/css/dataTables.bootstrap4.min.css">
-=======
->>>>>>> c5708a2f394470ddb33debc503ada18ff893169f
   <!--external css-->
   <link href="assets/lib/font-awesome/css/font-awesome.css" rel="stylesheet" />
   <link rel="stylesheet" type="text/css" href="assets/css/zabuto_calendar.css">
   <link rel="stylesheet" type="text/css" href="assets/lib/gritter/css/jquery.gritter.css" />
-<<<<<<< HEAD
 
 
   <!--external css para tiempo y archivos -->
@@ -39,24 +35,16 @@
 
   <!-- Custom styles for this template -->
   
-=======
-  <!-- Custom styles for this template -->
->>>>>>> c5708a2f394470ddb33debc503ada18ff893169f
   <link href="assets/css/style.css" rel="stylesheet">
   <link href="assets/css/style-responsive.css" rel="stylesheet">
   <script src="assets/lib/chart-master/Chart.js"></script>
 
-<<<<<<< HEAD
   <!-- Push notification -->
   <script src="assets/push.js/bin/push.min.js"></script>
 
 </head>
 
 
-=======
-</head>
-
->>>>>>> c5708a2f394470ddb33debc503ada18ff893169f
 <body>
 <?php
 
@@ -66,13 +54,8 @@
     header("location:?c=usuario&a=Login");	
     
   }else{
-<<<<<<< HEAD
     $usuario=$_SESSION["usuario"];
     $permisosUsuario = $_SESSION['permisoUsuario'];
     setcookie("session_cookie","valor de la cookie");
   }  
 
-=======
-    $usuario=  $_SESSION["usuario"];
-  }
->>>>>>> c5708a2f394470ddb33debc503ada18ff893169f

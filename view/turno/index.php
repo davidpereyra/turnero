@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="es">  
 <head>
@@ -36,9 +35,6 @@
 
 <div class="container">
     <script>
-=======
-<script>
->>>>>>> c5708a2f394470ddb33debc503ada18ff893169f
       function insert(num){
         document.form.dni.value = document.form.dni.value + num
       }
@@ -78,11 +74,7 @@
 
         <div class="col-lg-12 recuadroTecla">
             <div class="row">
-<<<<<<< HEAD
                 <form name="form" action="?c=inicio&a=SeleccionarPrioridad" method="post" class="col-lg-12">
-=======
-                <form name="form" action="?c=inicio&a=SeleccionarOp" method="post" class="col-lg-12">
->>>>>>> c5708a2f394470ddb33debc503ada18ff893169f
                     <br>
                     <div class="input-field ">
                       <input id="dni"name="dni" class="dni"  type="number" data-length="10"  min="1000000" max="999999999999" maxlength="10" required>

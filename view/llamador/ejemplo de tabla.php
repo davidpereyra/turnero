@@ -8,11 +8,8 @@
     <title>index 1</title>
 </head>
 <body>
-<<<<<<< HEAD
   
 <div class="container">
-=======
->>>>>>> c5708a2f394470ddb33debc503ada18ff893169f
     <?php ?>
 
     <table class="striped">

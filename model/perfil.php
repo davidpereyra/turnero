@@ -27,7 +27,6 @@
         }
 
 //Metodos
-<<<<<<< HEAD
         public function ConsultarPerfilUsuario($idUsuario){
             try{
                 $consulta=$this->pdo->prepare("SELECT * FROM `perfil`
@@ -37,23 +36,11 @@
                 $consulta->execute();                
 
                 return $consulta->fetch(PDO::FETCH_OBJ);
-=======
-        public function ConsultarPerfilUsuario($nombreUsuario){
-            try{
-                $consulta=$this->pdo->prepare("SELECT * FROM `perfil`
-                INNER JOIN `usuario` ON `perfil`.`idPerfil` = `usuario`.`idPerfil`
-                WHERE `usuario`.`nombreUsuario` = '$nombreUsuario'");
-                
-                $consulta->execute();                
-
-            return $consulta->fetch(PDO::FETCH_OBJ);
->>>>>>> c5708a2f394470ddb33debc503ada18ff893169f
             
             }catch(Exception $e){
                 die($e->getMessage());
             }
         }
-<<<<<<< HEAD
 
 
 //-----------------------------------------------------------------------------------------------------------------------
@@ -84,10 +71,4 @@
 
 }
 
-=======
-}
-
-//-----------------------------------------------------------------------------------------------------------------------
-
->>>>>>> c5708a2f394470ddb33debc503ada18ff893169f
 ?>

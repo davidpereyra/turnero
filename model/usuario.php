@@ -3,7 +3,6 @@
     class Usuario{
 
         private $pdo;
-<<<<<<< HEAD
         private $idUsuario;        
         private $nombreUsuario;
         private $passUsuario;
@@ -23,12 +22,6 @@
         private $fechaNacimiento;
         private $imgUsuario;
 
-=======
-        private $idUsuario;
-        private $idPerfil;
-        private $nombreUsuario;
-        private $passUsuario;
->>>>>>> c5708a2f394470ddb33debc503ada18ff893169f
 
         public function __CONSTRUCT(){
             $this->pdo = Database::Conectar();
@@ -38,19 +31,12 @@
         public function getIdUsuario() {
             return $this->idUsuario;
         }
-<<<<<<< HEAD
-=======
-        public function getIdPerfil() {
-            return $this->idPerfil;
-        }
->>>>>>> c5708a2f394470ddb33debc503ada18ff893169f
         public function getNombreUsuario() {
             return $this->nombreUsuario;
         }
         public function getPassUsuario() {
             return $this->passUsuario;
         }
-<<<<<<< HEAD
         public function getNombreReal() {
             return $this->nombreReal;
         }
@@ -98,25 +84,16 @@
         }
 
        
-=======
->>>>>>> c5708a2f394470ddb33debc503ada18ff893169f
          //Setters
         public function setIdUsuario($idUser){
             $this->idUsuario=$idUser;
         }
-<<<<<<< HEAD
-=======
-        public function setIdPerfil($idPer){
-            $this->idPerfil=$idPer;
-        }
->>>>>>> c5708a2f394470ddb33debc503ada18ff893169f
         public function setNombreUsuario($nombreUser){
             $this->nombreUsuario=$nombreUser;
         }
         public function setPassUsuario($passUser){
             $this->passUsuario=$passUser;
         }
-<<<<<<< HEAD
         public function setNombreReal($nombReal){
             $this->nombreReal=$nombReal;
         }
@@ -163,13 +140,10 @@
             $this->imgUsuario=$imgUser;
         }
 /*--------------------------------------------------------------------------------------------------------------------------------------------------*/
-=======
->>>>>>> c5708a2f394470ddb33debc503ada18ff893169f
         
         //Methods
         public function ValidarLogin($user, $pass, $puesto){
             try{ 
-<<<<<<< HEAD
 
                 $sentenciaPuesto="SELECT * FROM `usuario`
                                     WHERE `usuario`.`nroPuesto` = $puesto";
@@ -203,36 +177,12 @@
                     }     
                 
                 }
-=======
-                $consulta="SELECT * FROM USUARIO where NOMBREUSUARIO='$user' AND PASSUSUARIO='$pass'";
-                $login = $this->pdo->prepare($consulta);
-                $login->execute();   
-                
-                $numero_registro=$login->rowCount();
-
-                if($numero_registro!=0){
-
-                   /*$set_online=$this->pdo->prepare("UPDATE `usuario` 
-                                                    SET `usuario`.`online` = TRUE 
-                                                        WHERE `usuario`.`nombreUsuario` = '$user'");
-
-                    $set_online->execute();*/
-                    session_start();//inicia sesion
-                    //almacena usuario de la sesion
-                    $_SESSION["usuario"]=$user;
-                    $_SESSION["puesto"]=$puesto;
-                    $valor = True;
-                }else{
-                    $valor = False;
-                }                                                               
->>>>>>> c5708a2f394470ddb33debc503ada18ff893169f
                 return $valor;
             }catch(Exception $e){
                 die($e->getMessage());
             }
         }
 
-<<<<<<< HEAD
 /*--------------------------------------------------------------------------------------------------------------------------------------------------*/
 
         public function VerificaPuesto($puesto){
@@ -254,13 +204,6 @@
             try{ 
                 $userOnline=$this->pdo->prepare("SELECT * FROM `usuario` 
                                                 WHERE `usuario`.`online` = 1");
-=======
-/* --------------------------------------------------------------------------------------- */
-
-        public function UsuariosOnline(){
-            try{ 
-                $userOnline=$this->pdo->prepare("SELECT * FROM `usuario` WHERE `usuario`.`online` = 1");
->>>>>>> c5708a2f394470ddb33debc503ada18ff893169f
 
                 $userOnline->execute();
                 return $userOnline->fetchAll(PDO::FETCH_OBJ);
@@ -270,22 +213,13 @@
         }
 
 
-<<<<<<< HEAD
 /*--------------------------------------------------------------------------------------------------------------------------------------------------*/
-=======
-/* --------------------------------------------------------------------------------------- */
->>>>>>> c5708a2f394470ddb33debc503ada18ff893169f
 
         public function OnlineOff($user){
             try{ 
                 $set_ofline=$this->pdo->prepare("UPDATE `usuario` 
-<<<<<<< HEAD
                                                 SET `usuario`.`online` = 0, `usuario`.`nroPuesto` = NULL
                                                 WHERE `usuario`.`nombreUsuario` = '$user'");
-=======
-                                                            SET `usuario`.`online` = 0 
-                                                                WHERE `usuario`.`nombreUsuario` = '$user'");
->>>>>>> c5708a2f394470ddb33debc503ada18ff893169f
 
                 $set_ofline->execute();
             
@@ -295,7 +229,6 @@
         }
 
 
-<<<<<<< HEAD
 /*--------------------------------------------------------------------------------------------------------------------------------------------------*/
 
         public function OnlineOn($user,$puesto){
@@ -305,36 +238,17 @@
                                                 WHERE `usuario`.`nombreUsuario` = '$user'");
 
                 $set_online->execute();
-=======
-/* --------------------------------------------------------------------------------------- */
-
-        public function OnlineOn($user){
-            try{ 
-                $set_ofline=$this->pdo->prepare("UPDATE `usuario` 
-                                                            SET `usuario`.`online` = 1 
-                                                                WHERE `usuario`.`nombreUsuario` = '$user'");
-
-                $set_ofline->execute();
->>>>>>> c5708a2f394470ddb33debc503ada18ff893169f
             
             }catch(Exception $e){
                 die($e->getMessage());
             }
         }
-<<<<<<< HEAD
 /*--------------------------------------------------------------------------------------------------------------------------------------------------*/
 
 public function getUsuarioPorNombre($user_name){
     try{ 
         $get_user=$this->pdo->prepare("SELECT * FROM `usuario` 
                                         WHERE `usuario`.`nombreUsuario` = '$user_name';");
-=======
-/* --------------------------------------------------------------------------------------- */
-
-public function getUsuarioPorNombre($user_name){
-    try{ 
-        $get_user=$this->pdo->prepare("SELECT * FROM `usuario` WHERE `usuario`.`nombreUsuario` = '$user_name';");
->>>>>>> c5708a2f394470ddb33debc503ada18ff893169f
 
         $get_user->execute();
 
@@ -344,7 +258,6 @@ public function getUsuarioPorNombre($user_name){
         die($e->getMessage());
     }
 }
-<<<<<<< HEAD
 /*--------------------------------------------------------------------------------------------------------------------------------------------------*/
         public function ListarUsuariosActivos(){
             try{
@@ -463,10 +376,6 @@ public function getUsuarioPorNombre($user_name){
             }
         }
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-=======
-/* --------------------------------------------------------------------------------------- */
-
->>>>>>> c5708a2f394470ddb33debc503ada18ff893169f
 }
 
 

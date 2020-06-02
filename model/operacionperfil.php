@@ -6,11 +6,7 @@
         private $idOpPerfil;
         private $idPerfil;    
         private $idOperacion;
-<<<<<<< HEAD
         private $comentarioPerfil;    
-=======
-        private $comentario;    
->>>>>>> c5708a2f394470ddb33debc503ada18ff893169f
         private $operacionPrioridad; 
 
         public function __CONSTRUCT(){
@@ -27,13 +23,8 @@
         public function getIdOperacion() {
             return $this->idOperacion;
         }
-<<<<<<< HEAD
         public function getComentarioPerfil() {
             return $this->comentarioPerfil;
-=======
-        public function getComentario() {
-            return $this->comentario;
->>>>>>> c5708a2f394470ddb33debc503ada18ff893169f
         }
         public function getOperacionPrioridad() {
             return $this->operacionPrioridad;
@@ -49,13 +40,8 @@
         public function setIdOperacion(int $idOp){
             $this->idOperacion=$idOp;
         }
-<<<<<<< HEAD
         public function setComentarioPerfil(string $comentProfile){
             $this->comentarioPerfil=$comentProfile;
-=======
-        public function setComentario(string $ctario){
-            $this->comentario=$ctario;
->>>>>>> c5708a2f394470ddb33debc503ada18ff893169f
         }
         public function setOperacionPrioridad(string $opPri){
             $this->operacionPrioridad=$opPri;

@@ -1,4 +1,3 @@
-<<<<<<< HEAD
       
         </div>
         <!-- /row -->
@@ -7,8 +6,6 @@
       </section>
     </section>
     <!--main content end-->
-=======
->>>>>>> c5708a2f394470ddb33debc503ada18ff893169f
 
     <!--footer start-->
     <footer class="site-footer">
@@ -33,31 +30,20 @@
     </footer>
     <!--footer end-->
   </section>
-<<<<<<< HEAD
 
 
 
 
   <!-- js placed at the end of the document so the pages load faster -->
   <script src="assets/lib/jquery/jquery.min.js"></script>
-=======
-  <!-- js placed at the end of the document so the pages load faster -->
-  <script src="assets/lib/jquery/jquery.min.js"></script>
-
->>>>>>> c5708a2f394470ddb33debc503ada18ff893169f
   <script src="assets/lib/bootstrap/js/bootstrap.min.js"></script>
   <script class="include" type="text/javascript" src="assets/lib/jquery.dcjqaccordion.2.7.js"></script>
   <script src="assets/lib/jquery.scrollTo.min.js"></script>
   <script src="assets/lib/jquery.nicescroll.js" type="text/javascript"></script>
-<<<<<<< HEAD
-=======
-  <script src="assets/lib/jquery.sparkline.js"></script>
->>>>>>> c5708a2f394470ddb33debc503ada18ff893169f
   <!--common script for all pages-->
   <script src="assets/lib/common-scripts.js"></script>
   <script type="text/javascript" src="assets/lib/gritter/js/jquery.gritter.js"></script>
   <script type="text/javascript" src="assets/lib/gritter-conf.js"></script>
-<<<<<<< HEAD
   <!--script for this page calendar y archives up-->
   <script src="assets/lib/jquery-ui-1.9.2.custom.min.js"></script>
   <script type="text/javascript" src="assets/lib/bootstrap-timepicker/js/bootstrap-timepicker.js"></script>
@@ -87,6 +73,3 @@
 $(document).ready(function() {
     $('#turnos_id').DataTable();
 } );</script>
-=======
- 
->>>>>>> c5708a2f394470ddb33debc503ada18ff893169f

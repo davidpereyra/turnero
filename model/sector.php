@@ -5,14 +5,9 @@
         private $pdo;
         private $idSector;
         private $nombreSector;    
-<<<<<<< HEAD
         private $nomenclaturaSector;    
         private $visibleTotem;
         private $visibleWeb;
-=======
-        private $visible;
-        private $nomenclaturaSector;    
->>>>>>> c5708a2f394470ddb33debc503ada18ff893169f
 
         public function __CONSTRUCT(){
             $this->pdo = Database::Conectar();
@@ -31,7 +26,6 @@
         public function getNomenclaturaOperacion() {
             return $this->nomenclaturaOperacion;
         }
-<<<<<<< HEAD
         public function getVisibleTotem() {
             return $this->visibleTotem;
         }
@@ -61,25 +55,6 @@
 
 
 /* ----------------------------------------------------------------------------------------------------------------------*/
-=======
-
-         //Setters
-        public function setIdOperacion(int $idOpe){
-            $this->idOperacion=$idOp;
-        }
-        public function setIdSector(int $idSec){
-            $this->idSector=$idSec;
-        }
-        public function setNombreOperacion(string $nombreOp){
-            $this->nombreOperacion=$nombreOp;
-        }
-        public function setNomenclaturaOperacion(string $nomenclaturaOp){
-            $this->nomenclaturaOperacion=$nomenclaturaOp;
-        }
-
-
-
->>>>>>> c5708a2f394470ddb33debc503ada18ff893169f
         public function BuscarNomenclatura($idSec){
             try{
                 $consulta="SELECT (NOMENCLATURASECTOR) FROM SECTOR WHERE IDSECTOR=$idSec;";
@@ -93,7 +68,6 @@
                 die($e->getMessage());
             }
         }
-<<<<<<< HEAD
 /* ----------------------------------------------------------------------------------------------------------------------*/
         public function GetSectoresTotem(){
             try{
@@ -134,11 +108,6 @@
         }
 /* ----------------------------------------------------------------------------------------------------------------------*/
       
-=======
-
-
-
->>>>>>> c5708a2f394470ddb33debc503ada18ff893169f
 
     }
 

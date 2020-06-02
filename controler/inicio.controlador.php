@@ -3,11 +3,8 @@ require_once "model/turno.php";
 require_once "model/turnohistorial.php";
 require_once "model/cliente.php";
 require_once "model/sector.php";
-<<<<<<< HEAD
 require_once "model/operacion.php";
 require_once "model/usuario.php";
-=======
->>>>>>> c5708a2f394470ddb33debc503ada18ff893169f
 
 class InicioControlador{
     private $modelo;
@@ -20,7 +17,6 @@ class InicioControlador{
         require_once "view/menu.html";
     }
 
-<<<<<<< HEAD
     public function selectTurno(){        
         require_once "view/turno/index.php";
         require_once "view/footerturno.php";
@@ -97,47 +93,21 @@ $operarioPagina = $usuario -> ListarUsuariosPaginados($iniciar,$operarios_por_pa
     }
     
 
-=======
-    public function selectTurno(){
-        require_once "view/headturno.php";
-        require_once "view/turno/index.php";
-        require_once "view/footerturno.php";
-    }
-
-    public function SeleccionarOp(){
-      //cliente
-        
-        $dnicli = intval($_POST['dni']);
-        $cliente=new Cliente();
-        $dniValidado = $cliente->InsertarDniCliente($dnicli);
-        require_once "view/headturno.php";
-        require_once "view/turno/seleccionaroperacion.php";
-        require_once "view/footerturno.php";
-    }
-
->>>>>>> c5708a2f394470ddb33debc503ada18ff893169f
     public function GenerarTurno(){
         $cliente = new Cliente();
         $idOperacion = $_POST['idOperacion']; 
         $idSector = $_POST['idSector']; 
-<<<<<<< HEAD
         $dniCli = intval($_POST['dniValidado']);
         $idUsuario = intval($_POST['idUsuario']);        
         $prioridad = $_POST['priDiscapacidad']; 
         $clienteValidado = $cliente->ConsultarCliente($dniCli);
         $idCli = $clienteValidado->idCliente;
         
-=======
-        $dniCli = intval($_POST['dni']);        
-        
-        $idCli = $cliente->ConsultarId($dniCli);
->>>>>>> c5708a2f394470ddb33debc503ada18ff893169f
         //Turno
         $t=new Turno();
         $t->setIdTurno($_POST['idTurno']);
         $t->setIdOperacion($idOperacion);
         $t->setIdSector($idSector);
-<<<<<<< HEAD
         $t->setIdCliente($idCli);
         $t->setPrioridad($prioridad);               
         $uid = $this->modelo->InsertarTurno($t); //$uid es el idTurno        
@@ -151,22 +121,6 @@ $operarioPagina = $usuario -> ListarUsuariosPaginados($iniciar,$operarios_por_pa
         //Busca turno recien creado para imprimir en ticket
         $imprimir = $t->TurnoPorId($uid);
         //include "view/imprimir.php";
-=======
-        if($dniCli){
-            $t->setIdCliente($idCli);
-        }
-        $uid = $this->modelo->InsertarTurno($t); //$uid es el idTurno
-        
-        //turno historial
-        $thcreate=new TurnoHistorial();
-        $thcreate->CrearTurnoHistorial($uid,1);//creado es (_,1)
-
-        //Busca turno recien creado para imprimir en ticket
-
-        $imprimir = $t->TurnoPorId($uid);
-
-        include "view/imprimir.php";
->>>>>>> c5708a2f394470ddb33debc503ada18ff893169f
         
         header("location:../turnero/?c=inicio&a=selectTurno");
         
