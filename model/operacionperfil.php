@@ -6,7 +6,7 @@
         private $idOpPerfil;
         private $idPerfil;    
         private $idOperacion;
-        private $comentario;    
+        private $comentarioPerfil;    
         private $operacionPrioridad; 
 
         public function __CONSTRUCT(){
@@ -23,8 +23,8 @@
         public function getIdOperacion() {
             return $this->idOperacion;
         }
-        public function getComentario() {
-            return $this->comentario;
+        public function getComentarioPerfil() {
+            return $this->comentarioPerfil;
         }
         public function getOperacionPrioridad() {
             return $this->operacionPrioridad;
@@ -40,8 +40,8 @@
         public function setIdOperacion(int $idOp){
             $this->idOperacion=$idOp;
         }
-        public function setComentario(string $ctario){
-            $this->comentario=$ctario;
+        public function setComentarioPerfil(string $comentProfile){
+            $this->comentarioPerfil=$comentProfile;
         }
         public function setOperacionPrioridad(string $opPri){
             $this->operacionPrioridad=$opPri;

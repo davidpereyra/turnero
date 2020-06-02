@@ -12,9 +12,7 @@
     <!-- Wizard Style Css -->
 	  <link rel="stylesheet" href="assets/css/wizard.css"/>
 	
-    <!-- Font-->
-	  <link rel='stylesheet' href='assets/css/raleway-font.css'>
-	  <link rel="stylesheet" type="text/css" href="assets/fonts/wizard/css/material-design-iconic-font.min.css">
+ 
 	  <!--external css-->
     <link href="assets/lib/font-awesome/css/font-awesome.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">

@@ -4,7 +4,8 @@
 
         private $pdo;
         private $idEstadoTurno;
-        private $nombreEstadoTurno;    
+        private $nombreEstadoTurno;   
+        private $descripcionEstadoTurno; 
 
         public function __CONSTRUCT(){
             $this->pdo = Database::Conectar();
@@ -17,7 +18,12 @@
         public function getNombreEstadoTurno() {
             return $this->nombreEstadoTurno;
         }
-
+        public function getDescripcionEstadoTurno() {
+            return $this->descripcionEstadoTurno;
+        }
+        public function setDescripcionEstadoTurno($descTurno){
+            $this->descripcionEstadoTurno=$descTurno;
+        }
          //Setters
         public function setIdEstadoTurno(int $idEdoTurno){
             $this->idEstadoTurno=$idEdoTurno;

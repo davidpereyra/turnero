@@ -7,9 +7,9 @@
         private $dniCliente;
         private $razonSocialCliente;
         private $cuitCliente;
-        private $nombreCliente;
-        private $apellidoCliente;
         private $cuilCliente;
+        private $nombreCliente;
+        private $apellidoCliente;        
         private $mailCliente;
         private $telefono1Cliente;
         private $telefono2Cliente;
@@ -33,15 +33,15 @@
         public function getCuitCliente() {
             return $this->cuitCliente;
         }        
+        public function getCuilCliente() {
+            return $this->cuilCliente;
+        } 
         public function getNombreCliente() {
             return $this->nombreCliente;
         }
         public function getApellidoCliente() {
             return $this->apellidoCliente;
         }
-        public function getCuilCliente() {
-            return $this->cuilCliente;
-        } 
         public function getMailCliente() {
             return $this->mailCliente;
         }
@@ -69,14 +69,14 @@
         public function setCuitCliente($cuitCli){
             $this->cuitCliente=$cuitCli;
         }
+        public function setCuilCliente($cuilCli){
+            $this->cuilCliente=$cuilCli;
+        }
         public function setNombreCliente($nombreCli){
             $this->nombreCliente=$nombreCli;
         }
         public function setApellidoCliente($apellidoCli){
             $this->apellidoCliente=$apellidoCli;
-        }
-        public function setCuilCliente($cuilCli){
-            $this->cuilCliente=$cuilCli;
         }
         public function setMailCliente($mailCli){
             $this->mailCliente=$mailCli;
@@ -146,23 +146,72 @@
             }
         }
 // -----------------------------------------------------------------------------------------------------------------------------
-public function ConsultarCliente($dniCli){
-    try{
+        public function ConsultarCliente($dniCli){
+            try{
 
-        $consulta=$this->pdo->prepare("SELECT * FROM `cliente` 
-                                    WHERE `cliente`.`dniCliente` = $dniCli LIMIT 1;");            
-       
-        $consulta->execute();                
+                $consulta=$this->pdo->prepare("SELECT * FROM `cliente` 
+                                            WHERE `cliente`.`dniCliente` = $dniCli LIMIT 1;");            
+            
+                $consulta->execute();                
 
-        return $consulta->fetch(PDO::FETCH_OBJ);
-       
-    }catch(Exception $e){
-        die($e->getMessage());
-    }
-}
-
+                return $consulta->fetch(PDO::FETCH_OBJ);
+            
+            }catch(Exception $e){
+                die($e->getMessage());
+            }
+        }
 // -----------------------------------------------------------------------------------------------------------------------------
 
+        public function InsertarClienteNuevo(Cliente $cli){
+            try{                            
+                $consulta="INSERT INTO cliente(idCliente,dniCliente,razonSocialCliente,cuitCliente,cuilCliente,nombreCliente,apellidoCliente,mailCliente,telefono1Cliente,telefono2Cliente,comentarioCliente) VALUES(?,?,?,?,?,?,?,?,?,?,?);";                
+                $this->pdo->prepare($consulta)
+                        ->execute(array(
+                            $cli->getIdCliente(),
+                            $cli->getDniCliente(),
+                            $cli->getRazonSocialCliente(),
+                            $cli->getCuitCliente(),
+                            $cli->getCuilCliente(),
+                            $cli->getNombreCliente(),
+                            $cli->getApellidoCliente(),
+                            $cli->getMailCliente(),
+                            $cli->getTelefono1Cliente(),
+                            $cli->getTelefono2Cliente(),
+                            $cli->getComentarioCliente(),
+                        ));                          
+            }catch(Exception $e){
+                die($e->getMessage());
+            }
+        }
+// -----------------------------------------------------------------------------------------------------------------------------
+        public function InsertarRetornarCliente(Cliente $cli){
+            try{    
+                $dniCli = $cli->getDniCliente();                        
+                $consulta="INSERT INTO cliente(idCliente,dniCliente,razonSocialCliente,cuitCliente,cuilCliente,nombreCliente,apellidoCliente,mailCliente,telefono1Cliente,telefono2Cliente,comentarioCliente) VALUES(?,?,?,?,?,?,?,?,?,?,?);";                
+                $this->pdo->prepare($consulta)
+                        ->execute(array(
+                            $cli->getIdCliente(),
+                            $dniCli,
+                            $cli->getRazonSocialCliente(),
+                            $cli->getCuitCliente(),
+                            $cli->getCuilCliente(),
+                            $cli->getNombreCliente(),
+                            $cli->getApellidoCliente(),
+                            $cli->getMailCliente(),
+                            $cli->getTelefono1Cliente(),
+                            $cli->getTelefono2Cliente(),
+                            $cli->getComentarioCliente(),
+                        ));   
+                
+                $consultac=$this->pdo->prepare("SELECT * FROM `cliente` WHERE `cliente`.`dniCliente` = $dniCli LIMIT 1;");            
+                $consultac->execute();                   
+                return $consultac->fetch(PDO::FETCH_OBJ);
+                        
+            }catch(Exception $e){
+                die($e->getMessage());
+            }
+        }
+// -----------------------------------------------------------------------------------------------------------------------------
 
     }
 

@@ -27,23 +27,15 @@
 			            <h2>
 			            	<span class="step-icon"><i class="fa fa-user"></i></span>
 			            	<span class="step-number">Paso 1</span>
-			            	<span class="step-text">Términos</span>
+			            	<span class="step-text">Info</span>
 			            </h2>
 			            <section>
 			                <div class="inner">
 								<div class="form-row">
 									<div class="terminos">
-										<p>Al solicitar este turno:</p>
-										<p ALIGN="justify">Declaro que no tengo fiebre, tos, dolor de garganta, dificultad respiratoria
-										 ni ningún otro síntoma relacionado al Covid 19 (coronavirus) 
-										y que tampoco he viajado en el corto plazo a países con alta transmisión activa del mismo 
-										(zonas afectadas). Asimismo, entiendo que en tales casos es necesario seguir las recomendaciones
-										de las autoridades sanitarias, especialmente relacionadas a mantener el aislamiento con miras a 
-										evitar el contagio de esta enfermedad y proteger a las demás personas que pudieran asistir a la sucursal.
-										</p>
-										<p>
-										Además declaro tener conocimiento de la restricción de circulación según la terminación 
-										de tu Documento Nacional de Identidad.
+										
+										<p ALIGN="justify">
+                                            <?php echo $motivo;?>
 										</p>
 									
 									</div>
@@ -62,31 +54,31 @@
 								<div class="form-row">
 									<div class="form-holder form-holder-2">
 										<!-- <label for="nombre">Nombre*</label> -->
-										<input type="text" placeholder="Nombre" class="form-control" id="nombre" name="nombre" required>
+										<input type="text" placeholder="Nombre" class="form-control" id="nombre" name="nombre" value="<?php echo $nombreCliente;?>" required>
 									</div>
 								</div>
 								<div class="form-row">
 									<div class="form-holder form-holder-2">
 										<!-- <label for="apellido">Apellido*</label> -->
-										<input type="text" placeholder="Apellido" class="form-control" id="apellido" name="apellido" required>
+										<input type="text" placeholder="Apellido" class="form-control" id="apellido" name="apellido" value="<?php echo $apellidoCliente;?>" required>
 									</div>
 								</div>
 								<div class="form-row">
 									<div class="form-holder form-holder-2">
 										<!--  <label for="dni">DNI*</label> -->
-										<input type="number" placeholder="DNI" class="form-control" id="dni" name="dni" required>
+										<input type="number" placeholder="DNI" class="form-control" id="dni" name="dni" value="<?php echo $dniCliente;?>" required>
 									</div>
 								</div>
 								<div class="form-row">
 									<div class="form-holder form-holder-2">
 										<!-- <label for="email">Email*</label> -->
-										<input type="email" placeholder="email@dominio.com" class="form-control" id="email" name="email" required pattern="[^@]+@[^@]+.[a-zA-Z]{2,6}">
+										<input type="email" placeholder="email@dominio.com" class="form-control" id="email" name="email" value="<?php echo $emailCliente;?>" required pattern="[^@]+@[^@]+.[a-zA-Z]{2,6}">
 									</div>
 								</div>
 								<div class="form-row">
 									<div class="form-holder form-holder-2">
 										<!-- <label for="telefono">Teléfono*</label> -->
-										<input type="number" placeholder="Teléfono" class="form-control" id="telefono" name="telefono" required>
+										<input type="number" placeholder="Teléfono" class="form-control" id="telefono" name="telefono" value="<?php echo $telefonoCliente;?>" required>
 									</div>
 								</div>
 							</div>
@@ -139,7 +131,7 @@
 								<div class="form-row">
 									<div class="form-holder form-holder-2">
 										<!-- <label for="sector">Comentarios Adhicionales*</label> -->
-										<textarea class="form-control" id="comentario"  name="comentario" placeholder="Comentario adhisional." rows="3"></textarea>						
+										<textarea class="form-control" id="comentario"  name="comentario" placeholder="Comentario adhisional." rows="3" value="<?php echo $comentarioReserva;?>"></textarea>						
 									</div>
 								</div>									
 							</div>

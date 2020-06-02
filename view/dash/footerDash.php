@@ -34,7 +34,6 @@
 
 
 
-
   <!-- js placed at the end of the document so the pages load faster -->
   <script src="assets/lib/jquery/jquery.min.js"></script>
   <script src="assets/lib/bootstrap/js/bootstrap.min.js"></script>

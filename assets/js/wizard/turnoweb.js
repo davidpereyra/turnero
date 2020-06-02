@@ -1,12 +1,24 @@
 $(function(){
     $("#form-register").validate({
         rules: {
-            password : {
+            sector : {
                 required : true,
             },
-            confirm_password: {
-                equalTo: "#password"
-            }
+            operacion : {
+                required : true,
+            },           
+            operacions:{
+                required : true,
+            },
+            fecha : {
+                required : true,
+            },
+            dias : {
+                required : true,
+            },
+            hora : {
+                required : true,
+            },
         },
         messages: {
             nombre: {
@@ -15,22 +27,31 @@ $(function(){
             apellido: {
                 required: "Por favor ingrese su apellido."
             },
+            dni: {
+                required: "Por favor ingrese su DNI."
+            },
             telefono: {
                 required: "Por favor ingrese su telefono."
             },
-            username: {
-                required: "Por favor ingrese su usuario."
-            },
             email: {
-                required: "Por favor ingrese una direccion de correo válida."
+                required: "Por favor ingrese su email."
             },
-            password: {
-                required: "Please provide a password"
+            operacion: {
+                required: "Por favor seleccione una operacion."
             },
-            confirm_password: {
-                required: "Please provide a password",
-                equalTo: "Please enter the same password"
-            }
+            operacions: {
+                required: "Por favor seleccione una operacion."
+            },
+            sector: {
+                required: "Por favor seleccione un sector."
+            },
+            fecha: {
+                required: "Por favor seleccione una fecha."
+            },
+            hora: {
+                required: "Por favor seleccione una hora."
+            },
+           
         }
     });
     $("#form-total").steps({
@@ -42,34 +63,37 @@ $(function(){
         transitionEffectSpeed: 500,
         titleTemplate : '<div class="title">#title#</div>',
         labels: {
-            previous : 'Back',
+            previous : 'Volver',
             next : '<i class="fa fa-arrow-right"></i>',
             finish : '<i class="fa fa-arrow-right"></i>',
             current : ''
         },
         onStepChanging: function (event, currentIndex, newIndex) { 
             
-            var apellido = $('#apellido').val();
+            
             var nombre = $('#nombre').val();
-            var telefono = $('#telefono').val();
-            var username = $('#username').val();
-            var email = $('#email').val();
-            var cardtype = $('#card-type').val();
-            var cardnumber = $('#card-number').val();
-            var cvc = $('#cvc').val();
-            var month = $('#month').val();
-            var year = $('#year').val();
+            var apellido = $('#apellido').val();
+            var dni = $('#dni').val();
+            var telefono = $('#telefono').val();            
+            var email = $('#email').val();            
+            var sector = $('#sector').val();
+            var operacion = $('#operacion').val();
+            var operacions = $('#operacions').val();
+            var fecha = $('#fecha').val();
+            var hora = $('#hora').val();
+            var comentario = $('#comentario').val();
 
             $('#nombre-val').text(nombre);
             $('#apellido-val').text(apellido);
-            $('#telefono-val').text(telefono);
-            $('#username-val').text(username);
-            $('#email-val').text(email);
-            $('#card-type-val').text(cardtype);
-            $('#card-number-val').text(cardnumber);
-            $('#cvc-val').text(cvc);
-            $('#month-val').text(month);
-            $('#year-val').text(year);
+            $('#dni-val').text(dni);
+            $('#telefono-val').text(telefono);            
+            $('#email-val').text(email);            
+            $('#sector-val').text(sector);
+            $('#operacion-val').text(operacion);
+            $('#operacions-val').text(operacions);
+            $('#fecha-val').text(fecha);
+            $('#hora-val').text(hora);
+            $('#comentario-val').text(comentario);
 
             $("#form-register").validate().settings.ignore = ":disabled,:hidden";
             return $("#form-register").valid();

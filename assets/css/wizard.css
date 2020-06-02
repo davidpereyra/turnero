@@ -1,6 +1,14 @@
 body {
 	margin:  0;
 }
+
+/* color de texto area de comentario*/
+textarea#comentario::placeholder {
+	color: rgba(255,255,255,0.6);
+	font-size: 15px;
+}
+/* color de texto area de comentario*/
+
 .page-content {
 	width: 100%;
 	margin:  0 auto;
@@ -23,6 +31,10 @@ body {
 	-ms-background-size: cover;
 	-moz-background-size: cover;
 	-webkit-background-size: cover;
+}
+.terminos{
+	color: #fff !important;
+	font-size: 20px;
 }
 .wizard-v1-content   {
 	background: #fff;
@@ -181,7 +193,7 @@ body {
 	padding-bottom: 8px;
 }
 .form-register .content {
-	background: #359bfa;
+	background: #343A40;
 	border-radius: 5px;
 	-o-border-radius: 5px;
     -ms-border-radius: 5px;
@@ -225,7 +237,7 @@ body {
     width: 100%;
     padding: 13px 25px;
     border: none;
-    background: #2f8be0;
+    background: #67717d;/*#2f8be0;*/
     border-radius: 5px;
     -o-border-radius: 5px;
     -ms-border-radius: 5px;
@@ -263,12 +275,13 @@ body {
    font-size: 15px;
 }
 .inner .form-row .form-holder select {
-    background: #2f8be0 url('../images/wizard_v2_icon.png') no-repeat scroll;
+    background: #67717d url('../img/wizard_v2_icon.png') no-repeat scroll;
     background-position: right 16px center;
     z-index: 1;
     cursor: pointer;
     color: rgba(255,255,255,0.6);
-    position: relative;
+	position: relative;
+	min-height: 45px;
 }
 .inner .form-row .form-holder select option {
 	background: #fff;
@@ -309,7 +322,7 @@ body {
     padding: 24px 26px 31px;
     margin:  0;
     margin-bottom: 22px;
-    background: #2f8be0;
+    background: #67717d/*#2f8be0*/;
 }
 .inner .table-responsive .table {
 	width: 100%;
@@ -439,10 +452,15 @@ body {
 	}
 }
 @media screen and (max-width: 575px) {
+	.wizard-v1-content {
+		background: #fff;
+		width: 510px;
+	}
 	.wizard-v1-content .wizard-form {
 	    padding: 40px 20px;
 	    width: auto;
 	}
+	
 	.form-register .content {
 	    padding: 32px 30px 23px 30px;
 	}

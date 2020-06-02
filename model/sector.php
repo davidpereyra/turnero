@@ -5,8 +5,9 @@
         private $pdo;
         private $idSector;
         private $nombreSector;    
-        private $visible;
         private $nomenclaturaSector;    
+        private $visibleTotem;
+        private $visibleWeb;
 
         public function __CONSTRUCT(){
             $this->pdo = Database::Conectar();
@@ -25,19 +26,31 @@
         public function getNomenclaturaOperacion() {
             return $this->nomenclaturaOperacion;
         }
+        public function getVisibleTotem() {
+            return $this->visibleTotem;
+        }
+        public function getVisibleWeb() {
+            return $this->visibleWeb;
+        }
 
          //Setters
-        public function setIdOperacion(int $idOpe){
+        public function setIdOperacion($idOpe){
             $this->idOperacion=$idOp;
         }
-        public function setIdSector(int $idSec){
+        public function setIdSector($idSec){
             $this->idSector=$idSec;
         }
-        public function setNombreOperacion(string $nombreOp){
+        public function setNombreOperacion($nombreOp){
             $this->nombreOperacion=$nombreOp;
         }
-        public function setNomenclaturaOperacion(string $nomenclaturaOp){
+        public function setNomenclaturaOperacion($nomenclaturaOp){
             $this->nomenclaturaOperacion=$nomenclaturaOp;
+        }
+        public function setVisibleTotem($vtotem) {
+            $this->visibleTotem=$vtotem;
+        }
+        public function setVisibleWeb($vWeb) {
+            $this->visibleWeb=$vWeb;
         }
 
 
@@ -56,9 +69,9 @@
             }
         }
 /* ----------------------------------------------------------------------------------------------------------------------*/
-        public function GetSectores(){
+        public function GetSectoresTotem(){
             try{
-                $consulta=$this->pdo->prepare("SELECT * FROM `sector` WHERE `sector`.`visible` = TRUE;");                            
+                $consulta=$this->pdo->prepare("SELECT * FROM `sector` WHERE `sector`.`visibleTotem` = TRUE;");                            
                 $consulta->execute();     
                 return $consulta->fetchAll(PDO::FETCH_OBJ);
 
@@ -68,7 +81,33 @@
             }
         }
 /* ----------------------------------------------------------------------------------------------------------------------*/
+        public function GetSectoresWeb(){
+            try{
+                $consulta=$this->pdo->prepare("SELECT * FROM `sector` WHERE `sector`.`visibleWeb` = TRUE;");                            
+                $consulta->execute();     
+                return $consulta->fetchAll(PDO::FETCH_OBJ);
 
+            }
+            catch(Exception $e){
+                die($e->getMessage());
+            }
+        }
+/* ----------------------------------------------------------------------------------------------------------------------*/
+        public function BuscarSectorPorNombre($nombreSector){
+            try{
+                $consulta=$this->pdo->prepare("SELECT *FROM `sector`
+                            WHERE `sector`.`nombreSector` = '$nombreSector';");
+                
+                $consulta->execute();                
+                return $consulta->fetch(PDO::FETCH_OBJ);
+                $stmt->closeCursor();
+            }
+            catch(Exception $e){
+                die($e->getMessage());
+            }
+        }
+/* ----------------------------------------------------------------------------------------------------------------------*/
+      
 
     }
 

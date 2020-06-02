@@ -4,13 +4,13 @@
 
         private $pdo;
         private $idTurno;
-        private $nombreTurno;
-        private $prioridad;//priDiscapacidad en BD
-        private $comentario; //comentarioTurno en BD
         private $idOperacion;
         private $idSector;
         private $idCliente;
+        private $nombreTurno;
         private $box;
+        private $prioridad;//priDiscapacidad en BD
+        private $comentario; //comentarioTurno en BD        
         private $rellamado;
         private $idTurnoAnterior;
 
@@ -24,15 +24,6 @@
         public function getIdTurno(){
             return $this->idTurno;
         }
-        public function getNombreTurno(){
-            return $this->nombreTurno;
-        }
-        public function getPrioridad() {
-            return $this->prioridad;
-        }
-        public function getComentario(){
-            return $this->comentario;
-        }
         public function getIdOperacion(){
             return $this->idOperacion;
         }
@@ -42,9 +33,18 @@
         public function getIdCliente(){
             return $this->idCliente;
         }
+        public function getNombreTurno(){
+            return $this->nombreTurno;
+        }
         public function getBox(){
             return $this->box;
         }
+        public function getPrioridad() {
+            return $this->prioridad;
+        }
+        public function getComentario(){
+            return $this->comentario;
+        }        
         public function getRellamado(){
             return $this->rellamado;
         }

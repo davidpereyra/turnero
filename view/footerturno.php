@@ -15,7 +15,7 @@
 <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
 <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
 <script src="assets/js/wizard/jquery.steps.js"></script>
-<script src="assets/js/wizard/turnoweb.js">//antes era main.js</script>
+	<script src="assets/js/wizard/turnoweb.js">//antes era main.js</script>
 
 </body>
 </html>

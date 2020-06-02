@@ -43,7 +43,19 @@
      
 
 //// METODOS
+        public function getPerfilUsuarioPorIdUsuario($idUsuario){
+            try{
+                $consulta=$this->pdo->prepare("SELECT * FROM `usuarioperfil`                
+                WHERE `usuarioperfil`.`idUsuario` = $idUsuario;");
+                
+                $consulta->execute();                
 
+                return $consulta->fetch(PDO::FETCH_OBJ);
+            
+            }catch(Exception $e){
+                die($e->getMessage());
+            }
+}
 
 
 

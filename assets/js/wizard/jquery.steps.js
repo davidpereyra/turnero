@@ -823,6 +823,7 @@ function refreshPagination(wizard, options, state)
     {
         var finish = wizard.find(".actions a[href$='#finish']").parent(),
             next = wizard.find(".actions a[href$='#next']").parent();
+           
 
         if (!options.forceMoveForward)
         {
@@ -1804,7 +1805,7 @@ var defaults = $.fn.steps.defaults = {
      * @default true
      * @for defaults
      **/
-    enableFinishButton: true,
+    enableFinishButton: true, //mostrar boton finish finalizar original
 
     /**
      * Not yet implemented.
@@ -1936,7 +1937,9 @@ var defaults = $.fn.steps.defaults = {
      * @default function (event, currentIndex) { }
      * @for defaults
      **/
-    onFinished: function (event, currentIndex) { },
+    onFinished: function (event, currentIndex) {/* alert("Aca esta el finish indice: "+currentIndex)*/
+        $("#form-register").submit();
+    },
 
     /**
      * Fires after async content is loaded. 

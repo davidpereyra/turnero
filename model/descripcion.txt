@@ -1,0 +1,8 @@
+archivo clase parametros no esta en base da datos, 
+inicialmenete se utiliza para el calculo de funciones auxiliares como 
+fechas e intervalos - en un futuro se deberia de reacomodar
+
+en sql esta la clase password_reset para mas adelante usarla de auxiliar
+en el seteo de nuevos password de usuarios con un token
+
+rolUsuario en realidad ahora lo trae desde el nombre del perfil. ver de quitar

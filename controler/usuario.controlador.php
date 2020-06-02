@@ -6,8 +6,11 @@ require_once "model/cliente.php";
 require_once "model/operacion.php";
 require_once "model/operacionperfil.php";
 require_once "model/perfil.php";
+require_once "model/usuarioperfil.php";
 require_once "model/parametros.php";
-
+require_once "model/reserva.php";
+require_once "model/reservahistorial.php";
+require_once "model/reservaturno.php";
 
 
 
@@ -22,8 +25,7 @@ require_once "model/parametros.php";
                     GESTION DE SESION
 --------------------------------------------------------------------------------------------------------------*/
 
-        public function Login(){
-                     
+        public function Login(){                     
             require_once "view/headturno.php";
             require_once "view/dash/index.php";
             require_once "view/footerturno.php";
@@ -62,7 +64,6 @@ require_once "model/parametros.php";
                 $msg = "Puesto utilizado por usuario *".$otroUsuario;
                 //$valor = FALSE;
             }
-
             $valor = $claseUser->ValidarLogin($user, $pass, $puesto);
             if ($valor){
                 $claseUser->OnlineOn($user,$puesto); 
@@ -73,14 +74,12 @@ require_once "model/parametros.php";
                 $op=new Operacion();
                 $_SESSION['permisoUsuario'] = array();
                 $_SESSION['permisoUsuario'] = $op->ListarPermisosGestionUsuario($idUsuario);
-
                 header("location:?c=usuario&a=InicioDash");	                
             }else{
                 
                 header("location:?c=usuario&a=Login&msg=$msg");
                 die();
-            }
-                        
+            }                        
         }
 
 
@@ -88,49 +87,38 @@ require_once "model/parametros.php";
             $op=new Operacion();
             $t=new Turno();            
             $perfil = new Perfil();
-            $claseUser = new Usuario();
-
-            
+            $claseUser = new Usuario();            
             require_once "view/dash/headerDash.php";
             require_once "view/dash/head.php";            
-
             $usuario = $claseUser->getUsuarioPorNombre($_SESSION["usuario"]);
-            $idUsuario = $usuario->idUsuario;        
-            
+            $idUsuario = $usuario->idUsuario;                    
             $_SESSION['permisoUsuario'] = array();
-            $_SESSION['permisoUsuario'] = $op->ListarPermisosGestionUsuario($idUsuario);
-            
+            $_SESSION['permisoUsuario'] = $op->ListarPermisosGestionUsuario($idUsuario);            
             //$nombreUsuario = $usuario->nombreUsuario;
             $listadeturnos = $t->ListarTurnosUsuario($idUsuario);
             $listadeoperaciones = $op->ListarOperacionesPerfil($idUsuario);
-            $usuarioPerfil = $perfil -> ConsultarPerfilUsuario($idUsuario);   
-            
+            $usuarioPerfil = $perfil -> ConsultarPerfilUsuario($idUsuario);               
             $idPerfil = $usuarioPerfil->idPerfil;   
             require_once "view/dash/sidebarMenu.php";
             require_once "view/dash/atencion/contentdash.php";
-            if($idPerfil != 18){ //18 es el perfil de recepcion                                     
+            if($idPerfil != 11){ //11 es el perfil de recepcion                                     
                 require_once "view/dash/atencion/sidebarderecho1.php";                            
             }else{
                 require_once "view/dash/atencion/sidebarderecho_vacio.php";                             
             }
             require_once "view/dash/footerDash.php";
         }
-
-
         public function Logout(){
             $claseUser=new Usuario();
             $user = $_POST['nombreUsuario'];
-            $claseUser->OnlineOff($user); 
-            
+            $claseUser->OnlineOff($user);             
             session_start();
             session_destroy();
             header("location:?c=usuario&a=Login");
         }
-
 /* ---------------------------------------------------------------------------------------------------------------
                     GESTION DE TURNOS
 --------------------------------------------------------------------------------------------------------------*/
-
         public function Llamar(){
             require_once "view/dash/headerDash.php";
             require_once "view/dash/head.php";
@@ -155,11 +143,11 @@ require_once "model/parametros.php";
             $usuario = $claseUser->getUsuarioPorNombre($nombreUsuarioPost);
             $idUsuario = $usuario->idUsuario;
             $nombreUsuario = $usuario->nombreUsuario;
-            if($idOperacion == 15){//"Por orden"                
+            if($idOperacion == 10){//"Por orden"                
                 $siguiente= $turno->LlamarTurnoPorOrden($idUsuario);
-            }else if ($idOperacion == 18){//Discapacidad
+            }else if ($idOperacion == 13){//Discapacidad
                 $siguiente= $turno->LlamarTurnoDiscapacidad($idUsuario);
-            }else if ($idOperacion == 16){//Derivado
+            }else if ($idOperacion == 11){//Derivado
                 //$siguiente= $turno->LlamarTurnoConPrioridad($nombreUsuario);
                 $siguiente= $turno->LlamarTurnoDerivado($idUsuario);
             }else{                                
@@ -315,7 +303,7 @@ require_once "model/parametros.php";
             $idCli = $clienteValidado->idCliente;
             
             $operacion = new Operacion();
-            $Sector = $operacion ->BuscarSector(intval($idOperacion));
+            $Sector = $operacion ->BuscarOperacionPorId(intval($idOperacion));
             $idSector = $Sector->idSector;
             $prioridad =0;
 
@@ -333,7 +321,7 @@ require_once "model/parametros.php";
             //turno historial
             $uid = $turnoDerivado->idTurno;
             
-            $turnohistorial->CrearTurnoHistorial($uid,1);//creado es (_,1)
+            $turnohistorial->InsertarTurnoHistorial($uid,1);//creado es (_,1)
     
             //Busca turno recien creado para imprimir en ticket
     
@@ -367,7 +355,7 @@ require_once "model/parametros.php";
             $idCli = $clienteValidado->idCliente;
             
             $operacion = new Operacion();
-            $Sector = $operacion ->BuscarSector(intval(17));//el id de la atencion personalizada es 17 
+            $Sector = $operacion ->BuscarOperacionPorId(intval(17));//el id de la atencion personalizada es 17 
             $idSector = $Sector->idSector;
             $prioridad = 0;
             
@@ -386,7 +374,7 @@ require_once "model/parametros.php";
             //turno historial
             $uid = $turnoDerivado->idTurno;
             
-            $turnohistorial->CrearTurnoHistorialUsuario($uid,1,$idUsuarioSeleccionado);//creado es (_,1)
+            $turnohistorial->InsertarTurnoHistorialUsuario($uid,1,$idUsuarioSeleccionado);//creado es (_,1)
     
             //Busca turno recien creado para imprimir en ticket
     
@@ -760,16 +748,62 @@ require_once "model/parametros.php";
         }
 
 /* ---------------------------------------------------------------------------------------------------------------
-                    GESTION DE ...
+                    GESTION DE RESERVAS
 --------------------------------------------------------------------------------------------------------------*/
 
 
-
-
-
-
-
-
+        public function GestionarReservas(){    
+            require_once "view/dash/headerDash.php";
+            require_once "view/dash/head.php";
+            $claseUser=new Usuario();
+            $usuario = $claseUser->getUsuarioPorNombre($_SESSION['usuario']);
+            $usuarioPerfil = new UsuarioPerfil();
+            $usuarioPerfil = $usuarioPerfil ->getPerfilUsuarioPorIdUsuario($usuario->idUsuario);
+            $reserva = new Reserva();
+            $datosReserva = $reserva->ConsultarReservasClientePorEstado(1,$usuarioPerfil->idPerfil);//1 para las reservas creadas
+            require_once "view/dash/sidebarMenu.php";            
+            require_once "view/dash/reservas/gestionarReservas.php";                   
+            require_once "view/dash/footerDash.php";      
+        }
+        public function ConfirmarReservaTurno(){    
+            $idReserva = $_POST['idReserva'];
+            require_once "view/dash/headerDash.php";
+            require_once "view/dash/head.php";
+            $claseUser=new Usuario();
+            $usuario = $claseUser->getUsuarioPorNombre($_SESSION['usuario']);
+            $reserva = new Reserva();
+            $reserva = $reserva->GetReservaPorId($idReserva);                        
+            $turno = new Turno();
+            $turno->setIdOperacion($reserva->idOperacion);
+            $turno->setIdSector($reserva->idSector);
+            //$turno->setNombreTurno($nomT)
+            //$turno->setIdTurno($idTur)            
+            $turno->setComentario($reserva->comentarioReserva);
+            $turno->setIdCliente($reserva->idCliente);
+            $idTurno = $turno->InsertarTurno($turno);
+            $turnoHistorial = new TurnoHistorial();
+            $turnoHistorial = $turnoHistorial->InsertarTurnoHistorial($idTurno,1);//1 creado en turno historial 
+            #busca id res hist para actualizarlo 
+            $reservaHistorial = new ReservaHistorial();
+            $idUsuario = $usuario->idUsuario;
+            $reservaHistorial->ActualizarEstadoReservaConUsuario($idReserva,2,$idUsuario);
+            $reservaTurno = new ReservaTurno();
+            $reservaTurno->CrearReservaTurno($idReserva,$idTurno);
+            $reservaHistorial->CierraEstadoReserva($idReserva);
+            $reserva = new Reserva();
+            $datosReserva = $reserva->ConsultarReservasClientePorEstado(1);//visualiza las reservas creadas
+            $msg='Se ha generado el turno exitosamente!';                       
+            
+            $imprimir = $turno->TurnoPorId($idTurno);
+            //include "view/imprimir.php";
+            require_once "view/dash/sidebarMenu.php";
+            require_once "view/dash/reservas/gestionarReservas.php";                   
+            require_once "view/dash/footerDash.php";      
+        }
+        
+/* ---------------------------------------------------------------------------------------------------------------
+                    GESTION DE -
+--------------------------------------------------------------------------------------------------------------*/
 
 
 

@@ -46,7 +46,7 @@ class InicioControlador{
         $priDiscapacidad = $_POST['priDiscapacidad'];
         $dniValidado = intval($_POST['dniValidado']);
         $sector = new Sector();
-        $sectoresActivos = $sector->GetSectores();
+        $sectoresActivos = $sector->GetSectoresTotem();
         
         require_once "view/turno/seleccionar_sector.php";        
         require_once "view/footerturno.php";
@@ -109,23 +109,17 @@ $operarioPagina = $usuario -> ListarUsuariosPaginados($iniciar,$operarios_por_pa
         $t->setIdOperacion($idOperacion);
         $t->setIdSector($idSector);
         $t->setIdCliente($idCli);
-        $t->setPrioridad($prioridad);
-               
-        $uid = $this->modelo->InsertarTurno($t); //$uid es el idTurno
-        
+        $t->setPrioridad($prioridad);               
+        $uid = $this->modelo->InsertarTurno($t); //$uid es el idTurno        
         //turno historial
-        $thcreate=new TurnoHistorial();
-        
+        $thcreate=new TurnoHistorial();        
         if($idUsuario){
-            $thcreate->CrearTurnoHistorialUsuario($uid,1,$idUsuario);//creado es (_,1)
+            $thcreate->InsertarTurnoHistorialUsuario($uid,1,$idUsuario);//creado es (_,1)
         }else{
-            $thcreate->CrearTurnoHistorial($uid,1);//creado es (_,1)
+            $thcreate->InsertarTurnoHistorial($uid,1);//creado es (_,1)
         }
-
         //Busca turno recien creado para imprimir en ticket
-
         $imprimir = $t->TurnoPorId($uid);
-
         //include "view/imprimir.php";
         
         header("location:../turnero/?c=inicio&a=selectTurno");

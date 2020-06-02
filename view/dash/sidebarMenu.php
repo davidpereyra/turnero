@@ -51,7 +51,7 @@
 
           <?php 
           
-          foreach ($permisosUsuario as $key) {
+          foreach ($permisosUsuario as $key) {            
             if ($key->idOperacion == $key->idSubOperacion) {?>
                   
               <li class="sub-menu">

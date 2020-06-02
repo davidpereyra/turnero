@@ -1,7 +1,7 @@
 <?php
 require __DIR__ . '/../escpos-php/vendor/autoload.php';
 
-//<script src="/turnero/escpos-php/vendor/autoload.php"></script>
+
 use Mike42\Escpos\Printer;
 use Mike42\Escpos\EscposImage;
 use Mike42\Escpos\PrintConnectors\FilePrintConnector;
@@ -10,6 +10,12 @@ $nombre_impresora = "EPSON20";
 
 $connector = new WindowsPrintConnector($nombre_impresora);
 $printer = new Printer($connector);
+/*
+use Mike42\Escpos\PrintConnectors\NetworkPrintConnector;
+use Mike42\Escpos\Printer;
+$connector = new NetworkPrintConnector("192.168.0.110", 'ESDPRT001');
+$printer = new Printer($connector);
+*/
 
 echo 1;
 

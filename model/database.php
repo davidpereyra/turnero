@@ -3,7 +3,7 @@
 class Database{
     const servidor="127.0.0.1";
     const usuariobd = "root";
-    const pass = "";
+    const pass = "Sistemas2875";
     const nombrebd = "turnos";
 	
     //define('DB_CHARSET', 'utf8');
