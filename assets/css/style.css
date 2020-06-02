@@ -64,6 +64,7 @@
     width: 100%;
  }
  .b{color: #FFF;}
+<<<<<<< HEAD
 
 
  /* seleccion operacion */
@@ -72,6 +73,12 @@
      cursor:none !important;
      text-transform: uppercase;
      font-size: x-large;
+=======
+ /* seleccion operacion */
+ .botonOp{
+     height: 80px;  
+     cursor:none !important;
+>>>>>>> c5708a2f394470ddb33debc503ada18ff893169f
   }
 
   .recuadroTecla{
@@ -80,6 +87,7 @@
       background-color: rgba(82, 66, 66, 0.3);
       cursor:none !important;
   }
+<<<<<<< HEAD
 
 /* seleccion discapacidad */
 
@@ -88,6 +96,8 @@
     margin-left: -23px;
 }
 
+=======
+>>>>>>> c5708a2f394470ddb33debc503ada18ff893169f
   @media (min-width: 992px){
 .col-lg-12 {
     -ms-flex: 0 0 100%;
@@ -144,6 +154,7 @@
     float: ;
     
 }
+<<<<<<< HEAD
 
 
 /* BOTONES ATENCION PERSONALIZADA */
@@ -158,6 +169,8 @@
 
 
 
+=======
+>>>>>>> c5708a2f394470ddb33debc503ada18ff893169f
 /*SIDEBAR DERECHO DASHBOARD*/
 
 .btnFuncion{
@@ -239,7 +252,11 @@ a, a:hover, a:focus {
 /*Theme Backgrounds*/
 
 .bg-theme {
+<<<<<<< HEAD
 	background-color: #CF142B;
+=======
+	background-color: #4ECDC4;
+>>>>>>> c5708a2f394470ddb33debc503ada18ff893169f
 }
 
 .bg-theme02 {
@@ -247,7 +264,11 @@ a, a:hover, a:focus {
 }
 
 .bg-theme03 {
+<<<<<<< HEAD
   background-color: #CF142B;
+=======
+  background-color: #48cfad;
+>>>>>>> c5708a2f394470ddb33debc503ada18ff893169f
 }
 
 .bg-theme04 {
@@ -257,7 +278,11 @@ a, a:hover, a:focus {
 
 .btn-theme {
   color: #fff;
+<<<<<<< HEAD
   background-color: #CF142B;
+=======
+  background-color: #4ECDC4;
+>>>>>>> c5708a2f394470ddb33debc503ada18ff893169f
   border-color: #48bcb4;
 }
 .btn-theme:hover,
@@ -266,13 +291,22 @@ a, a:hover, a:focus {
 .btn-theme.active,
 .open .dropdown-toggle.btn-theme {
   color: #fff;
+<<<<<<< HEAD
   background-color: #CF142B;
   border-color: #CF142B;
+=======
+  background-color: #48bcb4;
+  border-color: #48bcb4;
+>>>>>>> c5708a2f394470ddb33debc503ada18ff893169f
 }
 
 .btn-theme02 {
   color: #fff;
+<<<<<<< HEAD
   background-color: #007BFF;
+=======
+  background-color: #ac92ec;
+>>>>>>> c5708a2f394470ddb33debc503ada18ff893169f
   border-color: #967adc;
 }
 .btn-theme02:hover,
@@ -281,14 +315,23 @@ a, a:hover, a:focus {
 .btn-theme02.active,
 .open .dropdown-toggle.btn-theme02 {
   color: #fff;
+<<<<<<< HEAD
   background-color: #0069D9;
+=======
+  background-color: #967adc;
+>>>>>>> c5708a2f394470ddb33debc503ada18ff893169f
   border-color: #967adc;
 }
 
 .btn-theme03 {
   color: #fff;
+<<<<<<< HEAD
   background-color: #CF142B;
   border-color: #CF142B;
+=======
+  background-color: #48cfad;
+  border-color: #37bc9b;
+>>>>>>> c5708a2f394470ddb33debc503ada18ff893169f
 }
 .btn-theme03:hover,
 .btn-theme03:focus,
@@ -296,8 +339,13 @@ a, a:hover, a:focus {
 .btn-theme03.active,
 .open .dropdown-toggle.btn-theme03 {
   color: #fff;
+<<<<<<< HEAD
   background-color: #CF142B;
   border-color: #CF142B;
+=======
+  background-color: #37bc9b;
+  border-color: #37bc9b;
+>>>>>>> c5708a2f394470ddb33debc503ada18ff893169f
 }
 
 .btn-theme04 {
@@ -368,11 +416,19 @@ hr {
 /*Exclusive Theme Colors Configuration*/
 
 .label-theme {
+<<<<<<< HEAD
 	background-color: #CF142B;
 }
 
 .bg-theme {
 	background-color: #CF142B;
+=======
+	background-color: #4ECDC4;
+}
+
+.bg-theme {
+	background-color: #4ECDC4;
+>>>>>>> c5708a2f394470ddb33debc503ada18ff893169f
 }
 
 ul.top-menu > li > .logout {
@@ -383,7 +439,11 @@ ul.top-menu > li > .logout {
 	border: 1px solid #64c3c2 !important;
 	padding: 5px 15px;
 	margin-right: 15px;
+<<<<<<< HEAD
 	background: #CF142B;
+=======
+	background: #4ECDC4;
+>>>>>>> c5708a2f394470ddb33debc503ada18ff893169f
 	margin-top: 15px;
 }
 
@@ -526,7 +586,11 @@ ul.sidebar-menu li a{
 }
 
 ul.sidebar-menu li a.active, ul.sidebar-menu li a:hover, ul.sidebar-menu li a:focus {
+<<<<<<< HEAD
     background: #dc3545;
+=======
+    background: #4ECDC4;
+>>>>>>> c5708a2f394470ddb33debc503ada18ff893169f
     color: #fff;
     display: block;
 
@@ -560,8 +624,11 @@ ul.sidebar-menu li a.active i {
 /* MAIN CONTENT CONFIGURATION */
 #main-content {
     margin-left: 210px;
+<<<<<<< HEAD
     min-height: 300px;
    
+=======
+>>>>>>> c5708a2f394470ddb33debc503ada18ff893169f
 }
 
 .header, .footer {
@@ -583,7 +650,11 @@ ul.sidebar-menu li a.active i {
 
 .wrapper {
     display: inline-block;
+<<<<<<< HEAD
     /*margin-top: 60px;*/
+=======
+    margin-top: 60px;
+>>>>>>> c5708a2f394470ddb33debc503ada18ff893169f
     padding-left: 15px;
     padding-right: 15px;
     padding-bottom: 15px;
@@ -2164,7 +2235,11 @@ ul li {
 }
 
 .lock-screen a:hover {
+<<<<<<< HEAD
 	color: #CF142B
+=======
+	color: #48cfad
+>>>>>>> c5708a2f394470ddb33debc503ada18ff893169f
 }
 
 .lock-screen i {
@@ -2199,11 +2274,19 @@ ul li {
 
 .profile-text h3 {
 	font-weight: 700;
+<<<<<<< HEAD
 	color: #CF142B;
 }
 
 .profile-text h4 {
 	color: #CF142B;
+=======
+	color: #48cfad;
+}
+
+.profile-text h4 {
+	color: #48cfad;
+>>>>>>> c5708a2f394470ddb33debc503ada18ff893169f
 }
 
 profile-text p {
@@ -2242,7 +2325,11 @@ profile-text p {
 	text-transform: uppercase;
 	border-bottom: 1px solid #e2e2e2;
 	font-weight: 700;
+<<<<<<< HEAD
 	color: #CF142B;
+=======
+	color: #48cfad;
+>>>>>>> c5708a2f394470ddb33debc503ada18ff893169f
 }
 
 ul.my-friends {
@@ -2306,7 +2393,11 @@ ul.my-friends li .friends-pic {
 
 /* INVOICE CONF */
 .well.green {
+<<<<<<< HEAD
 	background-color: #CF142B;
+=======
+	background-color: #48cfad;
+>>>>>>> c5708a2f394470ddb33debc503ada18ff893169f
 	color: #fff;
 	border: none;
 }
@@ -3485,7 +3576,11 @@ ul.chat-available-user li a:hover {
     background: #CF142B;
     color: #fff;
     padding: 15px 0;
+<<<<<<< HEAD
     /*margin-top: 30% !important;*/
+=======
+    margin-top: 30% !important;
+>>>>>>> c5708a2f394470ddb33debc503ada18ff893169f
 }
 
 .site-footer p {

@@ -7,7 +7,11 @@ require_once "model/turno.php";
     
         }
 
+<<<<<<< HEAD
         public function Inicio(){//no se usa
+=======
+        public function Inicio(){
+>>>>>>> c5708a2f394470ddb33debc503ada18ff893169f
             
             require_once "view/headturno.php";
             require_once "view/llamador/ejemplo de tabla.php";
@@ -29,7 +33,43 @@ require_once "model/turno.php";
             
         }
 
+<<<<<<< HEAD
 //-----------------------------------------------------------------------------------------------------------//
+=======
+
+
+        public function test(){            
+            require_once "view/headturno.php";
+            //require_once "view/llamador/called.php";
+
+           
+
+            
+            $UltimoLlamado = $this->modelo->MostrarUltimoLlamado();
+            if ($UltimoLlamado){
+                echo $UltimoLlamado->idTurno . "<br>";
+            }else {
+                
+                echo "no hay algo";
+            }
+
+
+
+
+
+            foreach($this->modelo->ListarTurnosLlamados() as $listarTurnos):
+                
+                echo "TURNO " .$listarTurnos->nomenclaturaSector . $listarTurnos->nomenclaturaOperacion ." ". $listarTurnos->nombreTurno ."<br>";
+                echo "BOX " .$listarTurnos->box;
+                
+            endforeach;
+
+            require_once "view/footerturno.php";
+        }
+
+        
+
+>>>>>>> c5708a2f394470ddb33debc503ada18ff893169f
         
     }
 

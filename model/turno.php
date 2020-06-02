@@ -4,6 +4,7 @@
 
         private $pdo;
         private $idTurno;
+<<<<<<< HEAD
         private $idOperacion;
         private $idSector;
         private $idCliente;
@@ -11,6 +12,15 @@
         private $box;
         private $prioridad;//priDiscapacidad en BD
         private $comentario; //comentarioTurno en BD        
+=======
+        private $nombreTurno;
+        private $prioridad;//priDiscapacidad en BD
+        private $comentario; //comentarioTurno en BD
+        private $idOperacion;
+        private $idSector;
+        private $idCliente;
+        private $box;
+>>>>>>> c5708a2f394470ddb33debc503ada18ff893169f
         private $rellamado;
         private $idTurnoAnterior;
 
@@ -24,6 +34,18 @@
         public function getIdTurno(){
             return $this->idTurno;
         }
+<<<<<<< HEAD
+=======
+        public function getNombreTurno(){
+            return $this->nombreTurno;
+        }
+        public function getPrioridad() {
+            return $this->prioridad;
+        }
+        public function getComentario(){
+            return $this->comentario;
+        }
+>>>>>>> c5708a2f394470ddb33debc503ada18ff893169f
         public function getIdOperacion(){
             return $this->idOperacion;
         }
@@ -33,6 +55,7 @@
         public function getIdCliente(){
             return $this->idCliente;
         }
+<<<<<<< HEAD
         public function getNombreTurno(){
             return $this->nombreTurno;
         }
@@ -45,6 +68,11 @@
         public function getComentario(){
             return $this->comentario;
         }        
+=======
+        public function getBox(){
+            return $this->box;
+        }
+>>>>>>> c5708a2f394470ddb33debc503ada18ff893169f
         public function getRellamado(){
             return $this->rellamado;
         }
@@ -84,7 +112,15 @@
             $this->idTurnoAnterior=$idAnterior;
         }
  
+<<<<<<< HEAD
 //   METODOS
+=======
+
+
+
+
+
+>>>>>>> c5708a2f394470ddb33debc503ada18ff893169f
 
         public function TurnoSinBaja(){
             try{
@@ -136,13 +172,19 @@
             try{
                 //numero de turnos por sector
                 $idSector = $t->getIdSector();
+<<<<<<< HEAD
                 $idOperacion = $t->getIdOperacion();
+=======
+>>>>>>> c5708a2f394470ddb33debc503ada18ff893169f
 
                 $sqlDeHoy = "SELECT COUNT(*) AS total FROM `turno` 
                                 INNER JOIN `turnohistorial` ON `turno`.`idTurno`=`turnohistorial`.`idTurno` 
                                     WHERE `turno`.`idSector` = $idSector
                                     AND `turnohistorial`.`idEstadoTurno` = 1
+<<<<<<< HEAD
                                     AND `turno`.`idOperacion` = $idOperacion
+=======
+>>>>>>> c5708a2f394470ddb33debc503ada18ff893169f
                                         AND  `turnohistorial`.`fechaAlta`>= CAST((NOW()) AS DATE) 
                                             AND `turnohistorial`.`fechaAlta` < CAST((NOW() + INTERVAL 1 DAY) AS DATE);";
                 $turnosDeHoy=$this->pdo->prepare($sqlDeHoy);
@@ -150,7 +192,11 @@
                 $cant = $turnosDeHoy->fetch(PDO::FETCH_ASSOC);
 
 
+<<<<<<< HEAD
                 $consulta="INSERT INTO turno(idOperacion,idSector,nombreTurno,idCliente,comentarioTurno,priDiscapacidad) VALUES(?,?,?,?,?,?);";
+=======
+                $consulta="INSERT INTO turno(idOperacion,idSector,nombreTurno,idCliente,comentarioTurno) VALUES(?,?,?,?,?);";
+>>>>>>> c5708a2f394470ddb33debc503ada18ff893169f
                 //$consulta="INSERT INTO turno(idOperacion,idSector,nombreTurno) VALUES(?,?,?);";
                 $this->pdo->prepare($consulta)
                         ->execute(array(
@@ -160,7 +206,10 @@
                             $cant['total'],
                             $t->getIdCliente(),
                             $t->getComentario(),
+<<<<<<< HEAD
                             $t->getPrioridad(),
+=======
+>>>>>>> c5708a2f394470ddb33debc503ada18ff893169f
                         ));
               
 
@@ -180,6 +229,7 @@
 
 
 //-------------------------------------------------------------
+<<<<<<< HEAD
         public function InsertarTurnoDerivado(Turno $t, $nombreUsuario){
             try{
                 //numero de turnos por sector
@@ -230,6 +280,54 @@
                 die($e->getMessage());
             }
         }
+=======
+public function InsertarTurnoDerivado(Turno $t, $nombreUsuario){
+    try{
+        //numero de turnos por sector
+        $idSector = $t->getIdSector();
+
+        $sqlDeHoy = "SELECT COUNT(*) AS total FROM `turno` 
+                        INNER JOIN `turnohistorial` ON `turno`.`idTurno`=`turnohistorial`.`idTurno` 
+                            WHERE `turno`.`idSector` = $idSector
+                            AND `turnohistorial`.`idEstadoTurno` = 1
+                                AND  `turnohistorial`.`fechaAlta`>= CAST((NOW()) AS DATE) 
+                                    AND `turnohistorial`.`fechaAlta` < CAST((NOW() + INTERVAL 1 DAY) AS DATE);";
+        $turnosDeHoy=$this->pdo->prepare($sqlDeHoy);
+        $turnosDeHoy->execute();
+        $cant = $turnosDeHoy->fetch(PDO::FETCH_ASSOC);
+
+
+        $consulta="INSERT INTO turno(idOperacion,idSector,nombreTurno,idCliente,comentarioTurno,priDiscapacidad,idTurnoAnterior) VALUES(?,?,?,?,?,?,?);";
+        
+        $this->pdo->prepare($consulta)
+                ->execute(array(
+                    $t->getIdOperacion(),
+                    //$t->getIdSector(),
+                    $idSector,
+                    $cant['total'],
+                    $t->getIdCliente(),
+                    $t->getComentario(),
+                    $t->getPrioridad(),
+                    $t->getIdTurnoAnterior(),
+                ));
+      
+
+        $ultimoId=$this->pdo->prepare("SELECT * FROM `turno`
+        INNER JOIN `operacion` ON `turno`.`idOperacion` = `operacion`.`idOperacion`
+        INNER JOIN `sector` ON `turno`.`idSector` = `sector`.`idSector`
+        INNER JOIN `operacionperfil` ON `operacionperfil`.`idOperacion` = `operacion`.`idOperacion`
+        INNER JOIN `usuario` ON `operacionperfil`.`idPerfil` = `usuario`.`idPerfil`
+        ORDER BY idTurno DESC LIMIT 1");
+        $ultimoId->execute();
+
+        
+        return $ultimoId->fetch(PDO::FETCH_OBJ);
+       
+    }catch(Exception $e){
+        die($e->getMessage());
+    }
+}
+>>>>>>> c5708a2f394470ddb33debc503ada18ff893169f
 
 //-----------------------------------------------------------------------------------------------------------------------
         public function LlamarTurnoOperacion($nombreUsuario,$opPri){
@@ -259,6 +357,7 @@
         }
 
 //-----------------------------------------------------------------------------------------------------------------------
+<<<<<<< HEAD
 public function LlamarTurnoPorOrden($idUsuario){
     try{
        
@@ -276,6 +375,23 @@ public function LlamarTurnoPorOrden($idUsuario){
                                     AND  `turnohistorial`.`fechaAlta`>= CAST((NOW()) AS DATE) 
                                     AND `turnohistorial`.`fechaAlta`  < CAST((NOW() + INTERVAL 1 DAY) AS DATE)
                                         ORDER BY `turnohistorial`.`fechaAlta` ASC LIMIT 1;");
+=======
+public function LlamarTurnoPorOrden($nombreUsuario){
+    try{
+        $consulta=$this->pdo->prepare("SELECT * FROM `turno` 
+                            INNER JOIN `turnohistorial` ON `turno`.`idTurno`=`turnohistorial`.`idTurno`
+                            INNER JOIN `operacion` ON `operacion`.`idOperacion` = `turno`.`idOperacion`
+                            INNER JOIN `operacionperfil` ON `operacion`.`idOperacion`=`operacionperfil`.`idOperacion`
+                            INNER JOIN `sector` ON `turno`.`idSector` = `sector`.`idSector`
+                            INNER JOIN `usuario` ON `usuario`.`nombreUsuario`= '$nombreUsuario'
+                            INNER JOIN `cliente` ON `cliente`.`idCliente`= `turno`.`idCliente`
+                                WHERE `operacionperfil`.`idPerfil`=`usuario`.`idPerfil`   
+                                AND `turnohistorial`.`idEstadoTurno`=1  
+                                AND `turnohistorial`.`fechaBaja` IS NULL
+                                AND  `turnohistorial`.`fechaAlta`>= CAST((NOW()) AS DATE) 
+                                AND `turnohistorial`.`fechaAlta`  < CAST((NOW() + INTERVAL 1 DAY) AS DATE) 
+                                ORDER BY `turnohistorial`.`fechaAlta` ASC LIMIT 1;");
+>>>>>>> c5708a2f394470ddb33debc503ada18ff893169f
         
         $consulta->execute();                
 
@@ -296,8 +412,12 @@ public function LlamarTurnoConPrioridad($nombreUsuario){
         INNER JOIN `sector` ON `turno`.`idSector` = `sector`.`idSector`
         INNER JOIN `usuario` ON `usuario`.`nombreUsuario`= '$nombreUsuario'
         INNER JOIN `cliente` ON `cliente`.`idCliente`= `turno`.`idCliente`
+<<<<<<< HEAD
             WHERE `operacionperfil`.`idPerfil`=`usuario`.`idPerfil` 
             AND (`turnohistorial`.`idUsuario` =22 OR `turnohistorial`.`idUsuario` IS NULL)  
+=======
+            WHERE `operacionperfil`.`idPerfil`=`usuario`.`idPerfil`   
+>>>>>>> c5708a2f394470ddb33debc503ada18ff893169f
             AND `turno`.`priDiscapacidad` = 1
             AND `turnohistorial`.`idEstadoTurno`=1  
             AND `turnohistorial`.`fechaBaja` IS NULL
@@ -314,6 +434,7 @@ public function LlamarTurnoConPrioridad($nombreUsuario){
         die($e->getMessage());
     }
 }
+<<<<<<< HEAD
 
 
 //-----------------------------------------------------------------------------------------------------------------------
@@ -412,6 +533,8 @@ public function LlamarTurno($idUsuario,$idOperacion){
 }
 
 
+=======
+>>>>>>> c5708a2f394470ddb33debc503ada18ff893169f
 // -----------------------------------------------------------------------------------------------------------------------------
         public function InsertarBox($idTur, $nroBox){
             try{
@@ -544,6 +667,7 @@ public function DejarDeLlamar($idTur){
 
 // -----------------------------------------------------------------------------------------------------------------------------
 
+<<<<<<< HEAD
 public function ListarTurnosUsuario($idUsuario){
     try{
         $consulta=$this->pdo->prepare("SELECT * FROM `turno` 
@@ -563,6 +687,21 @@ public function ListarTurnosUsuario($idUsuario){
                     AND  `turnohistorial`.`fechaAlta`>= CAST((NOW()) AS DATE) 
                     AND `turnohistorial`.`fechaAlta`  < CAST((NOW() + INTERVAL 1 DAY) AS DATE)
                 ORDER BY `turnohistorial`.`fechaAlta` ASC;");
+=======
+public function ListarTurnosSector($nombreUsuario){
+    try{
+        $consulta=$this->pdo->prepare("SELECT * FROM `turno` 
+        INNER JOIN `turnohistorial` ON `turno`.`idTurno`=`turnohistorial`.`idTurno`
+            INNER JOIN `operacion` ON `operacion`.`idOperacion` = `turno`.`idOperacion`
+                INNER JOIN `operacionperfil` ON `operacion`.`idOperacion`=`operacionperfil`.`idOperacion`
+                    INNER JOIN `sector` ON `sector`.`idSector`=`turno`.`idSector`
+                        INNER JOIN `cliente` ON `turno`.`idCliente`=`cliente`.`idCliente`
+                            INNER JOIN `usuario` ON `usuario`.`nombreUsuario`='$nombreUsuario'
+                                WHERE `operacionperfil`.`idPerfil`=`usuario`.`idPerfil` AND `turnohistorial`.`idEstadoTurno`=1  AND `turnohistorial`.`fechaBaja` IS NULL
+                                    AND  `turnohistorial`.`fechaAlta`>= CAST((NOW()) AS DATE) 
+                                        AND `turnohistorial`.`fechaAlta`  < CAST((NOW() + INTERVAL 1 DAY) AS DATE)
+                                            ORDER BY `turnohistorial`.`fechaAlta` ASC;");
+>>>>>>> c5708a2f394470ddb33debc503ada18ff893169f
         
         $consulta->execute();
         
@@ -624,9 +763,17 @@ public function MostrarUltimoLlamado(){
         $consulta=$this->pdo->prepare("SELECT * FROM `turno` 
         INNER JOIN `turnohistorial` ON `turno`.`idTurno`=`turnohistorial`.`idTurno`
         INNER JOIN `operacion` ON `operacion`.`idOperacion` = `turno`.`idOperacion`
+<<<<<<< HEAD
         INNER JOIN `sector` ON `turno`.`idSector` = `sector`.`idSector`
         INNER JOIN `usuario` ON `turnohistorial`.`idUsuario` = `usuario`.`idUsuario`
             WHERE `usuario`.`idUsuario` IS NOT NULL
+=======
+        INNER JOIN `operacionperfil` ON `operacion`.`idOperacion`=`operacionperfil`.`idOperacion`
+        INNER JOIN `sector` ON `turno`.`idSector` = `sector`.`idSector`
+        INNER JOIN `usuario` ON `usuario`.`nombreUsuario` IS NOT NULL
+        INNER JOIN `cliente` ON `cliente`.`idCliente`= `turno`.`idCliente`
+            WHERE `operacionperfil`.`idPerfil`=`usuario`.`idPerfil`   
+>>>>>>> c5708a2f394470ddb33debc503ada18ff893169f
             AND (`turno`.`rellamado` IS TRUE)
             AND `turno`.`box` IS NOT NULL
             AND `turnohistorial`.`idEstadoTurno`=2 
@@ -659,6 +806,7 @@ public function buscarRellamado(){
                                     ORDER BY `turno`.`idTurno` DESC LIMIT 5;");
         
         $consulta->execute();
+<<<<<<< HEAD
       
         return $consulta->fetchAll(PDO::FETCH_OBJ);
     }catch(Exception $e){
@@ -712,6 +860,8 @@ public function ListarHistoricoPerfil($idPerfil,$fechaDesde,$fechaHasta){
             ORDER BY `turnohistorial`.`idTurno` DESC");
         
         $consulta->execute();
+=======
+>>>>>>> c5708a2f394470ddb33debc503ada18ff893169f
         
         return $consulta->fetchAll(PDO::FETCH_OBJ);
     }catch(Exception $e){
@@ -720,6 +870,7 @@ public function ListarHistoricoPerfil($idPerfil,$fechaDesde,$fechaHasta){
 }
 
 // -----------------------------------------------------------------------------------------------------------------------------
+<<<<<<< HEAD
 // ESTADISTICAS 
 
 // -----------------------------------------------------------------------------------------------------------------------------
@@ -764,6 +915,8 @@ public function ContarTurnosPerfil($idEstadoTurno,$fechaDesde,$fechaHasta){
 }
 
 // -----------------------------------------------------------------------------------------------------------------------------
+=======
+>>>>>>> c5708a2f394470ddb33debc503ada18ff893169f
 
 
 }

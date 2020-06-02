@@ -7,9 +7,15 @@
         private $dniCliente;
         private $razonSocialCliente;
         private $cuitCliente;
+<<<<<<< HEAD
         private $cuilCliente;
         private $nombreCliente;
         private $apellidoCliente;        
+=======
+        private $nombreCliente;
+        private $apellidoCliente;
+        private $cuilCliente;
+>>>>>>> c5708a2f394470ddb33debc503ada18ff893169f
         private $mailCliente;
         private $telefono1Cliente;
         private $telefono2Cliente;
@@ -33,15 +39,24 @@
         public function getCuitCliente() {
             return $this->cuitCliente;
         }        
+<<<<<<< HEAD
         public function getCuilCliente() {
             return $this->cuilCliente;
         } 
+=======
+>>>>>>> c5708a2f394470ddb33debc503ada18ff893169f
         public function getNombreCliente() {
             return $this->nombreCliente;
         }
         public function getApellidoCliente() {
             return $this->apellidoCliente;
         }
+<<<<<<< HEAD
+=======
+        public function getCuilCliente() {
+            return $this->cuilCliente;
+        } 
+>>>>>>> c5708a2f394470ddb33debc503ada18ff893169f
         public function getMailCliente() {
             return $this->mailCliente;
         }
@@ -69,15 +84,24 @@
         public function setCuitCliente($cuitCli){
             $this->cuitCliente=$cuitCli;
         }
+<<<<<<< HEAD
         public function setCuilCliente($cuilCli){
             $this->cuilCliente=$cuilCli;
         }
+=======
+>>>>>>> c5708a2f394470ddb33debc503ada18ff893169f
         public function setNombreCliente($nombreCli){
             $this->nombreCliente=$nombreCli;
         }
         public function setApellidoCliente($apellidoCli){
             $this->apellidoCliente=$apellidoCli;
         }
+<<<<<<< HEAD
+=======
+        public function setCuilCliente($cuilCli){
+            $this->cuilCliente=$cuilCli;
+        }
+>>>>>>> c5708a2f394470ddb33debc503ada18ff893169f
         public function setMailCliente($mailCli){
             $this->mailCliente=$mailCli;
         }
@@ -96,12 +120,36 @@
         
 
 
+<<<<<<< HEAD
         public function InsertarDniClienteNuevo($dniCli){
             try{
 
                 $consulta=$this->pdo->prepare("INSERT INTO `cliente` (`dniCliente`) VALUES ($dniCli);");
 
                 $consulta->execute();
+=======
+        public function InsertarDniCliente($dniCli){
+            try{
+
+                $consulta=("SELECT DNICLIENTE FROM CLIENTE WHERE DNICLIENTE = $dniCli;");            
+                $consultaExiste=$this->pdo->prepare($consulta);
+                $consultaExiste->execute();
+            
+                
+
+
+                if(!($consultaExiste->fetchColumn()) == $dniCli){  
+                   
+               
+                    $consulta="INSERT INTO cliente(dniCliente) VALUES(:dniCli);";
+                    $stmt = $this->pdo->prepare($consulta);
+                  
+                    $stmt->execute(array(":dniCli"=>intval($dniCli)));
+                    $stmt->closeCursor();
+                       
+                }
+                return intval($consultaExiste->fetchColumn());     
+>>>>>>> c5708a2f394470ddb33debc503ada18ff893169f
                
             }catch(Exception $e){
                 die($e->getMessage());
@@ -109,7 +157,11 @@
         }
 
 
+<<<<<<< HEAD
         public function ActualizarCliente(Cliente $cli){
+=======
+        public function ActualizarDatos(Cliente $cli){
+>>>>>>> c5708a2f394470ddb33debc503ada18ff893169f
             try{
                 
                 $idCli = $cli->getIdCliente();
@@ -146,6 +198,7 @@
             }
         }
 // -----------------------------------------------------------------------------------------------------------------------------
+<<<<<<< HEAD
         public function ConsultarCliente($dniCli){
             try{
 
@@ -212,6 +265,30 @@
             }
         }
 // -----------------------------------------------------------------------------------------------------------------------------
+=======
+public function ConsultarId($dniCli){
+    try{
+
+        $consulta=$this->pdo->prepare("SELECT `cliente`.`idCliente` 
+                                                FROM `cliente` 
+                                                    WHERE `cliente`.`dniCliente` = $dniCli;");            
+        $consulta->execute();
+
+        if ($consulta) {
+            $idCliente = intval($consulta->fetchColumn());                   
+            }               
+        $consulta->closeCursor();
+       
+        return $idCliente;    
+       
+    }catch(Exception $e){
+        die($e->getMessage());
+    }
+}
+
+// -----------------------------------------------------------------------------------------------------------------------------
+
+>>>>>>> c5708a2f394470ddb33debc503ada18ff893169f
 
     }
 

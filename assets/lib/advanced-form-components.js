@@ -71,7 +71,11 @@
 $(".form_datetime").datetimepicker({format: 'yyyy-mm-dd hh:ii'});
 
 $(".form_datetime-component").datetimepicker({
+<<<<<<< HEAD
     format: "yyyy-mm-dd hh:ii"
+=======
+    format: "dd MM yyyy - hh:ii"
+>>>>>>> c5708a2f394470ddb33debc503ada18ff893169f
 });
 
 $(".form_datetime-adv").datetimepicker({

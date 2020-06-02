@@ -6,11 +6,15 @@ require_once "model/cliente.php";
 require_once "model/operacion.php";
 require_once "model/operacionperfil.php";
 require_once "model/perfil.php";
+<<<<<<< HEAD
 require_once "model/usuarioperfil.php";
 require_once "model/parametros.php";
 require_once "model/reserva.php";
 require_once "model/reservahistorial.php";
 require_once "model/reservaturno.php";
+=======
+
+>>>>>>> c5708a2f394470ddb33debc503ada18ff893169f
 
 
 
@@ -21,16 +25,22 @@ require_once "model/reservaturno.php";
     
         }
 
+<<<<<<< HEAD
 /* ---------------------------------------------------------------------------------------------------------------
                     GESTION DE SESION
 --------------------------------------------------------------------------------------------------------------*/
 
         public function Login(){                     
+=======
+        public function Login(){
+            
+>>>>>>> c5708a2f394470ddb33debc503ada18ff893169f
             require_once "view/headturno.php";
             require_once "view/dash/index.php";
             require_once "view/footerturno.php";
         }
         public function ValidarLogin(){
+<<<<<<< HEAD
             
             $user = $_POST['nombreUsuario'];
             $pass = $_POST['passUsuario'];            
@@ -80,6 +90,21 @@ require_once "model/reservaturno.php";
                 header("location:?c=usuario&a=Login&msg=$msg");
                 die();
             }                        
+=======
+            $claseUser=new Usuario();
+            $user = $_POST['nombreUsuario'];
+            $pass = $_POST['passUsuario'];
+            //$sector = $_POST['selectSector'];
+            $puesto = $_POST['selectPuesto'];               
+            $valor = $claseUser->ValidarLogin($user, $pass, $puesto);            
+            if ($valor){
+                $claseUser->OnlineOn($user); 
+                header("location:?c=usuario&a=InicioDash");	                
+            }else{
+                header("location:?c=usuario&a=Login");
+            }
+                        
+>>>>>>> c5708a2f394470ddb33debc503ada18ff893169f
         }
 
 
@@ -87,6 +112,7 @@ require_once "model/reservaturno.php";
             $op=new Operacion();
             $t=new Turno();            
             $perfil = new Perfil();
+<<<<<<< HEAD
             $claseUser = new Usuario();            
             require_once "view/dash/headerDash.php";
             require_once "view/dash/head.php";            
@@ -112,10 +138,37 @@ require_once "model/reservaturno.php";
             $claseUser=new Usuario();
             $user = $_POST['nombreUsuario'];
             $claseUser->OnlineOff($user);             
+=======
+            
+
+           
+            require_once "view/dash/headerDash.php";
+            require_once "view/dash/head.php";
+            require_once "view/dash/sidebarMenu.php";
+            $listadeturnos = $t->ListarTurnosSector($_SESSION["usuario"]);
+            require_once "view/dash/contentdash.php"; 
+            $listadeoperaciones = $op->ListarOperacionesPerfil($_SESSION["usuario"]);
+            $nombrePerfil = $perfil -> ConsultarPerfilUsuario($_SESSION["usuario"]);
+            if($nombrePerfil->nombrePerfil != "RecepcionPerfil"){
+                                     
+                require_once "view/dash/sidebarderecho1.php";              
+                require_once "view/dash/footerDash.php";
+            }
+            
+        }
+
+
+        public function Logout(){
+            $claseUser=new Usuario();
+            $user = $_POST['nombreUsuario'];
+            $claseUser->OnlineOff($user); 
+            
+>>>>>>> c5708a2f394470ddb33debc503ada18ff893169f
             session_start();
             session_destroy();
             header("location:?c=usuario&a=Login");
         }
+<<<<<<< HEAD
 /* ---------------------------------------------------------------------------------------------------------------
                     GESTION DE TURNOS
 --------------------------------------------------------------------------------------------------------------*/
@@ -127,6 +180,16 @@ require_once "model/reservaturno.php";
            
             $turno=new Turno();
             /* Viendo si lo pongo en una sola funcion
+=======
+
+        public function Llamar(){
+            $nombreUsuario = $_POST['nombreUsuario']; 
+            $opNombre = $_POST['operacionNombre'];
+           
+            $turno=new Turno();
+           
+
+>>>>>>> c5708a2f394470ddb33debc503ada18ff893169f
                 if($opNombre == "Por orden"){
                     $siguiente= $turno->LlamarTurnoPorOrden($nombreUsuario);
                 
@@ -137,6 +200,7 @@ require_once "model/reservaturno.php";
                     $opPri = $op -> ConsultarPrioridad($nombreUsuario,$opNombre); 
                     $opPrioridad = $opPri->operacionPrioridad;             
                     $siguiente= $turno->LlamarTurnoOperacion($nombreUsuario, intval($opPrioridad));
+<<<<<<< HEAD
                 } */
             //siguiente es el turno seleccionado para llamar
             $claseUser=new Usuario();
@@ -203,6 +267,57 @@ require_once "model/reservaturno.php";
         public function Atender(){
             require_once "view/dash/headerDash.php";
             require_once "view/dash/head.php";
+=======
+                } 
+                    
+                if($siguiente){
+                    $idTur = $siguiente->idTurno;
+                    $nropuesto= $_POST['nroPuesto'];
+                    $turno->InsertarBox($idTur,$nropuesto);
+                    $turno->RellamarTrue($idTur);
+
+                    $claseUser=new Usuario();
+                    $usuarioLlamador = $claseUser->getUsuarioPorNombre($nombreUsuario);
+                    $idUser = $usuarioLlamador->idUsuario;
+
+                    $turnohistorial=new TurnoHistorial();
+                    $turnohistorial->ActualizarEstadoAsociadoUsuario($idTur,2,$idUser);//2 es el estado LLAMADO
+                    require_once "view/dash/headerDash.php";
+                    require_once "view/dash/head.php";
+                    require_once "view/dash/sidebarMenu.php";
+                    require_once "view/dash/contentdash2.php"; 
+                    require_once "view/dash/sidebarderecho2.php";         
+                    require_once "view/dash/footerDash.php";  
+                }else{           
+                    header("location:?c=usuario&a=InicioDash");	
+                               
+                }
+            
+        }
+
+
+
+        public function ReLlamar(){
+            $nombreUsuario = $_POST['nombreUsuario'];             
+            $idTurno = $_POST['idTurno'];             
+            $turno=new Turno();
+            $siguiente= $turno->ReLlamarTurno( $idTurno);            
+            if($siguiente){              
+                require_once "view/dash/headerDash.php";
+                require_once "view/dash/head.php";
+                require_once "view/dash/sidebarMenu.php";
+                require_once "view/dash/contentdash2.php"; 
+                require_once "view/dash/sidebarderecho3.php";         
+                require_once "view/dash/footerDash.php";  
+            }else{           
+                header("location:?c=usuario&a=InicioDash");	                  
+            }
+           
+        }
+
+
+        public function Atender(){
+>>>>>>> c5708a2f394470ddb33debc503ada18ff893169f
             $nombreUsuario = $_POST['nombreUsuario'];    
             $idTurno = $_POST['idTurno'];           
             $turno=new Turno();
@@ -211,6 +326,7 @@ require_once "model/reservaturno.php";
             if($siguiente){
 
                 $claseUser=new Usuario();
+<<<<<<< HEAD
                 $usuario = $claseUser->getUsuarioPorNombre($nombreUsuario);
                 $idUser = $usuario->idUsuario;                
                 $turnohistorial=new TurnoHistorial();
@@ -219,6 +335,18 @@ require_once "model/reservaturno.php";
                 require_once "view/dash/sidebarMenu.php";
                 require_once "view/dash/atencion/contentdash3.php"; 
                 require_once "view/dash/atencion/sidebarderecho4.php";         
+=======
+                $usuarioLlamador = $claseUser->getUsuarioPorNombre($nombreUsuario);
+                $idUser = $usuarioLlamador->idUsuario;
+
+                $turnohistorial=new TurnoHistorial();
+                $turnohistorial->ActualizarEstadoAsociadoUsuario($idTurno,3,$idUser);//3 es el estado ATENDIDO
+                require_once "view/dash/headerDash.php";
+                require_once "view/dash/head.php";
+                require_once "view/dash/sidebarMenu.php";
+                require_once "view/dash/contentdash3.php"; 
+                require_once "view/dash/sidebarderecho4.php";         
+>>>>>>> c5708a2f394470ddb33debc503ada18ff893169f
                 require_once "view/dash/footerDash.php";  
             }else{           
                 header("location:?c=usuario&a=InicioDash");	                  
@@ -226,6 +354,10 @@ require_once "model/reservaturno.php";
            
         }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> c5708a2f394470ddb33debc503ada18ff893169f
         public function Ausente(){
             $nombreUsuario = $_POST['nombreUsuario'];    
             $idTurno = $_POST['idTurno'];           
@@ -234,8 +366,13 @@ require_once "model/reservaturno.php";
             if($siguiente){
                 $turnohistorial=new TurnoHistorial();
                 $claseUser=new Usuario();
+<<<<<<< HEAD
                 $usuario = $claseUser->getUsuarioPorNombre($nombreUsuario);
                 $idUser = $usuario->idUsuario;                
+=======
+                $usuarioLlamador = $claseUser->getUsuarioPorNombre($nombreUsuario);
+                $idUser = $usuarioLlamador->idUsuario;
+>>>>>>> c5708a2f394470ddb33debc503ada18ff893169f
                 $turnohistorial->ActualizarEstadoAsociadoUsuario($idTurno,4,$idUser);//4 es el estado AUSENTE
                 $turnohistorial->CierraEstado($idTurno);
 
@@ -256,8 +393,11 @@ require_once "model/reservaturno.php";
         }
 
         public function DerivarActual(){
+<<<<<<< HEAD
             require_once "view/dash/headerDash.php";
             require_once "view/dash/head.php";
+=======
+>>>>>>> c5708a2f394470ddb33debc503ada18ff893169f
             $nombreUsuario = $_POST['nombreUsuario'];    
             $idTurno = $_POST['idTurno'];           
             $turno=new Turno();
@@ -270,19 +410,31 @@ require_once "model/reservaturno.php";
                 $claseOperacion=new Operacion();
                 $usersOnline = $claseUser -> UsuariosOnline();
                 $opUserOnline = $claseOperacion ->ListarOperacionesPerfilesActivos();
+<<<<<<< HEAD
                 $usuario = $claseUser->getUsuarioPorNombre($nombreUsuario);
                 
                 require_once "view/dash/sidebarMenu.php";
                 require_once "view/dash/atencion/contentdash4.php"; 
                 //require_once "view/dash/atencion/sidebarderecho_vacio.php";         
+=======
+                
+                require_once "view/dash/headerDash.php";
+                require_once "view/dash/head.php";
+                require_once "view/dash/sidebarMenu.php";
+                require_once "view/dash/contentdash4.php"; 
+                require_once "view/dash/sidebarderecho_vacio.php";         
+>>>>>>> c5708a2f394470ddb33debc503ada18ff893169f
                 require_once "view/dash/footerDash.php";        
             }
            
         }
 
         public function DerivarPorOperacion(){   
+<<<<<<< HEAD
             require_once "view/dash/headerDash.php";
             require_once "view/dash/head.php";
+=======
+>>>>>>> c5708a2f394470ddb33debc503ada18ff893169f
             $cliente=new Cliente();
             $turnohistorial=new TurnoHistorial();
 
@@ -295,6 +447,7 @@ require_once "model/reservaturno.php";
             //$turnohistorial->CierraEstado($idTurnoActual);
 
             $claseUser=new Usuario();
+<<<<<<< HEAD
             $usuario = $claseUser->getUsuarioPorNombre($nombreUsuario);
             $idUser = $usuario->idUsuario;
             $turnohistorial->ActualizarEstadoAsociadoUsuarioCierre($idTurnoActual,5,$idUser);//5 es el estado DERIVADO
@@ -306,6 +459,24 @@ require_once "model/reservaturno.php";
             $Sector = $operacion ->BuscarOperacionPorId(intval($idOperacion));
             $idSector = $Sector->idSector;
             $prioridad =0;
+=======
+            $usuarioLlamador = $claseUser->getUsuarioPorNombre($nombreUsuario);
+            $idUser = $usuarioLlamador->idUsuario;
+            $turnohistorial->ActualizarEstadoAsociadoUsuarioCierre($idTurnoActual,5,$idUser);//5 es el estado DERIVADO
+
+
+
+            $idCli = $cliente->ConsultarId($dniCliente);          
+            $operacion = new Operacion();
+            $Sector = $operacion ->BuscarSector(intval($idOperacion));
+            $idSector = $Sector->idSector;
+            $prioridad = 1;
+
+
+            
+
+
+>>>>>>> c5708a2f394470ddb33debc503ada18ff893169f
 
             //Turno
             $t=new Turno();
@@ -321,11 +492,16 @@ require_once "model/reservaturno.php";
             //turno historial
             $uid = $turnoDerivado->idTurno;
             
+<<<<<<< HEAD
             $turnohistorial->InsertarTurnoHistorial($uid,1);//creado es (_,1)
+=======
+            $turnohistorial->CrearTurnoHistorial($uid,1);//creado es (_,1)
+>>>>>>> c5708a2f394470ddb33debc503ada18ff893169f
     
             //Busca turno recien creado para imprimir en ticket
     
             $imprimir = $t->TurnoPorId($uid);
+<<<<<<< HEAD
             
             require_once "view/dash/sidebarMenu.php";
             require_once "view/dash/atencion/contentdash5.php"; 
@@ -394,6 +570,20 @@ require_once "model/reservaturno.php";
         public function ActualizarDatosCliente(){
             require_once "view/dash/headerDash.php";
             require_once "view/dash/head.php";
+=======
+            require_once "view/dash/headerDash.php";
+            require_once "view/dash/head.php";
+            require_once "view/dash/sidebarMenu.php";
+            require_once "view/dash/contentdash5.php"; 
+            require_once "view/dash/sidebarderecho_vacio.php";         
+            require_once "view/dash/footerDash.php";   
+        }
+        
+
+
+        public function ActualizarDatosCliente(){
+           
+>>>>>>> c5708a2f394470ddb33debc503ada18ff893169f
             $cli = new Cliente();
             $turno=new Turno();
 
@@ -407,7 +597,12 @@ require_once "model/reservaturno.php";
             $mailCli = $_POST['mailCliente'];
             $tel1Cli = $_POST['telefono1Cliente'];
             $tel2Cli = $_POST['telefono2Cliente'];
+<<<<<<< HEAD
             $comentCli = $_POST['comentarioCliente'];      
+=======
+            $comentCli = $_POST['comentarioCliente'];
+            
+>>>>>>> c5708a2f394470ddb33debc503ada18ff893169f
             $idCli = $turno->ConsultarId($idTurno);
            
 
@@ -423,22 +618,35 @@ require_once "model/reservaturno.php";
             $cli->setTelefono2Cliente($tel2Cli);
             $cli->setComentarioCliente($comentCli);
 
+<<<<<<< HEAD
             $c = $cli->ActualizarCliente($cli);
+=======
+            $c = $cli->ActualizarDatos($cli);
+>>>>>>> c5708a2f394470ddb33debc503ada18ff893169f
             
             
             $siguiente= $turno->TurnoActual($idTurno);            
             if($siguiente){                           
+<<<<<<< HEAD
                 $claseUser=new Usuario();
                 $usuario = $claseUser->getUsuarioPorNombre($_SESSION[usuario]);
                 require_once "view/dash/sidebarMenu.php";
                 require_once "view/dash/atencion/contentdash3.php"; 
                 require_once "view/dash/atencion/sidebarderecho4.php";         
+=======
+                require_once "view/dash/headerDash.php";
+                require_once "view/dash/head.php";
+                require_once "view/dash/sidebarMenu.php";
+                require_once "view/dash/contentdash3.php"; 
+                require_once "view/dash/sidebarderecho4.php";         
+>>>>>>> c5708a2f394470ddb33debc503ada18ff893169f
                 require_once "view/dash/footerDash.php";  	                  
             }
 
             
         }
 
+<<<<<<< HEAD
         
 /* ---------------------------------------------------------------------------------------------------------------
                     GESTION DE MENUS DE NAVEGACION
@@ -805,10 +1013,16 @@ require_once "model/reservaturno.php";
                     GESTION DE -
 --------------------------------------------------------------------------------------------------------------*/
 
+=======
+>>>>>>> c5708a2f394470ddb33debc503ada18ff893169f
 
 
 
 
+<<<<<<< HEAD
 }
+=======
+    }
+>>>>>>> c5708a2f394470ddb33debc503ada18ff893169f
 
 ?>
