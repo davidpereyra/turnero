@@ -65,7 +65,7 @@
                     <td><?=$res->fechaAltaReserva.'<br>'.$res->horaAltaReserva;?></td>
                     <td>    
                         <div class="btn-group">
-                            <form name="form" action="?c=usuario&a=ConfirmarReservaTurno" method="post">
+                            <form name="form" action="?c=Usuario&a=ConfirmarReservaTurno" method="post">
                                 <input type="hidden" name="idReserva" value=<?php print $res->idReserva; ?>>
                                 <button class="btn btn-success" type="submit">
                                     <i class="fa fa-check"></i>
@@ -77,7 +77,7 @@
                                     <i class="fa fa-edit"></i>
                                 </button>
                             </form>&nbsp;                            
-                            <form name="form" action="?c=usuario&a=InicioDash" method="post">
+                            <form name="form" action="?c=Usuario&a=InicioDash" method="post">
                                 <input type="hidden" name="idReserva" value=<?php print $res->idReserva; ?>>
                                 <button class="btn btn-danger" type="submit">
                                     <i class="fa fa-times-circle"></i>

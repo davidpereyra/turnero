@@ -1,10 +1,10 @@
 <?php 
 
 class Database{
-    const servidor="localhost";
-    const usuariobd = "cocucci";
-    const pass = "deko321nalga";
-    const nombrebd = "cocucci_inmodb";
+    const servidor="127.0.0.1";
+    const usuariobd = "root";
+    const pass = "Sistemas2875";
+    const nombrebd = "turnos";
 	
     //define('DB_CHARSET', 'utf8');
     

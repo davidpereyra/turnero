@@ -1,0 +1,26 @@
+certificados estan en 
+C:\xampp\apache\conf\ssl.crt
+para instalarlo:
+1 abrir certificado
+2 seleccionar instalar certificado
+3 seleccionar equipo local -> siguiente
+4 "colocar todos los certificados en el siguiente almacen
+5 seleccionar "Entidades de certificacion raiz de confianza" -> aceptar
+6 siguiente -> finalizar
+
+
+la key esta en 
+C:\xampp\apache\conf\ssl.key
+
+el host esta en 
+C:\Windows\System32\drivers\etc
+
+192.168.0.110 najim.gen
+
+
+Abrir apache (httpd-ssl.conf) puerto 443 ubicado en C:\xampp\apache\conf\extra
+buscamos server.crt y lo reemplazamos por najim.crt 
+buscamos server.key y lo reemplazamos por najim.key
+
+https://najim.gen/turnero/?c=usuario&a=InicioDash
+

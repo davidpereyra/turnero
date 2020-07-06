@@ -13,7 +13,7 @@
 
             <div class="grey-header">
               
-                <form name="form" action="?c=usuario&a=Llamar" method="post" class="col-lg-12">
+                <form name="form" action="?c=Usuario&a=Llamar" method="post" class="col-lg-12">
                 
                   <!--<input type="hidden" name="nombreUsuario" value=<?php //print "$_SESSION[usuario]";?>>-->
                   <button class="btn btn-secondary btn-lg btn-block btnFuncion" name="nombreUsuario" value="<?php echo $_SESSION['usuario'];?>" type="submit" disabled>
@@ -23,7 +23,7 @@
 
                 <br>
 
-                <form name="form" action="?c=usuario&a=ReLlamar" method="post" class="col-lg-12">
+                <form name="form" action="?c=Usuario&a=ReLlamar" method="post" class="col-lg-12">
                 <input type="hidden" name="idTurno" value=<?php print $siguiente->idTurno; ?>>
                 <button class="btn btn-secondary btn-lg btn-block btnFuncion" name="nombreUsuario" value="<?php echo $_SESSION['usuario'];?>" type="submit" disabled>
                         VOLVER A LLAMAR
@@ -32,7 +32,7 @@
 
                   <br>
 
-                 <form name="form" action="?c=usuario&a=Atender" method="post" class="col-lg-12">
+                 <form name="form" action="?c=Usuario&a=Atender" method="post" class="col-lg-12">
                  <input type="hidden" name="idTurno" value=<?php print $siguiente->idTurno; ?>>
                  <button class="btn btn-secondary btn-lg btn-block btnFuncion" name="nombreUsuario" value="<?php echo $_SESSION['usuario'];?>" type="submit" disabled>
                         ATENDIENDO
@@ -41,7 +41,7 @@
 
                  <br>
 
-                 <form name="form" action="?c=usuario&a=Ausente" method="post" class="col-lg-12">
+                 <form name="form" action="?c=Usuario&a=Ausente" method="post" class="col-lg-12">
                  <input type="hidden" name="idTurno" value=<?php print $siguiente->idTurno; ?>>
                  <button class="btn btn-secondary btn-lg btn-block btnFuncion" name="nombreUsuario" value="<?php echo $_SESSION['usuario'];?>" type="submit" disabled> 
                         NO PRESENTE
@@ -51,14 +51,14 @@
 
                  <br>
 
-                 <form name="form" action="?c=usuario&a=Finaliza" method="post" class="col-lg-12">
+                 <form name="form" action="?c=Usuario&a=Finaliza" method="post" class="col-lg-12">
                  <input type="hidden" name="idTurno" value=<?php print $siguiente->idTurno; ?>>                 
                  <button class="btn btn-primary btn-lg btn-block btnFuncion" name="nombreUsuario" value="<?php echo $_SESSION['usuario'];?>" type="submit" >
                         FINALIZAR TURNO
                   </button>
                 </form> 
                 <br>
-                <form name="form" action="?c=usuario&a=DerivarActual" method="post" class="col-lg-12">
+                <form name="form" action="?c=Usuario&a=DerivarActual" method="post" class="col-lg-12">
                 <input type="hidden" name="idTurno" value=<?php print $siguiente->idTurno; ?>>  
                 <button class="btn btn-primary btn-lg btn-block btnFuncion" name="nombreUsuario" value="<?php echo $_SESSION['usuario'];?>" type="submit">
                         DERIVAR TURNO

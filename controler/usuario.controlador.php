@@ -667,10 +667,8 @@ require_once "model/reservaturno.php";
             //busco el id usuario
             $claseUser=new Usuario();
             $usuario  = $claseUser->getUsuarioPorNombre($nombreUsuario);
-            $idUsuario = $usuario->idUsuario;
-            $usuarioperfil = new UsuarioPerfil();
-            $usuarioperfil = $usuarioperfil ->getPerfilUsuarioPorIdUsuario($idUsuario);
-            $idPerfil = $usuarioperfil->idPerfil;
+            $idPerfil = $usuario->idPerfil;
+                 
             $turno=new Turno();
             $historicoVer = $turno-> ListarHistoricoPerfil($idPerfil,$fechaDesde,$fechaHasta);
             
@@ -792,11 +790,8 @@ require_once "model/reservaturno.php";
             $reservaTurno = new ReservaTurno();
             $reservaTurno->CrearReservaTurno($idReserva,$idTurno);
             $reservaHistorial->CierraEstadoReserva($idReserva);
-            $usuarioPerfil = new UsuarioPerfil();
-            $usuarioPerfil = $usuarioPerfil ->getPerfilUsuarioPorIdUsuario($usuario->idUsuario);
-            $idPerfil = $usuarioPerfil->idPerfil;
             $reserva = new Reserva();
-            $datosReserva = $reserva->ConsultarReservasClientePorEstado(1,$idPerfil);//1 para las reservas creadas
+            $datosReserva = $reserva->ConsultarReservasClientePorEstado(1);//visualiza las reservas creadas
             $msg='Se ha generado el turno exitosamente!';                       
             
             $imprimir = $turno->TurnoPorId($idTurno);

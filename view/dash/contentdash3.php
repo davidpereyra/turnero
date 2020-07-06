@@ -55,7 +55,7 @@
             <div class="form-panel">
               <h4 class="mb"><i class="fa fa-angle-right"></i> DATOS DEL CLIENTE</h4>
             
-              <form action="?c=usuario&a=ActualizarDatosCliente" class="form-horizontal style-form" method="POST">
+              <form action="?c=Usuario&a=ActualizarDatosCliente" class="form-horizontal style-form" method="POST">
               
                 <div class="form-group">
                   <label class="col-sm-2 col-sm-2 control-label">Identidad</label>

@@ -12,7 +12,7 @@ require_once "model/reservahistorial.php";
 class TurnosWebControlador{
     private $modelo;    
     public function __CONSTRUCT(){
-        $this->modelo=new Reserva();        
+        $this->modelo=new Turno();        
     }
     public function Inicio(){      
         
@@ -68,7 +68,8 @@ class TurnosWebControlador{
             $idCliente = $clienteAntiguo->idCliente;
             $rsCliente = $clienteAntiguo->razonSocialCliente;
             $cuitCliente = $clienteAntiguo->cuitCliente;
-            $telefono2Cliente = $clienteAntiguo->telefono2Cliente;            
+            $telefono2Cliente = $clienteAntiguo->telefono2Cliente;
+            #datos de cliente que no se tocaron
             $cliente->setIdCliente($idCliente);
             $cliente->setRazonSocialCliente($rsCliente);
             $cliente->setCuitCliente($cuitCliente);
@@ -84,9 +85,7 @@ class TurnosWebControlador{
             $cliente = $cliente->InsertarRetornarCliente($cliente);
             $idCliente = $cliente->idCliente;
         }
-        //inicializo variables para que mail no de error
-        $ultimoReservaId = '';
-        $nombreDia = '';        
+        
         //Verifico sector y operacion
         $sector = new Sector();
         $sectorExistente = $sector->BuscarSectorPorNombre($nombreSector);
@@ -142,12 +141,9 @@ class TurnosWebControlador{
             //$reservaHistorial->InsertarTurnoHistorial($ultimoTurnoId,6);//Reservado_Web es (_,6)
             $parametros = new Parametros();
             $nombreDia = $parametros->get_nombre_dia($fechaReserva);            
-            require_once "view/turnosweb/confirmacionTurno.php";      
-            require_once "view/turnosweb/mail.php";      
+            require_once "view/turnosweb/confirmacionTurno.php";            
         }
         require_once "view/footerturno.php";
-        
-
     }
 
 

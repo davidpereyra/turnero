@@ -132,7 +132,7 @@
                 
                 return $consulta->fetchAll(PDO::FETCH_OBJ);
             }catch(Exception $e){
-                die($e->getMessage());
+                die($e->getMenssage());
             }
         }
 //---------------------------------------------------------------------------------------------------------------//
@@ -151,7 +151,7 @@
                 
                 return $consulta->fetchAll(PDO::FETCH_OBJ);
             }catch(Exception $e){
-                die($e->getMessage());
+                die($e->getMenssage());
             }
         }
 //---------------------------------------------------------------------------------------------------------------//
@@ -166,7 +166,7 @@
                 
                 return $consulta->fetchAll(PDO::FETCH_OBJ);
             }catch(Exception $e){
-                die($e->getMessage());
+                die($e->getMenssage());
             }
         }
 
@@ -182,7 +182,7 @@
                 
                 return $consulta->fetchAll(PDO::FETCH_OBJ);
             }catch(Exception $e){
-                die($e->getMessage());
+                die($e->getMenssage());
             }
         }
 
@@ -203,20 +203,20 @@
                     
                 return $consulta->fetchAll(PDO::FETCH_OBJ);
             }catch(Exception $e){
-                die($e->getMessage());
+                die($e->getMenssage());
             }
         }
 //---------------------------------------------------------------------------------------------------------------//
         public function ListarOperacionesTurnosWeb(){
             try{
-                $consulta=$this->pdo->prepare("SELECT * FROM `operacion`
+                $consulta=$this->pdo->prepare("SELECT * FROM `turnos`.`operacion`
                                                     WHERE `operacion`.`accionTurnoWeb` = 1
                                                     ORDER BY `operacion`.`idSector` ASC
                                                                             ");                    
                 $consulta->execute();                    
                 return $consulta->fetchAll(PDO::FETCH_OBJ);
             }catch(Exception $e){
-                die($e->getMessage());
+                die($e->getMenssage());
             }
         }
 /* ----------------------------------------------------------------------------------------------------------------------*/

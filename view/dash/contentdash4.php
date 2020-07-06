@@ -45,7 +45,7 @@
         <div class="border-head">
           <h3>Derivar turno por operación</h3>
         </div>
-        <form class="form-inline" action="?c=usuario&a=DerivarPorOperacion" method="post">
+        <form class="form-inline" action="?c=Usuario&a=DerivarPorOperacion" method="post">
           <textarea class="form-control" name="comentarioTurno" rows="2" cols="120" placeholder="Ingrese comentarios del turno para informar al siguiente operario." ></textarea>
           <br><br><br><br> 
           <select required name="selectOperacion" class=" form-control form-control-lg col-lg-12">

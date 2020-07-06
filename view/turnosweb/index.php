@@ -41,12 +41,11 @@
 										de las autoridades sanitarias, especialmente relacionadas a mantener el aislamiento con miras a 
 										evitar el contagio de esta enfermedad y proteger a las demás personas que pudieran asistir a la sucursal.
 										</p>
-										<!--
 										<p>
 										Además declaro tener conocimiento de la restricción de circulación según la terminación 
 										de tu Documento Nacional de Identidad.
 										</p>
-										-->
+									
 									</div>
 								</div>
 							</div>

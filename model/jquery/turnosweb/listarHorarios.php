@@ -1,6 +1,6 @@
 <?php 
-require_once '../../dataconec.php';
-$conexion=mysqli_connect($servidor,$usuariobd,$pass,$nombrebd );
+
+
 //Recepcion de variables
 if ((!isset($_POST['operacion'])) ||(!isset($_POST['diaHabil']))){
     $operacion="Seleccione una operacion";
@@ -35,7 +35,7 @@ if ($diaHabil == $today) {
 
 //Calculo RANGO 1
 
-$var2 = '16:30:00';
+$var2 = '16:00:00';
 $intervarlo = '30';
 $fechaInicio1 = new DateTime($var1);
 $fechaFin1 = new DateTime($var2);
@@ -60,7 +60,8 @@ foreach($rangoFechas2 as $fecha){
 //inicio creacion de select 
 $cadena="<select id='hora' name='hora' class='form-control'>"; 
 $cadena=$cadena.'<option value='.'>Seleccione un horario</option>';
-
+//CONEXION - TurnosPendientesEnIntervalo  en TURNOHISTORIAL 
+$conexion=mysqli_connect('localhost','root','Sistemas2875','turnos');
         /* verificar la conexión */
 if (mysqli_connect_errno()) {
     printf("Conexión fallida: %s\n", mysqli_connect_error());

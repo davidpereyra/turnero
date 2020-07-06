@@ -71,7 +71,7 @@
 /* ----------------------------------------------------------------------------------------------------------------------*/
         public function GetSectoresTotem(){
             try{
-                $consulta=$this->pdo->prepare("SELECT * FROM `sector` WHERE `sector`.`visibleTotem` = TRUE");                            
+                $consulta=$this->pdo->prepare("SELECT * FROM `sector` WHERE `sector`.`visibleTotem` = TRUE;");                            
                 $consulta->execute();     
                 return $consulta->fetchAll(PDO::FETCH_OBJ);
 
@@ -83,7 +83,7 @@
 /* ----------------------------------------------------------------------------------------------------------------------*/
         public function GetSectoresWeb(){
             try{
-                $consulta=$this->pdo->prepare("SELECT * FROM `sector` WHERE `sector`.`visibleWeb` = TRUE");                            
+                $consulta=$this->pdo->prepare("SELECT * FROM `sector` WHERE `sector`.`visibleWeb` = TRUE;");                            
                 $consulta->execute();     
                 return $consulta->fetchAll(PDO::FETCH_OBJ);
 
@@ -95,7 +95,7 @@
 /* ----------------------------------------------------------------------------------------------------------------------*/
         public function BuscarSectorPorNombre($nombreSector){
             try{
-                $consulta=$this->pdo->prepare("SELECT * FROM `sector`
+                $consulta=$this->pdo->prepare("SELECT *FROM `sector`
                             WHERE `sector`.`nombreSector` = '$nombreSector';");
                 
                 $consulta->execute();                
