@@ -13,7 +13,7 @@
 
             <div class="grey-header">                        
 
-                <form name="form" action="?c=Usuario&a=Llamar" method="post" class="col-lg-12">
+                <form name="form" action="?c=usuario&a=Llamar" method="post" class="col-lg-12">
 
                     <div class="input-group-prepend">
                         <!--<label for="inputState">Sector &nbsp &nbsp </label>-->

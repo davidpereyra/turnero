@@ -33,7 +33,7 @@
                   <p><img src="assets/img/profiles/user/<?php echo $usuario->imgUsuario;?>" class="img-circle"></p>
                   <p>
                     <!--<button class="btn btn-theme"><i class="fa fa-check"></i> Boton</button>
-                    <form action="?c=Usuario&a=ActualizarDatosUsuario" method="POST" role="form" class="form-horizontal" enctype="multipart/form-data">
+                    <form action="?c=usuario&a=ActualizarDatosUsuario" method="POST" role="form" class="form-horizontal" enctype="multipart/form-data">
                       <button class="btn btn-theme02">Combiar Imágen</button>
                     </form>-->
                   </p>
@@ -48,7 +48,7 @@
               <div class="col-lg-6 detailed">
                 <h4 class="mb">Información Personal </h4>
 
-                <form action="?c=Usuario&a=CambiarImagen" method="POST" role="form" class="form-horizontal" enctype="multipart/form-data">                        
+                <form action="?c=usuario&a=CambiarImagen" method="POST" role="form" class="form-horizontal" enctype="multipart/form-data">                        
                   <div class="form-group">   
                     <div class="row">                 
                       <div class="controls col-lg-6">
@@ -72,7 +72,7 @@
                   </div><!-- /form-group --> 
                 </form>
 
-                <form action="?c=Usuario&a=ActualizarDatosUsuario" method="POST" role="form" class="form-horizontal" enctype="multipart/form-data">                        
+                <form action="?c=usuario&a=ActualizarDatosUsuario" method="POST" role="form" class="form-horizontal" enctype="multipart/form-data">                        
                  
                   <!-- Seleccionar imagen original
                   <div class="form-group">

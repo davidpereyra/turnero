@@ -124,31 +124,32 @@
             }
         }
 //-----------------------------------------------------------------------------------------------------------------------
-        public function ConsultarReservasClientePorEstado($idEstadoReserva,$idPerfil){ 
-            try{        
-                date_default_timezone_set('America/Argentina/Mendoza');
-                $today = date('Y-m-d');
-                $consulta=$this->pdo->prepare("SELECT `reserva`.`idReserva`,`operacion`.`nombreOperacion`,`reserva`.`fechaReserva`,`reserva`.`horaReserva`,`reserva`.`comentarioReserva`,
-                `cliente`.`nombreCliente`,`cliente`.`apellidoCliente`,`cliente`.`dniCliente`,`cliente`.`telefono1Cliente`,`cliente`.`mailCliente`,
-                `reservahistorial`.`fechaAltaReserva`, `reservahistorial`.`horaAltaReserva`
-                FROM `reserva`           
-                INNER JOIN `reservahistorial` ON `reserva`.`idReserva`=`reservahistorial`.`idReserva`
-                INNER JOIN `operacion` ON `reserva`.`idOperacion` = `operacion`.`idOperacion`
-                INNER JOIN `cliente` ON `reserva`.`idCliente` = `cliente`.`idCliente`
-                INNER JOIN `operacionperfil` ON `operacionperfil`.`idOperacion` = `operacion`.`idOperacion`
-                WHERE `reservahistorial`.`idEstadoReserva` = $idEstadoReserva 
-                AND `reserva`.`fechaReserva` >= '$today'     
-                AND `reservahistorial`.`fechaBajaReserva` IS NULL
-                AND `reservahistorial`.`horaBajaReserva` IS NULL
-                AND `operacionperfil`.`idPerfil` = $idPerfil
-                ;");                
-                
-                $consulta->execute();                            
-                return $consulta->fetchAll(PDO::FETCH_OBJ);                    
-            }catch(Exception $e){
-                die($e->getMessage());
-            }
+    public function ConsultarReservasClientePorEstado($idEstadoReserva,$idPerfil){ 
+        try{        
+            
+            date_default_timezone_set('America/Argentina/Mendoza');
+            $today = date('Y-m-d');
+            $consulta=$this->pdo->prepare("SELECT `reserva`.`idReserva`,`operacion`.`nombreOperacion`,`reserva`.`fechaReserva`,`reserva`.`horaReserva`,`reserva`.`comentarioReserva`,
+            `cliente`.`nombreCliente`,`cliente`.`apellidoCliente`,`cliente`.`dniCliente`,`cliente`.`telefono1Cliente`,`cliente`.`mailCliente`,
+            `reservahistorial`.`fechaAltaReserva`, `reservahistorial`.`horaAltaReserva`
+            FROM `reserva`           
+            INNER JOIN `reservahistorial` ON `reserva`.`idReserva`=`reservahistorial`.`idReserva`
+            INNER JOIN `operacion` ON `reserva`.`idOperacion` = `operacion`.`idOperacion`
+            INNER JOIN `cliente` ON `reserva`.`idCliente` = `cliente`.`idCliente`
+            INNER JOIN `operacionperfil` ON `operacionperfil`.`idOperacion` = `operacion`.`idOperacion`
+            WHERE `reservahistorial`.`idEstadoReserva` = $idEstadoReserva 
+            AND `reserva`.`fechaReserva` >= '$today'     
+            AND `reservahistorial`.`fechaBajaReserva` IS NULL
+            AND `reservahistorial`.`horaBajaReserva` IS NULL
+            AND `operacionperfil`.`idPerfil` = $idPerfil
+            ;");                
+            
+            $consulta->execute();                            
+            return $consulta->fetchAll(PDO::FETCH_OBJ);                    
+        }catch(Exception $e){
+            die($e->getMessage());
         }
+    }
 
 
 //-----------------------------------------------------------------------------------------------------------------------

@@ -14,7 +14,7 @@
     <!-- LLAMADO -->
     <?php  $turnoLlamado = $this->modelo->MostrarUltimoLlamado();
         if($turnoLlamado){ 
-          header("location:../turnero/?c=turnos&a=Llamar"); 
+          header("location:../newserver/?c=turnos&a=Llamar"); 
         }
     ?>
     <!-- FIN LLAMADO -->

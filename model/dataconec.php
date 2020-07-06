@@ -1,7 +1,7 @@
 <?php 
-    $servidor="127.0.0.1";
+    $servidor="localhost";
     $usuariobd = "root";
-    $pass = "Sistemas2875";
+    $pass = "";
     $nombrebd = "turnos";
 
 ?>

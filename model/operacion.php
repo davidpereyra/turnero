@@ -132,7 +132,7 @@
                 
                 return $consulta->fetchAll(PDO::FETCH_OBJ);
             }catch(Exception $e){
-                die($e->getMenssage());
+                die($e->getMessage());
             }
         }
 //---------------------------------------------------------------------------------------------------------------//
@@ -151,7 +151,7 @@
                 
                 return $consulta->fetchAll(PDO::FETCH_OBJ);
             }catch(Exception $e){
-                die($e->getMenssage());
+                die($e->getMessage());
             }
         }
 //---------------------------------------------------------------------------------------------------------------//
@@ -166,7 +166,7 @@
                 
                 return $consulta->fetchAll(PDO::FETCH_OBJ);
             }catch(Exception $e){
-                die($e->getMenssage());
+                die($e->getMessage());
             }
         }
 
@@ -182,7 +182,7 @@
                 
                 return $consulta->fetchAll(PDO::FETCH_OBJ);
             }catch(Exception $e){
-                die($e->getMenssage());
+                die($e->getMessage());
             }
         }
 
@@ -195,7 +195,7 @@
                     INNER JOIN `usuarioperfil` ON `perfil`.`idPerfil` = `usuarioperfil`.`idPerfil`
                     INNER JOIN `usuario` ON `usuarioperfil`.`idUsuario` = `usuario`.`idUsuario`
                     WHERE `usuario`.`idUsuario` = $idUsuario
-                    AND `operacion`.`menuDash` IS TRUE
+                    AND `operacion`.`menuDash` = 1
                     ORDER BY `operacion`.`idOperacion` ASC
                                             ");
                     
@@ -203,20 +203,20 @@
                     
                 return $consulta->fetchAll(PDO::FETCH_OBJ);
             }catch(Exception $e){
-                die($e->getMenssage());
+                die($e->getMessage());
             }
         }
 //---------------------------------------------------------------------------------------------------------------//
         public function ListarOperacionesTurnosWeb(){
             try{
-                $consulta=$this->pdo->prepare("SELECT * FROM `turnos`.`operacion`
+                $consulta=$this->pdo->prepare("SELECT * FROM `operacion`
                                                     WHERE `operacion`.`accionTurnoWeb` = 1
                                                     ORDER BY `operacion`.`idSector` ASC
                                                                             ");                    
                 $consulta->execute();                    
                 return $consulta->fetchAll(PDO::FETCH_OBJ);
             }catch(Exception $e){
-                die($e->getMenssage());
+                die($e->getMessage());
             }
         }
 /* ----------------------------------------------------------------------------------------------------------------------*/

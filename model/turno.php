@@ -706,7 +706,8 @@ public function ListarHistoricoPerfil($idPerfil,$fechaDesde,$fechaHasta){
             INNER JOIN `operacion` ON `turno`.`idOperacion` = `operacion`.`idOperacion`
             INNER JOIN `cliente` ON `turno`.`idCliente` = `cliente`.`idCliente`
             INNER JOIN `usuario` ON `turnohistorial`.`idUsuario` = `usuario`.`idUsuario`
-            WHERE `usuario`.`idPerfil` = $idPerfil
+            INNER JOIN `usuarioperfil` ON `usuarioperfil`.`idUsuario` = `usuario`.`idUsuario`
+            WHERE `usuarioperfil`.`idPerfil` = $idPerfil
             AND  `turnohistorial`.`fechaAlta` >= '$fechaDesde'
             AND `turnohistorial`.`fechaAlta`  <  '$fechaHasta'
             ORDER BY `turnohistorial`.`idTurno` DESC");

@@ -14,7 +14,7 @@
           <div class="row">
             <div class="col-lg-12">
               <div class="form-panel">
-                <form class="form-vertical  style-form" action="?c=Usuario&a=HistoricoTurnosUsuario" method="post">
+                <form class="form-vertical  style-form" action="?c=usuario&a=HistoricoTurnosUsuario" method="post">
                   <div class="form-group">                  
                     <label class="control-label col-md-3"> Selecciona fecha y hora de inicio</label>                      
                       <div class="col-lg-8">
