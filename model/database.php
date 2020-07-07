@@ -2,9 +2,9 @@
 
 class Database{
     const servidor="localhost";
-    const usuariobd = "root";
-    const pass = "";
-    const nombrebd = "turnos";
+    const usuariobd = "cocucci";
+    const pass = "deko321nalga";
+    const nombrebd = "cocucci_inmodb";
 	
     //define('DB_CHARSET', 'utf8');
     

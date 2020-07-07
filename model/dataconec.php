@@ -1,7 +1,7 @@
 <?php 
     $servidor="localhost";
-    $usuariobd = "root";
-    $pass = "";
-    $nombrebd = "turnos";
+    $usuariobd = "cocucci";
+    $pass = "deko321nalga";
+    $nombrebd = "cocucci_inmodb";
 
 ?>
