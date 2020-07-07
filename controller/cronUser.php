@@ -1,7 +1,7 @@
 <?php
 
 
-$conectar=new mysqli("localhost", "root", "", "turnos");
+$conectar=new mysqli("localhost", "cocucci", "deko321nalga", "cocucci_inmodb");
 
 /*verificar conexion */
 if ($conectar->connect_errno) {

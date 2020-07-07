@@ -103,6 +103,7 @@ class TurnosWebControlador{
         #$reservadoIntervalo = $turnoHistorial->TurnosExistentesEnIntervalo($fechaHora,$rangoValido,6);
         $reserva = new Reserva();
         $reservadoIntervalo = $reserva->ReservasExistentesEnIntervalo($fechaReserva,$horaReserva,$rangoValido,$idOperacion,1); //$diaHabil,$hora,$rango,$operacion,$idEstadoReserva
+        //Si ya estaba reservado
         if ($reservadoIntervalo) {
             $sector = new Sector();
             $sectores = $sector->GetSectoresWeb();
@@ -140,7 +141,8 @@ class TurnosWebControlador{
 
             //$reservaHistorial->InsertarTurnoHistorial($ultimoTurnoId,6);//Reservado_Web es (_,6)
             $parametros = new Parametros();
-            $nombreDia = $parametros->get_nombre_dia($fechaReserva);            
+            $nombreDia = $parametros->get_nombre_dia($fechaReserva);  
+            require_once "view/turnosweb/mail.php";           
             require_once "view/turnosweb/confirmacionTurno.php";            
         }
         require_once "view/footerturno.php";
