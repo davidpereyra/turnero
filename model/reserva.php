@@ -129,7 +129,7 @@
             
             date_default_timezone_set('America/Argentina/Mendoza');
             $today = date('Y-m-d');
-            $consulta=$this->pdo->prepare("SELECT `reserva`.`idReserva`,`operacion`.`nombreOperacion`,`reserva`.`fechaReserva`,`reserva`.`horaReserva`,`reserva`.`comentarioReserva`,
+            $consulta=$this->pdo->prepare("SELECT DISTINCT `reserva`.`idReserva`,`operacion`.`nombreOperacion`,`reserva`.`fechaReserva`,`reserva`.`horaReserva`,`reserva`.`comentarioReserva`,
             `cliente`.`nombreCliente`,`cliente`.`apellidoCliente`,`cliente`.`dniCliente`,`cliente`.`telefono1Cliente`,`cliente`.`mailCliente`,
             `reservahistorial`.`fechaAltaReserva`, `reservahistorial`.`horaAltaReserva`
             FROM `reserva`           

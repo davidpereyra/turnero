@@ -28,7 +28,12 @@
             <?php
               echo $msg;
               $msg='';
+              //Muestra mensaje y redirecciona
+              ob_start();
+              header("refresh: 5; url =?c=usuario&a=GestionarReservas");          
+              ob_end_flush();
             ?>
+             
           </strong>          
         </div>
       <?php

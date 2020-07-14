@@ -122,7 +122,7 @@ $operarioPagina = $usuario -> ListarUsuariosPaginados($iniciar,$operarios_por_pa
         $imprimir = $t->TurnoPorId($uid);
         //include "view/imprimir.php";
         
-        header("location:../newserver/?c=inicio&a=selectTurno");
+        header("location:?c=inicio&a=selectTurno");
         
     }
 
